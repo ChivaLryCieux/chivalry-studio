@@ -37,7 +37,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#2b2b2b",
         imagePlaceholder: "SH",
         src: "/images/4.PNG"
     },
@@ -46,7 +46,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#3e1c1c",
         imagePlaceholder: "SH",
         src: "/images/5.PNG"
     },
@@ -55,7 +55,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#4a3b32",
         imagePlaceholder: "SH",
         src: "/images/6.PNG"
     },
@@ -64,7 +64,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#1a2a3a",
         imagePlaceholder: "SH",
         src: "/images/7.PNG"
     },
@@ -73,7 +73,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#2b2b2b",
         imagePlaceholder: "SH",
         src: "/images/8.PNG"
     },
@@ -82,7 +82,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#3e1c1c",
         imagePlaceholder: "SH",
         src: "/images/9.PNG"
     },
@@ -91,7 +91,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#4a3b32",
         imagePlaceholder: "SH",
         src: "/images/10.PNG"
     },
@@ -100,7 +100,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#1a2a3a",
         imagePlaceholder: "SH",
         src: "/images/11.PNG"
     },
@@ -109,7 +109,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b", // 深灰色
+        color: "#2b2b2b",
         imagePlaceholder: "SH",
         src: "/images/12.PNG"
     },
