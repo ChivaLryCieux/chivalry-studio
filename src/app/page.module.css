@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white; /* 全局文字白色 */
+    color: #ede8de; /* 全局文字白色 */
     /* 背景色过渡动画，具体颜色由 inline-style 控制 */
     transition: background-color 0.6s ease-in-out;
 }
@@ -235,8 +235,7 @@
     left: 50%;
     transform: translate(-50%, -50%); /* 绝对居中 */
     z-index: 10;
-
-    font-family: "Times New Roman", serif; /* 衬线体 */
+    font-family: var(--font-serif), "Times New Roman", serif; /* 衬线体 */
     font-size: 5vw; /* 响应式字体大小 */
     color: white;
     white-space: nowrap;

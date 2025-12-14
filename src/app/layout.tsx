@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// 配置衬线体 (用于大标题)
+const serifFont = localFont({
+    src: "./fonts/OptimaRoman.woff2", // 路径相对于 layout.tsx
+    variable: "--font-serif",       // 定义 CSS 变量名
+    display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// 配置无衬线体 (用于 UI 文字)
+const sansFont = localFont({
+    src: "./fonts/OptimaRoman.woff2",
+    variable: "--font-sans",
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-cn">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${serifFont.variable} ${sansFont.variable}`}>
         {children}
       </body>
     </html>

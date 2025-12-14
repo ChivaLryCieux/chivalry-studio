@@ -19,7 +19,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Interior",
-        color: "#4a3b32", // 咖啡色
+        color: "#4a2b22",
         imagePlaceholder: "HO",
         src: "/images/2.PNG"
     },
@@ -28,7 +28,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Digital Art",
-        color: "#1a2a3a", // 深蓝色
+        color: "#572f27",
         imagePlaceholder: "NV",
         src: "/images/3.PNG"
     },
@@ -37,7 +37,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b",
+        color: "#90573b",
         imagePlaceholder: "SH",
         src: "/images/4.PNG"
     },
@@ -55,7 +55,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#4a3b32",
+        color: "#4a2b22",
         imagePlaceholder: "SH",
         src: "/images/6.PNG"
     },
@@ -64,7 +64,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#1a2a3a",
+        color: "#572f27",
         imagePlaceholder: "SH",
         src: "/images/7.PNG"
     },
@@ -73,7 +73,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b",
+        color: "#90573b",
         imagePlaceholder: "SH",
         src: "/images/8.PNG"
     },
@@ -91,7 +91,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#4a3b32",
+        color: "#4a2b22",
         imagePlaceholder: "SH",
         src: "/images/10.PNG"
     },
@@ -100,7 +100,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#1a2a3a",
+        color: "#572f27",
         imagePlaceholder: "SH",
         src: "/images/11.PNG"
     },
@@ -109,7 +109,7 @@ const projects = [
         title: "",
         year: "2025",
         category: "Concept",
-        color: "#2b2b2b",
+        color: "#90573b",
         imagePlaceholder: "SH",
         src: "/images/12.PNG"
     },
@@ -276,8 +276,6 @@ export default function Home() {
                                         ))}
                                     </h2>
                                 </div>
-                                {/* ✅ 修改结束 */}
-
                             </div>
                         </div>
                     );
