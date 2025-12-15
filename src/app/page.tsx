@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
+import { ModelViewer } from "@/components/ModelViewer";
 
 const projects = [
     {
@@ -198,11 +199,11 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* 顶部中间信息 */}
+            {/* 顶部中间 - 只保留3D模型 */}
             <div className={styles.topCenter}>
-                <div className={styles.counter}>[ 0{activeIndex + 1} ]</div>
-                <div className={styles.range}>1 - {projects.length} {currentProject.title}</div>
-                <div className={styles.centerIcon}>⚜</div> {/* 简单的装饰图标 */}
+                <div className={styles.modelContainer}>
+                    <ModelViewer />
+                </div>
             </div>
 
             {/* 顶部右侧 */}

@@ -15,6 +15,12 @@
 /* --- 2. UI 框架 (固定在屏幕四周) --- */
 /* 使用 absolute 定位将它们钉在屏幕边缘，z-index 设高以覆盖卡片 */
 
+/* 3D模型容器 - 现在是topCenter的唯一内容 */
+.modelContainer {
+    width: 200px;
+    height: 200px;
+}
+
 .topLeft {
     position: absolute;
     top: 40px;
@@ -50,15 +56,13 @@
 
 .topCenter {
     position: absolute;
-    top: 40px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 30px;
+    justify-content: center;
     align-items: center;
-    font-size: 0.9rem;
     z-index: 50;
-    font-family: monospace; /* 机械感字体 */
 }
 
 .centerIcon {
@@ -298,6 +302,12 @@
     .topRight { top: 20px; right: 20px; }
     .bottomLeft { bottom: 20px; left: 20px; }
     .bottomRight { bottom: 20px; right: 20px; }
+
+    /* 调整3D模型大小 */
+    .modelContainer {
+        width: 150px;
+        height: 150px;
+    }
 
     /* 隐藏在手机上太拥挤的元素 */
     .topCenter,
