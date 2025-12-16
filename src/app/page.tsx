@@ -256,8 +256,6 @@ export default function Home() {
                     return (
                         <div key={proj.id} className={cardClass}>
                             <div className={styles.cardInner}>
-
-                                {/* ✅ 修改开始：使用真实图片 */}
                                 <div className={styles.imageWrapper}>
                                     <Image
                                         src={proj.src}
@@ -268,7 +266,7 @@ export default function Home() {
                                         priority={index === 0} // 优化：优先加载第一张图，防止闪烁
                                     />
 
-                                    {/* 标题依然盖在图片上面 */}
+                                    {/* 标题盖在图片上面 */}
                                     <h2 className={styles.cardTitle}>
                                         {proj.title.split(' ').map((word, i) => (
                                             <span key={i} style={{ display: 'block', marginLeft: i * 40 + 'px' }}>

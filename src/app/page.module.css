@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ede8de; /* 全局文字白色 */
+    color: #ede8de; /* 全局文颜色 */
     /* 背景色过渡动画，具体颜色由 inline-style 控制 */
     transition: background-color 0.6s ease-in-out;
 }
