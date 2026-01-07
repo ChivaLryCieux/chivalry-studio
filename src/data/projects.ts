@@ -25,8 +25,8 @@ export const projects: ProjectData[] = [
         description: "An analysis of the user ecosystem and user stickiness based on cluster analysis and Markov chain modeling.",
         // 详情图
         detailImages: [
-            "/images/projects/1/1.png",
-            "/images/projects/1/2.png"
+            "/images/projects/1/1-1.png",
+            "/images/projects/1/1-2.png"
         ]
     },
     {
