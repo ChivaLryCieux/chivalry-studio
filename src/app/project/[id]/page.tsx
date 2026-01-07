@@ -20,8 +20,7 @@ export default async function ProjectDetail({ params }: PageProps) {
 
     // 强制样式对象
     const wrapperStyle: React.CSSProperties = {
-        width: '850px', // 🔴 强制宽度
-        maxWidth: '90vw', // 移动端不超过屏幕90%
+        width: '75vw', // 🔴 强制宽度
         boxShadow: '0 30px 60px rgba(0,0,0,0.5)', // 主页同款阴影
         backgroundColor: '#3e1c1c',
         borderRadius: '4px',
