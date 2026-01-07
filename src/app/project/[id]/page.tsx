@@ -20,12 +20,12 @@ export default async function ProjectDetail({ params }: PageProps) {
 
     // 强制样式对象
     const wrapperStyle: React.CSSProperties = {
-        width: '850px', // 🔴 强制宽度 600px (约等于主页卡片大小)
+        width: '850px', // 🔴 强制宽度
         maxWidth: '90vw', // 移动端不超过屏幕90%
         boxShadow: '0 30px 60px rgba(0,0,0,0.5)', // 主页同款阴影
         backgroundColor: '#3e1c1c',
         borderRadius: '4px',
-        overflow: 'hidden', // 🔴 核心：溢出隐藏，切断超出的图片
+        overflow: 'hidden', // 核心：溢出隐藏，切断超出的图片
         position: 'relative', // 确保子元素定位准确
         aspectRatio: '16 / 9', // 锁定比例
         flexShrink: 0, // 防止被 Flex 布局压缩
@@ -117,7 +117,7 @@ export default async function ProjectDetail({ params }: PageProps) {
 
                 {/* --- 右侧：文字区域 --- */}
                 <div style={{ flex: 1, minWidth: '300px' }}>
-                    <div style={{ position: 'sticky', top: '120px', maxWidth: '180px' }}>
+                    <div style={{ position: 'sticky', top: '120px', maxWidth: '15vw' }}>
 
                         {/* 标题 */}
                         <div className="border-b border-gray-200 pb-6 mb-8">
