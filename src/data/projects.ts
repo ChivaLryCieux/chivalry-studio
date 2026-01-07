@@ -25,11 +25,11 @@ export const projects: ProjectData[] = [
         description: "An analysis of the user ecosystem and user stickiness based on cluster analysis and Markov chain modeling.",
         // 详情图
         detailImages: [
-            "/images/projects/1/1-1.png",
-            "/images/projects/1/1-2.png",
-            "/images/projects/1/1-3.png",
-            "/images/projects/1/1-4.png",
-            "/images/projects/1/1-5.png"
+            "/images/projects/1/1-1.PNG",
+            "/images/projects/1/1-2.PNG",
+            "/images/projects/1/1-3.PNG",
+            "/images/projects/1/1-4.PNG",
+            "/images/projects/1/1-5.PNG"
         ]
     },
     {
@@ -43,17 +43,17 @@ export const projects: ProjectData[] = [
         description: "About Schrödinger Bridge.",
         // 详情图
         detailImages: [
-            "/images/projects/2/2-1.png",
-            "/images/projects/2/2-2.png",
-            "/images/projects/2/2-3.png",
-            "/images/projects/2/2-4.png",
-            "/images/projects/2/2-5.png",
-            "/images/projects/2/2-6.png",
-            "/images/projects/2/2-7.png",
-            "/images/projects/2/2-8.png",
-            "/images/projects/2/2-9.png",
-            "/images/projects/2/2-10.png",
-            "/images/projects/2/2-11.png"
+            "/images/projects/2/2-1.PNG",
+            "/images/projects/2/2-2.PNG",
+            "/images/projects/2/2-3.PNG",
+            "/images/projects/2/2-4.PNG",
+            "/images/projects/2/2-5.PNG",
+            "/images/projects/2/2-6.PNG",
+            "/images/projects/2/2-7.PNG",
+            "/images/projects/2/2-8.PNG",
+            "/images/projects/2/2-9.PNG",
+            "/images/projects/2/2-10.PNG",
+            "/images/projects/2/2-11.PNG"
         ]
     },
     {
