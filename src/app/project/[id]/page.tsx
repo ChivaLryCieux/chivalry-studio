@@ -20,7 +20,7 @@ export default async function ProjectDetail({ params }: PageProps) {
 
     // 强制样式对象
     const wrapperStyle: React.CSSProperties = {
-        width: '75vw', // 🔴 强制宽度
+        width: '72vw', // 🔴 强制宽度
         boxShadow: '0 30px 60px rgba(0,0,0,0.5)', // 主页同款阴影
         backgroundColor: '#3e1c1c',
         borderRadius: '4px',
@@ -70,7 +70,7 @@ export default async function ProjectDetail({ params }: PageProps) {
                 paddingRight: '5vw',
                 display: 'flex',
                 flexDirection: 'row', // 强制横向
-                gap: '60px',
+                gap: '8vw',
                 alignItems: 'flex-start',
                 width: '100%'
             }}>
@@ -115,7 +115,7 @@ export default async function ProjectDetail({ params }: PageProps) {
                 </div>
 
                 {/* --- 右侧：文字区域 --- */}
-                <div style={{ flex: 1, minWidth: '300px' }}>
+                <div style={{ flex: 1, minWidth: '15vw' }}>
                     <div style={{ position: 'sticky', top: '120px', maxWidth: '15vw' }}>
 
                         {/* 标题 */}
