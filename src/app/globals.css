@@ -14,7 +14,6 @@ body {
     --font-serif: "OptimaRoman", serif;
     --font-sans: "OptimaRoman", sans-serif;
     font-family: var(--font-sans), Arial, sans-serif;
-    overflow: hidden; /* 关键：禁止由于内容过多产生的默认滚动条 */
     color: var(--text-color);
     transition: background-color var(--transition-speed) ease-in-out;
 }

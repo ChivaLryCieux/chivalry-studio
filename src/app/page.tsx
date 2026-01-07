@@ -3,118 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
+import Link from "next/link"; //
 import { ModelViewer } from "@/components/ModelViewer";
-
-const projects = [
-    {
-        id: 1,
-        title: "",
-        year: "2025",
-        category: "Architecture",
-        color: "#3e1c1c", // 深红棕色
-        imagePlaceholder: "CP",
-        src: "/images/1.PNG"
-    },
-    {
-        id: 2,
-        title: "",
-        year: "2025",
-        category: "Interior",
-        color: "#4a2b22",
-        imagePlaceholder: "HO",
-        src: "/images/2.PNG"
-    },
-    {
-        id: 3,
-        title: "",
-        year: "2025",
-        category: "Digital Art",
-        color: "#572f27",
-        imagePlaceholder: "NV",
-        src: "/images/3.PNG"
-    },
-    {
-        id: 4,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#90573b",
-        imagePlaceholder: "SH",
-        src: "/images/4.PNG"
-    },
-    {
-        id: 5,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#3e1c1c",
-        imagePlaceholder: "SH",
-        src: "/images/5.PNG"
-    },
-    {
-        id: 6,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#4a2b22",
-        imagePlaceholder: "SH",
-        src: "/images/6.PNG"
-    },
-    {
-        id: 7,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#572f27",
-        imagePlaceholder: "SH",
-        src: "/images/7.PNG"
-    },
-    {
-        id: 8,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#90573b",
-        imagePlaceholder: "SH",
-        src: "/images/8.PNG"
-    },
-    {
-        id: 9,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#3e1c1c",
-        imagePlaceholder: "SH",
-        src: "/images/9.PNG"
-    },
-    {
-        id: 10,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#4a2b22",
-        imagePlaceholder: "SH",
-        src: "/images/10.PNG"
-    },
-    {
-        id: 11,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#572f27",
-        imagePlaceholder: "SH",
-        src: "/images/11.PNG"
-    },
-    {
-        id: 12,
-        title: "",
-        year: "2025",
-        category: "Concept",
-        color: "#90573b",
-        imagePlaceholder: "SH",
-        src: "/images/12.PNG"
-    },
-];
+import { projects } from "@/data/projects";
 
 export default function Home() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -141,7 +32,6 @@ export default function Home() {
     // 监听键盘、滚轮
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
-            // 简单的防抖逻辑
             if (Math.abs(e.deltaY) > 20) {
                 changeSlide(e.deltaY > 0 ? "next" : "prev");
             }
@@ -170,7 +60,7 @@ export default function Home() {
         const touchEndY = e.changedTouches[0].clientY;
         const diff = touchStartY.current - touchEndY;
 
-        if (Math.abs(diff) > 50) { // 滑动超过50px才触发
+        if (Math.abs(diff) > 50) {
             changeSlide(diff > 0 ? "next" : "prev");
         }
     };
@@ -199,7 +89,7 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* 顶部中间 - 只保留3D模型 */}
+            {/* 顶部中间 - 3D模型 */}
             <div className={styles.topCenter}>
                 <div className={styles.modelContainer}>
                     <ModelViewer />
@@ -215,25 +105,22 @@ export default function Home() {
 
             {/* 底部左侧 */}
             <div className={styles.bottomLeft}>
-                <a href="chivalrycieux@qq.com" className={styles.email}>chivalrycieux@qq.com</a>
+                <a href="mailto:chivalrycieux@qq.com" className={styles.email}>chivalrycieux@qq.com</a>
             </div>
 
             {/* 底部右侧 */}
             <div className={styles.bottomRight}>
                 <span>Shanghai, China</span>
-                {/* 简单的圆形进度指示 */}
                 <div className={styles.circleIndicator}></div>
             </div>
 
             {/* 底部进度条 (Ruler) */}
             <div className={styles.bottomBar}>
                 <div className={styles.ticks}>
-                    {/* 生成一些刻度线 */}
                     {Array.from({ length: 40 }).map((_, i) => (
                         <span key={i} className={styles.tick}>|</span>
                     ))}
                 </div>
-                {/* 当前进度指示 */}
                 <div
                     className={styles.progressMarker}
                     style={{ left: `${(activeIndex / (projects.length - 1)) * 90 + 5}%` }}
@@ -246,7 +133,6 @@ export default function Home() {
             {/* --- 内容层 (卡片堆叠) --- */}
             <div className={styles.stackContainer}>
                 {projects.map((proj, index) => {
-                    // 计算卡片状态
                     let cardClass = styles.card;
                     if (index === activeIndex) cardClass += ` ${styles.active}`;
                     else if (index === activeIndex + 1) cardClass += ` ${styles.next}`;
@@ -254,29 +140,42 @@ export default function Home() {
                     else cardClass += ` ${styles.hidden}`;
 
                     return (
-                        <div key={proj.id} className={cardClass}>
+                        // ✅ Link 包裹
+                        <Link
+                            key={proj.id}
+                            href={`/project/${proj.id}`}
+                            className={cardClass}
+                        >
                             <div className={styles.cardInner}>
                                 <div className={styles.imageWrapper}>
                                     <Image
                                         src={proj.src}
                                         alt={proj.title}
-                                        fill // 让图片自动填满父容器
-                                        sizes="(max-width: 768px) 100vw, 50vw" // 性能优化：移动端加载小图，桌面端加载大图
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         className={styles.realImage}
-                                        priority={index === 0} // 优化：优先加载第一张图，防止闪烁
+                                        priority={index === 0}
                                     />
 
-                                    {/* 标题盖在图片上面 */}
                                     <h2 className={styles.cardTitle}>
-                                        {proj.title.split(' ').map((word, i) => (
-                                            <span key={i} style={{ display: 'block', marginLeft: i * 40 + 'px' }}>
-                   {word}
-                 </span>
-                                        ))}
+                                        {/* 处理可能的空标题 */}
+                                        {proj.title ? proj.title.split(' ').map((word, i) => (
+                                            <span
+                                                key={i}
+                                                style={{
+                                                    display: 'block',  // 保持块级元素，让每个文字独占一行
+                                                    textAlign: 'center',  // 文字水平居中
+                                                }}
+                                            >
+                                                {word}
+                                            </span>
+                                        )) : (
+                                            <span style={{ display: 'block' }}>UNTITLED</span>
+                                        )}
                                     </h2>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>
