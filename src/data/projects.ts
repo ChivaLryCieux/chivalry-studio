@@ -65,5 +65,25 @@ export const projects: ProjectData[] = [
         imagePlaceholder: "NV",
         src: "/images/3.jpg"
     },
+    {
+        id: 4,
+        title: "Unity Game Design",
+        year: "2026",
+        category: "Game Design",
+        color: "#3e1c1c",
+        imagePlaceholder: "NV",
+        src: "/images/4.PNG",
+        description: "A Game Design.",
+        detailImages: [
+            "/images/projects/4/4-2.PNG",
+            "/images/projects/4/4-3.PNG",
+            "/images/projects/4/4-4.PNG",
+            "/images/projects/4/4-5.PNG",
+            "/images/projects/4/4-6.PNG",
+            "/images/projects/4/4-7.PNG",
+            "/images/projects/4/4-8.PNG",
+            "/images/projects/4/4-9.PNG"
+        ]
+    },
 
 ];
