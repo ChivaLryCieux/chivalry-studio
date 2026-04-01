@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 
 export default function CrosshairCursor() {
     const [pos, setPos] = useState({ x: -100, y: -100 });
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const rafRef = useRef<number>(0);
     const posRef = useRef({ x: -100, y: -100 });
 
@@ -25,9 +25,6 @@ export default function CrosshairCursor() {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseenter", handleMouseEnter);
         document.addEventListener("mouseleave", handleMouseLeave);
-
-        // 初始时检测鼠标是否已在页面内
-        setVisible(true);
 
         return () => {
             document.removeEventListener("mousemove", handleMouseMove);

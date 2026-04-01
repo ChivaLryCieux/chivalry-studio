@@ -1,0 +1,132 @@
+.page {
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #3e1c1c;
+    color: #ede8de;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 2vw;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    mix-blend-mode: difference;
+    color: white;
+}
+
+.navLink {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    pointer-events: auto;
+}
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 80px;
+    padding-left: 2vw;
+    padding-right: 5vw;
+    display: flex;
+    flex-direction: row;
+    gap: 8vw;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.imageFrame {
+    width: 72vw;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    background-color: #3e1c1c;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+}
+
+.detailImage {
+    object-fit: cover;
+    display: block;
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 15vw;
+}
+
+.sidebarInner {
+    position: sticky;
+    top: 120px;
+    max-width: 15vw;
+}
+
+.titleBlock {
+    border-bottom: 1px solid rgba(237, 232, 222, 0.2);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+}
+
+.projectMeta {
+    font-size: 0.75rem;
+    color: rgba(237, 232, 222, 0.65);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-family: monospace;
+}
+
+.projectTitle {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-family: var(--font-serif), "Times New Roman", serif;
+    color: #ede8de;
+    line-height: 1.1;
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+        gap: 48px;
+        padding-right: 2vw;
+    }
+
+    .imageFrame {
+        width: 96vw;
+    }
+
+    .sidebar {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .sidebarInner {
+        position: static;
+        max-width: none;
+    }
+}

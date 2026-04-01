@@ -1,17 +1,4 @@
-// src/data/projects.ts
-
-export interface ProjectData {
-    id: number;
-    title: string;
-    year: string;
-    category: string;
-    color: string;
-    imagePlaceholder: string;
-    src: string;
-    description?: string;
-    content?: string;
-    detailImages?: string[]; // ✅ 详情页专用图片数组
-}
+import type { ProjectData } from "@/types/project";
 
 export const projects: ProjectData[] = [
     {

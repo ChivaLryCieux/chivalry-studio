@@ -1,10 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
-import { Model } from './Model3D';
+import { useEffect, useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Model } from "./Model3D";
 
 interface ModelViewerProps {
   className?: string;
