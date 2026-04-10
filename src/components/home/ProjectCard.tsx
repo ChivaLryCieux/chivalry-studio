@@ -27,6 +27,8 @@ function getCardClassName(index: number, activeIndex: number) {
 }
 
 export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
+    const titleLines = project.cardTitleLines ?? splitProjectTitle(project.title);
+
     return (
         <Link
             key={project.id}
@@ -45,7 +47,7 @@ export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
                     />
 
                     <h2 className={styles.cardTitle}>
-                        {splitProjectTitle(project.title).map((word, wordIndex) => (
+                        {titleLines.map((word, wordIndex) => (
                             <span
                                 key={`${project.id}-${wordIndex}`}
                                 style={{ display: "block", textAlign: "center" }}

@@ -1,0 +1,517 @@
+.page {
+    --bg: #0a0908;
+    --panel: rgba(27, 22, 17, 0.82);
+    --panel-strong: rgba(44, 32, 20, 0.9);
+    --text: #f5efe6;
+    --muted: rgba(245, 239, 230, 0.72);
+    --accent: #f0a229;
+    --accent-soft: rgba(240, 162, 41, 0.2);
+    --line: rgba(255, 255, 255, 0.12);
+    min-height: 100vh;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 20% 15%, rgba(240, 162, 41, 0.16), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(255, 227, 160, 0.08), transparent 18%),
+        linear-gradient(180deg, #0f0d0a 0%, #090806 100%);
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px clamp(20px, 4vw, 48px);
+    backdrop-filter: blur(18px);
+    background: linear-gradient(180deg, rgba(10, 9, 8, 0.84), rgba(10, 9, 8, 0.22));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navLink,
+.navMeta {
+    font-size: 0.82rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.hero {
+    padding: 7rem clamp(20px, 4vw, 48px) 4rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: end;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    margin-bottom: 18px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 36px;
+    height: 1px;
+    background: currentColor;
+}
+
+.heroTitle {
+    max-width: 12ch;
+    font-size: clamp(3.5rem, 8vw, 7.6rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.heroLead {
+    margin-top: 1.5rem;
+    max-width: 56ch;
+    color: var(--muted);
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    line-height: 1.7;
+}
+
+.heroSide {
+    display: grid;
+    gap: 18px;
+}
+
+.heroPanel {
+    padding: 22px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+}
+
+.panelLabel {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 230, 0.58);
+}
+
+.panelValue {
+    margin-top: 12px;
+    font-size: clamp(2.1rem, 3vw, 3rem);
+    line-height: 1;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.panelCopy {
+    margin-top: 10px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 0.97rem;
+}
+
+.statGrid {
+    padding: 0 clamp(20px, 4vw, 48px) 5rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.statCard {
+    padding: 22px;
+    border-radius: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+}
+
+.statValue {
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.statTitle {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: rgba(245, 239, 230, 0.55);
+}
+
+.statDetail {
+    margin-top: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 0.94rem;
+}
+
+.section {
+    padding: 0 clamp(20px, 4vw, 48px) 5rem;
+}
+
+.sectionHeader {
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: 32px;
+    margin-bottom: 28px;
+}
+
+.sectionTitle {
+    font-size: clamp(2rem, 3.6vw, 3.2rem);
+    line-height: 1.02;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.sectionBody {
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    max-width: 66ch;
+}
+
+.milestoneGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.milestoneCard {
+    padding: 22px;
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(31, 25, 18, 0.92), rgba(16, 14, 11, 0.96));
+}
+
+.milestoneYear {
+    font-size: 0.82rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.milestoneTitle {
+    margin-top: 14px;
+    font-size: 1.3rem;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.milestoneValue {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #ffd58e;
+}
+
+.milestoneDetail {
+    margin-top: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.chartShell,
+.vizShell {
+    padding: 24px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(24, 21, 16, 0.92), rgba(12, 11, 9, 0.98));
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.25);
+}
+
+.mapLayout {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+    gap: 20px;
+}
+
+.pillarList {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+}
+
+.pillarButton {
+    width: 100%;
+    text-align: left;
+    padding: 18px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+    color: inherit;
+    cursor: pointer;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.pillarButton:hover,
+.pillarButtonActive {
+    transform: translateY(-2px);
+    border-color: rgba(240, 162, 41, 0.5);
+    background: rgba(240, 162, 41, 0.08);
+}
+
+.pillarKicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.pillarLabel {
+    margin-top: 8px;
+    font-size: 1.18rem;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.pillarDetail {
+    margin-top: 10px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.94rem;
+}
+
+.mapCanvas {
+    width: 100%;
+    min-height: 440px;
+    border-radius: 24px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+        radial-gradient(circle at 50% 50%, rgba(240, 162, 41, 0.14), transparent 48%);
+}
+
+.timeline {
+    display: grid;
+    gap: 12px;
+}
+
+.timelineRow {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timelineYear {
+    color: var(--accent);
+    font-size: 0.84rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.timelineTitle {
+    font-size: 1.2rem;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.timelineDetail {
+    margin-top: 8px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.priceLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.chartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.chartTitle {
+    font-size: 1.4rem;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.chartSubcopy {
+    margin-top: 8px;
+    max-width: 60ch;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 0.94rem;
+}
+
+.chartToggle {
+    display: inline-flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 6px;
+    border-radius: 999px;
+}
+
+.chartToggle button {
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.chartToggle .toggleActive {
+    background: rgba(240, 162, 41, 0.15);
+    color: var(--text);
+}
+
+.chartFrame {
+    position: relative;
+}
+
+.chartSvg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.chartTooltip {
+    position: absolute;
+    min-width: 180px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(9, 8, 7, 0.94);
+    box-shadow: 0 14px 50px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    transform: translate(-50%, calc(-100% - 16px));
+}
+
+.tooltipDate {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.tooltipValue {
+    margin-top: 6px;
+    font-size: 1.26rem;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.tooltipSub {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.chartSidebar {
+    display: grid;
+    gap: 14px;
+}
+
+.noteCard {
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.noteTitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 230, 0.58);
+}
+
+.noteValue {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.noteBody {
+    margin-top: 10px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.93rem;
+}
+
+.holdingsLayout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+    gap: 20px;
+    align-items: center;
+}
+
+.donutWrap {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.donutCenter {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+.donutValue {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.donutLabel {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.holdingsMetrics {
+    display: grid;
+    gap: 14px;
+}
+
+.footerNote {
+    padding: 0 clamp(20px, 4vw, 48px) 4rem;
+    color: rgba(245, 239, 230, 0.5);
+    line-height: 1.7;
+    font-size: 0.82rem;
+}
+
+@media (max-width: 1080px) {
+    .hero,
+    .sectionHeader,
+    .mapLayout,
+    .priceLayout,
+    .holdingsLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .statGrid,
+    .milestoneGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .hero {
+        padding-top: 5.5rem;
+    }
+
+    .heroTitle {
+        max-width: none;
+    }
+
+    .statGrid,
+    .milestoneGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .timelineRow {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .chartTooltip {
+        min-width: 150px;
+        padding: 12px 14px;
+    }
+}

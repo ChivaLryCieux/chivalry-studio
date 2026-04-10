@@ -11,6 +11,14 @@ export default function Home() {
     const projects = getProjects();
     const { activeIndex, currentProject, handleTouchEnd, handleTouchStart } = useProjectCarousel(projects);
 
+    if (!currentProject) {
+        return (
+            <main className={styles.main}>
+                <div>No projects found.</div>
+            </main>
+        );
+    }
+
     return (
         <main
             className={styles.main}

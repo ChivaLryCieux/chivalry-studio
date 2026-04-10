@@ -13,6 +13,7 @@ export function useProjectCarousel(projects: ProjectData[]) {
     const [isAnimating, setIsAnimating] = useState(false);
     const touchStartY = useRef(0);
     const animationTimeoutRef = useRef<number | null>(null);
+    const safeIndex = projects.length === 0 ? 0 : Math.min(activeIndex, projects.length - 1);
 
     const lockAnimation = () => {
         setIsAnimating(true);
@@ -31,16 +32,27 @@ export function useProjectCarousel(projects: ProjectData[]) {
             return;
         }
 
-        if (direction === "next" && activeIndex < projects.length - 1) {
+        if (direction === "next" && safeIndex < projects.length - 1) {
             lockAnimation();
             setActiveIndex((prev) => prev + 1);
         }
 
-        if (direction === "prev" && activeIndex > 0) {
+        if (direction === "prev" && safeIndex > 0) {
             lockAnimation();
             setActiveIndex((prev) => prev - 1);
         }
-    }, [activeIndex, isAnimating, projects.length]);
+    }, [isAnimating, projects.length, safeIndex]);
+
+    useEffect(() => {
+        if (projects.length === 0) {
+            setActiveIndex(0);
+            return;
+        }
+
+        if (activeIndex > projects.length - 1) {
+            setActiveIndex(projects.length - 1);
+        }
+    }, [activeIndex, projects.length]);
 
     useEffect(() => {
         const handleWheel = (event: WheelEvent) => {
@@ -69,8 +81,8 @@ export function useProjectCarousel(projects: ProjectData[]) {
     }, [changeSlide]);
 
     useEffect(() => {
-        document.body.style.backgroundColor = projects[activeIndex]?.color ?? "";
-    }, [activeIndex, projects]);
+        document.body.style.backgroundColor = projects[safeIndex]?.color ?? "";
+    }, [projects, safeIndex]);
 
     useEffect(() => {
         return () => {
@@ -95,7 +107,7 @@ export function useProjectCarousel(projects: ProjectData[]) {
 
     return {
         activeIndex,
-        currentProject: projects[activeIndex],
+        currentProject: projects[safeIndex] ?? null,
         handleTouchEnd,
         handleTouchStart,
         projects,

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProjectGallery } from "@/components/project/ProjectGallery";
 import { ProjectSidebar } from "@/components/project/ProjectSidebar";
+import { BitcoinStoryPage } from "@/components/project/bitcoin/BitcoinStoryPage";
 import { getProjectById } from "@/lib/projects";
 import styles from "./page.module.css";
 
@@ -17,6 +18,10 @@ export default async function ProjectDetail({ params }: PageProps) {
 
     if (!project) {
         notFound();
+    }
+
+    if (project.template === "bitcoin-story") {
+        return <BitcoinStoryPage />;
     }
 
     return (

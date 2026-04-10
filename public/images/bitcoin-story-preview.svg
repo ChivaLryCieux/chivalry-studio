@@ -1,0 +1,44 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0B0907"/>
+  <rect width="1600" height="900" fill="url(#paint0_radial)"/>
+  <circle cx="1197" cy="176" r="276" fill="url(#paint1_radial)" fill-opacity="0.42"/>
+  <circle cx="363" cy="684" r="312" fill="url(#paint2_radial)" fill-opacity="0.28"/>
+  <path d="M190 737C427.683 514.785 676.455 403.677 936 404C1121.33 404.231 1277.66 458.231 1405 566" stroke="url(#paint3_linear)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 12"/>
+  <path d="M193 738C294.5 649.833 395.5 581.5 496 533C596.5 484.5 710 460.5 836.5 461C963 461.5 1063 495.833 1136.5 564C1210 632.167 1297 670.5 1397.5 679" stroke="#F0A229" stroke-width="8" stroke-linecap="round"/>
+  <g opacity="0.8">
+    <circle cx="193" cy="738" r="13" fill="#FFD48A"/>
+    <circle cx="496" cy="533" r="13" fill="#FFD48A"/>
+    <circle cx="836" cy="461" r="13" fill="#FFD48A"/>
+    <circle cx="1137" cy="564" r="13" fill="#FFD48A"/>
+    <circle cx="1398" cy="679" r="13" fill="#FFD48A"/>
+  </g>
+  <g opacity="0.4">
+    <path d="M177 279H689" stroke="white" stroke-opacity="0.18"/>
+    <path d="M177 343H815" stroke="white" stroke-opacity="0.18"/>
+    <path d="M177 407H975" stroke="white" stroke-opacity="0.18"/>
+  </g>
+  <rect x="116" y="108" width="476" height="232" rx="24" fill="#FFFFFF" fill-opacity="0.02"/>
+  <rect x="116" y="108" width="476" height="232" rx="24" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="156" y="176" fill="#F0A229" font-family="Optima, serif" font-size="30" letter-spacing="8">DATA STORY</text>
+  <text x="156" y="242" fill="#F7F0E5" font-family="Optima, serif" font-size="92" font-weight="700">BITCOIN</text>
+  <text x="156" y="307" fill="#F7F0E5" font-family="Optima, serif" font-size="48" letter-spacing="10">CONSENSUS GROWTH</text>
+  <text x="119" y="826" fill="#F7F0E5" font-family="Optima, serif" font-size="32" opacity="0.7">Satoshi Nakamoto / Whitepaper / Genesis Block / Price / 1.1M BTC</text>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(807 444) rotate(90) scale(444 807)">
+      <stop stop-color="#15110C"/>
+      <stop offset="1" stop-color="#090806"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1197 176) rotate(90) scale(276)">
+      <stop stop-color="#F0A229"/>
+      <stop offset="1" stop-color="#F0A229" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint2_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(363 684) rotate(90) scale(312)">
+      <stop stop-color="#A24719"/>
+      <stop offset="1" stop-color="#A24719" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="paint3_linear" x1="190" y1="571" x2="1405" y2="571" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4E3620"/>
+      <stop offset="1" stop-color="#F0A229"/>
+    </linearGradient>
+  </defs>
+</svg>

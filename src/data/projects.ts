@@ -72,5 +72,17 @@ export const projects: ProjectData[] = [
             "/images/projects/4/4-9.PNG"
         ]
     },
+    {
+        id: 5,
+        title: "神秘人中本聪与他的个人比特币项目——共识的18年野蛮生长",
+        year: "2026",
+        category: "Data Story",
+        color: "#1a120b",
+        imagePlaceholder: "BTC",
+        src: "/images/bitcoin-story-preview.svg",
+        cardTitleLines: ["中本聪", "Bitcoin", "共识生长"],
+        description: "A scrollytelling data story about Satoshi, the 2008 whitepaper, the genesis block, Bitcoin's repricing arc, and the scale of a 1.1M BTC fortune.",
+        template: "bitcoin-story"
+    },
 
 ];
