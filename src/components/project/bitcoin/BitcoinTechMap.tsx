@@ -1,37 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import * as d3 from "d3";
+import { useMemo, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Billboard, Line, Text } from "@react-three/drei";
+import * as THREE from "three";
 import styles from "./bitcoin-story.module.css";
 import type { TechPillar } from "@/data/bitcoinStory";
 
-interface NodeDatum extends d3.SimulationNodeDatum {
+type NodeGroup = "core" | "pillar" | "distributed" | "cryptography" | "blockchain";
+
+interface GraphNode {
     id: string;
     label: string;
-    group: string;
+    group: NodeGroup;
     size: number;
+    position: [number, number, number];
+    labelOffset: number;
 }
 
-interface LinkDatum extends d3.SimulationLinkDatum<NodeDatum> {
+interface GraphLink {
     source: string;
     target: string;
 }
 
-const nodeSeed: NodeDatum[] = [
-    { id: "bitcoin", label: "Bitcoin", group: "core", size: 26 },
-    { id: "distributed", label: "Distributed Systems", group: "pillar", size: 18 },
-    { id: "cryptography", label: "Cryptography", group: "pillar", size: 18 },
-    { id: "blockchain", label: "Blockchain", group: "pillar", size: 18 },
-    { id: "nodes", label: "Nodes", group: "distributed", size: 10 },
-    { id: "broadcast", label: "Broadcast", group: "distributed", size: 10 },
-    { id: "keys", label: "Keys", group: "cryptography", size: 10 },
-    { id: "hash", label: "Hash", group: "cryptography", size: 10 },
-    { id: "pow", label: "Proof-of-Work", group: "blockchain", size: 10 },
-    { id: "timestamp", label: "Timestamp", group: "blockchain", size: 10 },
-    { id: "incentives", label: "Incentives", group: "core", size: 10 },
+const nodes: GraphNode[] = [
+    { id: "bitcoin", label: "Bitcoin", group: "core", size: 0.44, position: [0, 0.15, 0], labelOffset: 0.68 },
+    { id: "distributed", label: "Distributed", group: "pillar", size: 0.34, position: [-1.85, 1.05, -0.18], labelOffset: 0.58 },
+    { id: "cryptography", label: "Crypto", group: "pillar", size: 0.34, position: [1.95, 1.18, 0.28], labelOffset: 0.58 },
+    { id: "blockchain", label: "Block Chain", group: "pillar", size: 0.34, position: [1.52, -1.2, -0.22], labelOffset: 0.58 },
+    { id: "nodes", label: "Nodes", group: "distributed", size: 0.2, position: [-3.12, 1.78, -0.42], labelOffset: 0.38 },
+    { id: "broadcast", label: "Broadcast", group: "distributed", size: 0.22, position: [-3.25, 0.18, 0.12], labelOffset: 0.4 },
+    { id: "keys", label: "Keys", group: "cryptography", size: 0.2, position: [3.22, 1.92, -0.32], labelOffset: 0.38 },
+    { id: "hash", label: "Hash", group: "cryptography", size: 0.22, position: [3.1, 0.38, 0.4], labelOffset: 0.4 },
+    { id: "pow", label: "PoW", group: "blockchain", size: 0.22, position: [2.98, -0.7, 0.18], labelOffset: 0.4 },
+    { id: "timestamp", label: "Timestamp", group: "blockchain", size: 0.2, position: [2.6, -2.08, -0.4], labelOffset: 0.38 },
+    { id: "incentives", label: "Incentives", group: "core", size: 0.2, position: [-0.9, -1.72, 0.24], labelOffset: 0.38 },
 ];
 
-const linkSeed: LinkDatum[] = [
+const links: GraphLink[] = [
     { source: "bitcoin", target: "distributed" },
     { source: "bitcoin", target: "cryptography" },
     { source: "bitcoin", target: "blockchain" },
@@ -50,41 +56,135 @@ const focusMap: Record<string, string[]> = {
     blockchain: ["blockchain", "pow", "timestamp", "bitcoin"],
 };
 
+function nodeColor(node: GraphNode, highlighted: boolean) {
+    if (highlighted) {
+        return node.group === "core" ? "#ffbf61" : "#ffe0a7";
+    }
+
+    return node.group === "core" ? "#f7f1e8" : "#ece3d7";
+}
+
+function labelColor(node: GraphNode, highlighted: boolean) {
+    if (highlighted) {
+        return "#fff8ee";
+    }
+
+    return node.group === "core" || node.group === "pillar"
+        ? "rgba(245, 239, 230, 0.9)"
+        : "rgba(245, 239, 230, 0.7)";
+}
+
+function FloatingNode({ node, highlighted }: { node: GraphNode; highlighted: boolean }) {
+    const seed = useMemo(() => node.id.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0), [node.id]);
+    const scaleTarget = highlighted ? 1.16 : 1;
+    const meshRef = useRef<THREE.Group>(null);
+    const labelRef = useRef<THREE.Group>(null);
+
+    useFrame(({ clock }, delta) => {
+        const mesh = meshRef.current;
+        const label = labelRef.current;
+
+        if (!mesh || !label) {
+            return;
+        }
+
+        const t = clock.getElapsedTime() * 0.9 + seed * 0.03;
+        const drift = Math.sin(t) * 0.075;
+        const sway = Math.cos(t * 0.7) * 0.06;
+        const pulse = 1 + Math.sin(t * 1.4) * 0.045;
+        const nextScale = mesh.scale.x + (scaleTarget * pulse - mesh.scale.x) * Math.min(1, delta * 4);
+
+        mesh.position.set(node.position[0] + sway, node.position[1] + drift, node.position[2]);
+        mesh.scale.setScalar(nextScale);
+
+        label.position.set(node.position[0] + sway, node.position[1] + node.labelOffset + drift * 0.85, node.position[2]);
+    });
+
+    return (
+        <>
+            <group ref={meshRef}>
+                <mesh castShadow receiveShadow>
+                    <sphereGeometry args={[node.size, 48, 48]} />
+                    <meshStandardMaterial
+                        color={nodeColor(node, highlighted)}
+                        roughness={0.22}
+                        metalness={0.14}
+                        emissive={highlighted ? "#7a4210" : "#f2e7d8"}
+                        emissiveIntensity={highlighted ? 1.15 : 0.14}
+                    />
+                </mesh>
+            </group>
+
+            <Billboard ref={labelRef} follow lockX={false} lockY={false} lockZ={false}>
+                <Text
+                    fontSize={node.group === "core" ? 0.28 : node.group === "pillar" ? 0.19 : 0.15}
+                    color={labelColor(node, highlighted)}
+                    anchorX="center"
+                    anchorY="middle"
+                    lineHeight={1.08}
+                    outlineWidth={0.01}
+                    outlineColor="rgba(10, 9, 8, 0.95)"
+                    maxWidth={node.group === "pillar" ? 1.6 : 1.2}
+                >
+                    {node.label}
+                </Text>
+            </Billboard>
+        </>
+    );
+}
+
+function GraphScene({ activeNodes }: { activeNodes: Set<string> }) {
+    const nodeMap = useMemo(() => new Map(nodes.map((node) => [node.id, node])), []);
+
+    return (
+        <>
+            <color attach="background" args={["#110d09"]} />
+            <fog attach="fog" args={["#110d09", 6, 12]} />
+            <ambientLight intensity={0.58} />
+            <pointLight position={[0, 2.5, 3.5]} intensity={26} color="#ffc463" />
+            <pointLight position={[-4, -2, 2]} intensity={10} color="#8a5f2d" />
+            <directionalLight position={[3.5, 4.4, 3.8]} intensity={1.8} color="#fff1d2" castShadow />
+
+            {links.map((link) => {
+                const source = nodeMap.get(link.source);
+                const target = nodeMap.get(link.target);
+
+                if (!source || !target) {
+                    return null;
+                }
+
+                const highlighted = activeNodes.has(link.source) && activeNodes.has(link.target);
+
+                return (
+                    <Line
+                        key={`${link.source}-${link.target}`}
+                        points={[source.position, target.position]}
+                        color={highlighted ? "#f0a229" : "#f0ebe4"}
+                        lineWidth={highlighted ? 1.6 : 0.8}
+                        transparent
+                        opacity={highlighted ? 0.95 : 0.3}
+                    />
+                );
+            })}
+
+            {nodes.map((node) => (
+                <FloatingNode
+                    key={node.id}
+                    node={node}
+                    highlighted={activeNodes.has(node.id)}
+                />
+            ))}
+        </>
+    );
+}
+
 interface BitcoinTechMapProps {
     pillars: TechPillar[];
 }
 
 export function BitcoinTechMap({ pillars }: BitcoinTechMapProps) {
     const [activeId, setActiveId] = useState<TechPillar["id"]>("distributed");
-    const [nodes, setNodes] = useState<NodeDatum[]>([]);
-
-    useEffect(() => {
-        const simulationNodes = nodeSeed.map((node) => ({ ...node }));
-        const simulationLinks = linkSeed.map((link) => ({ ...link }));
-
-        const simulation = d3
-            .forceSimulation(simulationNodes)
-            .force("charge", d3.forceManyBody<NodeDatum>().strength(-240))
-            .force("center", d3.forceCenter(330, 220))
-            .force("collision", d3.forceCollide<NodeDatum>().radius((d) => d.size + 26))
-            .force(
-                "link",
-                d3
-                    .forceLink<NodeDatum, LinkDatum>(simulationLinks)
-                    .id((d) => d.id)
-                    .distance((link) => (link.source === "bitcoin" ? 110 : 85))
-                    .strength(0.8)
-            );
-
-        for (let index = 0; index < 240; index += 1) {
-            simulation.tick();
-        }
-
-        simulation.stop();
-        setNodes(simulationNodes);
-    }, []);
-
-    const activeNodes = new Set(focusMap[activeId]);
+    const activeNodes = useMemo(() => new Set(focusMap[activeId]), [activeId]);
 
     return (
         <div className={styles.mapLayout}>
@@ -110,63 +210,13 @@ export function BitcoinTechMap({ pillars }: BitcoinTechMapProps) {
             </div>
 
             <div className={styles.mapCanvas}>
-                <svg viewBox="0 0 660 440" width="100%" height="100%" aria-label="Bitcoin whitepaper technology map">
-                    {linkSeed.map((link) => {
-                        const sourceNode = nodes.find((node) => node.id === link.source);
-                        const targetNode = nodes.find((node) => node.id === link.target);
-
-                        if (!sourceNode || !targetNode) {
-                            return null;
-                        }
-
-                        const isHighlighted = activeNodes.has(link.source) && activeNodes.has(link.target);
-
-                        return (
-                            <line
-                                key={`${link.source}-${link.target}`}
-                                x1={sourceNode.x}
-                                y1={sourceNode.y}
-                                x2={targetNode.x}
-                                y2={targetNode.y}
-                                stroke={isHighlighted ? "rgba(240, 162, 41, 0.75)" : "rgba(255, 255, 255, 0.12)"}
-                                strokeWidth={isHighlighted ? 2.2 : 1.1}
-                            />
-                        );
-                    })}
-
-                    {nodes.map((node) => {
-                        const isHighlighted = activeNodes.has(node.id);
-                        const fill =
-                            node.group === "core"
-                                ? "rgba(240, 162, 41, 0.95)"
-                                : isHighlighted
-                                    ? "rgba(255, 213, 142, 0.92)"
-                                    : "rgba(245, 239, 230, 0.16)";
-
-                        const textFill = isHighlighted || node.group === "core" ? "#130e08" : "rgba(245, 239, 230, 0.9)";
-
-                        return (
-                            <g key={node.id} transform={`translate(${node.x}, ${node.y})`}>
-                                <circle
-                                    r={node.size + (isHighlighted ? 6 : 0)}
-                                    fill={fill}
-                                    stroke={isHighlighted ? "rgba(240, 162, 41, 0.8)" : "rgba(255, 255, 255, 0.1)"}
-                                    strokeWidth={1.2}
-                                />
-                                <text
-                                    textAnchor="middle"
-                                    dy="0.33em"
-                                    fill={textFill}
-                                    fontSize={node.group === "core" ? 13 : 10}
-                                    fontFamily="var(--font-sans), sans-serif"
-                                    fontWeight={600}
-                                >
-                                    {node.label}
-                                </text>
-                            </g>
-                        );
-                    })}
-                </svg>
+                <Canvas
+                    dpr={[1, 1.8]}
+                    camera={{ position: [0, 0.18, 6.95], fov: 34 }}
+                    gl={{ antialias: true, alpha: true }}
+                >
+                    <GraphScene activeNodes={activeNodes} />
+                </Canvas>
             </div>
         </div>
     );

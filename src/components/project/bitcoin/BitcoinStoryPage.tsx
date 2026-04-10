@@ -27,10 +27,11 @@ export function BitcoinStoryPage() {
             <section className={styles.hero}>
                 <div>
                     <div className={styles.eyebrow}>Data Story</div>
-                    <h1 className={styles.heroTitle}>共识的 18 年野蛮生长</h1>
+                    <h1 className={styles.heroTitle}>神秘人中本聪与他的个人比特币项目</h1>
+                    <p className={styles.heroSubtitle}>共识的 18 年野蛮生长</p>
                     <p className={styles.heroLead}>
-                        这是一个从中本聪出发的数据故事。它不是简单复述比特币史，而是把白皮书里的技术零件、2009 年的创世区块、交易所时代的价格重估，以及约 110 万枚 BTC
-                        所代表的制度级财富，重新组织成一个可视化叙事页面。
+                        这是从一个匿名名字开始的故事。这个页面不是简单复述比特币史，而是把白皮书里的技术零件、2009 年的创世区块、交易所时代的价格重估，以及约 110 万枚 BTC
+                        所代表的制度级含义，重新组织成一个可视化叙事页面。
                     </p>
                 </div>
 
@@ -108,6 +109,20 @@ export function BitcoinStoryPage() {
                         </article>
                     ))}
                 </div>
+
+                <div className={styles.inscriptionShell}>
+                    <div className={styles.inscriptionMeta}>Genesis Inscription / Coinbase Text</div>
+                    <blockquote className={styles.inscriptionQuote}>
+                        The Times 03/Jan/2009 Chancellor on brink of second bailout for banks
+                    </blockquote>
+                    <p className={styles.inscriptionTranslation}>
+                        《泰晤士报》2009 年 1 月 3 日头条: “财政大臣正处于实施第二轮银行救助的边缘。”
+                    </p>
+                    <p className={styles.inscriptionBody}>
+                        这句英文被中本聪刻进创世区块的 coinbase 交易里。它既是一个可验证的时间戳，也是一句明确的制度评论:
+                        Bitcoin 从第一块开始，就不是为了重复旧金融体系，而是为了用代码、密码学和分布式共识给出另一种选择。
+                    </p>
+                </div>
             </section>
 
             <section className={styles.section}>
@@ -141,11 +156,21 @@ export function BitcoinStoryPage() {
                 <header className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>110 万枚 BTC: 把神话折算成资产规模</h2>
                     <p className={styles.sectionBody}>
-                        中本聪持币量的估计存在误差，但数量级足够惊人。真正重要的是这组数字背后的结构含义: 最早的协议设计者几乎从未移动过那批币，而市场却在十多年里把它们重新定价为一个历史级别的静态仓位。
+                        中本聪持币量的估计存在误差，但数量级足够惊人。真正重要的不是这组数字本身，而是它背后的结构含义: 这不是一个财富故事，而是一个充满技术理性和理想主义的故事。最早的协议设计者持有的大量 BTC 几乎从未转出，而市场却在十多年里把这批沉默的币重新定价为历史级别的静态仓位。
                     </p>
                 </header>
 
                 <SatoshiHoldingsViz />
+            </section>
+
+            <section className={styles.section}>
+                <div className={styles.epilogueShell}>
+                    <div className={styles.epilogueMeta}>Epilogue / Why Stay Anonymous</div>
+                    <h2 className={styles.epilogueTitle}>为什么中本聪不愿意公开身份？</h2>
+                    <p className={styles.epilogueBody}>
+                        这背后当然涉及比特币的去中心化叙事，这里不再深究。然而，如果中本聪真的怀抱一种技术理性主义的理想，那么对他而言，开创一种新技术和新的金融形态，同时给文明提供一种新的去中心化视角与可能性，或许比财富更重要。中本聪背后的隐姓埋名者，会以“中本聪”这个名字留在历史里。
+                    </p>
+                </div>
             </section>
 
             <div className={styles.footerNote}>

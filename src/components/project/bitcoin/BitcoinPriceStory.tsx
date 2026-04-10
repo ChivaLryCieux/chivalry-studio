@@ -147,15 +147,6 @@ export function BitcoinPriceStory({ series }: BitcoinPriceStoryProps) {
                         </defs>
 
                         <g transform={`translate(${margin.left}, ${margin.top})`}>
-                            {yScale.ticks(mode === "log" ? 6 : 5).map((tick) => (
-                                <g key={tick} transform={`translate(0, ${yScale(tick)})`}>
-                                    <line x1={0} x2={innerWidth} stroke="rgba(255,255,255,0.08)" strokeDasharray="4 6" />
-                                    <text x={0} y={-8} fill="rgba(245,239,230,0.48)" fontSize="11">
-                                        {formatUsdCompact(tick)}
-                                    </text>
-                                </g>
-                            ))}
-
                             {xScale.ticks(width < 640 ? 4 : 6).map((tick) => (
                                 <text
                                     key={tick.toISOString()}

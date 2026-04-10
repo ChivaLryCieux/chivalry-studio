@@ -39,7 +39,7 @@ export const bitcoinMilestones: BitcoinMilestone[] = [
         year: "2009.01",
         title: "Genesis Block",
         value: "50 BTC",
-        detail: "创世区块把第一笔 coinbase 奖励写进系统，也把一条报纸标题写进链上，让这条链从第一块开始就带有清晰的时代注脚。"
+        detail: "创世区块把第一笔 coinbase 奖励写进系统，也把《泰晤士报》头条“The Times 03/Jan/2009 Chancellor on brink of second bailout for banks”刻进 coinbase 文本，既作为时间戳，也把对旧金融救助体系的讽刺直接写进了链的起点。"
     },
     {
         year: "2010.05",

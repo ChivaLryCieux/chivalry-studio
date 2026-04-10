@@ -78,7 +78,7 @@ export function SatoshiHoldingsViz() {
                 <div className={styles.noteCard}>
                     <div className={styles.noteTitle}>What It Means</div>
                     <p className={styles.noteBody}>
-                        这不是一笔普通意义上的财富故事。它更像一个极端的制度实验副产品: 当共识从一小群密码学爱好者扩散到全球流动性网络，最早那批从未移动的币就被市场重新定价成了历史级别的静态仓位。
+                        那批币之所以重要，不只是因为数量大，而是因为它们长期静止。它们像一组未被兑现的原始承诺，把协议早期的克制、匿名性和自我约束，一直保留在链上历史里。
                     </p>
                 </div>
             </div>
