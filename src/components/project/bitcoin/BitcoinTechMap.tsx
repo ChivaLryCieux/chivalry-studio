@@ -145,35 +145,37 @@ function GraphScene({ activeNodes }: { activeNodes: Set<string> }) {
             <pointLight position={[-4, -2, 2]} intensity={10} color="#8a5f2d" />
             <directionalLight position={[3.5, 4.4, 3.8]} intensity={1.8} color="#fff1d2" castShadow />
 
-            {links.map((link) => {
-                const source = nodeMap.get(link.source);
-                const target = nodeMap.get(link.target);
+            <group scale={0.78}>
+                {links.map((link) => {
+                    const source = nodeMap.get(link.source);
+                    const target = nodeMap.get(link.target);
 
-                if (!source || !target) {
-                    return null;
-                }
+                    if (!source || !target) {
+                        return null;
+                    }
 
-                const highlighted = activeNodes.has(link.source) && activeNodes.has(link.target);
+                    const highlighted = activeNodes.has(link.source) && activeNodes.has(link.target);
 
-                return (
-                    <Line
-                        key={`${link.source}-${link.target}`}
-                        points={[source.position, target.position]}
-                        color={highlighted ? "#f0a229" : "#f0ebe4"}
-                        lineWidth={highlighted ? 1.6 : 0.8}
-                        transparent
-                        opacity={highlighted ? 0.95 : 0.3}
+                    return (
+                        <Line
+                            key={`${link.source}-${link.target}`}
+                            points={[source.position, target.position]}
+                            color={highlighted ? "#f0a229" : "#f0ebe4"}
+                            lineWidth={highlighted ? 1.6 : 0.8}
+                            transparent
+                            opacity={highlighted ? 0.95 : 0.3}
+                        />
+                    );
+                })}
+
+                {nodes.map((node) => (
+                    <FloatingNode
+                        key={node.id}
+                        node={node}
+                        highlighted={activeNodes.has(node.id)}
                     />
-                );
-            })}
-
-            {nodes.map((node) => (
-                <FloatingNode
-                    key={node.id}
-                    node={node}
-                    highlighted={activeNodes.has(node.id)}
-                />
-            ))}
+                ))}
+            </group>
         </>
     );
 }
@@ -212,7 +214,7 @@ export function BitcoinTechMap({ pillars }: BitcoinTechMapProps) {
             <div className={styles.mapCanvas}>
                 <Canvas
                     dpr={[1, 1.8]}
-                    camera={{ position: [0, 0.18, 6.95], fov: 34 }}
+                    camera={{ position: [0, 0.12, 8.2], fov: 38 }}
                     gl={{ antialias: true, alpha: true }}
                 >
                     <GraphScene activeNodes={activeNodes} />

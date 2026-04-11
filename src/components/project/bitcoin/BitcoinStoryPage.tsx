@@ -11,6 +11,7 @@ import { formatUsdCompact } from "@/lib/numberFormat";
 import { BitcoinTechMap } from "./BitcoinTechMap";
 import { BitcoinPriceStory } from "./BitcoinPriceStory";
 import { SatoshiHoldingsViz } from "./SatoshiHoldingsViz";
+import { PretextNarrative } from "./PretextNarrative";
 
 export function BitcoinStoryPage() {
     const peakValue = satoshiHoldings.estimatedCoins * satoshiHoldings.archiveAthPrice;
@@ -76,6 +77,8 @@ export function BitcoinStoryPage() {
                     <p className={styles.statDetail}>如果 110 万枚估算成立，中本聪单独控制的仓位接近总量上限的二十分之一。</p>
                 </article>
             </section>
+
+            <PretextNarrative />
 
             <section className={styles.section}>
                 <header className={styles.sectionHeader}>
