@@ -43,22 +43,26 @@
 .heroStage {
     position: relative;
     z-index: 2;
-    min-height: 100vh;
+    min-height: 190vh;
 }
 
-.overlay {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.38fr);
-    align-items: end;
-    gap: 28px;
-    padding: 16vh clamp(20px, 4vw, 54px) 7vh;
+.titleLayer {
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    z-index: 8;
+    width: min(980px, calc(100vw - 40px));
+    max-width: 980px;
+    text-align: center;
+    color: #fff6ea;
     pointer-events: none;
+    transition: opacity 120ms linear;
 }
 
-.heroCopy {
-    max-width: 860px;
+.titleLayer .kicker,
+.titleLayer h1,
+.titleLayer p:last-child {
+    transition: opacity 160ms linear, transform 160ms linear;
 }
 
 .kicker {
@@ -68,19 +72,25 @@
     text-transform: uppercase;
 }
 
-.heroCopy h1 {
+.titleLayer h1 {
     margin-top: 14px;
-    max-width: 11ch;
+    max-width: 12ch;
+    margin-left: auto;
+    margin-right: auto;
     font-size: clamp(4.2rem, 10vw, 10.5rem);
     line-height: 0.92;
     letter-spacing: -0.05em;
     text-transform: uppercase;
     text-shadow:
-        4px 4px 0 #1b0907,
-        10px 10px 0 rgba(240, 162, 41, 0.18);
+        3px 3px 0 #1b0907,
+        8px 8px 0 rgba(240, 162, 41, 0.48),
+        0 0 54px rgba(255, 213, 142, 0.55),
+        0 0 90px rgba(0, 0, 0, 0.86);
 }
 
-.heroCopy p:last-child {
+.titleLayer p:last-child {
+    margin-left: auto;
+    margin-right: auto;
     max-width: 58ch;
     margin-top: 22px;
     color: rgba(248, 239, 226, 0.74);
@@ -90,8 +100,6 @@
 
 .holdButton {
     pointer-events: auto;
-    align-self: end;
-    justify-self: end;
     width: min(100%, 330px);
     padding: 18px;
     border: 1px solid rgba(255, 213, 142, 0.38);
@@ -140,26 +148,24 @@
     position: relative;
     z-index: 2;
     display: grid;
-    gap: 62vh;
-    padding: 12vh clamp(20px, 4vw, 54px) 30vh;
+    gap: 58vh;
+    padding: 126vh clamp(20px, 4vw, 54px) 30vh;
     pointer-events: none;
 }
 
 .panel {
     width: min(620px, 92vw);
-    min-height: 58vh;
+    min-height: 105vh;
     display: flex;
     justify-content: space-between;
     gap: 28px;
     padding: 28px;
     border: 1px solid rgba(255, 213, 142, 0.16);
     border-radius: 8px;
-    background:
-        linear-gradient(135deg, rgba(16, 10, 7, 0.88), rgba(50, 21, 16, 0.64)),
-        repeating-linear-gradient(-12deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 14px);
-    opacity: 0.42;
-    transform: translateX(0);
-    transition: opacity 220ms ease, transform 220ms ease, border-color 220ms ease;
+    background: transparent;
+    opacity: 0;
+    transition: border-color 220ms ease;
+    will-change: opacity, transform;
 }
 
 .panel:nth-child(even) {
@@ -167,8 +173,6 @@
 }
 
 .panelActive {
-    opacity: 1;
-    transform: translateY(-10px);
     border-color: rgba(255, 213, 142, 0.44);
 }
 
@@ -197,9 +201,23 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-    gap: 22px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14vh;
     padding: 0 clamp(20px, 4vw, 54px) 12vh;
+}
+
+.priceUnlock {
+    display: grid;
+    gap: 16px;
+    width: min(100%, 980px);
+    justify-self: center;
+}
+
+.holdingsUnlock {
+    display: grid;
+    gap: 16px;
+    width: min(100%, 760px);
+    justify-self: center;
 }
 
 .pricePanel,
@@ -233,6 +251,7 @@
     width: 100%;
     height: auto;
     overflow: visible;
+    touch-action: none;
 }
 
 .priceSvg path {
@@ -248,6 +267,54 @@
     fill: #fff6ea;
     stroke: #f0a229;
     stroke-width: 4;
+}
+
+.priceChartFrame {
+    position: relative;
+}
+
+.priceHoverDot {
+    fill: #080604;
+    stroke: #ffd58e;
+    stroke-width: 5;
+}
+
+.priceTooltip {
+    position: absolute;
+    min-width: 150px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 213, 142, 0.36);
+    border-radius: 8px;
+    background: rgba(9, 6, 4, 0.94);
+    color: #fff6ea;
+    pointer-events: none;
+    transform: translate(-50%, calc(-100% - 14px));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+}
+
+.priceTooltip span,
+.priceTooltip strong,
+.priceTooltip em {
+    display: block;
+}
+
+.priceTooltip span {
+    color: rgba(255, 213, 142, 0.76);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.priceTooltip strong {
+    margin-top: 6px;
+    font-size: 1.2rem;
+}
+
+.priceTooltip em {
+    margin-top: 4px;
+    color: rgba(248, 239, 226, 0.62);
+    font-size: 0.82rem;
+    font-style: normal;
 }
 
 .pricePanel p {
@@ -274,14 +341,82 @@
     line-height: 1.9;
 }
 
+.holdingsViz {
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin: 24px auto 8px;
+    max-width: 320px;
+}
+
+.holdingsSvg {
+    width: min(100%, 280px);
+    height: auto;
+    overflow: visible;
+    transform: rotate(-90deg);
+}
+
+.holdingsTrack,
+.holdingsArc {
+    fill: none;
+    stroke-width: 22;
+}
+
+.holdingsTrack {
+    stroke: rgba(248, 239, 226, 0.14);
+}
+
+.holdingsArc {
+    stroke: #f0a229;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 14px rgba(240, 162, 41, 0.46));
+}
+
+.holdingsCenter {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.holdingsCenter strong,
+.holdingsCenter span {
+    display: block;
+}
+
+.holdingsCenter strong {
+    color: #ffd58e;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+}
+
+.holdingsCenter span {
+    margin-top: 8px;
+    color: rgba(248, 239, 226, 0.58);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.holdingsStats {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.holdingsStats span {
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 213, 142, 0.18);
+    border-radius: 8px;
+    color: rgba(248, 239, 226, 0.72);
+    font-size: 0.82rem;
+}
+
 @media (max-width: 920px) {
-    .overlay,
     .dataSection {
         grid-template-columns: 1fr;
-    }
-
-    .holdButton {
-        justify-self: start;
     }
 
     .panel,
@@ -291,7 +426,7 @@
 }
 
 @media (max-width: 640px) {
-    .heroCopy h1 {
+    .titleLayer h1 {
         font-size: clamp(3.4rem, 18vw, 5.2rem);
     }
 
