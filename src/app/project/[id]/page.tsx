@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ProjectGallery } from "@/components/project/ProjectGallery";
 import { ProjectSidebar } from "@/components/project/ProjectSidebar";
 import { BitcoinStoryPage } from "@/components/project/bitcoin/BitcoinStoryPage";
+import { BitcoinMonolithPage } from "@/components/project/monolith/BitcoinMonolithPage";
 import { getProjectById } from "@/lib/projects";
 import styles from "./page.module.css";
 
@@ -22,6 +23,10 @@ export default async function ProjectDetail({ params }: PageProps) {
 
     if (project.template === "bitcoin-story") {
         return <BitcoinStoryPage />;
+    }
+
+    if (project.template === "bitcoin-monolith") {
+        return <BitcoinMonolithPage />;
     }
 
     return (
