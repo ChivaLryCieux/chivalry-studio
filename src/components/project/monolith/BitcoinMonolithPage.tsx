@@ -13,36 +13,65 @@ import styles from "./bitcoin-monolith.module.css";
 const priceSeries = bitcoinPriceDaily as BitcoinPricePoint[];
 const peakValue = satoshiHoldings.estimatedCoins * satoshiHoldings.archiveAthPrice;
 
+function getTimelinePosition(progress: number, lift = 0) {
+    const t = THREE.MathUtils.clamp(progress, 0, 1);
+    const angle = -Math.PI * 0.62 + t * Math.PI * 7.1;
+    const radius = THREE.MathUtils.lerp(14.5, 1.15, t);
+    const y = THREE.MathUtils.lerp(-4.1, 3.35, t) + lift;
+
+    return [Math.cos(angle) * radius, y, Math.sin(angle) * radius] as const;
+}
+
+const initialPlayerPosition = new THREE.Vector3(1.15, -3.45, -9.3);
+
 const storyNodes = [
     {
-        position: [-7.4, 1.8, 3.4] as const,
-        title: "Genesis Signal",
+        position: getTimelinePosition(0.02),
+        title: "Whitepaper",
         metric: "2008.10",
-        body: "中本聪留下的不是身份谜题，而是一套能独立运行的协议。分布式网络、密码学签名和工作量证明被拼成一台公共结算机器。",
+        body: "8 页白皮书提出无可信第三方的电子现金。\n节点广播、签名、哈希和工作量证明，被组合成公共账本。",
     },
     {
-        position: [6.7, 2.2, 1.2] as const,
-        title: "Proof Machine",
+        position: getTimelinePosition(0.16),
+        title: "Genesis Block",
         metric: "50 BTC",
-        body: "白皮书定义规则，创世区块启动规则。《泰晤士报》头条被刻进 coinbase 文本，成为时间戳，也成为制度评论。",
+        body: "创世区块让规则开始运行。\n《泰晤士报》头条成为时间戳，也把制度评论刻进链上。",
     },
     {
-        position: [-5.9, -0.6, -4.7] as const,
-        title: "Price as Consensus",
+        position: getTimelinePosition(0.3),
+        title: "Pizza Day",
+        metric: "10,000 BTC",
+        body: "两张披萨给比特币第一次真实商品价格坐标。\n抽象代币从论坛讨论进入现实交换。",
+    },
+    {
+        position: getTimelinePosition(0.48),
+        title: "Exchange Era",
+        metric: "$19.8K",
+        body: "交易所和全球流动性把 Bitcoin 推入高频博弈。\n价格开始成为共识扩张的公开读数器。",
+    },
+    {
+        position: getTimelinePosition(0.64),
+        title: "Institutional Peak",
+        metric: "$69K",
+        body: "机构化叙事把 Bitcoin 重新包装成数字黄金。\n它同时成为风险资产和宏观对冲工具。",
+    },
+    {
+        position: getTimelinePosition(0.78),
+        title: "Archive ATH",
         metric: "$126K ATH",
-        body: "价格曲线不是装饰，它记录市场如何一次次重估这套制度想象力。螺旋线使用 Binance BTCUSDT 日线归档样本。",
+        body: "价格螺旋使用 Binance BTCUSDT 日线归档。\n2025-10-06 UTC 样本高点为 126,199.63 美元。",
     },
     {
-        position: [5.0, -1.1, -5.6] as const,
+        position: getTimelinePosition(0.9),
         title: "Satoshi Silence",
         metric: "1.1M BTC",
-        body: `如果 110 万枚估算成立，中本聪仓位接近总量上限的 ${(satoshiHoldings.shareOfCap * 100).toFixed(2)}%，按归档 ATH 估算约 ${formatUsdCompact(peakValue)}。`,
+        body: `如果 110 万枚估算成立，仓位约占总量 ${(satoshiHoldings.shareOfCap * 100).toFixed(2)}%。\n按归档 ATH 估算，账面规模约 ${formatUsdCompact(peakValue)}。`,
     },
     {
-        position: [0, 2.9, -1.2] as const,
+        position: getTimelinePosition(0.99),
         title: "Bitcoin Star",
         metric: "21M CAP",
-        body: `继续靠近中心。${formatNumberCompact(satoshiHoldings.capLimit)} 枚上限、减半节奏和全球节点，把这个项目从个人发布推向无人能单独拥有的共识恒星。`,
+        body: `${formatNumberCompact(satoshiHoldings.capLimit)} 枚上限、减半节奏和全球节点。\n它们把个人发布的代码推向无人能单独拥有的共识恒星。`,
     },
 ];
 
@@ -306,8 +335,7 @@ function ParticleField() {
 }
 
 function PriceDataRibbon() {
-    const groupRef = useRef<THREE.Group>(null);
-    const { lineObject, markers } = useMemo(() => {
+    const { glowObject, markers, ribbonObject } = useMemo(() => {
         const stride = Math.max(1, Math.floor(priceSeries.length / 260));
         const sampled = priceSeries.filter((_, index) => index % stride === 0);
         const minClose = Math.min(...sampled.map((point) => Math.max(point.close, 1)));
@@ -317,31 +345,31 @@ function PriceDataRibbon() {
 
         const pointToPosition = (point: BitcoinPricePoint, index: number, total: number) => {
             const t = index / Math.max(total - 1, 1);
-            const angle = t * Math.PI * 4.15 - Math.PI * 0.48;
-            const radius = 1.7 + t * 4.8;
             const logPrice = (Math.log(Math.max(point.close, 1)) - logMin) / logRange;
-
-            return new THREE.Vector3(
-                Math.cos(angle) * radius,
-                (logPrice - 0.45) * 5.2,
-                Math.sin(angle) * radius,
-            );
+            const [x, y, z] = getTimelinePosition(t, (logPrice - 0.5) * 0.72);
+            return new THREE.Vector3(x, y, z);
         };
 
-        const positions: number[] = [];
-        sampled.forEach((point, index) => {
-            const position = pointToPosition(point, index, sampled.length);
-            positions.push(position.x, position.y, position.z);
-        });
-
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-        const material = new THREE.LineBasicMaterial({
+        const curvePoints = sampled.map((point, index) => pointToPosition(point, index, sampled.length));
+        const curve = new THREE.CatmullRomCurve3(curvePoints);
+        const ribbonGeometry = new THREE.TubeGeometry(curve, 440, 0.046, 10, false);
+        const ribbonMaterial = new THREE.MeshStandardMaterial({
             color: "#f0a229",
+            emissive: "#f0a229",
+            emissiveIntensity: 0.72,
             transparent: true,
-            opacity: 0.78,
+            opacity: 0.86,
         });
-        const lineObject = new THREE.Line(geometry, material);
+        const ribbonObject = new THREE.Mesh(ribbonGeometry, ribbonMaterial);
+        const glowGeometry = new THREE.TubeGeometry(curve, 440, 0.18, 12, false);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+            color: "#ffd58e",
+            transparent: true,
+            opacity: 0.15,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+        });
+        const glowObject = new THREE.Mesh(glowGeometry, glowMaterial);
 
         const markers = sceneAnchors.map((anchor) => {
             const nearestIndex = sampled.reduce((bestIndex, point, index) => {
@@ -358,18 +386,13 @@ function PriceDataRibbon() {
             };
         });
 
-        return { lineObject, markers };
+        return { glowObject, markers, ribbonObject };
     }, []);
 
-    useFrame(({ clock }) => {
-        if (groupRef.current) {
-            groupRef.current.rotation.y = clock.elapsedTime * 0.018;
-        }
-    });
-
     return (
-        <group ref={groupRef}>
-            <primitive object={lineObject} />
+        <group>
+            <primitive object={glowObject} />
+            <primitive object={ribbonObject} />
             {markers.map((marker) => (
                 <Billboard key={marker.label} position={marker.position}>
                     <mesh>
@@ -395,20 +418,20 @@ function StoryStarPanel({ node }: { node: (typeof storyNodes)[number] }) {
             <pointLight intensity={4.8} distance={4.2} color="#f0a229" />
             <Billboard position={[0.74, 0.34, 0]}>
                 <mesh position={[0, 0, -0.02]}>
-                    <planeGeometry args={[2.85, 1.32]} />
+                    <planeGeometry args={[3.9, 1.86]} />
                     <meshBasicMaterial color="#120906" transparent opacity={0.78} />
                 </mesh>
                 <mesh position={[0, 0, -0.03]}>
-                    <planeGeometry args={[2.96, 1.43]} />
+                    <planeGeometry args={[4.08, 2.04]} />
                     <meshBasicMaterial color="#6f261c" transparent opacity={0.38} />
                 </mesh>
-                <Text position={[0, 0.43, 0.01]} fontSize={0.16} maxWidth={2.44} color="#ffd58e" anchorX="center" anchorY="middle">
+                <Text position={[-1.55, 0.62, 0.01]} fontSize={0.15} maxWidth={3.2} color="#ffd58e" anchorX="left" anchorY="middle" textAlign="left">
                     {node.title}
                 </Text>
-                <Text position={[0, 0.19, 0.01]} fontSize={0.13} maxWidth={2.44} color="#f0a229" anchorX="center" anchorY="middle">
+                <Text position={[-1.55, 0.36, 0.01]} fontSize={0.12} maxWidth={3.2} color="#f0a229" anchorX="left" anchorY="middle" textAlign="left">
                     {node.metric}
                 </Text>
-                <Text position={[0, -0.19, 0.01]} fontSize={0.105} lineHeight={1.45} maxWidth={2.48} color="#f8efe2" anchorX="center" anchorY="middle">
+                <Text position={[-1.55, -0.2, 0.01]} fontSize={0.086} lineHeight={1.42} maxWidth={3.18} color="#f8efe2" anchorX="left" anchorY="middle" textAlign="left">
                     {node.body}
                 </Text>
             </Billboard>
@@ -436,7 +459,7 @@ function PlayerRig({
 }) {
     const cameraRef = useRef<THREE.PerspectiveCamera>(null);
     const shipRef = useRef<THREE.Group>(null);
-    const positionRef = useRef(new THREE.Vector3(0, 0.15, 10.2));
+    const positionRef = useRef(initialPlayerPosition.clone());
     const velocityRef = useRef(new THREE.Vector3());
     const forwardRef = useRef(new THREE.Vector3());
     const viewForwardRef = useRef(new THREE.Vector3());
@@ -481,7 +504,7 @@ function PlayerRig({
             positionRef.current.setLength(1.55);
         }
 
-        positionRef.current.y = THREE.MathUtils.clamp(positionRef.current.y, -3.5, 4.2);
+        positionRef.current.y = THREE.MathUtils.clamp(positionRef.current.y, -5.2, 4.8);
         ship.position.lerp(positionRef.current, 0.42);
         const shipLookTarget = lookTargetRef.current.copy(ship.position).add(viewForward);
         ship.lookAt(shipLookTarget);
@@ -496,7 +519,7 @@ function PlayerRig({
 
     return (
         <>
-            <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 1.2, 12.4]} fov={55} />
+            <PerspectiveCamera ref={cameraRef} makeDefault position={[1.15, -2.72, -7.45]} fov={55} />
             <group ref={shipRef}>
                 <Ship />
             </group>
