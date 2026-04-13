@@ -389,17 +389,10 @@ function StoryStarPanel({ node }: { node: (typeof storyNodes)[number] }) {
 
 function Ship() {
     return (
-        <group>
-            <mesh rotation={[-Math.PI / 2, 0, Math.PI / 4]}>
-                <coneGeometry args={[0.18, 0.58, 4]} />
-                <meshStandardMaterial color="#f8efe2" metalness={0.45} roughness={0.3} emissive="#4d120d" emissiveIntensity={0.18} />
-            </mesh>
-            <mesh position={[0, -0.02, 0.28]} rotation={[Math.PI / 2, 0, 0]}>
-                <torusGeometry args={[0.17, 0.025, 8, 24]} />
-                <meshStandardMaterial color="#f0a229" emissive="#f0a229" emissiveIntensity={1.1} />
-            </mesh>
-            <pointLight position={[0, 0, 0.34]} intensity={3.2} distance={2.6} color="#f0a229" />
-        </group>
+        <mesh rotation={[-Math.PI / 2, 0, 0]}>
+            <coneGeometry args={[0.18, 0.72, 32]} />
+            <meshStandardMaterial color="#f8efe2" metalness={0.45} roughness={0.3} emissive="#f0a229" emissiveIntensity={0.22} />
+        </mesh>
     );
 }
 
