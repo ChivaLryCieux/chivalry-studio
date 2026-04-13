@@ -5,6 +5,7 @@
     --text: #f5efe6;
     --muted: rgba(245, 239, 230, 0.72);
     --accent: #f0a229;
+    --accent-2: #ffd58e;
     --accent-soft: rgba(240, 162, 41, 0.2);
     --line: rgba(255, 255, 255, 0.12);
     min-height: 100vh;
@@ -215,6 +216,146 @@
     margin-top: 12px;
     color: var(--muted);
     line-height: 1.7;
+}
+
+.pretextSection {
+    padding: 0 clamp(20px, 4vw, 48px) 5rem;
+}
+
+.pretextIntro {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: 32px;
+    margin-bottom: 22px;
+}
+
+.pretextIntro .eyebrow {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+.pretextRail {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.pretextCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 520px;
+    padding: 24px 24px 34px;
+    border: 1px solid rgba(240, 162, 41, 0.22);
+    border-radius: 8px;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, rgba(42, 30, 18, 0.95), rgba(13, 11, 9, 0.98)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 27px, rgba(255, 255, 255, 0.045) 28px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+    animation: pretext-card-rise 720ms ease both;
+    animation-delay: calc(var(--slice-index) * 90ms);
+}
+
+.pretextCard::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 0 32%, rgba(255, 213, 142, 0.18) 46%, transparent 58% 100%);
+    transform: translateX(-120%);
+    animation: pretext-scan 4.2s ease-in-out infinite;
+    animation-delay: calc(var(--slice-index) * 360ms);
+}
+
+.pretextIndex {
+    color: rgba(245, 239, 230, 0.18);
+    font-size: clamp(4rem, 7vw, 6rem);
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.pretextMeta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(245, 239, 230, 0.6);
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.pretextMeta strong {
+    color: var(--accent-2);
+    font-weight: 500;
+    text-align: right;
+}
+
+.pretextText {
+    display: block;
+    width: 100%;
+    margin-top: 34px;
+    margin-bottom: 22px;
+    overflow: visible;
+}
+
+.pretextLine {
+    fill: var(--text);
+    font: 600 25px "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0;
+}
+
+.pretextLineGroup {
+    opacity: 0;
+    animation: pretext-line-in 720ms cubic-bezier(0.2, 0.72, 0.16, 1) both;
+    animation-delay: calc((var(--slice-index) * 90ms) + (var(--line-index) * 70ms) + 120ms);
+}
+
+.pretextMeasure {
+    stroke: rgba(240, 162, 41, 0.45);
+    stroke-width: 1;
+    stroke-dasharray: 2 8;
+}
+
+.pretextPulse {
+    fill: #ffd58e;
+    filter: drop-shadow(0 0 8px rgba(255, 213, 142, 0.75));
+    animation: pretext-pulse 1.8s ease-in-out infinite;
+    animation-delay: calc(var(--line-index) * 130ms);
+}
+
+.pretextCoin {
+    opacity: 0.94;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.42)) drop-shadow(0 0 18px rgba(255, 213, 142, 0.32));
+}
+
+.pretextCoinMark {
+    fill: rgba(36, 20, 6, 0.86);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+}
+
+.pretextBars {
+    display: grid;
+    gap: 5px;
+    margin-top: 2px;
+    pointer-events: none;
+}
+
+.pretextBars span {
+    display: block;
+    width: var(--bar-width);
+    height: 2px;
+    margin-left: auto;
+    background: linear-gradient(90deg, rgba(240, 162, 41, 0), rgba(240, 162, 41, 0.85));
+    transform-origin: right center;
+    animation: pretext-bar 1.1s ease both;
+    animation-delay: calc((var(--slice-index) * 90ms) + (var(--line-index) * 80ms) + 260ms);
 }
 
 .inscriptionShell {
@@ -573,9 +714,69 @@
     font-size: 0.82rem;
 }
 
+@keyframes pretext-card-rise {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pretext-line-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pretext-scan {
+    0%,
+    38% {
+        transform: translateX(-120%);
+    }
+
+    58%,
+    100% {
+        transform: translateX(120%);
+    }
+}
+
+@keyframes pretext-pulse {
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(0.78);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes pretext-bar {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
 @media (max-width: 1080px) {
     .hero,
     .sectionHeader,
+    .pretextIntro,
     .mapLayout,
     .priceLayout,
     .holdingsLayout {
@@ -583,7 +784,8 @@
     }
 
     .statGrid,
-    .milestoneGrid {
+    .milestoneGrid,
+    .pretextRail {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -603,8 +805,17 @@
     }
 
     .statGrid,
-    .milestoneGrid {
+    .milestoneGrid,
+    .pretextRail {
         grid-template-columns: 1fr;
+    }
+
+    .pretextCard {
+        min-height: 460px;
+    }
+
+    .pretextLine {
+        font-size: 22px;
     }
 
     .timelineRow {

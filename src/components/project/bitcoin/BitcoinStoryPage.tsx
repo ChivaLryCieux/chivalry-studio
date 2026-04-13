@@ -11,6 +11,7 @@ import { formatUsdCompact } from "@/lib/numberFormat";
 import { BitcoinTechMap } from "./BitcoinTechMap";
 import { BitcoinPriceStory } from "./BitcoinPriceStory";
 import { SatoshiHoldingsViz } from "./SatoshiHoldingsViz";
+import { PretextNarrative } from "./PretextNarrative";
 
 export function BitcoinStoryPage() {
     const peakValue = satoshiHoldings.estimatedCoins * satoshiHoldings.archiveAthPrice;
@@ -28,7 +29,7 @@ export function BitcoinStoryPage() {
                 <div>
                     <div className={styles.eyebrow}>Data Story</div>
                     <h1 className={styles.heroTitle}>神秘人中本聪与他的个人比特币项目</h1>
-                    <p className={styles.heroSubtitle}>共识的 18 年野蛮生长</p>
+                    <p className={styles.heroSubtitle}>去中心化共识的 18 年野蛮生长</p>
                     <p className={styles.heroLead}>
                         这是从一个匿名名字开始的故事。这个页面不是简单复述比特币史，而是把白皮书里的技术零件、2009 年的创世区块、交易所时代的价格重估，以及约 110 万枚 BTC
                         所代表的制度级含义，重新组织成一个可视化叙事页面。
@@ -76,6 +77,8 @@ export function BitcoinStoryPage() {
                     <p className={styles.statDetail}>如果 110 万枚估算成立，中本聪单独控制的仓位接近总量上限的二十分之一。</p>
                 </article>
             </section>
+
+            <PretextNarrative />
 
             <section className={styles.section}>
                 <header className={styles.sectionHeader}>
@@ -168,7 +171,7 @@ export function BitcoinStoryPage() {
                     <div className={styles.epilogueMeta}>Epilogue / Why Stay Anonymous</div>
                     <h2 className={styles.epilogueTitle}>为什么中本聪不愿意公开身份？</h2>
                     <p className={styles.epilogueBody}>
-                        这背后当然涉及比特币的去中心化叙事，这里不再深究。然而，如果中本聪真的怀抱一种技术理性主义的理想，那么对他而言，开创一种新技术和新的金融形态，同时给文明提供一种新的去中心化视角与可能性，或许比财富更重要。中本聪背后的隐姓埋名者，会以“中本聪”这个名字留在历史里。
+                        这背后涉及比特币的去中心化叙事，这里不会深究。然而，如果中本聪真的怀抱一种技术理性主义的理想，那么对他而言，开创一种新技术和新的金融形态，同时给文明提供一种新的去中心化视角与可能性，或许比财富更重要。中本聪背后的隐姓埋名者，会以“中本聪”这个名字留在历史里。
                     </p>
                 </div>
             </section>

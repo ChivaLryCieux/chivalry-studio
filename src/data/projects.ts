@@ -84,5 +84,17 @@ export const projects: ProjectData[] = [
         description: "A scrollytelling data story about Satoshi, the 2008 whitepaper, the genesis block, Bitcoin's repricing arc, and the scale of a 1.1M BTC fortune.",
         template: "bitcoin-story"
     },
+    {
+        id: 6,
+        title: "神秘人中本聪与他的个人比特币项目——3D 数据叙事版本",
+        year: "2026",
+        category: "3D Data Story",
+        color: "#2a0d0a",
+        imagePlaceholder: "BTC",
+        src: "/images/bitcoin-monolith-preview.svg",
+        cardTitleLines: ["中本聪", "Bitcoin", "3D 叙事"],
+        description: "A 3D scrollytelling version of the Satoshi and Bitcoin data story, using R3F, custom shaders, particles, BTC modeling, price data, and tap-hold interactions.",
+        template: "bitcoin-monolith"
+    },
 
 ];
