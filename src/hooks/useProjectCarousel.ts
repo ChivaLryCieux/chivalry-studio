@@ -44,17 +44,6 @@ export function useProjectCarousel(projects: ProjectData[]) {
     }, [isAnimating, projects.length, safeIndex]);
 
     useEffect(() => {
-        if (projects.length === 0) {
-            setActiveIndex(0);
-            return;
-        }
-
-        if (activeIndex > projects.length - 1) {
-            setActiveIndex(projects.length - 1);
-        }
-    }, [activeIndex, projects.length]);
-
-    useEffect(() => {
         const handleWheel = (event: WheelEvent) => {
             if (Math.abs(event.deltaY) > WHEEL_THRESHOLD) {
                 changeSlide(event.deltaY > 0 ? "next" : "prev");
@@ -106,7 +95,7 @@ export function useProjectCarousel(projects: ProjectData[]) {
     };
 
     return {
-        activeIndex,
+        activeIndex: safeIndex,
         currentProject: projects[safeIndex] ?? null,
         handleTouchEnd,
         handleTouchStart,

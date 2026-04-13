@@ -34,6 +34,9 @@ export function BitcoinStoryPage() {
                         这是从一个匿名名字开始的故事。这个页面不是简单复述比特币史，而是把白皮书里的技术零件、2009 年的创世区块、交易所时代的价格重估，以及约 110 万枚 BTC
                         所代表的制度级含义，重新组织成一个可视化叙事页面。
                     </p>
+                    <Link href="/project/6" className={styles.heroCta}>
+                        进入 R3F 3D 数据叙事版本
+                    </Link>
                 </div>
 
                 <div className={styles.heroSide}>
