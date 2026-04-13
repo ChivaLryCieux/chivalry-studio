@@ -220,21 +220,50 @@ function BitcoinStar() {
     });
 
     return (
-        <group ref={groupRef}>
+        <group>
             <pointLight intensity={72} distance={16} color="#ffbe54" />
-            <mesh>
-                <sphereGeometry args={[0.86, 64, 64]} />
-                <meshStandardMaterial color="#f0a229" emissive="#f0a229" emissiveIntensity={1.5} roughness={0.35} />
-            </mesh>
-            <mesh scale={1.42}>
-                <sphereGeometry args={[0.86, 64, 64]} />
-                <meshBasicMaterial color="#ffd58e" transparent opacity={0.13} blending={THREE.AdditiveBlending} />
-            </mesh>
-            <Billboard position={[0, 0.02, 0.9]}>
-                <Text fontSize={0.72} color="#2a1604" anchorX="center" anchorY="middle" fontWeight={700}>
-                    ₿
-                </Text>
-            </Billboard>
+            <group ref={groupRef}>
+                <mesh>
+                    <sphereGeometry args={[0.86, 64, 64]} />
+                    <meshStandardMaterial color="#f0a229" emissive="#f0a229" emissiveIntensity={1.5} roughness={0.35} />
+                </mesh>
+                <mesh scale={1.42}>
+                    <sphereGeometry args={[0.86, 64, 64]} />
+                    <meshBasicMaterial color="#ffd58e" transparent opacity={0.13} blending={THREE.AdditiveBlending} />
+                </mesh>
+            </group>
+            <BitcoinStarMark />
+        </group>
+    );
+}
+
+function BitcoinStarMark() {
+    const markRef = useRef<THREE.Group>(null);
+    const cameraDirectionRef = useRef(new THREE.Vector3());
+
+    useFrame(({ camera }) => {
+        if (!markRef.current) {
+            return;
+        }
+
+        cameraDirectionRef.current.copy(camera.position).normalize();
+        markRef.current.position.copy(cameraDirectionRef.current.multiplyScalar(0.96));
+        markRef.current.quaternion.copy(camera.quaternion);
+    });
+
+    return (
+        <group ref={markRef} renderOrder={20}>
+            <Text
+                fontSize={0.72}
+                color="#2a1604"
+                anchorX="center"
+                anchorY="middle"
+                fontWeight={700}
+                renderOrder={21}
+                material-depthTest={false}
+            >
+                ₿
+            </Text>
         </group>
     );
 }
@@ -560,7 +589,8 @@ export function BitcoinMonolithPage() {
 
     useEffect(() => {
         const handlePointerLockChange = () => {
-            setControlsEnabled(document.pointerLockElement === stageRef.current);
+            const isLocked = document.pointerLockElement === stageRef.current;
+            setControlsEnabled(isLocked);
         };
 
         document.addEventListener("pointerlockchange", handlePointerLockChange);
@@ -585,7 +615,7 @@ export function BitcoinMonolithPage() {
                 <MonolithGameScene controlsEnabled={controlsEnabled} keysRef={keysRef} lookRef={lookRef} />
             </div>
 
-            <div className={styles.flightBrief}>
+            <div className={`${styles.flightBrief} ${controlsEnabled ? styles.flightBriefHidden : ""}`}>
                 <p className={styles.kicker}>3D Data Story Game</p>
                 <h1>飞向比特币恒星</h1>
                 <p>驾驶小飞船穿过价格螺旋。每一颗亮星旁边都有一块叙事面板，靠近中心处的比特币恒星，阅读中本聪与 Bitcoin 共识扩张的关键节点。</p>

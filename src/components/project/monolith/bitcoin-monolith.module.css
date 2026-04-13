@@ -46,10 +46,16 @@
 .flightBrief {
     position: fixed;
     left: clamp(20px, 4vw, 54px);
-    bottom: clamp(94px, 10vh, 126px);
+    top: 78px;
     z-index: 8;
-    width: min(540px, calc(100vw - 40px));
+    width: min(760px, calc(100vw - 40px));
     pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.flightBriefHidden {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 .kicker {
@@ -60,12 +66,13 @@
 }
 
 .flightBrief h1 {
-    margin-top: 14px;
-    max-width: 9ch;
+    margin-top: 12px;
+    max-width: none;
     color: #fff6ea;
-    font-size: clamp(3.6rem, 8vw, 8.8rem);
-    line-height: 0.92;
+    font-size: 5.4rem;
+    line-height: 0.95;
     letter-spacing: -0.05em;
+    white-space: nowrap;
     text-transform: uppercase;
     text-shadow:
         3px 3px 0 #1b0907,
@@ -85,9 +92,13 @@
 .controlButton {
     position: fixed;
     right: clamp(20px, 4vw, 54px);
-    bottom: clamp(28px, 5vh, 54px);
+    bottom: clamp(26px, 5vh, 54px);
     z-index: 15;
-    padding: 15px 18px;
+    display: grid;
+    place-items: center;
+    width: 176px;
+    height: 48px;
+    padding: 0 14px;
     border: 1px solid rgba(255, 213, 142, 0.42);
     border-radius: 8px;
     color: #fff6ea;
@@ -112,14 +123,19 @@
     bottom: clamp(26px, 5vh, 54px);
     z-index: 12;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
-    max-width: min(700px, calc(100vw - 220px));
+    max-width: calc(100vw - 270px);
+    overflow: hidden;
     pointer-events: none;
 }
 
 .controlHelp span {
-    padding: 8px 10px;
+    display: grid;
+    place-items: center;
+    width: 176px;
+    height: 48px;
+    padding: 0 10px;
     border: 1px solid rgba(255, 213, 142, 0.18);
     border-radius: 8px;
     color: rgba(248, 239, 226, 0.72);
@@ -140,11 +156,11 @@
     }
 
     .flightBrief {
-        bottom: 120px;
+        top: 72px;
     }
 
     .flightBrief h1 {
-        font-size: clamp(3.1rem, 17vw, 5rem);
+        font-size: 3.2rem;
     }
 
     .flightBrief p:last-child {
@@ -155,6 +171,8 @@
     .controlButton {
         right: 20px;
         bottom: 22px;
+        width: 154px;
+        height: 44px;
     }
 
     .controlHelp {
@@ -162,10 +180,14 @@
         right: 20px;
         bottom: 76px;
         max-width: none;
+        overflow-x: auto;
     }
 
     .controlHelp span {
-        padding: 7px 8px;
+        flex: 0 0 auto;
+        width: 154px;
+        height: 44px;
+        padding: 0 8px;
         font-size: 0.66rem;
     }
 }
