@@ -1,0 +1,39 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F6F3EC"/>
+  <path d="M120 140H1480" stroke="#111111" stroke-width="4"/>
+  <path d="M120 760H1480" stroke="#111111" stroke-width="4"/>
+  <text x="120" y="94" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800">Skill-driven terminal agent architecture</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="34" fill="#111111">
+    <text x="164" y="275">01</text>
+    <text x="504" y="275">02</text>
+    <text x="844" y="275">03</text>
+    <text x="1184" y="275">04</text>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#111111">
+    <text x="164" y="334">Markdown skill</text>
+    <text x="504" y="334">Config parser</text>
+    <text x="844" y="334">API stream</text>
+    <text x="1184" y="334">Ink interface</text>
+  </g>
+  <g>
+    <rect x="150" y="390" width="220" height="180" fill="#111111"/>
+    <rect x="190" y="430" width="130" height="18" fill="#F6F3EC"/>
+    <rect x="190" y="474" width="96" height="18" fill="#7F5CFF"/>
+    <rect x="190" y="518" width="148" height="18" fill="#D6FB41"/>
+    <rect x="490" y="390" width="220" height="180" fill="#F6F3EC" stroke="#111111" stroke-width="4"/>
+    <circle cx="600" cy="480" r="56" fill="#7F5CFF"/>
+    <path d="M572 480H628M600 452V508" stroke="#111111" stroke-width="9"/>
+    <rect x="830" y="390" width="220" height="180" fill="#111111"/>
+    <path d="M884 480C917 430 961 430 996 480C961 530 917 530 884 480Z" fill="#D6FB41"/>
+    <circle cx="940" cy="480" r="18" fill="#111111"/>
+    <rect x="1170" y="390" width="220" height="180" fill="#F6F3EC" stroke="#111111" stroke-width="4"/>
+    <rect x="1212" y="432" width="136" height="20" fill="#111111"/>
+    <rect x="1212" y="482" width="88" height="20" fill="#7F5CFF"/>
+    <rect x="1212" y="532" width="118" height="20" fill="#FF5F57"/>
+  </g>
+  <g stroke="#111111" stroke-width="4">
+    <path d="M390 480H464"/>
+    <path d="M730 480H804"/>
+    <path d="M1070 480H1144"/>
+  </g>
+</svg>
