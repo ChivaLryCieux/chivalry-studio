@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/page.module.css";
-import { splitProjectTitle } from "@/lib/projects";
 import type { ProjectData } from "@/types/project";
 
 interface ProjectCardProps {
@@ -27,8 +26,6 @@ function getCardClassName(index: number, activeIndex: number) {
 }
 
 export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
-    const titleLines = project.cardTitleLines ?? splitProjectTitle(project.title);
-
     return (
         <Link
             key={project.id}
@@ -45,17 +42,6 @@ export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
                         className={styles.realImage}
                         priority={index === 0}
                     />
-
-                    <h2 className={styles.cardTitle}>
-                        {titleLines.map((word, wordIndex) => (
-                            <span
-                                key={`${project.id}-${wordIndex}`}
-                                style={{ display: "block", textAlign: "center" }}
-                            >
-                                {word}
-                            </span>
-                        ))}
-                    </h2>
                 </div>
             </div>
         </Link>

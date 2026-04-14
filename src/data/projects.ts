@@ -9,7 +9,7 @@ export const projects: ProjectData[] = [
         color: "#101010",
         imagePlaceholder: "LC",
         src: "/images/projects/lilac/lilac-cover.svg",
-        cardTitleLines: ["Lilac", "CLI"],
+        cardTitleLines: ["Lilac-CLI", "智能体设计"],
         description: "A Bun and Ink based terminal agent framework with skill-driven behavior, OpenAI-compatible providers, streaming responses, and live token cost awareness.",
         detailImages: [
             "/images/projects/lilac/intro.png",
@@ -62,7 +62,7 @@ export const projects: ProjectData[] = [
         color: "#0e1110",
         imagePlaceholder: "SP",
         src: "/images/projects/solana/solana-cover.svg",
-        cardTitleLines: ["Solana", "Private", "Fork"],
+        cardTitleLines: ["Solana", "私有硬分叉", "Tokenomics修改"],
         description: "A private hard-fork experiment that redesigns Solana inflation parameters, isolates mainnet assumptions, and validates a local block-producing network through RPC.",
         detailImages: [
             "/images/projects/solana/solana-economics.svg",

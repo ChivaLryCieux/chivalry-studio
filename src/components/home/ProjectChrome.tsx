@@ -1,5 +1,4 @@
 import styles from "@/app/page.module.css";
-import { ModelViewer } from "@/components/ModelViewer";
 import type { ProjectData } from "@/types/project";
 
 interface ProjectChromeProps {
@@ -7,6 +6,8 @@ interface ProjectChromeProps {
 }
 
 export function ProjectChrome({ currentProject }: ProjectChromeProps) {
+    const previewTitle = (currentProject.cardTitleLines ?? [currentProject.title]).join(" ");
+
     return (
         <>
             <div className={styles.topLeft}>
@@ -18,9 +19,7 @@ export function ProjectChrome({ currentProject }: ProjectChromeProps) {
             </div>
 
             <div className={styles.topCenter}>
-                <div className={styles.modelContainer}>
-                    <ModelViewer />
-                </div>
+                <div className={styles.topProjectTitle}>{previewTitle}</div>
             </div>
 
             <div className={styles.topRight}>
