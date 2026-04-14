@@ -79,7 +79,8 @@ a {
     position: fixed;
     z-index: 10000;
     pointer-events: none;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.72);
+    mix-blend-mode: difference;
     transition: opacity 0.2s ease;
 }
 
@@ -101,12 +102,13 @@ a {
     z-index: 10001;
     pointer-events: none;
     transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
 }
 
 /* 准星十字线条 */
 .crosshair-arm {
     position: absolute;
-    background: rgba(255, 255, 255, 0.75);
+    background: #ffffff;
     display: block;
 }
 
