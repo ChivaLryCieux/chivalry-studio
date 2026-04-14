@@ -257,8 +257,8 @@
 .next {
     z-index: 5;
     opacity: 0.5;
-    /* 缩小并向上移动，制造层叠感 */
-    transform: scale(0.85) translateY(-60px);
+    /* 缩小并位于下方，滚轮向下时从下方进入 */
+    transform: scale(0.85) translateY(80px);
     filter: brightness(0.6) blur(1px); /* 稍微变暗变模糊 */
 }
 
@@ -266,7 +266,7 @@
 .hidden {
     z-index: 0;
     opacity: 0;
-    transform: scale(0.8) translateY(-100px);
+    transform: scale(0.8) translateY(140px);
     pointer-events: none;
 }
 
@@ -274,8 +274,8 @@
 .prev {
     z-index: 20; /* 必须比 active 高，才能产生“滑走”的感觉 */
     opacity: 0;
-    /* 向下滑出屏幕，并带一点旋转 */
-    transform: translateY(110vh) rotate(-5deg);
+    /* 向上滑出屏幕，并带一点旋转 */
+    transform: translateY(-110vh) rotate(5deg);
     pointer-events: none;
 }
 
