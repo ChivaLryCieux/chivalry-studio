@@ -6,7 +6,7 @@ export const projects: ProjectData[] = [
         title: "Lilac-CLI",
         year: "2026",
         category: "TUI Agent",
-        color: "#101010",
+        color: "#4a2b22",
         imagePlaceholder: "LC",
         src: "/images/projects/lilac/lilac-cover.svg",
         cardTitleLines: ["Lilac-CLI", "智能体设计"],
@@ -51,7 +51,8 @@ export const projects: ProjectData[] = [
                 "Gradient terminal typography, side-line message layout, and loading motion give the CLI a designed, premium feel.",
                 "Bun keeps startup and TypeScript execution tight enough for daily command-line use."
             ],
-            stack: ["Bun", "TypeScript", "React", "Ink", "gray-matter", "ink-text-input", "ink-spinner", "OpenAI-compatible APIs"]
+            stack: ["Bun", "TypeScript", "React", "Ink", "gray-matter", "ink-text-input", "ink-spinner", "OpenAI-compatible APIs"],
+            keywords: ["终端智能体", "技能驱动", "流式交互", "实时成本", "本地优先", "高性能启动"]
         }
     },
     {
@@ -59,7 +60,7 @@ export const projects: ProjectData[] = [
         title: "Solana Private Fork Economics",
         year: "2026",
         category: "Blockchain R&D",
-        color: "#0e1110",
+        color: "#3e1c1c",
         imagePlaceholder: "SP",
         src: "/images/projects/solana/solana-cover.svg",
         cardTitleLines: ["Solana", "私有硬分叉", "Tokenomics修改"],
@@ -105,7 +106,8 @@ export const projects: ProjectData[] = [
                 "Excluded mainnet-beta non-circulating supply lists from Development cluster supply reporting.",
                 "Validated getGenesisHash, getEpochInfo, getInflationGovernor, and getSupply over local RPC."
             ],
-            stack: ["Rust", "Solana validator", "GenesisConfig", "Inflation", "Bank runtime", "RPC", "Shell automation", "cargo test"]
+            stack: ["Rust", "Solana validator", "GenesisConfig", "Inflation", "Bank runtime", "RPC", "Shell automation", "cargo test"],
+            keywords: ["私有硬分叉", "通胀重设计", "本地验证网", "创世配置", "质押奖励", "供应隔离"]
         }
     },
     {

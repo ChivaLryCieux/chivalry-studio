@@ -11,6 +11,7 @@ interface SwissProjectPageProps {
 export function SwissProjectPage({ project }: SwissProjectPageProps) {
     const caseStudy = project.caseStudy;
     const images = [project.src, ...(project.detailImages ?? [])];
+    const shouldContainImages = project.id === 1;
 
     if (!caseStudy) {
         return null;
@@ -33,12 +34,19 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
                     <span>0{project.id}</span>
                 </div>
                 <div className={styles.heroGrid}>
-                    <div className={styles.heroCopy}>
-                        <p className={styles.category}>{project.category}</p>
-                        <h1>{caseStudy.headline}</h1>
-                    </div>
-                    <p className={styles.deck}>{caseStudy.deck}</p>
+                <div className={styles.heroCopy}>
+                    <p className={styles.category}>{project.category}</p>
+                    <h1>{caseStudy.headline}</h1>
+                    {caseStudy.keywords ? (
+                        <div className={styles.keywordRail} aria-label={`${project.title} Chinese keywords`}>
+                            {caseStudy.keywords.map((keyword) => (
+                                <span key={keyword}>{keyword}</span>
+                            ))}
+                        </div>
+                    ) : null}
                 </div>
+                <p className={styles.deck}>{caseStudy.deck}</p>
+            </div>
                 <div className={styles.heroImage}>
                     <Image
                         src={project.src}
@@ -46,7 +54,7 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
                         fill
                         sizes="100vw"
                         priority
-                        className={styles.coverImage}
+                        className={shouldContainImages ? styles.containImage : styles.coverImage}
                     />
                 </div>
             </section>
@@ -94,7 +102,7 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
                                 alt={`${project.title} visual ${index + 1}`}
                                 fill
                                 sizes="(max-width: 900px) 100vw, 72vw"
-                                className={styles.galleryImage}
+                                className={shouldContainImages ? styles.containImage : styles.galleryImage}
                             />
                         </div>
                         <figcaption>{String(index + 1).padStart(2, "0")} / {project.title}</figcaption>

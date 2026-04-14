@@ -28,5 +28,6 @@ export interface ProjectData {
         }>;
         highlights: string[];
         stack: string[];
+        keywords?: string[];
     };
 }
