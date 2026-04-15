@@ -10,8 +10,10 @@ interface SwissProjectPageProps {
 
 export function SwissProjectPage({ project }: SwissProjectPageProps) {
     const caseStudy = project.caseStudy;
-    const images = [project.src, ...(project.detailImages ?? [])];
-    const shouldContainImages = project.id === 1;
+    const images = Array.from(new Set((project.detailImages ?? []).filter((image) => image !== project.src)));
+    const shouldContainImages = project.id === 1 || project.id === 3;
+    const isBilingualCase = project.id === 3;
+    const useLightFrame = project.id === 3;
 
     if (!caseStudy) {
         return null;
@@ -24,7 +26,7 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
     return (
         <main className={styles.page} style={pageStyle}>
             <nav className={styles.nav}>
-                <Link href="/" className={styles.navLink}>WORKS</Link>
+                <Link href="/" className={styles.navLink}>{isBilingualCase ? "WORKS / 项目" : "WORKS"}</Link>
                 <span>{project.year}</span>
             </nav>
 
@@ -47,14 +49,14 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
                 </div>
                 <p className={styles.deck}>{caseStudy.deck}</p>
             </div>
-                <div className={styles.heroImage}>
+                <div className={`${styles.heroImage} ${useLightFrame ? styles.lightFrame : ""}`}>
                     <Image
                         src={project.src}
                         alt={`${project.title} cover`}
                         fill
                         sizes="100vw"
                         priority
-                        className={shouldContainImages ? styles.containImage : styles.coverImage}
+                        className={`${shouldContainImages ? styles.containImage : styles.coverImage} ${useLightFrame ? styles.lightBackgroundImage : ""}`}
                     />
                 </div>
             </section>
@@ -70,11 +72,11 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
 
             <section className={styles.overview}>
                 <div>
-                    <p className={styles.sectionLabel}>Repository</p>
+                    <p className={styles.sectionLabel}>{isBilingualCase ? "Reference / 参考信息" : "Repository"}</p>
                     <p className={styles.repoPath}>{caseStudy.repoPath}</p>
                 </div>
                 <div>
-                    <p className={styles.sectionLabel}>Technical Stack</p>
+                    <p className={styles.sectionLabel}>{isBilingualCase ? "Technical Stack / 技术框架" : "Technical Stack"}</p>
                     <div className={styles.stackList}>
                         {caseStudy.stack.map((item) => (
                             <span key={item}>{item}</span>
@@ -93,25 +95,27 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
                 ))}
             </section>
 
-            <section className={styles.gallery}>
-                {images.map((imageSrc, index) => (
-                    <figure key={imageSrc} className={styles.figure}>
-                        <div className={styles.figureImage}>
-                            <Image
-                                src={imageSrc}
-                                alt={`${project.title} visual ${index + 1}`}
-                                fill
-                                sizes="(max-width: 900px) 100vw, 72vw"
-                                className={shouldContainImages ? styles.containImage : styles.galleryImage}
-                            />
-                        </div>
-                        <figcaption>{String(index + 1).padStart(2, "0")} / {project.title}</figcaption>
-                    </figure>
-                ))}
-            </section>
+            {images.length > 0 ? (
+                <section className={styles.gallery}>
+                    {images.map((imageSrc, index) => (
+                        <figure key={`${imageSrc}-${index}`} className={styles.figure}>
+                            <div className={`${styles.figureImage} ${useLightFrame ? styles.lightFrame : ""}`}>
+                                <Image
+                                    src={imageSrc}
+                                    alt={`${project.title} visual ${index + 1}`}
+                                    fill
+                                    sizes="(max-width: 900px) 100vw, 72vw"
+                                    className={`${shouldContainImages ? styles.containImage : styles.galleryImage} ${useLightFrame ? styles.lightBackgroundImage : ""}`}
+                                />
+                            </div>
+                            <figcaption>{String(index + 1).padStart(2, "0")} / {project.title}</figcaption>
+                        </figure>
+                    ))}
+                </section>
+            ) : null}
 
             <section className={styles.highlights}>
-                <p className={styles.sectionLabel}>What I Built</p>
+                <p className={styles.sectionLabel}>{isBilingualCase ? "Key Contributions / 核心贡献" : "What I Built"}</p>
                 <div className={styles.highlightGrid}>
                     {caseStudy.highlights.map((highlight, index) => (
                         <div key={highlight} className={styles.highlight}>

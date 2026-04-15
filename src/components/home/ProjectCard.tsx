@@ -39,7 +39,7 @@ export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
                         alt={project.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className={styles.realImage}
+                        className={`${styles.realImage} ${project.id === 3 ? styles.realImageTop : ""}`}
                         priority={index === 0}
                     />
                 </div>
