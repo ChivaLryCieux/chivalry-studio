@@ -628,7 +628,7 @@ export function BitcoinMonolithPage() {
     return (
         <main className={styles.page}>
             <nav className={styles.nav}>
-                <Link href="/" className={styles.navLink}>
+                <Link href="/displayPage" className={styles.navLink}>
                     Works
                 </Link>
                 <span>Project 06 / R3F Bitcoin Flight</span>

@@ -29,7 +29,7 @@ export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
     return (
         <Link
             key={project.id}
-            href={`/project/${project.id}`}
+            href={`/detailPage/${project.id}`}
             className={getCardClassName(index, activeIndex)}
         >
             <div className={styles.cardInner}>

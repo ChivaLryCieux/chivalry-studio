@@ -1,12 +1,4 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { ProjectGallery } from "@/components/project/ProjectGallery";
-import { ProjectSidebar } from "@/components/project/ProjectSidebar";
-import { BitcoinStoryPage } from "@/components/project/bitcoin/BitcoinStoryPage";
-import { BitcoinMonolithPage } from "@/components/project/monolith/BitcoinMonolithPage";
-import { SwissProjectPage } from "@/components/project/swiss/SwissProjectPage";
-import { getProjectById } from "@/lib/projects";
-import styles from "./page.module.css";
+import { redirect } from "next/navigation";
 
 interface PageProps {
     params: Promise<{
@@ -14,38 +6,7 @@ interface PageProps {
     }>;
 }
 
-export default async function ProjectDetail({ params }: PageProps) {
+export default async function ProjectDetailRedirect({ params }: PageProps) {
     const resolvedParams = await params;
-    const project = getProjectById(Number(resolvedParams.id));
-
-    if (!project) {
-        notFound();
-    }
-
-    if (project.template === "bitcoin-story") {
-        return <BitcoinStoryPage />;
-    }
-
-    if (project.template === "bitcoin-monolith") {
-        return <BitcoinMonolithPage />;
-    }
-
-    if (project.template === "swiss-case") {
-        return <SwissProjectPage project={project} />;
-    }
-
-    return (
-        <main className={styles.page}>
-            <nav className={styles.nav}>
-                <Link href="/" className={styles.navLink}>
-                    WORKS
-                </Link>
-            </nav>
-
-            <div className={styles.content}>
-                <ProjectGallery project={project} />
-                <ProjectSidebar project={project} />
-            </div>
-        </main>
-    );
+    redirect(`/detailPage/${resolvedParams.id}`);
 }

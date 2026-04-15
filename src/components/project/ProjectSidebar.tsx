@@ -1,4 +1,4 @@
-import styles from "@/app/project/[id]/page.module.css";
+import styles from "@/components/project/detailPage.module.css";
 import type { ProjectData } from "@/types/project";
 
 interface ProjectSidebarProps {
