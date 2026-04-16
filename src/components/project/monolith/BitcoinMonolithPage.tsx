@@ -628,10 +628,10 @@ export function BitcoinMonolithPage() {
     return (
         <main className={styles.page}>
             <nav className={styles.nav}>
-                <Link href="/displayPage" className={styles.navLink}>
+                <Link href="/displayPage?project=10" className={styles.navLink}>
                     Works
                 </Link>
-                <span>Project 06 / R3F Bitcoin Flight</span>
+                <span>Project 10 / R3F Bitcoin Flight</span>
             </nav>
 
             <div ref={stageRef} className={styles.gameStage}>

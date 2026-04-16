@@ -2,8 +2,12 @@
 .main {
     width: 100vw;
     height: 100vh;
-    position: relative;
+    inset: 0;
+    position: fixed;
     overflow: hidden; /* 禁止页面滚动，只允许内部逻辑切换 */
+    overscroll-behavior: none;
+    touch-action: none;
+    user-select: none;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -125,6 +125,7 @@ export const projects: ProjectData[] = [
         cardTitleLines: ["Sermon", "布道 Markdown", "编辑器"],
         description: "A restrained Windows Markdown editor built with WPF and .NET 10, focused on writing, previewing, file management, and Swiss-style clarity.",
         detailImages: [
+            "/images/projects/sermon/intro.png",
             "/images/projects/sermon/sermon-cover.svg"
         ],
         template: "swiss-case",

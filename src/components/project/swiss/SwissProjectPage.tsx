@@ -26,7 +26,7 @@ export function SwissProjectPage({ project }: SwissProjectPageProps) {
     return (
         <main className={styles.page} style={pageStyle}>
             <nav className={styles.nav}>
-                <Link href="/displayPage" className={styles.navLink}>{isBilingualCase ? "WORKS / 项目" : "WORKS"}</Link>
+                <Link href={`/displayPage?project=${project.id}`} className={styles.navLink}>{isBilingualCase ? "WORKS / 项目" : "WORKS"}</Link>
                 <span>{project.year}</span>
             </nav>
 

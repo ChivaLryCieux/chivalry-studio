@@ -8,8 +8,17 @@ const SLIDE_TRANSITION_MS = 800;
 const WHEEL_THRESHOLD = 20;
 const SWIPE_THRESHOLD = 50;
 
-export function useProjectCarousel(projects: ProjectData[]) {
-    const [activeIndex, setActiveIndex] = useState(0);
+function getInitialIndex(projects: ProjectData[], initialProjectId?: number) {
+    if (!initialProjectId) {
+        return 0;
+    }
+
+    const projectIndex = projects.findIndex((project) => project.id === initialProjectId);
+    return projectIndex >= 0 ? projectIndex : 0;
+}
+
+export function useProjectCarousel(projects: ProjectData[], initialProjectId?: number) {
+    const [activeIndex, setActiveIndex] = useState(() => getInitialIndex(projects, initialProjectId));
     const [isAnimating, setIsAnimating] = useState(false);
     const touchStartY = useRef(0);
     const animationTimeoutRef = useRef<number | null>(null);
@@ -45,6 +54,8 @@ export function useProjectCarousel(projects: ProjectData[]) {
 
     useEffect(() => {
         const handleWheel = (event: WheelEvent) => {
+            event.preventDefault();
+
             if (Math.abs(event.deltaY) > WHEEL_THRESHOLD) {
                 changeSlide(event.deltaY > 0 ? "next" : "prev");
             }
@@ -60,7 +71,7 @@ export function useProjectCarousel(projects: ProjectData[]) {
             }
         };
 
-        window.addEventListener("wheel", handleWheel);
+        window.addEventListener("wheel", handleWheel, { passive: false });
         window.addEventListener("keydown", handleKeyDown);
 
         return () => {
@@ -68,6 +79,10 @@ export function useProjectCarousel(projects: ProjectData[]) {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [changeSlide]);
+
+    useEffect(() => {
+        setActiveIndex(getInitialIndex(projects, initialProjectId));
+    }, [initialProjectId, projects]);
 
     useEffect(() => {
         document.body.style.backgroundColor = projects[safeIndex]?.color ?? "";

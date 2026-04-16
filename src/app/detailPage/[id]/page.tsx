@@ -37,7 +37,7 @@ export default async function DetailPage({ params }: PageProps) {
     return (
         <main className={styles.page}>
             <nav className={styles.nav}>
-                <Link href="/displayPage" className={styles.navLink}>
+                <Link href={`/displayPage?project=${project.id}`} className={styles.navLink}>
                     WORKS
                 </Link>
             </nav>
@@ -49,4 +49,3 @@ export default async function DetailPage({ params }: PageProps) {
         </main>
     );
 }
-
