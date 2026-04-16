@@ -11,9 +11,9 @@ interface SwissProjectPageProps {
 export function SwissProjectPage({ project }: SwissProjectPageProps) {
     const caseStudy = project.caseStudy;
     const images = Array.from(new Set((project.detailImages ?? []).filter((image) => image !== project.src)));
-    const shouldContainImages = project.id === 1 || project.id === 3;
-    const isBilingualCase = project.id === 3;
-    const useLightFrame = project.id === 3;
+    const shouldContainImages = caseStudy?.imageFit === "contain";
+    const isBilingualCase = project.src.includes("/soa/");
+    const useLightFrame = project.src.includes("/soa/");
 
     if (!caseStudy) {
         return null;

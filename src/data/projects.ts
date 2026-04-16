@@ -3,6 +3,229 @@ import type { ProjectData } from "@/types/project";
 export const projects: ProjectData[] = [
     {
         id: 1,
+        title: "Quidem",
+        year: "2026",
+        category: "Quant Trading Framework",
+        color: "#5a171d",
+        imagePlaceholder: "QD",
+        src: "/images/projects/quidem/quidem-cover.svg",
+        cardTitleLines: ["Quidem", "量化交易框架"],
+        description: "A personal Python quant trading framework that combines Binance Futures execution, TUI monitoring, Redis-based reporting, risk control, backtesting research, and operational logs.",
+        detailImages: [
+            "/images/projects/quidem/kmeans_20260106_000544.png",
+            "/images/projects/quidem/hmm_20260208_230739.png",
+            "/images/projects/quidem/bocpd_solusdt.png"
+        ],
+        template: "swiss-case",
+        caseStudy: {
+            eyebrow: "Personal quant system / Binance futures",
+            headline: "A local quant workbench where execution, risk, reporting, and research stay in one reproducible loop.",
+            deck: "Quidem is not a generic PyPI package. It is a personal trading framework that organizes live or paper execution, terminal interaction, Redis status channels, email reports, exchange access, position risk, backtest research, and logs in one repository.",
+            accent: "#c3182d",
+            repoPath: "/home/lry/Projects/PythonRepo/quidem",
+            imageFit: "contain",
+            metrics: [
+                { label: "Exchange", value: "Binance" },
+                { label: "Mode", value: "Paper / Live" },
+                { label: "State channel", value: "Redis" },
+                { label: "Research", value: "Backtest" }
+            ],
+            sections: [
+                {
+                    kicker: "01 / Execution core",
+                    title: "Strategy code only decides whether to trade; the engine owns how trades are executed.",
+                    body: "The core engine connects market data, strategy signals, risk checks, and order execution. bot.py drives exchange connection, historical warmup, realtime ticks, UI refresh, and heartbeat, while trader.py owns open and close actions, paper fills, fee estimation, position state, and trade journal pushes."
+                },
+                {
+                    kicker: "02 / Operating surface",
+                    title: "A terminal-first interface keeps long-running trading visible without a web backend.",
+                    body: "The TUI uses standard output, ANSI control sequences, colorama, and cross-platform keyboard input to show position direction, market state, key indicators, current price, floating PnL, open events, close events, errors, pause, resume, and exit controls."
+                },
+                {
+                    kicker: "03 / Risk and review",
+                    title: "Redis reporting and backtests make trading behavior observable after the session ends.",
+                    body: "Closed trades are queued in Redis for scheduled HTML mail reports, CSV attachments, equity curves, and archive files. Backtest modules reuse core strategy, indicator, and risk code, while HMM, clustering, BOCPD, and diagnostic replay scripts support research and post-loss analysis."
+                }
+            ],
+            highlights: [
+                "Binance Futures REST and WebSocket access are isolated behind ccxt and websocket-client adapters.",
+                "Paper mode records simulated orders without touching real exchange order endpoints.",
+                "Risk management covers order sizing, leverage, taker fee estimation, stop loss, take profit, cooldown, circuit breaking, breakeven protection, and trailing stops.",
+                "The report pipeline decouples the trading loop from email delivery through Redis, Resend, schedule, pandas, and matplotlib.",
+                "Backtest and diagnostics reuse core modules to avoid a hard split between research logic and live trading logic."
+            ],
+            stack: ["Python", "ccxt", "websocket-client", "pandas", "numpy", "Redis", "Resend", "matplotlib", "seaborn", "statsmodels", "hmmlearn", "scikit-learn", "unittest"],
+            keywords: ["个人量化", "模拟盘/实盘", "终端监控", "Redis 报告", "仓位风控", "回测研究"]
+        }
+    },
+    {
+        id: 2,
+        title: "Colonnade DApp",
+        year: "2026",
+        category: "Ethereum Data Visualization",
+        color: "#68141d",
+        imagePlaceholder: "CD",
+        src: "/images/projects/colonnade/colonnade-cover.svg",
+        cardTitleLines: ["Colonnade", "以太坊链上数据", "可视化 DApp"],
+        description: "An Ethereum on-chain data visualization DApp built with Vite, React, TypeScript, Wagmi, Viem, and D3.",
+        detailImages: [
+            "/images/projects/colonnade/intro-1.png",
+            "/images/projects/colonnade/intro-2.png"
+        ],
+        template: "swiss-case",
+        caseStudy: {
+            eyebrow: "Ethereum DApp / Realtime block data",
+            headline: "A Swiss-style Ethereum dashboard for recent block activity, gas usage, wallet state, and RPC resilience.",
+            deck: "Colonnade uses Wagmi and Viem to connect browser wallets and query live Ethereum data, then uses D3 scales and path generation to render recent block transaction activity and gas utilization as readable SVG charts.",
+            accent: "#d21f2f",
+            repoPath: "/home/lry/Projects/TS-Repo/colonnade",
+            imageFit: "contain",
+            metrics: [
+                { label: "Recent blocks", value: "12" },
+                { label: "Networks", value: "Mainnet / Sepolia" },
+                { label: "Charts", value: "D3 SVG" },
+                { label: "RPC", value: "Fallback" }
+            ],
+            sections: [
+                {
+                    kicker: "01 / Wallet layer",
+                    title: "Wallet connection and account state are handled through Web3 React hooks.",
+                    body: "WagmiProvider initializes the network configuration, while useConnect, useDisconnect, useAccount, useBlockNumber, useGasPrice, useBalance, and usePublicClient coordinate wallet connection, latest block subscription, gas price, balance reads, and custom RPC queries."
+                },
+                {
+                    kicker: "02 / Data pipeline",
+                    title: "Viem reads the recent chain window directly from RPC and formats Ethereum units.",
+                    body: "The app calculates the latest twelve block numbers from the watched block height, calls publicClient.getBlock for each block, extracts transaction counts, gas used, and gas limits, then formats ETH and Gwei values through Viem utilities."
+                },
+                {
+                    kicker: "03 / Visualization system",
+                    title: "D3 calculates the graphics, React keeps ownership of the DOM.",
+                    body: "D3 scaleBand, scaleLinear, line, curveMonotoneX, and format convert block data into bar positions, gas utilization points, smooth line paths, and compact block labels. The interface keeps a black-white-gray Swiss grid with red status emphasis."
+                }
+            ],
+            highlights: [
+                "Connects browser-injected wallets such as MetaMask through Wagmi.",
+                "Reads current Ethereum block number, gas price, and connected wallet ETH balance.",
+                "Queries recent block transaction counts, gas used, and gas limits through Viem public client calls.",
+                "Uses multiple public mainnet RPC endpoints through fallback transport to reduce rate-limit stalls.",
+                "Builds chart geometry with D3 while rendering the final SVG through React."
+            ],
+            stack: ["Vite", "React", "TypeScript", "Wagmi", "Viem", "D3.js", "React Query", "Ethereum RPC", "SVG"],
+            keywords: ["以太坊", "链上数据", "钱包连接", "Gas 使用率", "D3 可视化", "RPC fallback"]
+        }
+    },
+    {
+        id: 3,
+        title: "Sermon",
+        year: "2026",
+        category: "Markdown Editor",
+        color: "#4c1a1f",
+        imagePlaceholder: "SM",
+        src: "/images/projects/sermon/sermon-cover.svg",
+        cardTitleLines: ["Sermon", "布道 Markdown", "编辑器"],
+        description: "A restrained Windows Markdown editor built with WPF and .NET 10, focused on writing, previewing, file management, and Swiss-style clarity.",
+        detailImages: [
+            "/images/projects/sermon/sermon-cover.svg"
+        ],
+        template: "swiss-case",
+        caseStudy: {
+            eyebrow: "Writing tool / WPF desktop",
+            headline: "A calm Markdown editor for writing, previewing, and managing drafts inside a disciplined Windows interface.",
+            deck: "Sermon is a Windows Markdown editor built with WPF and .NET 10. It favors clear grids, black-white-gray hierarchy, red structural emphasis, low-decoration controls, and readable typography for technical documents, blog drafts, sermon notes, and daily writing.",
+            accent: "#b61f2a",
+            repoPath: "/home/lry/Projects/CsRepo/Sermon",
+            imageFit: "contain",
+            metrics: [
+                { label: "Runtime", value: ".NET 10" },
+                { label: "UI", value: "WPF" },
+                { label: "Preview", value: "WebView2" },
+                { label: "Autosave", value: "2 min" }
+            ],
+            sections: [
+                {
+                    kicker: "01 / Writing modes",
+                    title: "Edit, preview, and split modes support different phases of Markdown writing.",
+                    body: "Sermon provides focused editing with syntax highlighting, realtime HTML preview, and a split mode that keeps the source and rendered document visible together. Preview refresh is debounced to reduce repeated rendering while typing."
+                },
+                {
+                    kicker: "02 / File workflow",
+                    title: "The editor treats document management as part of the writing surface.",
+                    body: "New, open, save, save as, folder browsing, tree navigation, multi-tab editing, unsaved-state indicators, and two-minute autosave create a practical local writing workflow instead of a single-buffer text box."
+                },
+                {
+                    kicker: "03 / Desktop architecture",
+                    title: "WPF, AvalonEdit, Markdig, and WebView2 split the editor into reliable desktop responsibilities.",
+                    body: "AvalonEdit handles text editing and Markdown syntax color, Markdig converts Markdown into HTML, WebView2 renders the preview, MahApps.Metro supplies the window frame and Material icons, and RelayCommand keeps toolbar and shortcut actions bound to UI state."
+                }
+            ],
+            highlights: [
+                "Supports standard Markdown and extended syntax including tables, code blocks, and strikethrough.",
+                "Includes formatting buttons, Ctrl+B, Ctrl+I, Ctrl+F, Ctrl+H, and common file shortcuts.",
+                "Shows word count and cursor position in a restrained low-contrast status bar.",
+                "Targets Windows 10/11 with .NET Desktop Runtime and WebView2 Runtime.",
+                "Provides both framework-dependent and self-contained win-x64 publish paths."
+            ],
+            stack: [".NET 10", "C#", "WPF", "MahApps.Metro", "Material IconPacks", "AvalonEdit", "Markdig", "Microsoft.Web.WebView2", "XAML"],
+            keywords: ["Markdown 编辑器", "Windows 写作", "实时预览", "分屏模式", "自动保存", "瑞士风格 UI"]
+        }
+    },
+    {
+        id: 4,
+        title: "Hyacinth",
+        year: "2026",
+        category: "Cross-platform AI Chat",
+        color: "#123f38",
+        imagePlaceholder: "HY",
+        src: "/images/projects/hyacinth/hyacinth-cover.svg",
+        cardTitleLines: ["Hyacinth", "跨平台多 AI", "群聊应用"],
+        description: "A Rust, Tauri 2, React, and Vite based cross-platform AI chat app with Android-first layout, local settings, and multi-agent group replies.",
+        detailImages: [
+            "/images/projects/hyacinth/hyacinth-cover.svg"
+        ],
+        template: "swiss-case",
+        caseStudy: {
+            eyebrow: "AI group chat / Tauri mobile",
+            headline: "A mobile-first AI conversation app where multiple configured assistants can answer in the same room.",
+            deck: "Hyacinth is a cross-platform AI chat application built with Rust, Tauri 2, React, and Vite. It prioritizes Android while retaining desktop builds, and lets each AI keep independent identity, endpoint, model, prompt, key, and temperature settings.",
+            accent: "#146c5f",
+            repoPath: "/home/lry/Projects/RustRepo/Hyacinth",
+            imageFit: "contain",
+            metrics: [
+                { label: "Shell", value: "Tauri 2" },
+                { label: "Backend", value: "Rust" },
+                { label: "Frontend", value: "React" },
+                { label: "Target", value: "Android" }
+            ],
+            sections: [
+                {
+                    kicker: "01 / Multi-AI room",
+                    title: "Each assistant has its own configuration, then selected assistants reply together.",
+                    body: "Every AI can define name, avatar text, API key, base URL, model, system prompt, and temperature. Users can select multiple assistants for the same message, creating a group-chat workflow over OpenAI-compatible chat/completions APIs."
+                },
+                {
+                    kicker: "02 / Local persistence",
+                    title: "Settings and conversations stay local to the device.",
+                    body: "The Tauri backend stores assistant settings in the native application configuration directory, while chat history is kept in browser localStorage. This keeps personal API configuration and everyday conversation state close to the user."
+                },
+                {
+                    kicker: "03 / Cross-platform build path",
+                    title: "Android is the priority, but the same codebase keeps a desktop route open.",
+                    body: "The project includes npm build scripts for Tauri desktop and Android workflows, with Android Studio SDK, NDK, build tools, command-line tools, Rust Android targets, and Linux WebKitGTK dependencies documented in the README."
+                }
+            ],
+            highlights: [
+                "Connects to OpenAI-compatible chat/completions endpoints rather than a single fixed provider.",
+                "Supports independent model, prompt, endpoint, API key, avatar text, and temperature per assistant.",
+                "Allows multiple selected AIs to respond in one conversation, turning single-user chat into a group workflow.",
+                "Uses an Android-first responsive layout while keeping a desktop AI management panel.",
+                "Documents Android SDK, NDK, Rust target, and Linux desktop build prerequisites."
+            ],
+            stack: ["Rust", "Tauri 2", "React", "Vite", "TypeScript", "Android SDK", "OpenAI-compatible APIs", "localStorage", "Native app config"],
+            keywords: ["多 AI 群聊", "Tauri Android", "本地配置", "OpenAI 兼容接口", "移动端优先", "跨平台桌面"]
+        }
+    },
+    {
+        id: 5,
         title: "Lilac-CLI",
         year: "2026",
         category: "TUI Agent",
@@ -22,6 +245,7 @@ export const projects: ProjectData[] = [
             deck: "Lilac-CLI turns Markdown skill files into swappable agent identities, then renders the conversation through a polished Ink interface built for fast local iteration and focused developer work.",
             accent: "#7f5cff",
             repoPath: "/home/lry/Projects/TsRepo/lilac",
+            imageFit: "contain",
             metrics: [
                 { label: "Runtime", value: "Bun" },
                 { label: "Interface", value: "Ink" },
@@ -56,7 +280,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 2,
+        id: 6,
         title: "Solana Private Fork Economics",
         year: "2026",
         category: "Blockchain R&D",
@@ -111,7 +335,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 3,
+        id: 7,
         title: "Consortium Blockchain for SOA Governance",
         year: "2026",
         category: "Paper / 论文研究",
@@ -130,6 +354,7 @@ export const projects: ProjectData[] = [
             deck: "An integrated framework combining evolutionary game theory and Mesa-based agent simulation to redesign SOA governance from delayed audit to real-time, incentive-compatible supervision.\n通过进化博弈与 Mesa 智能体仿真，推动国有资产治理从滞后审计转向实时、激励相容的链上监管。",
             accent: "#b61f2a",
             repoPath: "DOI: 10.5281/zenodo.19202351",
+            imageFit: "contain",
             metrics: [
                 { label: "Compliance\n合规收敛", value: "85.2%" },
                 { label: "Convergence\n收敛迭代", value: "30 steps" },
@@ -182,7 +407,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 4,
+        id: 8,
         title: "Unity Game Design",
         year: "2026",
         category: "Game Design",
@@ -202,7 +427,7 @@ export const projects: ProjectData[] = [
         ]
     },
     {
-        id: 5,
+        id: 9,
         title: "神秘人中本聪与他的个人比特币项目——共识的18年野蛮生长",
         year: "2026",
         category: "Data Story",
@@ -214,7 +439,7 @@ export const projects: ProjectData[] = [
         template: "bitcoin-story"
     },
     {
-        id: 6,
+        id: 10,
         title: "神秘人中本聪与他的个人比特币项目——3D 数据叙事版本",
         year: "2026",
         category: "3D Data Story",

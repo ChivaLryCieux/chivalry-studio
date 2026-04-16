@@ -1,0 +1,21 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F6F6F2"/>
+  <rect x="88" y="88" width="1424" height="724" stroke="#111111" stroke-width="18"/>
+  <path d="M88 246H1512" stroke="#111111" stroke-width="12"/>
+  <path d="M88 628H1512" stroke="#111111" stroke-width="8"/>
+  <path d="M578 88V812" stroke="#111111" stroke-width="12"/>
+  <text x="128" y="190" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">COLONNADE</text>
+  <text x="624" y="176" fill="#D21F2F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">ETHEREUM ON-CHAIN DATA DAPP</text>
+  <text x="128" y="354" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">链上数据</text>
+  <text x="128" y="448" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">可视化</text>
+  <text x="128" y="560" fill="#D21F2F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">WAGMI / VIEM / D3</text>
+  <rect x="652" y="354" width="72" height="214" fill="#111111"/>
+  <rect x="768" y="414" width="72" height="154" fill="#111111"/>
+  <rect x="884" y="312" width="72" height="256" fill="#111111"/>
+  <rect x="1000" y="466" width="72" height="102" fill="#111111"/>
+  <rect x="1116" y="378" width="72" height="190" fill="#111111"/>
+  <rect x="1232" y="288" width="72" height="280" fill="#111111"/>
+  <rect x="1348" y="430" width="72" height="138" fill="#111111"/>
+  <polyline points="652,484 768,452 884,396 1000,430 1116,388 1232,332 1348,364 1420,328" stroke="#D21F2F" stroke-width="16" stroke-linecap="square"/>
+  <text x="128" y="716" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="800">LATEST BLOCK / GAS PRICE / WALLET BALANCE</text>
+</svg>

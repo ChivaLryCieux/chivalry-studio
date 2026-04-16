@@ -1,0 +1,16 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F4F1EA"/>
+  <path d="M92 92H1508V808H92V92Z" stroke="#111111" stroke-width="18"/>
+  <path d="M92 240H1508" stroke="#111111" stroke-width="12"/>
+  <path d="M536 92V808" stroke="#111111" stroke-width="12"/>
+  <rect x="130" y="130" width="80" height="80" fill="#B61F2A"/>
+  <text x="238" y="190" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">SERMON</text>
+  <text x="130" y="354" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">Markdown</text>
+  <text x="130" y="444" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">编辑器</text>
+  <text x="130" y="558" fill="#B61F2A" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">WPF / .NET 10 / MARKDIG</text>
+  <rect x="620" y="314" width="360" height="378" fill="#111111"/>
+  <rect x="1012" y="314" width="360" height="378" stroke="#111111" stroke-width="12"/>
+  <path d="M660 374H940M660 434H890M660 494H930M660 554H842M1052 390H1332M1052 454H1278M1052 518H1320M1052 582H1190" stroke="#F4F1EA" stroke-width="18"/>
+  <path d="M1052 390H1332M1052 454H1278M1052 518H1320M1052 582H1190" stroke="#111111" stroke-width="8"/>
+  <text x="620" y="744" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="900">EDIT / PREVIEW / SPLIT</text>
+</svg>
