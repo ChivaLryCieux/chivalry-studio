@@ -4,7 +4,7 @@ export const projects: ProjectData[] = [
     {
         id: 1,
         title: "Quidem",
-        year: "2026",
+        year: "2025",
         category: "Quant Trading Framework",
         color: "#5a171d",
         imagePlaceholder: "QD",
@@ -61,7 +61,7 @@ export const projects: ProjectData[] = [
     {
         id: 2,
         title: "Colonnade DApp",
-        year: "2026",
+        year: "2025",
         category: "Ethereum Data Visualization",
         color: "#68141d",
         imagePlaceholder: "CD",
@@ -117,7 +117,7 @@ export const projects: ProjectData[] = [
     {
         id: 3,
         title: "Sermon",
-        year: "2026",
+        year: "2025",
         category: "Markdown Editor",
         color: "#4c1a1f",
         imagePlaceholder: "SM",
@@ -173,7 +173,7 @@ export const projects: ProjectData[] = [
     {
         id: 4,
         title: "Hyacinth",
-        year: "2026",
+        year: "2025",
         category: "Cross-platform AI Chat",
         color: "#123f38",
         imagePlaceholder: "HY",
@@ -288,7 +288,7 @@ export const projects: ProjectData[] = [
         color: "#3e1c1c",
         imagePlaceholder: "SP",
         src: "/images/projects/solana/solana-cover.svg",
-        cardTitleLines: ["Solana", "私有硬分叉", "Tokenomics修改"],
+        cardTitleLines: ["Solana", "私有硬分叉实验"],
         description: "A private hard-fork experiment that redesigns Solana inflation parameters, isolates mainnet assumptions, and validates a local block-producing network through RPC.",
         detailImages: [
             "/images/projects/solana/solana-economics.svg",

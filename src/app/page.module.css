@@ -310,11 +310,13 @@
     }
 
     .topCenter {
-        top: 20px;
-        width: 44vw;
+        top: max(128px, calc(50% - 25.3125vw - 58px));
+        width: min(90vw, 560px);
     }
 
     .topProjectTitle {
         font-size: 1.1rem;
+        line-height: 1.22;
+        white-space: normal;
     }
 }

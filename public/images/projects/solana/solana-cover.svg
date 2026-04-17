@@ -5,17 +5,18 @@
   <path d="M206 684H1394" stroke="#EEF2F0" stroke-width="6"/>
   <text x="206" y="354" fill="#EEF2F0" font-family="Arial, Helvetica, sans-serif" font-size="98" font-weight="800">Solana</text>
   <text x="206" y="458" fill="#EEF2F0" font-family="Arial, Helvetica, sans-serif" font-size="98" font-weight="800">Private Fork</text>
-  <text x="210" y="536" fill="#66E0C2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">fixed 0.5% inflation / no foundation share</text>
-  <g font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">
-    <text x="854" y="282" fill="#EEF2F0">10M SOL</text>
-    <text x="854" y="382" fill="#EEF2F0">100K STAKE</text>
-    <text x="854" y="482" fill="#EEF2F0">64 SLOT EPOCH</text>
-    <text x="854" y="582" fill="#EEF2F0">LOCAL RPC</text>
+  <text x="210" y="528" fill="#66E0C2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">fixed 0.5% inflation</text>
+  <text x="210" y="572" fill="#66E0C2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">tokenomics refinement</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800" letter-spacing="0">
+    <text x="846" y="282" fill="#EEF2F0">10M SOL</text>
+    <text x="846" y="382" fill="#EEF2F0">100K STAKE</text>
+    <text x="846" y="482" fill="#EEF2F0">64 SLOT EPOCH</text>
+    <text x="846" y="582" fill="#EEF2F0">LOCAL RPC</text>
   </g>
-  <rect x="780" y="242" width="42" height="42" fill="#66E0C2"/>
-  <rect x="780" y="342" width="42" height="42" fill="#D6FB41"/>
-  <rect x="780" y="442" width="42" height="42" fill="#FF5F57"/>
-  <rect x="780" y="542" width="42" height="42" fill="#EEF2F0"/>
-  <path d="M1234 226L1424 416L1234 606L1044 416L1234 226Z" stroke="#66E0C2" stroke-width="22"/>
-  <path d="M1234 320L1330 416L1234 512L1138 416L1234 320Z" fill="#D6FB41"/>
+  <rect x="780" y="244" width="38" height="38" fill="#66E0C2"/>
+  <rect x="780" y="344" width="38" height="38" fill="#D6FB41"/>
+  <rect x="780" y="444" width="38" height="38" fill="#FF5F57"/>
+  <rect x="780" y="544" width="38" height="38" fill="#EEF2F0"/>
+  <path d="M1272 226L1452 416L1272 606L1092 416L1272 226Z" stroke="#66E0C2" stroke-width="22"/>
+  <path d="M1272 320L1364 416L1272 512L1180 416L1272 320Z" fill="#D6FB41"/>
 </svg>
