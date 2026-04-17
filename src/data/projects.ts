@@ -234,16 +234,16 @@ export const projects: ProjectData[] = [
         imagePlaceholder: "LC",
         src: "/images/projects/lilac/lilac-cover.svg",
         cardTitleLines: ["Lilac-CLI", "智能体设计"],
-        description: "A Bun and Ink based terminal agent framework with skill-driven behavior, OpenAI-compatible providers, streaming responses, and live token cost awareness.",
+        description: "A Bun and Ink based terminal agent framework extended with a harness layer for LangGraph and OpenAI Agents SDK experiments, skill-driven behavior, streaming responses, and live token cost awareness.",
         detailImages: [
             "/images/projects/lilac/intro.png",
             "/images/projects/lilac/lilac-system.svg"
         ],
         template: "swiss-case",
         caseStudy: {
-            eyebrow: "Terminal intelligence / Skill orchestration",
-            headline: "A refined command-line agent interface where behavior is edited like content.",
-            deck: "Lilac-CLI turns Markdown skill files into swappable agent identities, then renders the conversation through a polished Ink interface built for fast local iteration and focused developer work.",
+            eyebrow: "Terminal intelligence / Agent harness",
+            headline: "A command-line agent workspace for designing, running, and comparing agent behavior.",
+            deck: "Lilac-CLI turns Markdown skill files into swappable agent identities, while the added harness project gives LangGraph and OpenAI Agents SDK workflows a local place to be exercised, inspected, and refined.",
             accent: "#7f5cff",
             repoPath: "/home/lry/Projects/TsRepo/lilac",
             imageFit: "contain",
@@ -251,13 +251,13 @@ export const projects: ProjectData[] = [
                 { label: "Runtime", value: "Bun" },
                 { label: "Interface", value: "Ink" },
                 { label: "Skill format", value: ".md" },
-                { label: "API layer", value: "OpenAI style" }
+                { label: "Agent layer", value: "LangGraph / Agents SDK" }
             ],
             sections: [
                 {
                     kicker: "01 / Product premise",
                     title: "Agent identity becomes a local, versionable design surface.",
-                    body: "Instead of baking behavior into code, Lilac loads persona, model, temperature, and constraints from Markdown frontmatter. A new assistant mode can be created by adding a skill file, which keeps experimentation fast and transparent."
+                    body: "Instead of baking behavior into code, Lilac loads persona, model, temperature, and constraints from Markdown frontmatter. A new assistant mode can be created by adding a skill file, while harness runs keep those behaviors testable outside a single chat session."
                 },
                 {
                     kicker: "02 / Interface system",
@@ -265,19 +265,27 @@ export const projects: ProjectData[] = [
                     body: "The UI is composed with Ink components for header, message list, input, spinner states, and streaming text. The result feels closer to a professional developer tool than a plain prompt loop."
                 },
                 {
-                    kicker: "03 / Operating feedback",
+                    kicker: "03 / Agent harness",
+                    title: "LangGraph and OpenAI Agents SDK workflows can be exercised as engineering artifacts.",
+                    body: "The harness project adds a separate layer for structured agent experiments, making graph-based flows, SDK-driven tool calls, and repeatable behavior checks easier to run without disturbing the terminal interface."
+                },
+                {
+                    kicker: "04 / Operating feedback",
                     title: "Live token estimation makes model usage visible during the session.",
                     body: "A lightweight token utility feeds the header cost monitor, so the interface keeps both conversation state and resource pressure visible while responses stream."
                 }
             ],
             highlights: [
                 "Markdown skills define agent persona, model, temperature, and instruction constraints.",
+                "A harness project separates agent workflow experiments from the core terminal interface.",
+                "LangGraph supports graph-shaped orchestration for multi-step and multi-agent behavior.",
+                "OpenAI Agents SDK integration gives the project a path toward typed tools, handoffs, and traceable agent runs.",
                 "Provider-agnostic API client works with OpenAI-style services including GPT, DeepSeek, and local Ollama-compatible endpoints.",
                 "Gradient terminal typography, side-line message layout, and loading motion give the CLI a designed, premium feel.",
                 "Bun keeps startup and TypeScript execution tight enough for daily command-line use."
             ],
-            stack: ["Bun", "TypeScript", "React", "Ink", "gray-matter", "ink-text-input", "ink-spinner", "OpenAI-compatible APIs"],
-            keywords: ["终端智能体", "技能驱动", "流式交互", "实时成本", "本地优先", "高性能启动"]
+            stack: ["Bun", "TypeScript", "React", "Ink", "LangGraph", "OpenAI Agents SDK", "gray-matter", "ink-text-input", "ink-spinner", "OpenAI-compatible APIs"],
+            keywords: ["终端智能体", "Harness 工程", "LangGraph", "Agents SDK", "技能驱动", "流式交互", "实时成本", "本地优先"]
         }
     },
     {
