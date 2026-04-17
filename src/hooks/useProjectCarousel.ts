@@ -52,6 +52,10 @@ export function useProjectCarousel(projects: ProjectData[], initialProjectId?: n
         }
     }, [isAnimating, projects.length, safeIndex]);
 
+    const goToProject = useCallback((projectId?: number) => {
+        setActiveIndex(getInitialIndex(projects, projectId));
+    }, [projects]);
+
     useEffect(() => {
         const handleWheel = (event: WheelEvent) => {
             event.preventDefault();
@@ -81,10 +85,6 @@ export function useProjectCarousel(projects: ProjectData[], initialProjectId?: n
     }, [changeSlide]);
 
     useEffect(() => {
-        setActiveIndex(getInitialIndex(projects, initialProjectId));
-    }, [initialProjectId, projects]);
-
-    useEffect(() => {
         document.body.style.backgroundColor = projects[safeIndex]?.color ?? "";
     }, [projects, safeIndex]);
 
@@ -112,6 +112,7 @@ export function useProjectCarousel(projects: ProjectData[], initialProjectId?: n
     return {
         activeIndex: safeIndex,
         currentProject: projects[safeIndex] ?? null,
+        goToProject,
         handleTouchEnd,
         handleTouchStart,
         projects,

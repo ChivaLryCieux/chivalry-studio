@@ -602,7 +602,11 @@ function MonolithGameScene({
     );
 }
 
-export function BitcoinMonolithPage() {
+interface BitcoinMonolithPageProps {
+    returnProjectId?: number;
+}
+
+export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPageProps) {
     const [controlsEnabled, setControlsEnabled] = useState(false);
     const stageRef = useRef<HTMLDivElement>(null);
     const lookRef = useRef<LookState>({ yaw: 0, pitch: 0 });
@@ -628,7 +632,7 @@ export function BitcoinMonolithPage() {
     return (
         <main className={styles.page}>
             <nav className={styles.nav}>
-                <Link href="/displayPage?project=10" className={styles.navLink}>
+                <Link href={`/displayPage?project=${returnProjectId}`} className={styles.navLink}>
                     Works
                 </Link>
                 <span>Project 10 / R3F Bitcoin Flight</span>

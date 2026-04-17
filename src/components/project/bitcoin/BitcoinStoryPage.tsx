@@ -13,13 +13,17 @@ import { BitcoinPriceStory } from "./BitcoinPriceStory";
 import { SatoshiHoldingsViz } from "./SatoshiHoldingsViz";
 import { PretextNarrative } from "./PretextNarrative";
 
-export function BitcoinStoryPage() {
+interface BitcoinStoryPageProps {
+    returnProjectId?: number;
+}
+
+export function BitcoinStoryPage({ returnProjectId = 9 }: BitcoinStoryPageProps) {
     const peakValue = satoshiHoldings.estimatedCoins * satoshiHoldings.archiveAthPrice;
 
     return (
         <main className={styles.page}>
             <nav className={styles.nav}>
-                <Link href="/displayPage?project=9" className={styles.navLink}>
+                <Link href={`/displayPage?project=${returnProjectId}`} className={styles.navLink}>
                     Works
                 </Link>
                 <div className={styles.navMeta}>Satoshi / Bitcoin / Data Story</div>

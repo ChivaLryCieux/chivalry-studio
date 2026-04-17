@@ -181,6 +181,7 @@ export const projects: ProjectData[] = [
         cardTitleLines: ["Hyacinth", "跨平台多 AI", "群聊应用"],
         description: "A Rust, Tauri 2, React, and Vite based cross-platform AI chat app with Android-first layout, local settings, and multi-agent group replies.",
         detailImages: [
+            "/images/projects/hyacinth/Hyacinth-intro.png",
             "/images/projects/hyacinth/hyacinth-cover.svg"
         ],
         template: "swiss-case",
@@ -350,11 +351,11 @@ export const projects: ProjectData[] = [
         category: "Paper / 论文研究",
         color: "#4a2b22",
         imagePlaceholder: "CB",
-        src: "/images/projects/soa/main-p1.png",
+        src: "/images/projects/soa/SOA-display.png",
         cardTitleLines: ["联盟链", "国有资产治理"],
         description: "A bilingual Swiss-style project page for the paper on consortium blockchain and polycentric governance of state-owned asset transactions.",
         detailImages: [
-            "/images/projects/soa/main-p1.png"
+            "/images/projects/soa/SOA-display.png"
         ],
         template: "swiss-case",
         caseStudy: {
@@ -440,7 +441,7 @@ export const projects: ProjectData[] = [
         title: "神秘人中本聪与他的个人比特币项目——共识的18年野蛮生长",
         year: "2026",
         category: "Data Story",
-        color: "#c3182d",
+        color: "#5a171d",
         imagePlaceholder: "BTC",
         src: "/images/bitcoin-story-preview.svg",
         cardTitleLines: ["中本聪", "Bitcoin", "可视化叙事"],
@@ -452,7 +453,7 @@ export const projects: ProjectData[] = [
         title: "神秘人中本聪与他的个人比特币项目——3D 数据叙事版本",
         year: "2026",
         category: "3D Data Story",
-        color: "#d21f2f",
+        color: "#4a2b22",
         imagePlaceholder: "BTC",
         src: "/images/bitcoin-monolith-preview.svg",
         cardTitleLines: ["中本聪", "Bitcoin", "R3F游戏化叙事"],

@@ -9,6 +9,7 @@ interface DisplayPageRouteProps {
 export default async function DisplayPageRoute({ searchParams }: DisplayPageRouteProps) {
     const resolvedSearchParams = await searchParams;
     const initialProjectId = Number(resolvedSearchParams.project);
+    const displayProjectId = Number.isFinite(initialProjectId) ? initialProjectId : undefined;
 
-    return <DisplayPage initialProjectId={Number.isFinite(initialProjectId) ? initialProjectId : undefined} />;
+    return <DisplayPage key={displayProjectId ?? "default"} initialProjectId={displayProjectId} />;
 }

@@ -14,7 +14,7 @@ interface DisplayPageProps {
 
 export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     const projects = getProjects();
-    const { activeIndex, currentProject, handleTouchEnd, handleTouchStart } = useProjectCarousel(projects, initialProjectId);
+    const { activeIndex, currentProject, goToProject, handleTouchEnd, handleTouchStart } = useProjectCarousel(projects, initialProjectId);
 
     useEffect(() => {
         const previousBodyOverflow = document.body.style.overflow;
@@ -36,11 +36,35 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     }, []);
 
     useEffect(() => {
+        const syncProjectFromUrl = () => {
+            const projectId = Number(new URLSearchParams(window.location.search).get("project"));
+
+            if (Number.isFinite(projectId)) {
+                goToProject(projectId);
+            }
+        };
+
+        const syncFrame = window.requestAnimationFrame(syncProjectFromUrl);
+        window.addEventListener("popstate", syncProjectFromUrl);
+
+        return () => {
+            window.cancelAnimationFrame(syncFrame);
+            window.removeEventListener("popstate", syncProjectFromUrl);
+        };
+    }, [goToProject]);
+
+    useEffect(() => {
         if (!currentProject) {
             return;
         }
 
         const nextUrl = `/displayPage?project=${currentProject.id}`;
+        const requestedProjectId = Number(new URLSearchParams(window.location.search).get("project"));
+
+        if (Number.isFinite(requestedProjectId) && requestedProjectId !== currentProject.id) {
+            return;
+        }
+
         if (`${window.location.pathname}${window.location.search}` !== nextUrl) {
             window.history.replaceState(null, "", nextUrl);
         }
