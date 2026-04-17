@@ -54,7 +54,7 @@ export const projects: ProjectData[] = [
                 "The report pipeline decouples the trading loop from email delivery through Redis, Resend, schedule, pandas, and matplotlib.",
                 "Backtest and diagnostics reuse core modules to avoid a hard split between research logic and live trading logic."
             ],
-            stack: ["Python", "ccxt", "websocket-client", "pandas", "numpy", "Redis", "Resend", "matplotlib", "seaborn", "statsmodels", "hmmlearn", "scikit-learn", "unittest"],
+            stack: ["Python", "ccxt", "websocket-client", "pandas", "numpy", "Redis", "Resend", "matplotlib", "seaborn", "statsmodels", "hmmlearn", "scikit-learn"],
             keywords: ["个人量化", "模拟盘/实盘", "终端监控", "Redis 报告", "仓位风控", "回测研究"]
         }
     },
@@ -166,7 +166,7 @@ export const projects: ProjectData[] = [
                 "Targets Windows 10/11 with .NET Desktop Runtime and WebView2 Runtime.",
                 "Provides both framework-dependent and self-contained win-x64 publish paths."
             ],
-            stack: [".NET 10", "C#", "WPF", "MahApps.Metro", "Material IconPacks", "AvalonEdit", "Markdig", "Microsoft.Web.WebView2", "XAML"],
+            stack: [".NET 10", "WPF", "MahApps.Metro", "Material IconPacks", "AvalonEdit", "Markdig", "WebView2", "XAML"],
             keywords: ["Markdown 编辑器", "Windows 写作", "实时预览", "分屏模式", "自动保存", "瑞士风格 UI"]
         }
     },
@@ -440,7 +440,7 @@ export const projects: ProjectData[] = [
         title: "神秘人中本聪与他的个人比特币项目——共识的18年野蛮生长",
         year: "2026",
         category: "Data Story",
-        color: "#1a120b",
+        color: "#c3182d",
         imagePlaceholder: "BTC",
         src: "/images/bitcoin-story-preview.svg",
         cardTitleLines: ["中本聪", "Bitcoin", "可视化叙事"],
@@ -452,7 +452,7 @@ export const projects: ProjectData[] = [
         title: "神秘人中本聪与他的个人比特币项目——3D 数据叙事版本",
         year: "2026",
         category: "3D Data Story",
-        color: "#2a0d0a",
+        color: "#d21f2f",
         imagePlaceholder: "BTC",
         src: "/images/bitcoin-monolith-preview.svg",
         cardTitleLines: ["中本聪", "Bitcoin", "R3F游戏化叙事"],
