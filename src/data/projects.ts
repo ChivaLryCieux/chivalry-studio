@@ -118,112 +118,113 @@ export const projects: ProjectData[] = [
         id: 3,
         title: "Sermon",
         year: "2025",
-        category: "Markdown Editor",
+        category: "Document & AI Memory",
         color: "#4c1a1f",
         imagePlaceholder: "SM",
         src: "/images/projects/sermon/sermon-cover.svg",
-        cardTitleLines: ["Sermon", "布道 Markdown", "编辑器"],
-        description: "A restrained Windows Markdown editor built with WPF and .NET 10, focused on writing, previewing, file management, and Swiss-style clarity.",
+        cardTitleLines: ["Sermon", "文档编辑", "AI记忆管理"],
+        description: "An Avalonia-based document and AI memory management application for organizing knowledge, preserving context, and turning writing materials into reusable memory.",
         detailImages: [
             "/images/projects/sermon/intro.png",
             "/images/projects/sermon/sermon-cover.svg"
         ],
         template: "swiss-case",
         caseStudy: {
-            eyebrow: "Writing tool / WPF desktop",
-            headline: "A calm Markdown editor for writing, previewing, and managing drafts inside a disciplined Windows interface.",
-            deck: "Sermon is a Windows Markdown editor built with WPF and .NET 10. It favors clear grids, black-white-gray hierarchy, red structural emphasis, low-decoration controls, and readable typography for technical documents, blog drafts, sermon notes, and daily writing.",
+            eyebrow: "Document system / AI memory",
+            headline: "A document and AI memory management workspace for keeping knowledge structured, searchable, and reusable.",
+            deck: "Sermon is an Avalonia-based document and AI memory management application that treats writing, reference material, and long-term AI context as one connected workspace. It helps users collect documents, organize reusable knowledge, and preserve the memory needed for future AI-assisted work.",
             accent: "#b61f2a",
             repoPath: "/home/lry/Projects/CsRepo/Sermon",
             imageFit: "contain",
             metrics: [
-                { label: "Runtime", value: ".NET 10" },
-                { label: "UI", value: "WPF" },
-                { label: "Preview", value: "WebView2" },
-                { label: "Autosave", value: "2 min" }
+                { label: "Framework", value: "Avalonia" },
+                { label: "Domain", value: "Documents" },
+                { label: "Focus", value: "AI memory" },
+                { label: "Structure", value: "Knowledge base" }
             ],
             sections: [
                 {
-                    kicker: "01 / Writing modes",
-                    title: "Edit, preview, and split modes support different phases of Markdown writing.",
-                    body: "Sermon provides focused editing with syntax highlighting, realtime HTML preview, and a split mode that keeps the source and rendered document visible together. Preview refresh is debounced to reduce repeated rendering while typing."
+                    kicker: "01 / Document memory",
+                    title: "Documents become durable memory rather than isolated files.",
+                    body: "Sermon positions documents as reusable knowledge units. Notes, drafts, references, and project materials can be organized so the content remains available as long-term context instead of disappearing after a single AI conversation."
                 },
                 {
-                    kicker: "02 / File workflow",
-                    title: "The editor treats document management as part of the writing surface.",
-                    body: "New, open, save, save as, folder browsing, tree navigation, multi-tab editing, unsaved-state indicators, and two-minute autosave create a practical local writing workflow instead of a single-buffer text box."
+                    kicker: "02 / AI context",
+                    title: "AI memory management keeps context explicit and portable.",
+                    body: "The application focuses on maintaining structured memory for AI-assisted workflows, making it easier to curate background knowledge, preserve decisions, and reuse stable context across future writing, research, and planning sessions."
                 },
                 {
-                    kicker: "03 / Desktop architecture",
-                    title: "WPF, AvalonEdit, Markdig, and WebView2 split the editor into reliable desktop responsibilities.",
-                    body: "AvalonEdit handles text editing and Markdown syntax color, Markdig converts Markdown into HTML, WebView2 renders the preview, MahApps.Metro supplies the window frame and Material icons, and RelayCommand keeps toolbar and shortcut actions bound to UI state."
+                    kicker: "03 / Avalonia workspace",
+                    title: "The Avalonia interface links writing, retrieval, and memory curation.",
+                    body: "After moving from WPF to Avalonia, Sermon is positioned as a modern cross-platform desktop workspace around the practical loop of collecting documents, refining them into usable knowledge, and sending the right memory back into AI workflows when context quality matters."
                 }
             ],
             highlights: [
-                "Supports standard Markdown and extended syntax including tables, code blocks, and strikethrough.",
-                "Includes formatting buttons, Ctrl+B, Ctrl+I, Ctrl+F, Ctrl+H, and common file shortcuts.",
-                "Shows word count and cursor position in a restrained low-contrast status bar.",
-                "Targets Windows 10/11 with .NET Desktop Runtime and WebView2 Runtime.",
-                "Provides both framework-dependent and self-contained win-x64 publish paths."
+                "Reframes documents as long-term AI memory assets rather than one-off writing files.",
+                "Supports knowledge organization for notes, references, drafts, and project materials.",
+                "Keeps reusable context explicit so AI workflows can start from maintained memory.",
+                "Connects document management with curation, retrieval, and future context reuse.",
+                "Uses Avalonia as the desktop UI framework after migrating away from WPF.",
+                "Targets writers, researchers, builders, and AI-heavy workflows that depend on persistent knowledge."
             ],
-            stack: [".NET 10", "WPF", "MahApps.Metro", "Material IconPacks", "AvalonEdit", "Markdig", "WebView2", "XAML"],
-            keywords: ["Markdown 编辑器", "Windows 写作", "实时预览", "分屏模式", "自动保存", "瑞士风格 UI"]
+            stack: ["Avalonia", "Document management", "AI memory", "Knowledge base", "Context curation", "Retrieval workflow", "Persistent knowledge"],
+            keywords: ["Avalonia", "文档管理", "AI 记忆", "知识库", "上下文复用", "记忆管理"]
         }
     },
     {
         id: 4,
         title: "Hyacinth",
         year: "2025",
-        category: "Cross-platform AI Chat",
+        category: "DAG Multi-agent Orchestration",
         color: "#123f38",
         imagePlaceholder: "HY",
         src: "/images/projects/hyacinth/hyacinth-cover.svg",
-        cardTitleLines: ["Hyacinth", "跨平台多 AI", "群聊应用"],
-        description: "A Rust, Tauri 2, React, and Vite based cross-platform AI chat app with Android-first layout, local settings, and multi-agent group replies.",
+        cardTitleLines: ["Hyacinth", "跨平台", "智能体编排"],
+        description: "A DAG-based cross-platform multi-agent orchestration application for designing, running, and coordinating agent workflows across devices.",
         detailImages: [
             "/images/projects/hyacinth/Hyacinth-intro.png",
             "/images/projects/hyacinth/hyacinth-cover.svg"
         ],
         template: "swiss-case",
         caseStudy: {
-            eyebrow: "AI group chat / Tauri mobile",
-            headline: "A mobile-first AI conversation app where multiple configured assistants can answer in the same room.",
-            deck: "Hyacinth is a cross-platform AI chat application built with Rust, Tauri 2, React, and Vite. It prioritizes Android while retaining desktop builds, and lets each AI keep independent identity, endpoint, model, prompt, key, and temperature settings.",
+            eyebrow: "DAG orchestration / Multi-agent",
+            headline: "A cross-platform orchestration application that uses DAG workflows to coordinate multiple AI agents.",
+            deck: "Hyacinth is a DAG-based cross-platform multi-agent orchestration application. Instead of treating agents as parallel chat participants only, it models agent work as directed workflow nodes with explicit dependencies, execution order, and reusable orchestration patterns.",
             accent: "#146c5f",
             repoPath: "/home/lry/Projects/RustRepo/Hyacinth",
             imageFit: "contain",
             metrics: [
-                { label: "Shell", value: "Tauri 2" },
-                { label: "Backend", value: "Rust" },
-                { label: "Frontend", value: "React" },
-                { label: "Target", value: "Android" }
+                { label: "Model", value: "DAG" },
+                { label: "Role", value: "Orchestrator" },
+                { label: "Agents", value: "Multi-agent" },
+                { label: "Target", value: "Cross-platform" }
             ],
             sections: [
                 {
-                    kicker: "01 / Multi-AI room",
-                    title: "Each assistant has its own configuration, then selected assistants reply together.",
-                    body: "Every AI can define name, avatar text, API key, base URL, model, system prompt, and temperature. Users can select multiple assistants for the same message, creating a group-chat workflow over OpenAI-compatible chat/completions APIs."
+                    kicker: "01 / DAG workflow",
+                    title: "Agent work is represented as a directed graph with clear dependencies.",
+                    body: "Hyacinth uses DAG structure to make multi-agent coordination explicit. Each node can represent an agent task, transformation, or decision step, while graph edges define how outputs move through the workflow."
                 },
                 {
-                    kicker: "02 / Local persistence",
-                    title: "Settings and conversations stay local to the device.",
-                    body: "The Tauri backend stores assistant settings in the native application configuration directory, while chat history is kept in browser localStorage. This keeps personal API configuration and everyday conversation state close to the user."
+                    kicker: "02 / Multi-agent orchestration",
+                    title: "Multiple agents can be composed into repeatable execution patterns.",
+                    body: "The application positions agents as coordinated workers rather than isolated chat windows. A workflow can route context between agents, sequence specialized responsibilities, and make collaboration between models easier to inspect and reuse."
                 },
                 {
-                    kicker: "03 / Cross-platform build path",
-                    title: "Android is the priority, but the same codebase keeps a desktop route open.",
-                    body: "The project includes npm build scripts for Tauri desktop and Android workflows, with Android Studio SDK, NDK, build tools, command-line tools, Rust Android targets, and Linux WebKitGTK dependencies documented in the README."
+                    kicker: "03 / Cross-platform runtime",
+                    title: "The orchestration surface is designed to travel across desktop and mobile environments.",
+                    body: "Hyacinth is positioned as a cross-platform control layer for agent workflows, allowing orchestration logic to remain consistent while the interface adapts across supported device targets."
                 }
             ],
             highlights: [
-                "Connects to OpenAI-compatible chat/completions endpoints rather than a single fixed provider.",
-                "Supports independent model, prompt, endpoint, API key, avatar text, and temperature per assistant.",
-                "Allows multiple selected AIs to respond in one conversation, turning single-user chat into a group workflow.",
-                "Uses an Android-first responsive layout while keeping a desktop AI management panel.",
-                "Documents Android SDK, NDK, Rust target, and Linux desktop build prerequisites."
+                "Uses DAG structure to model agent dependencies, execution order, and data flow.",
+                "Coordinates multiple AI agents as a workflow instead of a loose group chat.",
+                "Supports reusable orchestration patterns for complex AI-assisted tasks.",
+                "Keeps agent responsibilities and handoffs visible through graph-based composition.",
+                "Targets cross-platform use so the same orchestration logic can run across device contexts."
             ],
-            stack: ["Rust", "Tauri 2", "React", "Vite", "TypeScript", "Android SDK", "OpenAI-compatible APIs", "localStorage", "Native app config"],
-            keywords: ["多 AI 群聊", "Tauri Android", "本地配置", "OpenAI 兼容接口", "移动端优先", "跨平台桌面"]
+            stack: ["Tauri 2", "DAG", "Multi-agent orchestration", "Cross-platform app", "Workflow graph", "Agent routing", "Task coordination"],
+            keywords: ["DAG", "多智能体编排", "跨平台应用", "工作流图", "智能体协作", "任务依赖"]
         }
     },
     {
