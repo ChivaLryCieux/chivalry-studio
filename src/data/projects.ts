@@ -4,7 +4,7 @@ export const projects: ProjectData[] = [
     {
         id: 1,
         title: "Quidem",
-        year: "2025",
+        year: "2025夏",
         category: "Quant Trading Framework",
         color: "#5a171d",
         imagePlaceholder: "QD",
@@ -61,12 +61,12 @@ export const projects: ProjectData[] = [
     {
         id: 2,
         title: "Colonnade DApp",
-        year: "2025",
+        year: "2025夏",
         category: "Ethereum Data Visualization",
         color: "#68141d",
         imagePlaceholder: "CD",
         src: "/images/projects/colonnade/colonnade-cover.svg",
-        cardTitleLines: ["Colonnade", "以太坊链上数据", "可视化 DApp"],
+        cardTitleLines: ["Colonnade", "以太坊链上数据可视化DApp", "基于Wagmi"],
         description: "An Ethereum on-chain data visualization DApp built with Vite, React, TypeScript, Wagmi, Viem, and D3.",
         detailImages: [
             "/images/projects/colonnade/intro-1.png",
@@ -117,12 +117,12 @@ export const projects: ProjectData[] = [
     {
         id: 3,
         title: "Sermon",
-        year: "2025",
+        year: "2025秋",
         category: "Document & AI Memory",
         color: "#4c1a1f",
         imagePlaceholder: "SM",
         src: "/images/projects/sermon/sermon-cover.svg",
-        cardTitleLines: ["Sermon", "文档编辑", "AI记忆管理"],
+        cardTitleLines: ["Sermon", "文档与AI记忆管理应用", "基于Avalonia"],
         description: "An Avalonia-based document and AI memory management application for organizing knowledge, preserving context, and turning writing materials into reusable memory.",
         detailImages: [
             "/images/projects/sermon/intro.png",
@@ -174,12 +174,12 @@ export const projects: ProjectData[] = [
     {
         id: 4,
         title: "Hyacinth",
-        year: "2025",
+        year: "2025冬",
         category: "DAG Multi-agent Orchestration",
         color: "#123f38",
         imagePlaceholder: "HY",
         src: "/images/projects/hyacinth/hyacinth-cover.svg",
-        cardTitleLines: ["Hyacinth", "跨平台", "智能体编排"],
+        cardTitleLines: ["Hyacinth", "跨平台智能体编排应用", "基于Tauri"],
         description: "A DAG-based cross-platform multi-agent orchestration application for designing, running, and coordinating agent workflows across devices.",
         detailImages: [
             "/images/projects/hyacinth/Hyacinth-intro.png",
@@ -230,12 +230,12 @@ export const projects: ProjectData[] = [
     {
         id: 5,
         title: "Lilac-CLI",
-        year: "2026",
+        year: "2026春",
         category: "TUI Agent",
         color: "#4a2b22",
         imagePlaceholder: "LC",
         src: "/images/projects/lilac/lilac-cover.svg",
-        cardTitleLines: ["Lilac-CLI", "智能体设计"],
+        cardTitleLines: ["Lilac", "终端智能体CLI工具", "基于Bun+Ink"],
         description: "A Bun and Ink based terminal agent framework extended with a harness layer for LangGraph and OpenAI Agents SDK experiments, skill-driven behavior, streaming responses, and live token cost awareness.",
         detailImages: [
             "/images/projects/lilac/intro.png",
@@ -293,7 +293,7 @@ export const projects: ProjectData[] = [
     {
         id: 6,
         title: "Solana Private Fork Economics",
-        year: "2026",
+        year: "2026春",
         category: "Blockchain R&D",
         color: "#3e1c1c",
         imagePlaceholder: "SP",
@@ -348,7 +348,7 @@ export const projects: ProjectData[] = [
     {
         id: 7,
         title: "Consortium Blockchain for SOA Governance",
-        year: "2026",
+        year: "2026春",
         category: "Paper / 论文研究",
         color: "#4a2b22",
         imagePlaceholder: "CB",
@@ -419,8 +419,8 @@ export const projects: ProjectData[] = [
     },
     {
         id: 8,
-        title: "Unity Game Design",
-        year: "2026",
+        title: "Aftermath: Unity Game Design",
+        year: "2025冬",
         category: "Game Design",
         color: "#3e1c1c",
         imagePlaceholder: "NV",
