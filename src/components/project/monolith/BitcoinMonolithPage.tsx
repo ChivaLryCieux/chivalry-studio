@@ -615,6 +615,34 @@ export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPag
     usePointerLook(controlsEnabled, lookRef);
 
     useEffect(() => {
+        const previousBodyOverflow = document.body.style.overflow;
+        const previousHtmlOverflow = document.documentElement.style.overflow;
+        const previousBodyOverscroll = document.body.style.overscrollBehavior;
+        const previousHtmlOverscroll = document.documentElement.style.overscrollBehavior;
+        const previousBodyBackground = document.body.style.backgroundColor;
+
+        const preventWheel = (event: WheelEvent) => {
+            event.preventDefault();
+        };
+
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overscrollBehavior = "none";
+        document.documentElement.style.overscrollBehavior = "none";
+        document.body.style.backgroundColor = "#080604";
+        window.addEventListener("wheel", preventWheel, { passive: false });
+
+        return () => {
+            document.body.style.overflow = previousBodyOverflow;
+            document.documentElement.style.overflow = previousHtmlOverflow;
+            document.body.style.overscrollBehavior = previousBodyOverscroll;
+            document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
+            document.body.style.backgroundColor = previousBodyBackground;
+            window.removeEventListener("wheel", preventWheel);
+        };
+    }, []);
+
+    useEffect(() => {
         const handlePointerLockChange = () => {
             const isLocked = document.pointerLockElement === stageRef.current;
             setControlsEnabled(isLocked);

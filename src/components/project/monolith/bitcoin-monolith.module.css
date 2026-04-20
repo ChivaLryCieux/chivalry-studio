@@ -1,8 +1,11 @@
 .page {
-    position: relative;
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
     color: #f8efe2;
     background:
         linear-gradient(90deg, rgba(255, 213, 142, 0.05) 1px, transparent 1px),
