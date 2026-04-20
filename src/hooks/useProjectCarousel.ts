@@ -17,12 +17,20 @@ function getInitialIndex(projects: ProjectData[], initialProjectId?: number) {
     return projectIndex >= 0 ? projectIndex : 0;
 }
 
+function getLoopedIndex(index: number, total: number) {
+    if (total <= 0) {
+        return 0;
+    }
+
+    return ((index % total) + total) % total;
+}
+
 export function useProjectCarousel(projects: ProjectData[], initialProjectId?: number) {
     const [activeIndex, setActiveIndex] = useState(() => getInitialIndex(projects, initialProjectId));
     const [isAnimating, setIsAnimating] = useState(false);
     const touchStartY = useRef(0);
     const animationTimeoutRef = useRef<number | null>(null);
-    const safeIndex = projects.length === 0 ? 0 : Math.min(activeIndex, projects.length - 1);
+    const safeIndex = getLoopedIndex(activeIndex, projects.length);
 
     const lockAnimation = () => {
         setIsAnimating(true);
@@ -37,20 +45,13 @@ export function useProjectCarousel(projects: ProjectData[], initialProjectId?: n
     };
 
     const changeSlide = useCallback((direction: "next" | "prev") => {
-        if (isAnimating) {
+        if (isAnimating || projects.length === 0) {
             return;
         }
 
-        if (direction === "next" && safeIndex < projects.length - 1) {
-            lockAnimation();
-            setActiveIndex((prev) => prev + 1);
-        }
-
-        if (direction === "prev" && safeIndex > 0) {
-            lockAnimation();
-            setActiveIndex((prev) => prev - 1);
-        }
-    }, [isAnimating, projects.length, safeIndex]);
+        lockAnimation();
+        setActiveIndex((prev) => getLoopedIndex(prev + (direction === "next" ? 1 : -1), projects.length));
+    }, [isAnimating, projects.length]);
 
     const goToProject = useCallback((projectId?: number) => {
         setActiveIndex(getInitialIndex(projects, projectId));

@@ -86,7 +86,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
         >
             <ProjectChrome currentProject={currentProject} />
             <ProjectProgress activeIndex={activeIndex} totalProjects={projects.length} />
-            <ProjectStack activeIndex={activeIndex} projects={projects} />
+            <ProjectStack activeIndex={activeIndex} onProjectFocus={goToProject} projects={projects} />
         </main>
     );
 }

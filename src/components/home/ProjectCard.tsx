@@ -7,16 +7,18 @@ interface ProjectCardProps {
     activeIndex: number;
     index: number;
     project: ProjectData;
+    totalProjects: number;
 }
 
-function getCardClassName(index: number, activeIndex: number) {
+function getCardClassName(index: number, activeIndex: number, totalProjects: number) {
     const classNames = [styles.card];
+    const nextIndex = totalProjects > 0 ? (activeIndex + 1) % totalProjects : activeIndex + 1;
 
     if (index === activeIndex) {
         classNames.push(styles.active);
-    } else if (index === activeIndex + 1) {
+    } else if (index === nextIndex) {
         classNames.push(styles.next);
-    } else if (index < activeIndex) {
+    } else if (index < activeIndex || (activeIndex === 0 && index === totalProjects - 1)) {
         classNames.push(styles.prev);
     } else {
         classNames.push(styles.hidden);
@@ -25,12 +27,11 @@ function getCardClassName(index: number, activeIndex: number) {
     return classNames.join(" ");
 }
 
-export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
+export function ProjectCard({ activeIndex, index, project, totalProjects }: ProjectCardProps) {
     return (
         <Link
-            key={project.id}
             href={`/detailPage/${project.id}?fromProject=${project.id}`}
-            className={getCardClassName(index, activeIndex)}
+            className={getCardClassName(index, activeIndex, totalProjects)}
         >
             <div className={styles.cardInner}>
                 <div className={styles.imageWrapper}>
@@ -38,7 +39,7 @@ export function ProjectCard({ activeIndex, index, project }: ProjectCardProps) {
                         src={project.src}
                         alt={project.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="100vw"
                         className={`${styles.realImage} ${project.src.includes("/soa/") ? styles.realImageTop : ""}`}
                         priority={index === 0}
                     />

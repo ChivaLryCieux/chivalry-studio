@@ -193,43 +193,67 @@
     width: 100%;
     height: 100%;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 1200px; /* 3D 透视深度，值越大越平缓 */
+    overflow: hidden;
+    isolation: isolate;
 }
 
-/* 卡片容器 */
+.desktopRing,
+.mobileStack {
+    position: absolute;
+    inset: 0;
+}
+
+.desktopRing canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.mobileStack {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+}
+
+.ringGlow {
+    position: absolute;
+    inset: 12vh 8vw;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(255, 226, 198, 0.24), transparent 30%),
+        radial-gradient(circle at 48% 62%, rgba(0, 0, 0, 0.28), transparent 52%);
+    filter: blur(18px);
+    opacity: 0.9;
+}
+
 .card {
     position: absolute;
-    width: 75vw;  /* 桌面端宽度 */
+    width: 75vw;
     aspect-ratio: 16 / 9;
-    /* 关键动画过渡 */
     transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
     will-change: transform, opacity;
     transform-style: preserve-3d;
 }
 
-/* 卡片内部 */
 .cardInner {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
-    background: #111; /* 图片加载前的背景 */
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5); /* 深度阴影 */
+    background: #111;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-/* --- 5. 图片处理 (Next/Image 适配) --- */
 .imageWrapper {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-/* 真实图片的样式 (配合 Next/Image 的 fill 属性) */
 .realImage {
-    object-fit: cover; /* 保证填满不拉伸 */
+    object-fit: cover;
     z-index: 1;
 }
 
@@ -237,24 +261,19 @@
     object-position: center top;
 }
 
-/* 图片遮罩：加深图片以便白色文字清晰可见 */
 .imageWrapper::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.25); /* 25% 黑色遮罩 */
+    background: rgba(0, 0, 0, 0.25);
     z-index: 2;
     transition: background 0.5s;
 }
 
-/* 鼠标悬停时稍微亮一点（可选） */
 .card.active:hover .imageWrapper::after {
     background: rgba(0, 0, 0, 0.1);
 }
 
-/* --- 6. 卡片状态逻辑 (核心动画) --- */
-
-/* 状态 A: 当前显示的卡片 */
 .active {
     z-index: 10;
     opacity: 1;
@@ -262,16 +281,13 @@
     pointer-events: auto;
 }
 
-/* 状态 B: 下一张卡片 (背景堆叠) */
 .next {
     z-index: 5;
     opacity: 0.5;
-    /* 缩小并位于下方，滚轮向下时从下方进入 */
     transform: scale(0.85) translateY(80px);
-    filter: brightness(0.6) blur(1px); /* 稍微变暗变模糊 */
+    filter: brightness(0.6) blur(1px);
 }
 
-/* 状态 C: 再后面的卡片 (隐藏) */
 .hidden {
     z-index: 0;
     opacity: 0;
@@ -279,18 +295,27 @@
     pointer-events: none;
 }
 
-/* 状态 D: 之前的卡片 (被滑走) */
 .prev {
-    z-index: 20; /* 必须比 active 高，才能产生“滑走”的感觉 */
+    z-index: 20;
     opacity: 0;
-    /* 向上滑出屏幕，并带一点旋转 */
     transform: translateY(-110vh) rotate(5deg);
     pointer-events: none;
 }
 
 /* --- 8. 移动端适配 --- */
 @media (max-width: 768px) {
-    /* 调整卡片尺寸 */
+    .stackContainer {
+        height: 100%;
+    }
+
+    .desktopRing {
+        display: none;
+    }
+
+    .mobileStack {
+        display: flex;
+    }
+
     .card {
         width: 90vw;
         aspect-ratio: 16 / 9;
