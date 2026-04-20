@@ -1,10 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import styles from "@/app/page.module.css";
 import { ProjectCard } from "@/components/home/ProjectCard";
-import { ProjectRing3D } from "@/components/home/ProjectRing3D";
 import type { ProjectData } from "@/types/project";
+
+const ProjectRing3D = dynamic(
+    () => import("@/components/home/ProjectRing3D").then((module) => module.ProjectRing3D),
+    {
+        ssr: false,
+        loading: () => null,
+    }
+);
 
 interface ProjectStackProps {
     activeIndex: number;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import { Environment, Image as DreiImage } from "@react-three/drei";
 import { Canvas, ThreeEvent, useFrame } from "@react-three/fiber";
 import * as easing from "maath/easing";
@@ -69,6 +69,8 @@ function createBentPlaneGeometry(radius: number, width = 1, height = 1) {
     return geometry;
 }
 
+const SHARED_CARD_GEOMETRY = createBentPlaneGeometry(0.1, CARD_WIDTH, CARD_HEIGHT);
+
 function getRingRadius(cardCount: number) {
     if (cardCount < 2) {
         return 3.2;
@@ -84,7 +86,6 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
     const cardRef = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
     const theta = (index / total) * Math.PI * 2;
-    const geometry = useMemo(() => createBentPlaneGeometry(0.1, CARD_WIDTH, CARD_HEIGHT), []);
     const isActive = index === activeIndex;
 
     useFrame((_, delta) => {
@@ -141,7 +142,7 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
             onPointerOut={handlePointerOut}
             onPointerOver={handlePointerOver}
         >
-            <primitive object={geometry} attach="geometry" />
+            <primitive object={SHARED_CARD_GEOMETRY} attach="geometry" />
         </DreiImage>
     );
 }
@@ -189,7 +190,7 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
 }
 
 export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, projects }: ProjectRing3DProps) {
-    const radius = getRingRadius(projects.length);
+    const radius = useMemo(() => getRingRadius(projects.length), [projects.length]);
 
     return (
         <Canvas
@@ -206,7 +207,9 @@ export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, proj
                 projects={projects}
                 radius={radius}
             />
-            <Environment preset="dawn" background={false} blur={0.45} />
+            <Suspense fallback={null}>
+                <Environment preset="dawn" background={false} blur={0.45} />
+            </Suspense>
         </Canvas>
     );
 }
