@@ -15,6 +15,7 @@ const RESTING_CARD_SCALE: [number, number, number] = [1, 1, 1];
 const CARD_GAP = 0.21;
 const RING_RADIUS_COMPRESSION = 0.84;
 const MIN_RING_RADIUS = 2.55;
+const CARD_TINT = "#d8d1c6";
 
 interface ProjectRing3DProps {
     activeIndex: number;
@@ -101,7 +102,7 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
         easing.damp3(cardRef.current.scale, hovered || isActive ? ACTIVE_CARD_SCALE : RESTING_CARD_SCALE, 0.18, delta);
         easing.damp(material, "radius", hovered || isActive ? 0.22 : 0.1, 0.22, delta);
         easing.damp(material, "zoom", hovered || isActive ? 1 : 1.32, 0.28, delta);
-        easing.damp(material, "grayscale", isActive ? 0 : 0.42, 0.25, delta);
+        easing.damp(material, "grayscale", isActive ? 0 : 0.16, 0.25, delta);
     });
 
     const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
@@ -129,7 +130,9 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
     return (
         <DreiImage
             ref={cardRef}
+            color={CARD_TINT}
             transparent
+            toneMapped={false}
             side={THREE.DoubleSide}
             url={project.src}
             position={[Math.sin(theta) * radius, 0, Math.cos(theta) * radius]}
@@ -190,6 +193,7 @@ export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, proj
 
     return (
         <Canvas
+            flat
             camera={{ position: [0, 1.46, CAMERA_Z], fov: 15 }}
             dpr={[1, 2]}
             gl={{ alpha: true, antialias: true }}
