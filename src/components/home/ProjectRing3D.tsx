@@ -12,7 +12,9 @@ const CARD_WIDTH = 1.64;
 const CARD_HEIGHT = 0.92;
 const ACTIVE_CARD_SCALE: [number, number, number] = [1.14, 1.14, 1];
 const RESTING_CARD_SCALE: [number, number, number] = [1, 1, 1];
-const CARD_GAP = 0.38;
+const CARD_GAP = 0.21;
+const RING_RADIUS_COMPRESSION = 0.84;
+const MIN_RING_RADIUS = 2.55;
 
 interface ProjectRing3DProps {
     activeIndex: number;
@@ -57,7 +59,7 @@ function createBentPlaneGeometry(radius: number, width = 1, height = 1) {
         const uvRatio = 1 - uv.getX(i);
         const y = position.getY(i);
         vertex.copy(right).rotateAround(center, arc * uvRatio);
-        position.setXYZ(i, vertex.x, y, -vertex.y);
+        position.setXYZ(i, vertex.x, y, vertex.y);
     }
 
     position.needsUpdate = true;
@@ -74,7 +76,7 @@ function getRingRadius(cardCount: number) {
     const activeCardWidth = CARD_WIDTH * ACTIVE_CARD_SCALE[0];
     const minimumRadius = (activeCardWidth + CARD_GAP) / (2 * Math.sin(Math.PI / cardCount));
 
-    return Math.max(3.65, minimumRadius);
+    return Math.max(MIN_RING_RADIUS, minimumRadius * RING_RADIUS_COMPRESSION);
 }
 
 function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, radius, total }: RingCardProps) {
