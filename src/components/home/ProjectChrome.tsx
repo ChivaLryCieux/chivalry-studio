@@ -3,15 +3,26 @@ import type { ProjectData } from "@/types/project";
 
 interface ProjectChromeProps {
     currentProject: ProjectData;
+    displayMode: "ring" | "stack";
+    onDisplayModeToggle: () => void;
 }
 
-export function ProjectChrome({ currentProject }: ProjectChromeProps) {
+export function ProjectChrome({ currentProject, displayMode, onDisplayModeToggle }: ProjectChromeProps) {
     const previewTitle = (currentProject.cardTitleLines ?? [currentProject.title]).join(" ");
+    const nextModeLabel = displayMode === "ring" ? "Switch to 2D stack" : "Switch to 3D ring";
 
     return (
         <>
             <div className={styles.topLeft}>
-                <div className={styles.logo}>Luo Ruiyang<br />Projects</div>
+                <button
+                    type="button"
+                    className={styles.logoButton}
+                    onClick={onDisplayModeToggle}
+                    aria-label={nextModeLabel}
+                    title={nextModeLabel}
+                >
+                    <span className={styles.logo}>Luo Ruiyang<br />Projects</span>
+                </button>
                 <div className={styles.yearDisplay}>
                     <span className={styles.label}>Year</span>
                     <span className={styles.value}>{currentProject.year}</span>

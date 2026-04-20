@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, PerspectiveCamera, Text } from "@react-three/drei";
@@ -452,10 +453,12 @@ function PlayerRig({
     controlsEnabled,
     keysRef,
     lookRef,
+    onReachCore,
 }: {
     controlsEnabled: boolean;
     keysRef: React.MutableRefObject<Set<string>>;
     lookRef: React.MutableRefObject<LookState>;
+    onReachCore: () => void;
 }) {
     const cameraRef = useRef<THREE.PerspectiveCamera>(null);
     const shipRef = useRef<THREE.Group>(null);
@@ -465,6 +468,7 @@ function PlayerRig({
     const viewForwardRef = useRef(new THREE.Vector3());
     const rightRef = useRef(new THREE.Vector3());
     const lookTargetRef = useRef(new THREE.Vector3());
+    const reachedCoreRef = useRef(false);
 
     useFrame((_, delta) => {
         const camera = cameraRef.current;
@@ -500,6 +504,11 @@ function PlayerRig({
         }
 
         const distanceFromCore = positionRef.current.length();
+        if (!reachedCoreRef.current && distanceFromCore < 1.82) {
+            reachedCoreRef.current = true;
+            onReachCore();
+        }
+
         if (distanceFromCore < 1.55) {
             positionRef.current.setLength(1.55);
         }
@@ -578,14 +587,16 @@ function MonolithGameScene({
     controlsEnabled,
     keysRef,
     lookRef,
+    onReachCore,
 }: {
     controlsEnabled: boolean;
     keysRef: React.MutableRefObject<Set<string>>;
     lookRef: React.MutableRefObject<LookState>;
+    onReachCore: () => void;
 }) {
     return (
         <Canvas dpr={[1, 1.8]} gl={{ antialias: true }}>
-            <PlayerRig controlsEnabled={controlsEnabled} keysRef={keysRef} lookRef={lookRef} />
+            <PlayerRig controlsEnabled={controlsEnabled} keysRef={keysRef} lookRef={lookRef} onReachCore={onReachCore} />
             <DeferredBackdrop />
             <fog attach="fog" args={["#090806", 9, 22]} />
             <ambientLight intensity={0.34} />
@@ -611,6 +622,7 @@ export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPag
     const stageRef = useRef<HTMLDivElement>(null);
     const lookRef = useRef<LookState>({ yaw: 0, pitch: 0 });
     const keysRef = useKeyboardState(controlsEnabled);
+    const router = useRouter();
 
     usePointerLook(controlsEnabled, lookRef);
 
@@ -657,6 +669,14 @@ export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPag
         stageRef.current?.requestPointerLock();
     };
 
+    const openBitcoinFuture = () => {
+        if (document.pointerLockElement) {
+            document.exitPointerLock();
+        }
+
+        router.push("/bitcoinFuture");
+    };
+
     return (
         <main className={styles.page}>
             <nav className={styles.nav}>
@@ -667,7 +687,12 @@ export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPag
             </nav>
 
             <div ref={stageRef} className={styles.gameStage}>
-                <MonolithGameScene controlsEnabled={controlsEnabled} keysRef={keysRef} lookRef={lookRef} />
+                <MonolithGameScene
+                    controlsEnabled={controlsEnabled}
+                    keysRef={keysRef}
+                    lookRef={lookRef}
+                    onReachCore={openBitcoinFuture}
+                />
             </div>
 
             <div className={`${styles.flightBrief} ${controlsEnabled ? styles.flightBriefHidden : ""}`}>

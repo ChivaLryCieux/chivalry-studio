@@ -27,12 +27,36 @@
 }
 
 .logo {
+    display: block;
     font-weight: 900;
     font-size: 1.2rem;
     line-height: 1.1;
-    margin-bottom: 30px;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+.logoButton {
+    display: block;
+    margin: 0 0 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logoButton:hover {
+    opacity: 0.74;
+    transform: translateY(-1px);
+}
+
+.logoButton:focus-visible {
+    outline: 1px solid rgba(237, 232, 222, 0.78);
+    outline-offset: 6px;
 }
 
 .yearDisplay {
@@ -207,6 +231,14 @@
     position: absolute;
     inset: 0;
     z-index: 2;
+}
+
+.stackMode .desktopRing {
+    display: none;
+}
+
+.stackMode .mobileStack {
+    display: flex;
 }
 
 .mobileStack {

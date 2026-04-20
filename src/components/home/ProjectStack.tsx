@@ -8,15 +8,17 @@ import type { ProjectData } from "@/types/project";
 
 interface ProjectStackProps {
     activeIndex: number;
+    displayMode: "ring" | "stack";
     onProjectFocus: (projectId: number) => void;
     projects: ProjectData[];
 }
 
-export function ProjectStack({ activeIndex, onProjectFocus, projects }: ProjectStackProps) {
+export function ProjectStack({ activeIndex, displayMode, onProjectFocus, projects }: ProjectStackProps) {
     const router = useRouter();
+    const stackClassName = `${styles.stackContainer} ${displayMode === "stack" ? styles.stackMode : ""}`;
 
     return (
-        <div className={styles.stackContainer}>
+        <div className={stackClassName}>
             <div className={styles.desktopRing}>
                 <div className={styles.ringGlow} />
                 <ProjectRing3D

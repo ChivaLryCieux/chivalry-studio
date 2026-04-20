@@ -264,8 +264,10 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
                 anchorY="top"
                 color="#f5efe6"
                 fontSize={0.055}
+                material-depthTest={false}
                 maxWidth={1.2}
                 position={[0.62, GOLDEN_RATIO, 0]}
+                renderOrder={40}
             >
                 {`${String(index + 1).padStart(2, "0")} / ${frame.id.toUpperCase()}`}
             </Text>

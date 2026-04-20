@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/app/page.module.css";
 import { ProjectChrome } from "@/components/home/ProjectChrome";
 import { ProjectProgress } from "@/components/home/ProjectProgress";
@@ -15,6 +15,7 @@ interface DisplayPageProps {
 export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     const projects = getProjects();
     const { activeIndex, currentProject, goToProject, handleTouchEnd, handleTouchStart } = useProjectCarousel(projects, initialProjectId);
+    const [displayMode, setDisplayMode] = useState<"ring" | "stack">("ring");
 
     useEffect(() => {
         const previousBodyOverflow = document.body.style.overflow;
@@ -84,9 +85,13 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
-            <ProjectChrome currentProject={currentProject} />
+            <ProjectChrome
+                currentProject={currentProject}
+                displayMode={displayMode}
+                onDisplayModeToggle={() => setDisplayMode((mode) => (mode === "ring" ? "stack" : "ring"))}
+            />
             <ProjectProgress activeIndex={activeIndex} totalProjects={projects.length} />
-            <ProjectStack activeIndex={activeIndex} onProjectFocus={goToProject} projects={projects} />
+            <ProjectStack activeIndex={activeIndex} displayMode={displayMode} onProjectFocus={goToProject} projects={projects} />
         </main>
     );
 }
