@@ -9,7 +9,7 @@ export const projects: ProjectData[] = [
         color: "#5a171d",
         imagePlaceholder: "QD",
         src: "/images/projects/quidem/quidem-cover.svg",
-        cardTitleLines: ["Quidem", "量化交易框架"],
+        cardTitleLines: ["Quidem", "量化交易CTA系统"],
         description: "A personal Python quant trading framework that combines Binance Futures execution, TUI monitoring, Redis-based reporting, risk control, backtesting research, and operational logs.",
         detailImages: [
             "/images/projects/quidem/kmeans_20260106_000544.png",
@@ -55,7 +55,7 @@ export const projects: ProjectData[] = [
                 "Backtest and diagnostics reuse core modules to avoid a hard split between research logic and live trading logic."
             ],
             stack: ["Python", "ccxt", "websocket-client", "pandas", "numpy", "Redis", "Resend", "matplotlib", "seaborn", "statsmodels", "hmmlearn", "scikit-learn"],
-            keywords: ["个人量化", "模拟盘/实盘", "终端监控", "Redis 报告", "仓位风控", "回测研究"]
+            keywords: ["CTA", "模拟盘/实盘", "终端监控", "Redis 报告", "仓位风控", "回测研究"]
         }
     },
     {
