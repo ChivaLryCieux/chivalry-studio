@@ -4,7 +4,7 @@
   <path d="M206 222H608" stroke="#EEF2F0" stroke-width="6"/>
   <path d="M206 684H1394" stroke="#EEF2F0" stroke-width="6"/>
   <text x="206" y="354" fill="#EEF2F0" font-family="Arial, Helvetica, sans-serif" font-size="98" font-weight="800">Solana</text>
-  <text x="206" y="458" fill="#EEF2F0" font-family="Arial, Helvetica, sans-serif" font-size="98" font-weight="800">Private Fork</text>
+  <text x="206" y="458" fill="#EEF2F0" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="800">Private Fork</text>
   <text x="210" y="528" fill="#66E0C2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">fixed 0.5% inflation</text>
   <text x="210" y="572" fill="#66E0C2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">tokenomics refinement</text>
   <g font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800" letter-spacing="0">

@@ -3,9 +3,9 @@
   <rect x="92" y="92" width="1416" height="716" stroke="#111111" stroke-width="16"/>
   <rect x="92" y="92" width="1416" height="148" fill="#111111"/>
   <text x="128" y="185" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">SERMON</text>
-  <text x="1050" y="176" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">WPF / .NET 10</text>
+  <text x="1050" y="176" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">Avalonia / .NET 10</text>
   <text x="128" y="376" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900">Markdown</text>
-  <text x="128" y="478" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900">编辑器</text>
+  <text x="128" y="478" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900">AI记忆管理</text>
   <text x="128" y="570" fill="#B61F2A" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">EDIT / PREVIEW / SPLIT</text>
   <rect x="678" y="328" width="322" height="360" fill="#111111"/>
   <rect x="1034" y="328" width="322" height="360" fill="#F4F1EA" stroke="#111111" stroke-width="12"/>

@@ -3,10 +3,10 @@
   <rect x="90" y="90" width="1420" height="720" stroke="#111111" stroke-width="16"/>
   <path d="M90 258H1510" stroke="#111111" stroke-width="12"/>
   <text x="126" y="190" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="900">COLONNADE</text>
-  <text x="930" y="178" fill="#D21F2F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">ETHEREUM DAPP</text>
+  <text x="930" y="178" fill="#D21F2F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">WAGMI / VIEM / D3</text>
   <text x="126" y="392" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="900">链上数据</text>
   <text x="126" y="500" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="900">可视化</text>
-  <text x="126" y="592" fill="#D21F2F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">WAGMI / VIEM / D3</text>
+  <text x="126" y="592" fill="#D21F2F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">ETHEREUM DAPP</text>
   <rect x="720" y="356" width="76" height="244" fill="#111111"/>
   <rect x="830" y="426" width="76" height="174" fill="#111111"/>
   <rect x="940" y="318" width="76" height="282" fill="#111111"/>

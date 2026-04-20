@@ -5,15 +5,15 @@
   <text x="126" y="188" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">HYACINTH</text>
   <text x="930" y="176" fill="#146C5F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">TAURI 2 / RUST</text>
   <text x="126" y="392" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">跨平台</text>
-  <text x="126" y="498" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">AI 群聊</text>
-  <text x="126" y="590" fill="#146C5F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">ANDROID FIRST / OPENAI COMPATIBLE</text>
+  <text x="126" y="498" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">智能体编排</text>
+  <text x="126" y="590" fill="#146C5F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">ORCHESTRATION / API ACCESS</text>
   <rect x="704" y="330" width="252" height="92" fill="#111111"/>
   <rect x="1000" y="330" width="356" height="92" fill="#F5F3ED" stroke="#111111" stroke-width="10"/>
   <rect x="804" y="486" width="408" height="92" fill="#146C5F"/>
-  <rect x="704" y="642" width="356" height="92" fill="#F5F3ED" stroke="#111111" stroke-width="10"/>
+  <rect x="954" y="642" width="356" height="92" fill="#F5F3ED" stroke="#111111" stroke-width="10"/>
   <text x="744" y="389" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900">AI 01</text>
   <text x="1040" y="389" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900">MODEL / PROMPT</text>
   <text x="844" y="545" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900">GROUP RESPONSE</text>
-  <text x="744" y="701" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900">LOCAL CONFIG</text>
-  <path d="M956 376H1000M956 532H804M1060 642L1212 578" stroke="#111111" stroke-width="8"/>
+  <text x="994" y="701" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900">LOCAL CONFIG</text>
+  <path d="M956 376H1000M956 642L1212 578" stroke="#111111" stroke-width="8"/>
 </svg>
