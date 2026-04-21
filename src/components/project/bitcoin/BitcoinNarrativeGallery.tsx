@@ -44,20 +44,20 @@ const galleryFrames: GalleryFrameData[] = [
         title: "从匿名名字开始",
         metric: "SATOSHI",
         body: ["身份悬案不是重点", "一个名字启动协议叙事", "创始人逐渐从系统里退场"],
-        position: [-2, 0, 2.75],
+        position: [-1.82, 0, 3.02],
         rotation: [0, Math.PI / 2.5, 0],
     },
     {
-        id: "whitepaper",
+        id: "development",
         kicker: "LEFT 02 / 2008.10",
         title: "一份 8 页文档",
         metric: "8 PAGES",
         body: ["无中心记账", "密码学签名", "工作量证明", "时间戳服务器"],
-        position: [-2.15, 0, 1.5],
+        position: [-1.96, 0, 1.78],
         rotation: [0, Math.PI / 2.5, 0],
     },
     {
-        id: "genesis",
+        id: "breakout",
         kicker: "LEFT 03 / 2009.01",
         title: "第一块石头",
         metric: "50 BTC",
@@ -66,7 +66,7 @@ const galleryFrames: GalleryFrameData[] = [
         rotation: [0, Math.PI / 2.5, 0],
     },
     {
-        id: "protocol",
+        id: "bedrock",
         kicker: "BACK 04 / PROTOCOL",
         title: "协议扩张",
         metric: "P2P + POW",
@@ -75,7 +75,7 @@ const galleryFrames: GalleryFrameData[] = [
         rotation: [0, 0, 0],
     },
     {
-        id: "pizza",
+        id: "evolution",
         kicker: "BACK 05 / 2010.05",
         title: "第一次真实定价",
         metric: "10,000 BTC",
@@ -84,7 +84,7 @@ const galleryFrames: GalleryFrameData[] = [
         rotation: [0, 0, 0],
     },
     {
-        id: "exchange",
+        id: "escalation",
         kicker: "RIGHT 06 / 2017",
         title: "交易所时代",
         metric: "$19.8K",
@@ -93,25 +93,25 @@ const galleryFrames: GalleryFrameData[] = [
         rotation: [0, -Math.PI / 2.5, 0],
     },
     {
-        id: "repricing",
+        id: "expanding",
         kicker: "RIGHT 07 / 2025.10.06",
         title: "历史级重估",
         metric: "$126,199.63",
         body: ["归档日线样本高点", "市场重新定价制度想象力", "崩塌之后仍继续积累共识"],
-        position: [2.15, 0, 1.5],
+        position: [1.96, 0, 1.78],
         rotation: [0, -Math.PI / 2.5, 0],
     },
     {
-        id: "stack",
+        id: "outlook",
         kicker: "RIGHT 08 / SATOSHI STACK",
         title: "沉默的仓位",
         metric: "1.1M BTC",
         body: ["约占 21M 上限 5.24%", "长期静止而被持续重估", "财富叙事背后是协议起源"],
-        position: [2, 0, 2.75],
+        position: [1.82, 0, 3.02],
         rotation: [0, -Math.PI / 2.5, 0],
     },
     {
-        id: "r3f-story",
+        id: "r3f-narrative",
         kicker: "CENTER 09 / NEXT ROOM",
         title: "R3F 游戏化叙事",
         metric: "PROJECT 10",
@@ -161,7 +161,7 @@ function createSwissPoster(frame: GalleryFrameData, index: number) {
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
-function createLabelTexture(value: string) {
+function createLabelTexture(value: string, fontFamily: string) {
     const canvas = document.createElement("canvas");
     canvas.width = 2048;
     canvas.height = 256;
@@ -170,7 +170,7 @@ function createLabelTexture(value: string) {
     if (context) {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = "#f5efe6";
-        context.font = '700 92px "Helvetica Neue", Arial, sans-serif';
+        context.font = `700 92px ${fontFamily}`;
         context.textBaseline = "top";
         context.fillText(value, 0, 22);
     }
@@ -183,6 +183,30 @@ function createLabelTexture(value: string) {
     texture.needsUpdate = true;
 
     return texture;
+}
+
+function createPortalPoster(fontFamily: string) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1200;
+    canvas.height = 1600;
+    const context = canvas.getContext("2d");
+
+    if (context) {
+        context.fillStyle = "#ffffff";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.fillStyle = "#2563eb";
+        context.textAlign = "center";
+        context.textBaseline = "alphabetic";
+
+        context.font = `700 72px ${fontFamily}`;
+        context.fillText("TAP TO ENTER", 600, 740);
+
+        context.font = `900 104px ${fontFamily}`;
+        context.fillText("R3F NARRATIVE", 600, 860);
+    }
+
+    return canvas.toDataURL("image/png");
 }
 
 function Frames({ frames, onOpenProject }: { frames: GalleryFrameData[]; onOpenProject: (projectId: number) => void }) {
@@ -242,25 +266,53 @@ type PatchedImageShader = {
     uniforms: Record<string, THREE.IUniform>;
 };
 
+function getLabelFontFamily() {
+    if (typeof window === "undefined" || typeof document === "undefined") {
+        return '"Times New Roman", serif';
+    }
+
+    const cssFontFamily = getComputedStyle(document.body).getPropertyValue("--font-serif").trim();
+    return cssFontFamily || '"Times New Roman", serif';
+}
+
 function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) {
     const panelRef = useRef<THREE.Mesh>(null);
     const imageRef = useRef<THREE.Mesh>(null);
     const frameRef = useRef<THREE.Mesh>(null);
     const imageShaderRef = useRef<PatchedImageShader | null>(null);
     const [hovered, setHovered] = useState(false);
+    const [labelTextureVersion, setLabelTextureVersion] = useState(0);
     const [phase] = useState(() => index * 1.7);
     const pointerUvRef = useRef(new THREE.Vector2(0.5, 0.5));
     const targetUvRef = useRef(new THREE.Vector2(0.5, 0.5));
     const posterUrl = useMemo(
-        () => BITCOIN_STORY_PANEL_IMAGES[index] ?? createSwissPoster(frame, index),
-        [frame, index]
+        () => frame.targetProjectId === 10
+            ? createPortalPoster(getLabelFontFamily())
+            : BITCOIN_STORY_PANEL_IMAGES[index] ?? createSwissPoster(frame, index),
+        [frame, index, labelTextureVersion]
     );
-    const labelTexture = useMemo(() => createLabelTexture(`${String(index + 1).padStart(2, "0")} / ${frame.id.toUpperCase()}`), [frame.id, index]);
+    const labelTexture = useMemo(
+        () => createLabelTexture(`${String(index + 1).padStart(2, "0")} / ${frame.id.toUpperCase()}`, getLabelFontFamily()),
+        [frame.id, index, labelTextureVersion]
+    );
     const isActive = activeId === frame.id;
 
     useCursor(hovered);
 
     useEffect(() => () => labelTexture.dispose(), [labelTexture]);
+    useEffect(() => {
+        let cancelled = false;
+
+        document.fonts.ready.then(() => {
+            if (!cancelled) {
+                setLabelTextureVersion((version) => version + 1);
+            }
+        });
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
     useEffect(() => {
         const imageMesh = imageRef.current;
 
@@ -409,9 +461,9 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
                     toneMapped={false}
                 />
             </mesh>
-            <mesh position={[1.22, GOLDEN_RATIO - 0.04, 0]} renderOrder={40}>
+            <mesh position={[1.13, GOLDEN_RATIO - 0.14, 0]}>
                 <planeGeometry args={[1.2, 0.15]} />
-                <meshBasicMaterial depthTest={false} map={labelTexture} toneMapped={false} transparent />
+                <meshBasicMaterial depthTest depthWrite={false} map={labelTexture} toneMapped={false} transparent />
             </mesh>
         </group>
     );

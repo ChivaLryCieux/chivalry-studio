@@ -12,8 +12,6 @@
 }
 
 body {
-    --font-serif: "OptimaRoman", serif;
-    --font-sans: "OptimaRoman", sans-serif;
     font-family: var(--font-sans), Arial, sans-serif;
     color: var(--text-color);
     transition: background-color var(--transition-speed) ease-in-out;
