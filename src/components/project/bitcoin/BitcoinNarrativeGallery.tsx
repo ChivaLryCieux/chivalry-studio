@@ -8,6 +8,13 @@ import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
 const GOLDEN_RATIO = 1.61803398875;
+const IDLE_IMAGE_SCALE: [number, number, number] = [0.86, 0.9, 1];
+const ACTIVE_IMAGE_ZOOM = 1.85;
+const POINTER_MAPPING_GAIN = 1.6;
+const IMAGE_MATTE_INSET_X = 0.01;
+const IMAGE_MATTE_INSET_Y = 0.12;
+const IMAGE_INTERACTIVE_HALF_WIDTH = IDLE_IMAGE_SCALE[0] * 0.5;
+const IMAGE_INTERACTIVE_HALF_HEIGHT = IDLE_IMAGE_SCALE[1] * 0.5;
 const BITCOIN_STORY_PANEL_IMAGES = [
     "/images/projects/bitcoin-story/panels/panel-1.png",
     "/images/projects/bitcoin-story/panels/panel-2.png",
@@ -230,11 +237,20 @@ interface FrameProps {
     onSelect: (id: string | null) => void;
 }
 
+type PatchedImageShader = {
+    fragmentShader: string;
+    uniforms: Record<string, THREE.IUniform>;
+};
+
 function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) {
+    const panelRef = useRef<THREE.Mesh>(null);
     const imageRef = useRef<THREE.Mesh>(null);
     const frameRef = useRef<THREE.Mesh>(null);
+    const imageShaderRef = useRef<PatchedImageShader | null>(null);
     const [hovered, setHovered] = useState(false);
     const [phase] = useState(() => index * 1.7);
+    const pointerUvRef = useRef(new THREE.Vector2(0.5, 0.5));
+    const targetUvRef = useRef(new THREE.Vector2(0.5, 0.5));
     const posterUrl = useMemo(
         () => BITCOIN_STORY_PANEL_IMAGES[index] ?? createSwissPoster(frame, index),
         [frame, index]
@@ -245,6 +261,55 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
     useCursor(hovered);
 
     useEffect(() => () => labelTexture.dispose(), [labelTexture]);
+    useEffect(() => {
+        const imageMesh = imageRef.current;
+
+        if (!imageMesh) {
+            return;
+        }
+
+        const material = imageMesh.material as THREE.ShaderMaterial & {
+            userData?: { panPatched?: boolean };
+        };
+
+        if (material.userData?.panPatched) {
+            return;
+        }
+
+        const originalOnBeforeCompile = material.onBeforeCompile.bind(material);
+        material.onBeforeCompile = (shader, renderer) => {
+            originalOnBeforeCompile(shader, renderer);
+            shader.uniforms.uPan = { value: new THREE.Vector2(0, 0) };
+            shader.uniforms.uMatteInset = { value: new THREE.Vector2(IMAGE_MATTE_INSET_X, IMAGE_MATTE_INSET_Y) };
+            shader.fragmentShader = shader.fragmentShader
+                .replace(
+                    "uniform float opacity;",
+                    "uniform float opacity;\n  uniform vec2 uPan;\n  uniform vec2 uMatteInset;"
+                )
+                .replace(
+                    "vec2 zUv = (uv - vec2(0.5, 0.5)) / zoom + vec2(0.5, 0.5);",
+                    [
+                        "vec2 zUv = (uv - vec2(0.5, 0.5)) / zoom + vec2(0.5, 0.5) + uPan;",
+                        "vec2 matteMin = uMatteInset;",
+                        "vec2 matteMax = vec2(1.0) - uMatteInset;",
+                        "vec2 framedUv = (zUv - matteMin) / (matteMax - matteMin);",
+                        "float matteMask = step(matteMin.x, zUv.x) * step(matteMin.y, zUv.y) * step(zUv.x, matteMax.x) * step(zUv.y, matteMax.y);"
+                    ].join("\n    ")
+                )
+                .replace(
+                    "gl_FragColor = toGrayscale(texture2D(map, zUv) * vec4(color, opacity * a), grayscale);",
+                    "vec4 sampled = matteMask > 0.5 ? texture2D(map, framedUv) : vec4(0.0, 0.0, 0.0, 1.0);\n    gl_FragColor = toGrayscale(sampled * vec4(color, opacity * a), grayscale);"
+                );
+            imageShaderRef.current = shader;
+        };
+
+        material.userData = { ...(material.userData ?? {}), panPatched: true };
+        material.needsUpdate = true;
+
+        return () => {
+            imageShaderRef.current = null;
+        };
+    }, []);
 
     useFrame((state, delta) => {
         if (!imageRef.current || !frameRef.current) {
@@ -253,9 +318,29 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
 
         const frameMaterial = frameRef.current.material as THREE.MeshBasicMaterial;
         const imageMaterial = imageRef.current.material as THREE.Material & { zoom?: number };
+        const idleZoom = 1.18 + Math.sin(phase + state.clock.elapsedTime / 4) * 0.05;
 
-        imageMaterial.zoom = 1.18 + Math.sin(phase + state.clock.elapsedTime / 4) * 0.05;
-        easing.damp3(imageRef.current.scale, [0.86 * (!isActive && hovered ? 0.94 : 1), 0.9 * (!isActive && hovered ? 0.94 : 1), 1], 0.12, delta);
+        easing.damp(imageMaterial, "zoom", isActive ? ACTIVE_IMAGE_ZOOM : idleZoom, 0.16, delta);
+
+        if (isActive) {
+            pointerUvRef.current.lerp(targetUvRef.current, 1 - Math.exp(-delta * 10));
+            easing.damp3(imageRef.current.position, [0, 0, 0.72], 0.2, delta);
+            easing.damp3(imageRef.current.scale, IDLE_IMAGE_SCALE, 0.16, delta);
+        } else {
+            easing.damp3(imageRef.current.position, [0, 0, 0.72], 0.18, delta);
+            easing.damp3(imageRef.current.scale, [IDLE_IMAGE_SCALE[0] * (hovered ? 0.94 : 1), IDLE_IMAGE_SCALE[1] * (hovered ? 0.94 : 1), 1], 0.12, delta);
+        }
+
+        const panUniform = imageShaderRef.current?.uniforms.uPan as THREE.IUniform<THREE.Vector2> | undefined;
+
+        if (panUniform) {
+            const currentZoom = isActive ? ACTIVE_IMAGE_ZOOM : idleZoom;
+            const maxPan = Math.max(0, (1 - (1 / currentZoom)) * 0.5);
+            const panU = isActive ? (pointerUvRef.current.x - 0.5) * 2 * maxPan : 0;
+            const panV = isActive ? (pointerUvRef.current.y - 0.5) * 2 * maxPan : 0;
+            panUniform.value.set(panU, panV);
+        }
+
         easing.dampC(frameMaterial.color, hovered ? "#f0a229" : "#f5efe6", 0.12, delta);
     });
 
@@ -275,14 +360,39 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
         setHovered(true);
     };
 
+    const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
+        if (!isActive || !panelRef.current) {
+            return;
+        }
+
+        event.stopPropagation();
+        const localPoint = panelRef.current.worldToLocal(event.point.clone());
+        const normalizedX = THREE.MathUtils.clamp((localPoint.x / IMAGE_INTERACTIVE_HALF_WIDTH) * 0.5 + 0.5, 0, 1);
+        const normalizedY = THREE.MathUtils.clamp((localPoint.y / IMAGE_INTERACTIVE_HALF_HEIGHT) * 0.5 + 0.5, 0, 1);
+        const boostedX = THREE.MathUtils.clamp((normalizedX - 0.5) * POINTER_MAPPING_GAIN + 0.5, 0, 1);
+        const boostedY = THREE.MathUtils.clamp((normalizedY - 0.5) * POINTER_MAPPING_GAIN + 0.5, 0, 1);
+
+        targetUvRef.current.set(
+            boostedX,
+            boostedY
+        );
+    };
+
+    const handlePointerOut = () => {
+        setHovered(false);
+        targetUvRef.current.set(0.5, 0.5);
+    };
+
     return (
         <group position={frame.position} rotation={frame.rotation}>
             <mesh
+                ref={panelRef}
                 name={frame.id}
                 position={[0, GOLDEN_RATIO / 2, 0]}
                 scale={[1, GOLDEN_RATIO, 0.06]}
                 onClick={handleClick}
-                onPointerOut={() => setHovered(false)}
+                onPointerMove={handlePointerMove}
+                onPointerOut={handlePointerOut}
                 onPointerOver={handlePointerOver}
             >
                 <boxGeometry />
