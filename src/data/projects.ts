@@ -356,6 +356,7 @@ export const projects: ProjectData[] = [
         cardTitleLines: ["联盟链", "国有资产治理"],
         description: "A bilingual Swiss-style project page for the paper on consortium blockchain and polycentric governance of state-owned asset transactions.",
         detailImages: [
+            "/images/projects/soa/soa-paper-homepage.png",
             "/images/projects/soa/SOA-display.png"
         ],
         template: "swiss-case",
@@ -424,17 +425,17 @@ export const projects: ProjectData[] = [
         category: "Game Design",
         color: "#3e1c1c",
         imagePlaceholder: "NV",
-        src: "/images/4.PNG",
+        src: "/images/projects/aftermath/aftermath-cover.png",
         description: "A Game Design.",
         detailImages: [
-            "/images/projects/4/4-2.PNG",
-            "/images/projects/4/4-3.PNG",
-            "/images/projects/4/4-4.PNG",
-            "/images/projects/4/4-5.PNG",
-            "/images/projects/4/4-6.PNG",
-            "/images/projects/4/4-7.PNG",
-            "/images/projects/4/4-8.PNG",
-            "/images/projects/4/4-9.PNG"
+            "/images/projects/aftermath/aftermath-2.png",
+            "/images/projects/aftermath/aftermath-3.png",
+            "/images/projects/aftermath/aftermath-4.png",
+            "/images/projects/aftermath/aftermath-5.png",
+            "/images/projects/aftermath/aftermath-6.png",
+            "/images/projects/aftermath/aftermath-7.png",
+            "/images/projects/aftermath/aftermath-8.png",
+            "/images/projects/aftermath/aftermath-9.png"
         ]
     },
     {

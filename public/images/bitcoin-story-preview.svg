@@ -17,9 +17,9 @@
     <path d="M177 343H815" stroke="white" stroke-opacity="0.18"/>
     <path d="M177 407H975" stroke="white" stroke-opacity="0.18"/>
   </g>
-  <rect x="116" y="108" width="476" height="232" rx="24" fill="#FFFFFF" fill-opacity="0.02"/>
-  <rect x="116" y="108" width="476" height="232" rx="24" stroke="#FFFFFF" stroke-opacity="0.08"/>
-  <text x="156" y="176" fill="#F0A229" font-family="Optima, serif" font-size="30" letter-spacing="8">DATA STORY</text>
+  <rect x="116" y="108" width="756" height="232" rx="24" fill="#FFFFFF" fill-opacity="0.02"/>
+  <rect x="116" y="108" width="756" height="232" rx="24" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="156" y="160" fill="#F0A229" font-family="Optima, serif" font-size="30" letter-spacing="8">DATA STORY</text>
   <text x="156" y="242" fill="#F7F0E5" font-family="Optima, serif" font-size="92" font-weight="700">BITCOIN</text>
   <text x="156" y="307" fill="#F7F0E5" font-family="Optima, serif" font-size="48" letter-spacing="10">CONSENSUS GROWTH</text>
   <text x="119" y="826" fill="#F7F0E5" font-family="Optima, serif" font-size="32" opacity="0.7">Satoshi Nakamoto / Whitepaper / Genesis Block / Price / 1.1M BTC</text>
