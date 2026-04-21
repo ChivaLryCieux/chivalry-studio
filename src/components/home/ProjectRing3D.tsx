@@ -206,7 +206,7 @@ export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, proj
                 projects={projects}
                 radius={radius}
             />
-            <Environment preset="dawn" background={false} blur={0.45} />
+            <Environment files="/hdri/kiara_1_dawn_1k.hdr" background={false} blur={0.45} />
         </Canvas>
     );
 }
