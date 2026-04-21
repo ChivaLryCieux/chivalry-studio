@@ -8,7 +8,7 @@
   <text x="124" y="356" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="900">量化交易</text>
   <text x="124" y="470" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="900">CTA系统</text>
   <text x="124" y="556" fill="#C3182D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">BINANCE FUTURES</text>
-  <text x="124" y="608" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">EXECUTION / TUI / REDIS / RISK / BACKTEST</text>
+  <text x="124" y="608" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">EXECUTION / TUI / REDIS / BACKTEST</text>
   <path d="M760 326H1400" stroke="#111111" stroke-width="8"/>
   <path d="M760 690H1400" stroke="#111111" stroke-width="8"/>
   <path d="M760 326V690" stroke="#111111" stroke-width="8"/>

@@ -86,12 +86,7 @@ export function useProjectCarousel(projects: ProjectData[], initialProjectId?: n
     }, [changeSlide]);
 
     useEffect(() => {
-        document.body.style.backgroundColor = projects[safeIndex]?.color ?? "";
-    }, [projects, safeIndex]);
-
-    useEffect(() => {
         return () => {
-            document.body.style.backgroundColor = "";
             if (animationTimeoutRef.current) {
                 window.clearTimeout(animationTimeoutRef.current);
             }

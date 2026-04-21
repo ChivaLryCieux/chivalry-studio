@@ -12,8 +12,29 @@
     align-items: center;
     justify-content: center;
     color: #ede8de; /* 全局文颜色 */
-    /* 背景色过渡动画，具体颜色由 inline-style 控制 */
-    transition: background-color 0.6s ease-in-out;
+    background:
+        radial-gradient(circle at 16% 22%, rgba(118, 42, 50, 0.36), transparent 44%),
+        radial-gradient(circle at 82% 76%, rgba(128, 55, 43, 0.34), transparent 42%),
+        linear-gradient(130deg, #2b1329 0%, #80372b 100%);
+    background-size: 180% 180%, 170% 170%, 180% 180%;
+    animation: display-bg-shift 16s ease-in-out infinite alternate;
+}
+
+@keyframes display-bg-shift {
+    0% {
+        background-position: 0% 10%, 90% 90%, 0% 50%;
+        filter: saturate(0.96);
+    }
+
+    50% {
+        background-position: 35% 28%, 62% 76%, 50% 50%;
+        filter: saturate(1);
+    }
+
+    100% {
+        background-position: 100% 44%, 8% 60%, 100% 50%;
+        filter: saturate(1.04);
+    }
 }
 
 /* --- 2. UI 框架 (固定在屏幕四周) --- */
