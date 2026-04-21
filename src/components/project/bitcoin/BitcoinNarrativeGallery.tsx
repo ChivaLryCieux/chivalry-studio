@@ -8,6 +8,16 @@ import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
 const GOLDEN_RATIO = 1.61803398875;
+const BITCOIN_STORY_PANEL_IMAGES = [
+    "/images/projects/bitcoin-story/panels/panel-1.png",
+    "/images/projects/bitcoin-story/panels/panel-2.png",
+    "/images/projects/bitcoin-story/panels/panel-3.png",
+    "/images/projects/bitcoin-story/panels/panel-4.png",
+    "/images/projects/bitcoin-story/panels/panel-5.png",
+    "/images/projects/bitcoin-story/panels/panel-6.png",
+    "/images/projects/bitcoin-story/panels/panel-7.png",
+    "/images/projects/bitcoin-story/panels/panel-8.png",
+] as const;
 
 interface GalleryFrameData {
     body: string[];
@@ -225,7 +235,10 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
     const frameRef = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
     const [phase] = useState(() => index * 1.7);
-    const posterUrl = useMemo(() => createSwissPoster(frame, index), [frame, index]);
+    const posterUrl = useMemo(
+        () => BITCOIN_STORY_PANEL_IMAGES[index] ?? createSwissPoster(frame, index),
+        [frame, index]
+    );
     const labelTexture = useMemo(() => createLabelTexture(`${String(index + 1).padStart(2, "0")} / ${frame.id.toUpperCase()}`), [frame.id, index]);
     const isActive = activeId === frame.id;
 
