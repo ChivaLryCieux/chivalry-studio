@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Environment, Image as DreiImage, MeshReflectorMaterial, Text, useCursor } from "@react-three/drei";
+import { Environment, Image as DreiImage, MeshReflectorMaterial, useCursor } from "@react-three/drei";
 import { Canvas, ThreeEvent, useFrame } from "@react-three/fiber";
 import * as easing from "maath/easing";
 import { useRouter } from "next/navigation";
@@ -144,6 +144,30 @@ function createSwissPoster(frame: GalleryFrameData, index: number) {
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
+function createLabelTexture(value: string) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 2048;
+    canvas.height = 256;
+    const context = canvas.getContext("2d");
+
+    if (context) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "#f5efe6";
+        context.font = '700 92px "Helvetica Neue", Arial, sans-serif';
+        context.textBaseline = "top";
+        context.fillText(value, 0, 22);
+    }
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.generateMipmaps = false;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.needsUpdate = true;
+
+    return texture;
+}
+
 function Frames({ frames, onOpenProject }: { frames: GalleryFrameData[]; onOpenProject: (projectId: number) => void }) {
     const groupRef = useRef<THREE.Group>(null);
     const targetPosition = useRef(new THREE.Vector3(0, 0, 5.5));
@@ -202,9 +226,12 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
     const [hovered, setHovered] = useState(false);
     const [phase] = useState(() => index * 1.7);
     const posterUrl = useMemo(() => createSwissPoster(frame, index), [frame, index]);
+    const labelTexture = useMemo(() => createLabelTexture(`${String(index + 1).padStart(2, "0")} / ${frame.id.toUpperCase()}`), [frame.id, index]);
     const isActive = activeId === frame.id;
 
     useCursor(hovered);
+
+    useEffect(() => () => labelTexture.dispose(), [labelTexture]);
 
     useFrame((state, delta) => {
         if (!imageRef.current || !frameRef.current) {
@@ -259,18 +286,10 @@ function Frame({ activeId, frame, index, onOpenProject, onSelect }: FrameProps) 
                     toneMapped={false}
                 />
             </mesh>
-            <Text
-                anchorX="left"
-                anchorY="top"
-                color="#f5efe6"
-                fontSize={0.055}
-                material-depthTest={false}
-                maxWidth={1.2}
-                position={[0.62, GOLDEN_RATIO, 0]}
-                renderOrder={40}
-            >
-                {`${String(index + 1).padStart(2, "0")} / ${frame.id.toUpperCase()}`}
-            </Text>
+            <mesh position={[1.22, GOLDEN_RATIO - 0.04, 0]} renderOrder={40}>
+                <planeGeometry args={[1.2, 0.15]} />
+                <meshBasicMaterial depthTest={false} map={labelTexture} toneMapped={false} transparent />
+            </mesh>
         </group>
     );
 }
@@ -303,7 +322,7 @@ export function BitcoinNarrativeGallery() {
                     />
                 </mesh>
             </group>
-            <Environment preset="city" />
+            <Environment files="/hdr/potsdamer_platz_1k.hdr" />
         </Canvas>
     );
 }
