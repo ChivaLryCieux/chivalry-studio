@@ -34,9 +34,10 @@ export function ProjectChrome({ currentProject, displayMode, onDisplayModeToggle
             </div>
 
             <div className={styles.topRight}>
-                <span>01 Work</span>
-                <span className={styles.menuTrigger}>.... Menu</span>
-                <div className={styles.scrollHint}>Scroll</div>
+                <span>SCROLL TO</span>
+                <span>PORTRAY ME</span>
+                <span>TAP TO</span>
+                <span>UNVEIL MORE</span>
             </div>
 
             <div className={styles.bottomLeft}>

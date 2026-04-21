@@ -20,7 +20,6 @@ export function ProjectStack({ activeIndex, displayMode, onProjectFocus, project
     return (
         <div className={stackClassName}>
             <div className={styles.desktopRing}>
-                <div className={styles.ringGlow} />
                 <ProjectRing3D
                     activeIndex={activeIndex}
                     onProjectFocus={onProjectFocus}

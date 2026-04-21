@@ -167,10 +167,6 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
             <directionalLight position={[4, 5, 6]} intensity={1.4} />
             <pointLight position={[-4, 2, 4]} intensity={3.5} color="#ffebe0" />
             <group ref={rigRef} rotation={[0, 0, 0.11]}>
-                <mesh position={[0, -0.78, 0]} rotation={[Math.PI / 2, 0, 0]}>
-                    <torusGeometry args={[radius, 0.01, 8, 160]} />
-                    <meshBasicMaterial color="#f1d8c8" transparent opacity={0.18} />
-                </mesh>
                 {projects.map((project, index) => (
                     <RingCard
                         key={project.id}

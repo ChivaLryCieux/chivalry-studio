@@ -7,6 +7,8 @@ interface ProjectProgressProps {
 }
 
 export function ProjectProgress({ activeIndex, totalProjects }: ProjectProgressProps) {
+    const projectLabel = String(activeIndex + 1).padStart(2, "0");
+
     return (
         <div className={styles.bottomBar}>
             <div className={styles.ticks}>
@@ -18,7 +20,7 @@ export function ProjectProgress({ activeIndex, totalProjects }: ProjectProgressP
                 className={styles.progressMarker}
                 style={{ left: `${getProjectProgress(activeIndex, totalProjects)}%` }}
             >
-                [ 0{activeIndex + 1} ]
+                [ {projectLabel} ]
             </div>
         </div>
     );
