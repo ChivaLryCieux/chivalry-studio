@@ -22,7 +22,7 @@ export const projects: ProjectData[] = [
             headline: "A local quant workbench where execution, risk, reporting, and research stay in one reproducible loop.",
             deck: "Quidem is not a generic PyPI package. It is a personal trading framework that organizes live or paper execution, terminal interaction, Redis status channels, email reports, exchange access, position risk, backtest research, and logs in one repository.",
             accent: "#c3182d",
-            repoPath: "/home/lry/Projects/PythonRepo/quidem",
+            repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
             metrics: [
                 { label: "Exchange", value: "Binance" },
@@ -78,7 +78,7 @@ export const projects: ProjectData[] = [
             headline: "A Swiss-style Ethereum dashboard for recent block activity, gas usage, wallet state, and RPC resilience.",
             deck: "Colonnade uses Wagmi and Viem to connect browser wallets and query live Ethereum data, then uses D3 scales and path generation to render recent block transaction activity and gas utilization as readable SVG charts.",
             accent: "#d21f2f",
-            repoPath: "/home/lry/Projects/TS-Repo/colonnade",
+            repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
             metrics: [
                 { label: "Recent blocks", value: "12" },
@@ -134,7 +134,7 @@ export const projects: ProjectData[] = [
             headline: "A document and AI memory management workspace for keeping knowledge structured, searchable, and reusable.",
             deck: "Sermon is an Avalonia-based document and AI memory management application that treats writing, reference material, and long-term AI context as one connected workspace. It helps users collect documents, organize reusable knowledge, and preserve the memory needed for future AI-assisted work.",
             accent: "#b61f2a",
-            repoPath: "/home/lry/Projects/CsRepo/Sermon",
+            repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
             metrics: [
                 { label: "Framework", value: "Avalonia" },
@@ -191,7 +191,7 @@ export const projects: ProjectData[] = [
             headline: "A cross-platform orchestration application that uses DAG workflows to coordinate multiple AI agents.",
             deck: "Hyacinth is a DAG-based cross-platform multi-agent orchestration application. Instead of treating agents as parallel chat participants only, it models agent work as directed workflow nodes with explicit dependencies, execution order, and reusable orchestration patterns.",
             accent: "#146c5f",
-            repoPath: "/home/lry/Projects/RustRepo/Hyacinth",
+            repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
             metrics: [
                 { label: "Model", value: "DAG" },
@@ -247,7 +247,7 @@ export const projects: ProjectData[] = [
             headline: "A command-line agent workspace for designing, running, and comparing agent behavior.",
             deck: "Lilac-CLI turns Markdown skill files into swappable agent identities, while the added harness project gives LangGraph and OpenAI Agents SDK workflows a local place to be exercised, inspected, and refined.",
             accent: "#7f5cff",
-            repoPath: "/home/lry/Projects/TsRepo/lilac",
+            repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
             metrics: [
                 { label: "Runtime", value: "Bun" },
@@ -310,7 +310,7 @@ export const projects: ProjectData[] = [
             headline: "A Solana local network rebuilt around a smaller supply and a fixed private-chain inflation model.",
             deck: "This work keeps Solana's account, stake, vote, fee, rent, epoch, and reward machinery intact, while replacing mainnet-oriented genesis defaults with a reproducible private development chain.",
             accent: "#0b8f7a",
-            repoPath: "/home/lry/Projects/RustRepo/solana",
+            repoPath: "https://github.com/ChivaLryCieux",
             metrics: [
                 { label: "Initial mint", value: "10M SOL" },
                 { label: "Validator stake", value: "100K SOL" },
