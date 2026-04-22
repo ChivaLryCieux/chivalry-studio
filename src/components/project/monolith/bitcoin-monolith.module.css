@@ -7,11 +7,12 @@
     overscroll-behavior: none;
     touch-action: none;
     color: #f8efe2;
+    font-family: var(--font-serif), "Optima", serif;
     background:
-        linear-gradient(90deg, rgba(255, 213, 142, 0.05) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(255, 213, 142, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123, 194, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(123, 194, 255, 0.04) 1px, transparent 1px),
         radial-gradient(circle at 16% 10%, rgba(182, 58, 38, 0.28), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(240, 162, 41, 0.18), transparent 22%),
+        radial-gradient(circle at 82% 18%, rgba(73, 145, 255, 0.18), transparent 22%),
         #080604;
     background-size: 54px 54px, 54px 54px, auto, auto, auto;
 }
@@ -62,7 +63,7 @@
 }
 
 .kicker {
-    color: #ffd58e;
+    color: #8dcbff;
     font-size: 0.78rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -79,8 +80,8 @@
     text-transform: uppercase;
     text-shadow:
         3px 3px 0 #1b0907,
-        8px 8px 0 rgba(240, 162, 41, 0.42),
-        0 0 54px rgba(255, 213, 142, 0.38),
+        8px 8px 0 rgba(47, 125, 255, 0.38),
+        0 0 54px rgba(141, 203, 255, 0.34),
         0 0 90px rgba(0, 0, 0, 0.86);
 }
 
@@ -102,7 +103,7 @@
     width: 176px;
     height: 48px;
     padding: 0 14px;
-    border: 1px solid rgba(255, 213, 142, 0.42);
+    border: 1px solid rgba(123, 194, 255, 0.42);
     border-radius: 8px;
     color: #fff6ea;
     background: rgba(20, 13, 8, 0.82);
@@ -116,8 +117,8 @@
 }
 
 .controlButton:hover {
-    border-color: rgba(255, 213, 142, 0.82);
-    background: rgba(43, 22, 12, 0.9);
+    border-color: rgba(123, 194, 255, 0.82);
+    background: rgba(10, 22, 43, 0.9);
 }
 
 .controlHelp {
@@ -139,7 +140,7 @@
     width: 176px;
     height: 48px;
     padding: 0 10px;
-    border: 1px solid rgba(255, 213, 142, 0.18);
+    border: 1px solid rgba(123, 194, 255, 0.18);
     border-radius: 8px;
     color: rgba(248, 239, 226, 0.72);
     background: rgba(10, 7, 5, 0.52);

@@ -25,63 +25,79 @@ function getTimelinePosition(progress: number, lift = 0) {
 
 const initialPlayerPosition = new THREE.Vector3(1.15, -3.45, -9.3);
 
-const storyNodes = [
+const storyNodeEntries = [
     {
-        position: getTimelinePosition(0.02),
+        date: "2008-10-31",
+        progress: 0.02,
         title: "Whitepaper",
+        label: "Key Node 01",
         metric: "2008.10",
-        body: "8 页白皮书提出无可信第三方的电子现金。\n节点广播、签名、哈希和工作量证明，被组合成公共账本。",
+        body: "《Bitcoin: A Peer-to-Peer Electronic Cash System》发布。\n8 页文本把签名、哈希、节点广播与工作量证明组合成无可信第三方账本。",
     },
     {
-        position: getTimelinePosition(0.16),
+        date: "2009-01-03",
+        progress: 0.16,
         title: "Genesis Block",
+        label: "Key Node 02",
         metric: "50 BTC",
-        body: "创世区块让规则开始运行。\n《泰晤士报》头条成为时间戳，也把制度评论刻进链上。",
+        body: "创世区块把规则从论文推进到运行中的链。\n《泰晤士报》头条被写入 coinbase，也把制度批评刻进时间戳。",
     },
     {
-        position: getTimelinePosition(0.3),
+        date: "2010-05-22",
+        progress: 0.3,
         title: "Pizza Day",
+        label: "Key Node 03",
         metric: "10,000 BTC",
-        body: "两张披萨给比特币第一次真实商品价格坐标。\n抽象代币从论坛讨论进入现实交换。",
+        body: "10,000 BTC 购买两张披萨，形成第一次广为流传的现实商品定价。\n抽象代币从论坛实验进入真实交换。",
     },
     {
-        position: getTimelinePosition(0.48),
+        date: "2017-12-17",
+        progress: 0.48,
         title: "Exchange Era",
+        label: "Key Node 04",
         metric: "$19.8K",
-        body: "交易所和全球流动性把 Bitcoin 推入高频博弈。\n价格开始成为共识扩张的公开读数器。",
+        body: "全球交易所与流动性把 Bitcoin 推入高频价格发现阶段。\n价格曲线开始成为共识扩张最公开的读数器。",
     },
     {
-        position: getTimelinePosition(0.64),
+        date: "2021-11-10",
+        progress: 0.64,
         title: "Institutional Peak",
+        label: "Key Node 05",
         metric: "$69K",
-        body: "机构化叙事把 Bitcoin 重新包装成数字黄金。\n它同时成为风险资产和宏观对冲工具。",
+        body: "机构入场、ETF 预期与宏观叙事把 Bitcoin 包装成数字黄金。\n它同时扮演风险资产与宏观对冲工具。",
     },
     {
-        position: getTimelinePosition(0.78),
-        title: "Archive ATH",
+        date: satoshiHoldings.archiveAthDate,
+        progress: 0.78,
+        title: "Archive All-Time High",
+        label: "Key Node 06",
         metric: "$126K ATH",
-        body: "价格螺旋使用 Binance BTCUSDT 日线归档。\n2025-10-06 UTC 样本高点为 126,199.63 美元。",
+        body: "本项目价格螺旋使用 Binance BTCUSDT 日线归档数据。\n2025-10-06 UTC 的样本高点为 126,199.63 美元。",
     },
     {
-        position: getTimelinePosition(0.9),
+        date: "2025-10-06",
+        progress: 0.9,
         title: "Satoshi Silence",
+        label: "Key Node 07",
         metric: "1.1M BTC",
-        body: `如果 110 万枚估算成立，仓位约占总量 ${(satoshiHoldings.shareOfCap * 100).toFixed(2)}%。\n按归档 ATH 估算，账面规模约 ${formatUsdCompact(peakValue)}。`,
+        body: `如果 110 万枚估算成立，仓位约占总量 ${(satoshiHoldings.shareOfCap * 100).toFixed(2)}%。\n按归档高点估算，这一沉默地址群的账面规模约 ${formatUsdCompact(peakValue)}。`,
     },
     {
-        position: getTimelinePosition(0.99),
+        date: "2026-01-01",
+        progress: 0.99,
         title: "Bitcoin Star",
+        label: "Key Node 08",
         metric: "21M CAP",
-        body: `${formatNumberCompact(satoshiHoldings.capLimit)} 枚上限、减半节奏和全球节点。\n它们把个人发布的代码推向无人能单独拥有的共识恒星。`,
+        body: `${formatNumberCompact(satoshiHoldings.capLimit)} 枚上限、减半节奏与全球节点网络。\n它们把一个人发布的代码，推进成无人能单独拥有的共识恒星。`,
     },
 ];
 
-const sceneAnchors = [
-    { date: "2017-12-17", label: "2017 Exchange Peak" },
-    { date: "2021-11-10", label: "2021 Institutional Peak" },
-    { date: satoshiHoldings.archiveAthDate, label: "Archive ATH" },
-    { date: satoshiHoldings.archiveLatestDate, label: "Latest Archive" },
-];
+const storyNodes = [...storyNodeEntries]
+    .sort((left, right) => new Date(left.date).getTime() - new Date(right.date).getTime())
+    .map((entry) => ({
+        ...entry,
+        position: getTimelinePosition(entry.progress),
+    }));
 
 interface LookState {
     yaw: number;
@@ -102,7 +118,7 @@ function useKeyboardState(enabled: boolean) {
         const handleKeyDown = (event: KeyboardEvent) => {
             pressedKeys.add(event.code);
 
-            if (["KeyW", "KeyA", "KeyS", "KeyD", "Space", "ControlLeft", "ControlRight"].includes(event.code)) {
+            if (["KeyW", "KeyA", "KeyS", "KeyD", "KeyE", "Space"].includes(event.code)) {
                 event.preventDefault();
             }
         };
@@ -226,7 +242,7 @@ function MobiusLedger() {
                         float ink = smoothstep(0.02, 0.032, abs(fract(vUv.x * 18.0 - uTime * 0.08) - 0.5));
                         float panel = step(fract(vUv.x * 8.0), 0.52);
                         float light = dot(normalize(vNormal), normalize(vec3(-0.4, 0.7, 0.6))) * 0.5 + 0.5;
-                        vec3 paper = mix(vec3(0.08, 0.045, 0.035), vec3(0.95, 0.62, 0.16), panel * 0.55);
+                        vec3 paper = mix(vec3(0.08, 0.045, 0.035), vec3(0.33, 0.63, 0.98), panel * 0.55);
                         vec3 color = paper * (0.36 + light * 1.1);
                         color = mix(color, vec3(0.02, 0.015, 0.012), ink * 0.48);
                         gl_FragColor = vec4(color, 0.74);
@@ -330,13 +346,13 @@ function ParticleField() {
             <bufferGeometry>
                 <bufferAttribute attach="attributes-position" args={[positions, 3]} />
             </bufferGeometry>
-            <pointsMaterial color="#ffd58e" size={0.025} transparent opacity={0.54} depthWrite={false} />
+            <pointsMaterial color="#8dcbff" size={0.025} transparent opacity={0.54} depthWrite={false} />
         </points>
     );
 }
 
 function PriceDataRibbon() {
-    const { glowObject, markers, ribbonObject } = useMemo(() => {
+    const { glowObject, ribbonObject } = useMemo(() => {
         const stride = Math.max(1, Math.floor(priceSeries.length / 260));
         const sampled = priceSeries.filter((_, index) => index % stride === 0);
         const minClose = Math.min(...sampled.map((point) => Math.max(point.close, 1)));
@@ -355,8 +371,8 @@ function PriceDataRibbon() {
         const curve = new THREE.CatmullRomCurve3(curvePoints);
         const ribbonGeometry = new THREE.TubeGeometry(curve, 440, 0.046, 10, false);
         const ribbonMaterial = new THREE.MeshStandardMaterial({
-            color: "#f0a229",
-            emissive: "#f0a229",
+            color: "#2f7dff",
+            emissive: "#2f7dff",
             emissiveIntensity: 0.72,
             transparent: true,
             opacity: 0.86,
@@ -364,75 +380,92 @@ function PriceDataRibbon() {
         const ribbonObject = new THREE.Mesh(ribbonGeometry, ribbonMaterial);
         const glowGeometry = new THREE.TubeGeometry(curve, 440, 0.18, 12, false);
         const glowMaterial = new THREE.MeshBasicMaterial({
-            color: "#ffd58e",
+            color: "#8dcbff",
             transparent: true,
             opacity: 0.15,
             blending: THREE.AdditiveBlending,
             depthWrite: false,
         });
         const glowObject = new THREE.Mesh(glowGeometry, glowMaterial);
-
-        const markers = sceneAnchors.map((anchor) => {
-            const nearestIndex = sampled.reduce((bestIndex, point, index) => {
-                const bestDistance = Math.abs(new Date(sampled[bestIndex].date).getTime() - new Date(anchor.date).getTime());
-                const nextDistance = Math.abs(new Date(point.date).getTime() - new Date(anchor.date).getTime());
-                return nextDistance < bestDistance ? index : bestIndex;
-            }, 0);
-            const point = sampled[nearestIndex];
-
-            return {
-                ...anchor,
-                price: point.close,
-                position: pointToPosition(point, nearestIndex, sampled.length),
-            };
-        });
-
-        return { glowObject, markers, ribbonObject };
+        return { glowObject, ribbonObject };
     }, []);
 
     return (
         <group>
             <primitive object={glowObject} />
             <primitive object={ribbonObject} />
-            {markers.map((marker) => (
-                <Billboard key={marker.label} position={marker.position}>
-                    <mesh>
-                        <sphereGeometry args={[0.12, 18, 18]} />
-                        <meshStandardMaterial color="#ffd58e" emissive="#f0a229" emissiveIntensity={1.4} />
-                    </mesh>
-                    <Text position={[0, 0.34, 0]} fontSize={0.16} color="#fff6ea" anchorX="center" anchorY="middle">
-                        {`${marker.label}\n${formatUsdCompact(marker.price)}`}
-                    </Text>
-                </Billboard>
-            ))}
         </group>
     );
 }
 
 function StoryStarPanel({ node }: { node: (typeof storyNodes)[number] }) {
+    const panelOffset = useMemo(() => {
+        const [x, , z] = node.position;
+        const outward = new THREE.Vector3(x, 0, z);
+
+        if (outward.lengthSq() < 0.0001) {
+            outward.set(1, 0, 0);
+        } else {
+            outward.normalize();
+        }
+
+        return [outward.x * 1.52, 0.5, outward.z * 1.52] as const;
+    }, [node.position]);
+
     return (
         <group position={node.position}>
-            <mesh>
-                <sphereGeometry args={[0.14, 24, 24]} />
-                <meshStandardMaterial color="#ffd58e" emissive="#f0a229" emissiveIntensity={1.55} />
-            </mesh>
-            <pointLight intensity={4.8} distance={4.2} color="#f0a229" />
-            <Billboard position={[0.74, 0.34, 0]}>
+            <Billboard position={panelOffset}>
                 <mesh position={[0, 0, -0.02]}>
-                    <planeGeometry args={[3.9, 1.86]} />
+                    <planeGeometry args={[4.16, 2.22]} />
                     <meshBasicMaterial color="#120906" transparent opacity={0.78} />
                 </mesh>
                 <mesh position={[0, 0, -0.03]}>
-                    <planeGeometry args={[4.08, 2.04]} />
-                    <meshBasicMaterial color="#6f261c" transparent opacity={0.38} />
+                    <planeGeometry args={[4.34, 2.4]} />
+                    <meshBasicMaterial color="#102c63" transparent opacity={0.38} />
                 </mesh>
-                <Text position={[-1.55, 0.62, 0.01]} fontSize={0.15} maxWidth={3.2} color="#ffd58e" anchorX="left" anchorY="middle" textAlign="left">
+                <Text
+                    position={[-1.68, 0.82, 0.01]}
+                    fontSize={0.09}
+                    maxWidth={3.46}
+                    color="#4e9dff"
+                    anchorX="left"
+                    anchorY="middle"
+                    textAlign="left"
+                >
+                    {`${node.label} / ${node.date}`}
+                </Text>
+                <Text
+                    position={[-1.68, 0.53, 0.01]}
+                    fontSize={0.145}
+                    maxWidth={3.46}
+                    color="#8dcbff"
+                    anchorX="left"
+                    anchorY="middle"
+                    textAlign="left"
+                >
                     {node.title}
                 </Text>
-                <Text position={[-1.55, 0.36, 0.01]} fontSize={0.12} maxWidth={3.2} color="#f0a229" anchorX="left" anchorY="middle" textAlign="left">
+                <Text
+                    position={[-1.68, 0.22, 0.01]}
+                    fontSize={0.112}
+                    maxWidth={3.46}
+                    color="#4e9dff"
+                    anchorX="left"
+                    anchorY="middle"
+                    textAlign="left"
+                >
                     {node.metric}
                 </Text>
-                <Text position={[-1.55, -0.2, 0.01]} fontSize={0.086} lineHeight={1.42} maxWidth={3.18} color="#f8efe2" anchorX="left" anchorY="middle" textAlign="left">
+                <Text
+                    position={[-1.68, -0.46, 0.01]}
+                    fontSize={0.074}
+                    lineHeight={1.34}
+                    maxWidth={3.42}
+                    color="#f8efe2"
+                    anchorX="left"
+                    anchorY="middle"
+                    textAlign="left"
+                >
                     {node.body}
                 </Text>
             </Billboard>
@@ -444,7 +477,7 @@ function Ship() {
     return (
         <mesh rotation={[-Math.PI / 2, 0, 0]}>
             <coneGeometry args={[0.18, 0.72, 32]} />
-            <meshStandardMaterial color="#f8efe2" metalness={0.45} roughness={0.3} emissive="#f0a229" emissiveIntensity={0.22} />
+            <meshStandardMaterial color="#f8efe2" metalness={0.45} roughness={0.3} emissive="#2f7dff" emissiveIntensity={0.22} />
         </mesh>
     );
 }
@@ -468,6 +501,10 @@ function PlayerRig({
     const viewForwardRef = useRef(new THREE.Vector3());
     const rightRef = useRef(new THREE.Vector3());
     const lookTargetRef = useRef(new THREE.Vector3());
+    const cameraOffsetRef = useRef(new THREE.Vector3());
+    const cameraTargetRef = useRef(new THREE.Vector3());
+    const cameraLookTargetRef = useRef(new THREE.Vector3());
+    const liftOffsetRef = useRef(new THREE.Vector3(0, 0.72, 0));
     const reachedCoreRef = useRef(false);
 
     useFrame((_, delta) => {
@@ -480,6 +517,7 @@ function PlayerRig({
 
         const look = lookRef.current;
         const keys = keysRef.current;
+        const frameDelta = Math.min(delta, 1 / 30);
         const forward = forwardRef.current.set(Math.sin(look.yaw), 0, -Math.cos(look.yaw)).normalize();
         const viewForward = viewForwardRef.current.set(
             Math.sin(look.yaw) * Math.cos(look.pitch),
@@ -495,11 +533,11 @@ function PlayerRig({
             if (keys.has("KeyD")) move.add(right);
             if (keys.has("KeyA")) move.sub(right);
             if (keys.has("Space")) move.y += 1;
-            if (keys.has("ControlLeft") || keys.has("ControlRight")) move.y -= 1;
+            if (keys.has("KeyE")) move.y -= 1;
         }
 
         if (move.lengthSq() > 0) {
-            move.normalize().multiplyScalar(4.8 * delta);
+            move.normalize().multiplyScalar(4.8 * frameDelta);
             positionRef.current.add(move);
         }
 
@@ -518,9 +556,9 @@ function PlayerRig({
         const shipLookTarget = lookTargetRef.current.copy(ship.position).add(viewForward);
         ship.lookAt(shipLookTarget);
 
-        const cameraOffset = viewForward.clone().multiplyScalar(-1.85).add(new THREE.Vector3(0, 0.72, 0));
-        const cameraTarget = positionRef.current.clone().add(cameraOffset);
-        const lookTarget = positionRef.current.clone().add(viewForward.clone().multiplyScalar(3.4));
+        const cameraOffset = cameraOffsetRef.current.copy(viewForward).multiplyScalar(-1.85).add(liftOffsetRef.current);
+        const cameraTarget = cameraTargetRef.current.copy(positionRef.current).add(cameraOffset);
+        const lookTarget = cameraLookTargetRef.current.copy(positionRef.current).addScaledVector(viewForward, 3.4);
 
         camera.position.lerp(cameraTarget, 0.18);
         camera.lookAt(lookTarget);
@@ -570,11 +608,11 @@ function DeferredBackdrop() {
                         float normalBuffer = sin((p.x - p.y) * 16.0 + uTime * 0.8) * 0.5 + 0.5;
                         float lightBuffer = smoothstep(0.64, 0.0, abs(p.x * 0.7 + p.y + sin(uTime * 0.22) * 0.2));
                         vec3 ink = vec3(0.025, 0.019, 0.014);
-                        vec3 gold = vec3(0.95, 0.55, 0.12);
+                        vec3 blue = vec3(0.29, 0.55, 0.98);
                         vec3 crimson = vec3(0.28, 0.04, 0.035);
                         vec3 color = mix(ink, crimson, depthBuffer * 0.42);
-                        color += gold * lightBuffer * 0.16;
-                        color += gold * normalBuffer * depthBuffer * 0.08;
+                        color += blue * lightBuffer * 0.16;
+                        color += blue * normalBuffer * depthBuffer * 0.08;
                         gl_FragColor = vec4(color, 1.0);
                     }
                 `}
@@ -595,12 +633,12 @@ function MonolithGameScene({
     onReachCore: () => void;
 }) {
     return (
-        <Canvas dpr={[1, 1.8]} gl={{ antialias: true }}>
+        <Canvas dpr={[1, 1.5]} gl={{ antialias: true }} performance={{ min: 0.75 }}>
             <PlayerRig controlsEnabled={controlsEnabled} keysRef={keysRef} lookRef={lookRef} onReachCore={onReachCore} />
             <DeferredBackdrop />
             <fog attach="fog" args={["#090806", 9, 22]} />
             <ambientLight intensity={0.34} />
-            <pointLight position={[4.8, 3.2, 5.8]} intensity={18} color="#ffcf7a" />
+            <pointLight position={[4.8, 3.2, 5.8]} intensity={18} color="#72b7ff" />
             <pointLight position={[-5.8, -2.4, 2.2]} intensity={9} color="#b54831" />
             <ParticleField />
             <PriceDataRibbon />
@@ -708,7 +746,7 @@ export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPag
             <div className={styles.controlHelp}>
                 <span>WASD 移动</span>
                 <span>SPACE 上升</span>
-                <span>CTRL 下降</span>
+                <span>E 下降</span>
                 <span>鼠标转向</span>
                 <span>ESC 退出</span>
             </div>
