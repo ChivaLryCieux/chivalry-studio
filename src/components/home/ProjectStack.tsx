@@ -13,7 +13,12 @@ interface ProjectStackProps {
     projects: ProjectData[];
 }
 
-export function ProjectStack({ activeIndex, displayMode, onProjectFocus, projects }: ProjectStackProps) {
+export function ProjectStack({
+    activeIndex,
+    displayMode,
+    onProjectFocus,
+    projects,
+}: ProjectStackProps) {
     const router = useRouter();
     const stackClassName = `${styles.stackContainer} ${displayMode === "stack" ? styles.stackMode : ""}`;
 

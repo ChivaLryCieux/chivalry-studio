@@ -20,6 +20,95 @@
     animation: display-bg-shift 16s ease-in-out infinite alternate;
 }
 
+.splashOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 11000;
+    background: inherit;
+    pointer-events: all;
+    opacity: 1;
+    transition: opacity 0.9s ease;
+}
+
+.splashOverlayExiting {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.splashContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.splashBrand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #ede8de;
+    font-family: var(--font-serif), "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: translate(-50%, -58%);
+    transform-origin: top left;
+    transition:
+        top 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+        left 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 0.85s ease;
+}
+
+.splashBrandExiting {
+    top: 40px;
+    left: 40px;
+    opacity: 0;
+    transform: translate(0, 0) scale(0.34);
+}
+
+.splashProgress {
+    position: absolute;
+    top: calc(50% + clamp(38px, 5vw, 56px));
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: min(34vw, 320px);
+    transform: translateX(-50%);
+    transition: opacity 0.45s ease, transform 0.8s ease;
+}
+
+.splashProgressExiting {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+}
+
+.splashProgressValue {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    opacity: 0.8;
+}
+
+.splashProgressTrack {
+    width: 100%;
+    height: 1px;
+    background: rgba(237, 232, 222, 0.24);
+    overflow: hidden;
+}
+
+.splashProgressFill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ede8de;
+    transform-origin: left center;
+}
+
 @keyframes display-bg-shift {
     0% {
         background-position: 0% 10%, 90% 90%, 0% 50%;
@@ -343,6 +432,22 @@
 
 /* --- 8. 移动端适配 --- */
 @media (max-width: 768px) {
+    .splashBrand {
+        font-size: clamp(1.5rem, 8vw, 2.2rem);
+        letter-spacing: 0.14em;
+    }
+
+    .splashBrandExiting {
+        top: 20px;
+        left: 20px;
+        transform: translate(0, 0) scale(0.42);
+    }
+
+    .splashProgress {
+        top: calc(50% + 36px);
+        width: min(56vw, 280px);
+    }
+
     .stackContainer {
         height: 100%;
     }

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "@/app/page.module.css";
+import { HomeSplashScreen } from "@/components/home/HomeSplashScreen";
 import { ProjectChrome } from "@/components/home/ProjectChrome";
 import { ProjectProgress } from "@/components/home/ProjectProgress";
 import { ProjectStack } from "@/components/home/ProjectStack";
@@ -12,10 +13,35 @@ interface DisplayPageProps {
     initialProjectId?: number;
 }
 
+const DISPLAY_HDR_ASSET = "/hdri/kiara_1_dawn_1k.hdr";
+
+function preloadImage(src: string) {
+    return new Promise<void>((resolve, reject) => {
+        const image = new window.Image();
+        image.decoding = "async";
+        image.onload = () => resolve();
+        image.onerror = () => reject(new Error(`Failed to preload image: ${src}`));
+        image.src = src;
+    });
+}
+
+function preloadBinary(url: string) {
+    return fetch(url, { cache: "force-cache" }).then((response) => {
+        if (!response.ok) {
+            throw new Error(`Failed to preload asset: ${url}`);
+        }
+
+        return response.blob().then(() => undefined);
+    });
+}
+
 export function DisplayPage({ initialProjectId }: DisplayPageProps) {
-    const projects = getProjects();
+    const projects = useMemo(() => getProjects(), []);
     const { activeIndex, currentProject, goToProject, handleTouchEnd, handleTouchStart } = useProjectCarousel(projects, initialProjectId);
     const [displayMode, setDisplayMode] = useState<"ring" | "stack">("ring");
+    const [sceneProgress, setSceneProgress] = useState(0);
+    const [sceneReady, setSceneReady] = useState(false);
+    const [splashComplete, setSplashComplete] = useState(false);
 
     useEffect(() => {
         const previousBodyOverflow = document.body.style.overflow;
@@ -35,6 +61,42 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
             document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
         };
     }, []);
+
+    useEffect(() => {
+        let cancelled = false;
+        const assetUrls = Array.from(new Set([...projects.map((project) => project.src), DISPLAY_HDR_ASSET]));
+        const totalAssets = assetUrls.length;
+        let loadedAssets = 0;
+
+        const updateProgress = () => {
+            if (cancelled) {
+                return;
+            }
+
+            loadedAssets += 1;
+            setSceneProgress(Math.round((loadedAssets / totalAssets) * 100));
+
+            if (loadedAssets === totalAssets) {
+                window.requestAnimationFrame(() => {
+                    if (!cancelled) {
+                        setSceneReady(true);
+                    }
+                });
+            }
+        };
+
+        assetUrls.forEach((url) => {
+            const preloadTask = url.endsWith(".hdr") ? preloadBinary(url) : preloadImage(url);
+
+            preloadTask
+                .catch(() => undefined)
+                .finally(updateProgress);
+        });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [projects]);
 
     useEffect(() => {
         const syncProjectFromUrl = () => {
@@ -85,13 +147,25 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
+            {!splashComplete ? (
+                <HomeSplashScreen
+                    isReady={sceneReady}
+                    onComplete={() => setSplashComplete(true)}
+                    progress={sceneProgress}
+                />
+            ) : null}
             <ProjectChrome
                 currentProject={currentProject}
                 displayMode={displayMode}
                 onDisplayModeToggle={() => setDisplayMode((mode) => (mode === "ring" ? "stack" : "ring"))}
             />
             <ProjectProgress activeIndex={activeIndex} totalProjects={projects.length} />
-            <ProjectStack activeIndex={activeIndex} displayMode={displayMode} onProjectFocus={goToProject} projects={projects} />
+            <ProjectStack
+                activeIndex={activeIndex}
+                displayMode={displayMode}
+                onProjectFocus={goToProject}
+                projects={projects}
+            />
         </main>
     );
 }

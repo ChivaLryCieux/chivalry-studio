@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import { Environment, Image as DreiImage } from "@react-three/drei";
 import { Canvas, ThreeEvent, useFrame } from "@react-three/fiber";
 import * as easing from "maath/easing";
@@ -184,7 +184,12 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
     );
 }
 
-export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, projects }: ProjectRing3DProps) {
+export function ProjectRing3D({
+    activeIndex,
+    onProjectFocus,
+    onProjectOpen,
+    projects,
+}: ProjectRing3DProps) {
     const radius = getRingRadius(projects.length);
 
     return (
@@ -194,15 +199,17 @@ export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, proj
             dpr={[1, 2]}
             gl={{ alpha: true, antialias: true }}
         >
-            <fog attach="fog" args={["#12080a", 14, 23]} />
-            <CarouselScene
-                activeIndex={activeIndex}
-                onProjectFocus={onProjectFocus}
-                onProjectOpen={onProjectOpen}
-                projects={projects}
-                radius={radius}
-            />
-            <Environment files="/hdri/kiara_1_dawn_1k.hdr" background={false} blur={0.45} />
+            <Suspense fallback={null}>
+                <fog attach="fog" args={["#12080a", 14, 23]} />
+                <CarouselScene
+                    activeIndex={activeIndex}
+                    onProjectFocus={onProjectFocus}
+                    onProjectOpen={onProjectOpen}
+                    projects={projects}
+                    radius={radius}
+                />
+                <Environment files="/hdri/kiara_1_dawn_1k.hdr" background={false} blur={0.45} />
+            </Suspense>
         </Canvas>
     );
 }
