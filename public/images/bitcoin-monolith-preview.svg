@@ -1,22 +1,25 @@
-<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="800" fill="#080604"/>
-  <path d="M0 0H1200V800H0V0Z" fill="url(#grid)"/>
-  <path d="M254 486C366 240 818 165 924 337C1023 498 705 641 472 545C357 498 305 432 381 359C464 280 724 273 798 372C886 490 603 560 456 469" stroke="#F0A229" stroke-width="42" stroke-linecap="round"/>
-  <path d="M254 486C366 240 818 165 924 337C1023 498 705 641 472 545C357 498 305 432 381 359C464 280 724 273 798 372C886 490 603 560 456 469" stroke="#140A06" stroke-width="10" stroke-linecap="round"/>
-  <circle cx="754" cy="318" r="118" fill="url(#coin)" stroke="#FFD58E" stroke-width="8"/>
-  <text x="754" y="365" text-anchor="middle" font-family="Georgia, serif" font-size="148" font-weight="700" fill="#2A1604">₿</text>
-  <path d="M120 656L240 600L352 620L462 505L580 525L705 410L830 450L1080 244" stroke="#FFF6EA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M92 130H586" stroke="#FFF6EA" stroke-width="12"/>
-  <path d="M92 172H468" stroke="#F0A229" stroke-width="10"/>
-  <path d="M92 214H532" stroke="#FFF6EA" stroke-opacity=".72" stroke-width="8"/>
-  <defs>
-    <pattern id="grid" width="58" height="58" patternUnits="userSpaceOnUse">
-      <path d="M58 0H0V58" stroke="#FFD58E" stroke-opacity=".08"/>
-    </pattern>
-    <radialGradient id="coin" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(710 276) rotate(52) scale(205)">
-      <stop stop-color="#FFF1B5"/>
-      <stop offset=".45" stop-color="#F0A229"/>
-      <stop offset="1" stop-color="#8D4D12"/>
-    </radialGradient>
-  </defs>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F4F1EA"/>
+  <rect x="88" y="88" width="1424" height="724" stroke="#111111" stroke-width="16"/>
+  <rect x="88" y="88" width="380" height="724" fill="#111111"/>
+  <rect x="124" y="124" width="52" height="52" fill="#C3182D"/>
+  <text x="124" y="270" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="900">SATOSHI</text>
+  <text x="124" y="362" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">游戏化</text>
+  <text x="124" y="452" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">叙事</text>
+  <text x="124" y="560" fill="#C3182D" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">INTERACTION</text>
+  <text x="124" y="700" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900">BITCOIN 18 YEARS</text>
+  <rect x="560" y="188" width="420" height="524" fill="#111111"/>
+  <rect x="532" y="160" width="420" height="524" fill="#F4F1EA" stroke="#111111" stroke-width="12"/>
+  <circle cx="742" cy="422" r="96" fill="#111111"/>
+  <path d="M720 362H736C759 362 773 371 773 387C773 401 764 409 750 412V414C768 418 779 428 779 445C779 467 763 480 734 480H720V362ZM733 374V400H738C756 400 763 395 763 387C763 379 756 374 740 374H733ZM733 415V465H734C756 465 763 457 763 445C763 428 753 415 734 415H733Z" fill="#F4F1EA"/>
+  <path d="M729 352V489" stroke="#F4F1EA" stroke-width="4.5"/>
+  <path d="M749 352V489" stroke="#F4F1EA" stroke-width="4.5"/>
+  <path d="M1064 192H1392" stroke="#111111" stroke-width="8"/>
+  <path d="M1064 320H1392" stroke="#111111" stroke-width="8"/>
+  <path d="M1064 448H1392" stroke="#111111" stroke-width="8"/>
+  <rect x="1064" y="508" width="328" height="136" fill="#C3182D"/>
+  <text x="1098" y="248" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">3D DATA STORY</text>
+  <text x="1098" y="376" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">SCROLL / SCENE</text>
+  <text x="1098" y="570" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="900">BTC</text>
+  <text x="1098" y="620" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">MONOLITH</text>
 </svg>

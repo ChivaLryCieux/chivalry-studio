@@ -458,7 +458,7 @@ export const projects: ProjectData[] = [
         color: "#4a2b22",
         imagePlaceholder: "BTC",
         src: "/images/bitcoin-monolith-preview.svg",
-        cardTitleLines: ["中本聪", "Bitcoin", "R3F游戏化叙事"],
+        cardTitleLines: ["Satoshi", "Bitcoin", "R3F游戏化叙事"],
         description: "A 3D scrollytelling version of the Satoshi and Bitcoin data story, using R3F, custom shaders, particles, BTC modeling, price data, and tap-hold interactions.",
         template: "bitcoin-monolith"
     }
