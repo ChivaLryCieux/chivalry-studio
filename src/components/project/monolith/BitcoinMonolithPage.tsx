@@ -32,7 +32,7 @@ const storyNodeEntries = [
         title: "Whitepaper",
         label: "Key Node 01",
         metric: "2008.10",
-        body: "《Bitcoin: A Peer-to-Peer Electronic Cash System》发布。\n8 页文本把签名、哈希、节点广播与工作量证明组合成无可信第三方账本。",
+        body: "比特币白皮书发布。\n8 页文本把签名、哈希、节点广播与工作量证明组合成无可信第三方账本。",
     },
     {
         date: "2009-01-03",
@@ -40,7 +40,7 @@ const storyNodeEntries = [
         title: "Genesis Block",
         label: "Key Node 02",
         metric: "50 BTC",
-        body: "创世区块把规则从论文推进到运行中的链。\n《泰晤士报》头条被写入 coinbase，也把制度批评刻进时间戳。",
+        body: "创世区块诞生，把规则从论文推进到运行中的链。\n当日的《泰晤士报》头条被写入创世区块，也把制度批评刻进时间戳。",
     },
     {
         date: "2010-05-22",
@@ -48,7 +48,7 @@ const storyNodeEntries = [
         title: "Pizza Day",
         label: "Key Node 03",
         metric: "10,000 BTC",
-        body: "10,000 BTC 购买两张披萨，形成第一次广为流传的现实商品定价。\n抽象代币从论坛实验进入真实交换。",
+        body: "1万枚 BTC 购买两张披萨，形成首次广为流传的现实商品定价。\n抽象代币从论坛实验进入真实交换。",
     },
     {
         date: "2017-12-17",
@@ -56,7 +56,7 @@ const storyNodeEntries = [
         title: "Exchange Era",
         label: "Key Node 04",
         metric: "$19.8K",
-        body: "全球交易所与流动性把 Bitcoin 推入高频价格发现阶段。\n价格曲线开始成为共识扩张最公开的读数器。",
+        body: "BTC开始进入交易所，迈入高频价格发现阶段。\n价格曲线开始成为共识扩张最公开的读数器。",
     },
     {
         date: "2021-11-10",
@@ -64,7 +64,7 @@ const storyNodeEntries = [
         title: "Institutional Peak",
         label: "Key Node 05",
         metric: "$69K",
-        body: "机构入场、ETF 预期与宏观叙事把 Bitcoin 包装成数字黄金。\n它同时扮演风险资产与宏观对冲工具。",
+        body: "各类机构入场，BTC迎来首个疯狂的牛市。\n它同时扮演风险资产与宏观对冲工具。",
     },
     {
         date: satoshiHoldings.archiveAthDate,
@@ -72,7 +72,7 @@ const storyNodeEntries = [
         title: "Archive All-Time High",
         label: "Key Node 06",
         metric: "$126K ATH",
-        body: "本项目价格螺旋使用 Binance BTCUSDT 日线归档数据。\n2025-10-06 UTC 的样本高点为 126,199.63 美元。",
+        body: "12万+美元的最高单价诞生。\n2025-10-06 UTC 的样本高点为 126,199.63 美元。",
     },
     {
         date: "2025-10-06",
@@ -80,15 +80,15 @@ const storyNodeEntries = [
         title: "Satoshi Silence",
         label: "Key Node 07",
         metric: "1.1M BTC",
-        body: `如果 110 万枚估算成立，仓位约占总量 ${(satoshiHoldings.shareOfCap * 100).toFixed(2)}%。\n按归档高点估算，这一沉默地址群的账面规模约 ${formatUsdCompact(peakValue)}。`,
+        body: `中本聪账户上持有约110万枚BTC，仓位约占总量 ${(satoshiHoldings.shareOfCap * 100).toFixed(2)}%。\n按归档高点估算，这些沉默地址群的账面规模约 ${formatUsdCompact(peakValue)}。`,
     },
     {
-        date: "2026-01-01",
+        date: "2026-04-01",
         progress: 0.99,
-        title: "Bitcoin Star",
+        title: "Bitcoin Future",
         label: "Key Node 08",
         metric: "21M CAP",
-        body: `${formatNumberCompact(satoshiHoldings.capLimit)} 枚上限、减半节奏与全球节点网络。\n它们把一个人发布的代码，推进成无人能单独拥有的共识恒星。`,
+        body: `${formatNumberCompact(satoshiHoldings.capLimit)} 枚上限、减半节奏与全球节点网络。\n共识的未来，依然波诡云谲。`,
     },
 ];
 
@@ -102,6 +102,10 @@ const storyNodes = [...storyNodeEntries]
 interface LookState {
     yaw: number;
     pitch: number;
+}
+
+function shortestAngleDelta(from: number, to: number) {
+    return THREE.MathUtils.euclideanModulo(to - from + Math.PI, Math.PI * 2) - Math.PI;
 }
 
 function useKeyboardState(enabled: boolean) {
@@ -402,6 +406,7 @@ function StoryStarPanel({ node }: { node: (typeof storyNodes)[number] }) {
     const panelOffset = useMemo(() => {
         const [x, , z] = node.position;
         const outward = new THREE.Vector3(x, 0, z);
+        const offset = new THREE.Vector3();
 
         if (outward.lengthSq() < 0.0001) {
             outward.set(1, 0, 0);
@@ -409,8 +414,25 @@ function StoryStarPanel({ node }: { node: (typeof storyNodes)[number] }) {
             outward.normalize();
         }
 
-        return [outward.x * 1.52, 0.5, outward.z * 1.52] as const;
-    }, [node.position]);
+        offset.set(outward.x * 1.52, 0.5, outward.z * 1.52);
+
+        if (node.label === "Key Node 02" || node.label === "Key Node 03") {
+            const lowerProgress = Math.max(0, node.progress - 0.035);
+            const lowerPosition = getTimelinePosition(lowerProgress);
+            const descendDirection = new THREE.Vector3(
+                lowerPosition[0] - node.position[0],
+                lowerPosition[1] - node.position[1],
+                lowerPosition[2] - node.position[2],
+            );
+
+            if (descendDirection.lengthSq() > 0.0001) {
+                descendDirection.normalize().multiplyScalar(13.5);
+                offset.add(descendDirection);
+            }
+        }
+
+        return [offset.x, offset.y, offset.z] as const;
+    }, [node.label, node.position, node.progress]);
 
     return (
         <group position={node.position}>
@@ -496,6 +518,7 @@ function PlayerRig({
     const cameraRef = useRef<THREE.PerspectiveCamera>(null);
     const shipRef = useRef<THREE.Group>(null);
     const positionRef = useRef(initialPlayerPosition.clone());
+    const smoothedLookRef = useRef<LookState>({ yaw: 0, pitch: 0 });
     const velocityRef = useRef(new THREE.Vector3());
     const forwardRef = useRef(new THREE.Vector3());
     const viewForwardRef = useRef(new THREE.Vector3());
@@ -505,6 +528,7 @@ function PlayerRig({
     const cameraTargetRef = useRef(new THREE.Vector3());
     const cameraLookTargetRef = useRef(new THREE.Vector3());
     const liftOffsetRef = useRef(new THREE.Vector3(0, 0.72, 0));
+    const coreDirectionRef = useRef(new THREE.Vector3());
     const reachedCoreRef = useRef(false);
 
     useFrame((_, delta) => {
@@ -516,13 +540,18 @@ function PlayerRig({
         }
 
         const look = lookRef.current;
+        const smoothedLook = smoothedLookRef.current;
         const keys = keysRef.current;
         const frameDelta = Math.min(delta, 1 / 30);
-        const forward = forwardRef.current.set(Math.sin(look.yaw), 0, -Math.cos(look.yaw)).normalize();
+        const yawDelta = shortestAngleDelta(smoothedLook.yaw, look.yaw);
+        smoothedLook.yaw += yawDelta * Math.min(1, frameDelta * 10);
+        smoothedLook.pitch = THREE.MathUtils.lerp(smoothedLook.pitch, look.pitch, Math.min(1, frameDelta * 10));
+
+        const forward = forwardRef.current.set(Math.sin(smoothedLook.yaw), 0, -Math.cos(smoothedLook.yaw)).normalize();
         const viewForward = viewForwardRef.current.set(
-            Math.sin(look.yaw) * Math.cos(look.pitch),
-            Math.sin(look.pitch),
-            -Math.cos(look.yaw) * Math.cos(look.pitch),
+            Math.sin(smoothedLook.yaw) * Math.cos(smoothedLook.pitch),
+            Math.sin(smoothedLook.pitch),
+            -Math.cos(smoothedLook.yaw) * Math.cos(smoothedLook.pitch),
         ).normalize();
         const right = rightRef.current.set(-forward.z, 0, forward.x).normalize();
         const move = velocityRef.current.set(0, 0, 0);
@@ -548,7 +577,15 @@ function PlayerRig({
         }
 
         if (distanceFromCore < 1.55) {
-            positionRef.current.setLength(1.55);
+            const coreDirection = coreDirectionRef.current.copy(positionRef.current);
+
+            if (coreDirection.lengthSq() < 0.0001) {
+                coreDirection.set(0, 0, -1);
+            } else {
+                coreDirection.normalize();
+            }
+
+            positionRef.current.addScaledVector(coreDirection, Math.min(1.55 - distanceFromCore, 0.08));
         }
 
         positionRef.current.y = THREE.MathUtils.clamp(positionRef.current.y, -5.2, 4.8);
@@ -735,8 +772,8 @@ export function BitcoinMonolithPage({ returnProjectId = 10 }: BitcoinMonolithPag
 
             <div className={`${styles.flightBrief} ${controlsEnabled ? styles.flightBriefHidden : ""}`}>
                 <p className={styles.kicker}>3D Data Story Game</p>
-                <h1>飞向比特币恒星</h1>
-                <p>驾驶小飞船穿过价格螺旋。每一颗亮星旁边都有一块叙事面板，靠近中心处的比特币恒星，阅读中本聪与 Bitcoin 共识扩张的关键节点。</p>
+                <h1>徜徉于十八年时间螺旋</h1>
+                <p>驾驶小飞船穿过价格螺旋。每一颗亮星旁边都有一块叙事面板，讲述中本聪与 Bitcoin 共识扩张的关键节点。中心处是比特币恒星，撞向它吧。</p>
             </div>
 
             <button type="button" className={styles.controlButton} onClick={enterControls}>

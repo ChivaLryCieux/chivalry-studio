@@ -446,7 +446,7 @@ export const projects: ProjectData[] = [
         color: "#5a171d",
         imagePlaceholder: "BTC",
         src: "/images/bitcoin-story-preview.svg",
-        cardTitleLines: ["中本聪", "Bitcoin", "可视化叙事"],
+        cardTitleLines: ["中本聪", "Bitcoin", "叙事房间"],
         description: "A scrollytelling data story about Satoshi, the 2008 whitepaper, the genesis block, Bitcoin's repricing arc, and the scale of a 1.1M BTC fortune.",
         template: "bitcoin-story"
     },
