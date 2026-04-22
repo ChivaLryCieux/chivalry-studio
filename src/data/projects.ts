@@ -66,7 +66,7 @@ export const projects: ProjectData[] = [
         color: "#68141d",
         imagePlaceholder: "CD",
         src: "/images/projects/colonnade/colonnade-cover.svg",
-        cardTitleLines: ["Colonnade", "以太坊链上数据可视化DApp"],
+        cardTitleLines: ["Colonnade", "多链数据可视化DApp"],
         description: "An Ethereum on-chain data visualization DApp built with Vite, React, TypeScript, Wagmi, Viem, and D3.",
         detailImages: [
             "/images/projects/colonnade/intro-1.png",
