@@ -24,7 +24,7 @@ export function HomeSplashScreen({
     const completeTimerRef = useRef<number | null>(null);
 
     useEffect(() => {
-        const targetProgress = isReady ? 100 : Math.min(progress, 99);
+        const targetProgress = isReady ? 100 : Math.min(progress, 90);
         let frameId = 0;
         const tick = () => {
             setDisplayProgress((current) => {
@@ -88,7 +88,9 @@ export function HomeSplashScreen({
         }
     }, []);
 
-    const progressValue = Math.min(100, Math.round(displayProgress));
+    const progressValue = isReady
+        ? Math.min(100, Math.round(displayProgress))
+        : Math.min(90, Math.floor(displayProgress));
     const isExiting = phase === "exiting";
 
     return (
