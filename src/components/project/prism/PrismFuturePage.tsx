@@ -4,13 +4,11 @@ import Link from "next/link";
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Canvas, invalidate, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Center, Instances, Instance, MeshTransmissionMaterial, shaderMaterial, Text3D, useTexture } from "@react-three/drei";
-import type { FontData } from "@react-three/drei/core/useFont";
 import { Bloom, EffectComposer, LUT } from "@react-three/postprocessing";
 import { LUTCubeLoader } from "postprocessing";
 import { GLTFLoader } from "three-stdlib";
 import * as THREE from "three";
 import styles from "./prism-future.module.css";
-import interFont from "./Inter_Bold.json";
 
 const PRISM_MODEL = "/prism/gltf/prism.glb";
 const LUT_URL = "/prism/lut/F-6800-STD.cube";
@@ -18,7 +16,7 @@ const FLARE_STREAK = "/prism/textures/lensflare/lensflare2.png";
 const FLARE_DOT = "/prism/textures/lensflare/lensflare3.png";
 const FLARE_GLOW = "/prism/textures/lensflare/lensflare0_bw.png";
 const BEAM_GLOW = "/prism/textures/lensflare/lensflare0_bw.jpg";
-const INTER_FONT = interFont as unknown as FontData;
+const PRISM_TITLE_FONT = "/prism/fonts/helvetiker_bold.typeface.json";
 
 type RayApi = {
     end: THREE.Vector3;
@@ -724,8 +722,8 @@ function Scene() {
             <spotLight ref={spotRef} intensity={Math.PI} decay={0} distance={7} angle={1} penumbra={1} position={[0, 0, 1]} />
 
             <Center top bottom position={[0, 2, 0]}>
-                <Text3D size={0.7} letterSpacing={-0.05} height={0.05} font={INTER_FONT}>
-                    Dynamic without Limits
+                <Text3D size={0.7} letterSpacing={-0.05} height={0.05} font={PRISM_TITLE_FONT}>
+                    Where is the future of bitcoin?
                     <meshStandardMaterial color="white" />
                 </Text3D>
             </Center>
