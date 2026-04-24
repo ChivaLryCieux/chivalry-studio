@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Model } from "./Model3D";
+import { useEffect, useRef, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Model } from './Model3D';
 
 interface ModelViewerProps {
   className?: string;
@@ -33,10 +33,7 @@ export function ModelViewer({ className }: ModelViewerProps) {
 
   return (
     <div ref={containerRef} className={className}>
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 50 }}
-        style={{ background: 'transparent' }}
-      >
+      <Canvas camera={{ position: [0, 0, 5], fov: 50 }} style={{ background: 'transparent' }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <Model mousePosition={mousePosition} />

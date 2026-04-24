@@ -1,12 +1,12 @@
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
 interface PageProps {
-    params: Promise<{
-        id: string;
-    }>;
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 export default async function ProjectDetailRedirect({ params }: PageProps) {
-    const resolvedParams = await params;
-    redirect(`/detailPage/${resolvedParams.id}`);
+  const resolvedParams = await params;
+  redirect(`/detailPage/${resolvedParams.id}`);
 }
