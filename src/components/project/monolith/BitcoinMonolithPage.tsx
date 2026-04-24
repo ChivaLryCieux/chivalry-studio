@@ -402,7 +402,8 @@ function PriceDataRibbon() {
     );
 }
 
-function StoryStarPanel({ node }: { node: (typeof storyNodes)[number] }) {
+function StoryStarPanel({ node, visible }: { node: (typeof storyNodes)[number]; visible: boolean }) {
+    if (!visible) return null;
     const panelOffset = useMemo(() => {
         const [x, , z] = node.position;
         const outward = new THREE.Vector3(x, 0, z);
@@ -682,7 +683,7 @@ function MonolithGameScene({
             <MobiusLedger />
             <BitcoinStar />
             {storyNodes.map((node) => (
-                <StoryStarPanel key={node.title} node={node} />
+                <StoryStarPanel key={node.title} node={node} visible={controlsEnabled} />
             ))}
         </Canvas>
     );
