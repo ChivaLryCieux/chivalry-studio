@@ -14,7 +14,7 @@ interface DisplayPageProps {
 }
 
 const DISPLAY_HDR_ASSET = '/hdri/kiara_1_dawn_1k.hdr';
-const DISPLAY_CENTER_MODEL_ASSET = '/models/newStar-fb66a865.glb';
+const DISPLAY_CENTER_MODEL_ASSET = '/models/newStar.glb';
 
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
@@ -63,8 +63,12 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
   }, []);
 
   useEffect(() => {
+    if (!currentProject) {
+      return;
+    }
+
     let cancelled = false;
-    const assetUrls = Array.from(new Set([...projects.map((project) => project.src), DISPLAY_HDR_ASSET, DISPLAY_CENTER_MODEL_ASSET]));
+    const assetUrls = Array.from(new Set([currentProject.src, DISPLAY_HDR_ASSET, DISPLAY_CENTER_MODEL_ASSET]));
     const totalAssets = assetUrls.length;
     let loadedAssets = 0;
 
@@ -94,7 +98,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     return () => {
       cancelled = true;
     };
-  }, [projects]);
+  }, [currentProject]);
 
   useEffect(() => {
     const syncProjectFromUrl = () => {

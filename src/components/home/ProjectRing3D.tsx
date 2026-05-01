@@ -8,7 +8,7 @@ import * as THREE from 'three';
 import type { ProjectData } from '@/types/project';
 
 const CAMERA_Z = 16.5;
-const STAR_MODEL_URL = '/models/newStar-fb66a865.glb';
+const STAR_MODEL_URL = '/models/newStar.glb';
 const CARD_WIDTH = 1.64;
 const CARD_HEIGHT = 0.92;
 const ACTIVE_CARD_SCALE: [number, number, number] = [1.14, 1.14, 1];
@@ -93,7 +93,7 @@ function getRingRadius(cardCount: number) {
 
 function createStarGradientTexture() {
   const canvas = document.createElement('canvas');
-  const size = 512;
+  const size = 256;
   canvas.width = size;
   canvas.height = size;
 
@@ -296,7 +296,7 @@ function StarModel() {
     const time = state.clock.elapsedTime;
     const breath = Math.sin(time * 0.82 + motion.phase);
 
-    if (time - texturePaintFrame.current > 1 / 24) {
+    if (time - texturePaintFrame.current > 1 / 12) {
       paintStarGradientTexture(gradientTexture.canvas, gradientTexture.texture, time);
       texturePaintFrame.current = time;
     }
@@ -341,16 +341,17 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
       <StarModel />
       <group ref={rigRef} rotation={[0, 0, 0.11]}>
         {projects.map((project, index) => (
-          <RingCard
-            key={project.id}
-            activeIndex={activeIndex}
-            index={index}
-            onProjectFocus={onProjectFocus}
-            onProjectOpen={onProjectOpen}
-            project={project}
-            radius={radius}
-            total={projects.length}
-          />
+          <Suspense key={project.id} fallback={null}>
+            <RingCard
+              activeIndex={activeIndex}
+              index={index}
+              onProjectFocus={onProjectFocus}
+              onProjectOpen={onProjectOpen}
+              project={project}
+              radius={radius}
+              total={projects.length}
+            />
+          </Suspense>
         ))}
       </group>
     </>
