@@ -1,13 +1,14 @@
 'use client';
 
-import { Suspense, useMemo, useRef, useState } from 'react';
-import { Environment, Image as DreiImage } from '@react-three/drei';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Environment, Image as DreiImage, useGLTF } from '@react-three/drei';
 import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber';
 import * as easing from 'maath/easing';
 import * as THREE from 'three';
 import type { ProjectData } from '@/types/project';
 
 const CAMERA_Z = 16.5;
+const STAR_MODEL_URL = '/models/newStar-fb66a865.glb';
 const CARD_WIDTH = 1.64;
 const CARD_HEIGHT = 0.92;
 const ACTIVE_CARD_SCALE: [number, number, number] = [1.14, 1.14, 1];
@@ -16,6 +17,12 @@ const CARD_GAP = 0.21;
 const RING_RADIUS_COMPRESSION = 0.84;
 const MIN_RING_RADIUS = 2.55;
 const CARD_TINT = '#d8d1c6';
+const STAR_GRADIENT_COLORS = {
+  black: '#471a14',
+  grey: '#a29477',
+  red: '#a85835',
+  yellow: '#feff65',
+};
 
 interface ProjectRing3DProps {
   activeIndex: number;
@@ -36,6 +43,10 @@ interface RingCardProps {
   project: ProjectData;
   radius: number;
   total: number;
+}
+
+interface StarMeshGeometry {
+  geometry: THREE.BufferGeometry;
 }
 
 function createBentPlaneGeometry(radius: number, width = 1, height = 1) {
@@ -78,6 +89,50 @@ function getRingRadius(cardCount: number) {
   const minimumRadius = (activeCardWidth + CARD_GAP) / (2 * Math.sin(Math.PI / cardCount));
 
   return Math.max(MIN_RING_RADIUS, minimumRadius * RING_RADIUS_COMPRESSION);
+}
+
+function createStarGradientTexture() {
+  const canvas = document.createElement('canvas');
+  const size = 512;
+  canvas.width = size;
+  canvas.height = size;
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.needsUpdate = true;
+
+  return { canvas, texture };
+}
+
+function paintStarGradientTexture(canvas: HTMLCanvasElement, texture: THREE.CanvasTexture, time: number) {
+  const context = canvas.getContext('2d');
+
+  if (!context) {
+    return;
+  }
+
+  const { height, width } = canvas;
+  const drift = (time * 0.045) % 1;
+  const gradient = context.createLinearGradient(-width * drift, 0, width * (1.25 - drift), height);
+
+  gradient.addColorStop(0, STAR_GRADIENT_COLORS.black);
+  gradient.addColorStop(0.24, STAR_GRADIENT_COLORS.grey);
+  gradient.addColorStop(0.52, STAR_GRADIENT_COLORS.red);
+  gradient.addColorStop(0.78, STAR_GRADIENT_COLORS.yellow);
+  gradient.addColorStop(1, STAR_GRADIENT_COLORS.black);
+
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, width, height);
+
+  const glow = context.createRadialGradient(width * 0.66, height * 0.36, 12, width * 0.5, height * 0.5, width * 0.62);
+  glow.addColorStop(0, 'rgba(254, 255, 101, 0.58)');
+  glow.addColorStop(0.32, 'rgba(168, 88, 53, 0.28)');
+  glow.addColorStop(1, 'rgba(71, 26, 20, 0)');
+  context.fillStyle = glow;
+  context.fillRect(0, 0, width, height);
+  texture.needsUpdate = true;
 }
 
 function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, radius, total }: RingCardProps) {
@@ -146,6 +201,122 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
   );
 }
 
+function StarModel() {
+  const modelRef = useRef<THREE.Group>(null);
+  const texturePaintFrame = useRef(0);
+  const { scene } = useGLTF(STAR_MODEL_URL);
+  const gradientTexture = useMemo(() => createStarGradientTexture(), []);
+  const motion = useMemo(
+    () => ({
+      phase: 2.37,
+      spinX: 0.026,
+      spinY: 0.082,
+      spinZ: 0.017,
+    }),
+    []
+  );
+  const starMaterial = useMemo(() => {
+    return new THREE.MeshPhysicalMaterial({
+      color: '#ffffff',
+      emissive: '#2b0d08',
+      emissiveIntensity: 0.26,
+      map: gradientTexture.texture,
+      metalness: 0.18,
+      roughness: 0.24,
+      clearcoat: 0.72,
+      clearcoatRoughness: 0.2,
+      reflectivity: 0.62,
+      sheen: 0.35,
+      sheenColor: new THREE.Color('#ffcf67'),
+      sheenRoughness: 0.42,
+      side: THREE.DoubleSide,
+      toneMapped: false,
+    });
+  }, [gradientTexture.texture]);
+  const starGeometries = useMemo(() => {
+    const geometries: StarMeshGeometry[] = [];
+
+    scene.traverse((child) => {
+      if (!('isMesh' in child) || !child.isMesh) {
+        return;
+      }
+
+      const sourceMesh = child as THREE.Mesh<THREE.BufferGeometry>;
+      const geometry = sourceMesh.geometry.clone();
+      const position = geometry.attributes.position;
+      const bounds = new THREE.Box3().setFromBufferAttribute(position as THREE.BufferAttribute);
+      const center = bounds.getCenter(new THREE.Vector3());
+      const size = bounds.getSize(new THREE.Vector3());
+      const sizeX = Math.max(size.x, 0.0001);
+      const sizeZ = Math.max(size.z, 0.0001);
+      const uv = new Float32Array(position.count * 2);
+
+      for (let i = 0; i < position.count; i += 1) {
+        uv[i * 2] = (position.getX(i) - center.x) / sizeX + 0.5;
+        uv[i * 2 + 1] = (position.getZ(i) - center.z) / sizeZ + 0.5;
+      }
+
+      geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+      geometry.computeVertexNormals();
+      geometries.push({ geometry });
+    });
+
+    return geometries;
+  }, [scene]);
+  const modelScale = useMemo(() => {
+    const bounds = new THREE.Box3();
+
+    starGeometries.forEach(({ geometry }) => {
+      geometry.computeBoundingBox();
+
+      if (geometry.boundingBox) {
+        bounds.union(geometry.boundingBox);
+      }
+    });
+
+    const size = bounds.getSize(new THREE.Vector3());
+    const maxDimension = Math.max(size.x, size.y, size.z);
+
+    return maxDimension > 0 ? 2 / maxDimension : 1;
+  }, [starGeometries]);
+
+  useEffect(() => {
+    paintStarGradientTexture(gradientTexture.canvas, gradientTexture.texture, 0);
+
+    return () => {
+      gradientTexture.texture.dispose();
+    };
+  }, [gradientTexture]);
+
+  useFrame((state, delta) => {
+    if (!modelRef.current) {
+      return;
+    }
+
+    const time = state.clock.elapsedTime;
+    const breath = Math.sin(time * 0.82 + motion.phase);
+
+    if (time - texturePaintFrame.current > 1 / 24) {
+      paintStarGradientTexture(gradientTexture.canvas, gradientTexture.texture, time);
+      texturePaintFrame.current = time;
+    }
+
+    modelRef.current.position.y = 0.08 + breath * 0.11;
+    modelRef.current.scale.setScalar(modelScale * (1 + breath * 0.025));
+    modelRef.current.rotation.x += delta * motion.spinX * (0.65 + Math.sin(time * 0.23 + motion.phase) * 0.35);
+    modelRef.current.rotation.y += delta * motion.spinY * (0.72 + Math.sin(time * 0.19 + motion.phase * 0.7) * 0.28);
+    modelRef.current.rotation.z += delta * motion.spinZ * (0.7 + Math.sin(time * 0.17 + motion.phase * 1.3) * 0.3);
+  });
+
+  return (
+    <group ref={modelRef} position={[0, 0.08, 0]} rotation={[0.16, -0.4, -0.08]} scale={modelScale}>
+      {starGeometries.map(({ geometry }, index) => (
+        <mesh key={index} castShadow receiveShadow geometry={geometry} material={starMaterial} />
+      ))}
+    </group>
+  );
+}
+
 function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, radius }: CarouselSceneProps) {
   const rigRef = useRef<THREE.Group>(null);
   const angle = projects.length > 0 ? (Math.PI * 2) / projects.length : 0;
@@ -166,6 +337,8 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
       <ambientLight intensity={1.25} />
       <directionalLight position={[4, 5, 6]} intensity={1.4} />
       <pointLight position={[-4, 2, 4]} intensity={3.5} color="#ffebe0" />
+      <pointLight position={[0, 1.2, 2.2]} intensity={1.8} color="#fff6df" />
+      <StarModel />
       <group ref={rigRef} rotation={[0, 0, 0.11]}>
         {projects.map((project, index) => (
           <RingCard
@@ -183,6 +356,8 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
     </>
   );
 }
+
+useGLTF.preload(STAR_MODEL_URL);
 
 export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, projects }: ProjectRing3DProps) {
   const radius = getRingRadius(projects.length);
