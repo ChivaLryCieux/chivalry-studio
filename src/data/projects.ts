@@ -420,13 +420,13 @@ export const projects: ProjectData[] = [
     },
     {
         id: 8,
-        title: "Aftermath: Unity Game Design",
+        title: "Aftermath: 具身隐喻与空间诗学的叙事游戏",
         year: "2025冬",
         category: "Game Design",
         color: "#3e1c1c",
         imagePlaceholder: "NV",
         src: "/images/projects/aftermath/aftermath-cover.png",
-        description: "A Game Design.",
+        description: "A Game Built with Unity.",
         detailImages: [
             "/images/projects/aftermath/aftermath-2.png",
             "/images/projects/aftermath/aftermath-3.png",
@@ -436,6 +436,26 @@ export const projects: ProjectData[] = [
             "/images/projects/aftermath/aftermath-7.png",
             "/images/projects/aftermath/aftermath-8.png",
             "/images/projects/aftermath/aftermath-9.png"
+        ]
+    },
+    {
+        id: 9,
+        title: "Signverse：联觉理论下的现象学探讨游戏",
+        year: "2026春",
+        category: "Game Design",
+        color: "#1a1a2e",
+        imagePlaceholder: "SV",
+        src: "/images/projects/signverse/1.png",
+        description: "Signverse/标示界。使用 Uinty 制作",
+        detailImages: [
+            "/images/projects/signverse/2.png",
+            "/images/projects/signverse/3.png",
+            "/images/projects/signverse/4.png",
+            "/images/projects/signverse/5.png",
+            "/images/projects/signverse/6.png",
+            "/images/projects/signverse/7.png",
+            "/images/projects/signverse/8.png",
+            "/images/projects/signverse/9.png"
         ]
     }
 ];
