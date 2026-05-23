@@ -8,7 +8,7 @@ import * as THREE from 'three';
 import type { ProjectData } from '@/types/project';
 
 const CAMERA_Z = 16.5;
-const STAR_MODEL_URL = '/models/newStar.glb';
+const STAR_MODEL_URL = '/models/Poly-2.glb';
 const CARD_WIDTH = 1.64;
 const CARD_HEIGHT = 0.92;
 const ACTIVE_CARD_SCALE: [number, number, number] = [1.14, 1.14, 1];

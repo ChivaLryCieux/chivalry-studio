@@ -14,7 +14,7 @@ interface DisplayPageProps {
 }
 
 const DISPLAY_HDR_ASSET = '/hdri/kiara_1_dawn_1k.hdr';
-const DISPLAY_CENTER_MODEL_ASSET = '/models/newStar.glb';
+const DISPLAY_CENTER_MODEL_ASSET = '/models/Poly-2.glb';
 
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
