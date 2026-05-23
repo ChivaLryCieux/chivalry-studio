@@ -437,29 +437,5 @@ export const projects: ProjectData[] = [
             "/images/projects/aftermath/aftermath-8.png",
             "/images/projects/aftermath/aftermath-9.png"
         ]
-    },
-    {
-        id: 9,
-        title: "神秘人中本聪与他的个人比特币项目——共识的18年野蛮生长",
-        year: "2026",
-        category: "Data Story",
-        color: "#5a171d",
-        imagePlaceholder: "BTC",
-        src: "/images/bitcoin-story-preview.svg",
-        cardTitleLines: ["中本聪", "Bitcoin", "叙事房间"],
-        description: "A scrollytelling data story about Satoshi, the 2008 whitepaper, the genesis block, Bitcoin's repricing arc, and the scale of a 1.1M BTC fortune.",
-        template: "bitcoin-story"
-    },
-    {
-        id: 10,
-        title: "神秘人中本聪与他的个人比特币项目——3D 数据叙事版本",
-        year: "2026",
-        category: "3D Data Story",
-        color: "#4a2b22",
-        imagePlaceholder: "BTC",
-        src: "/images/bitcoin-monolith-preview.svg",
-        cardTitleLines: ["Satoshi", "Bitcoin", "R3F游戏化叙事"],
-        description: "A 3D scrollytelling version of the Satoshi and Bitcoin data story, using R3F, custom shaders, particles, BTC modeling, price data, and tap-hold interactions.",
-        template: "bitcoin-monolith"
     }
 ];

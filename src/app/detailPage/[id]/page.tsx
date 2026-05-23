@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ProjectGallery } from '@/components/project/ProjectGallery';
 import { ProjectSidebar } from '@/components/project/ProjectSidebar';
-import { BitcoinStoryPage } from '@/components/project/bitcoin/BitcoinStoryPage';
-import { BitcoinMonolithPage } from '@/components/project/monolith/BitcoinMonolithPage';
 import { SwissProjectPage } from '@/components/project/swiss/SwissProjectPage';
 import { getProjectById } from '@/lib/projects';
 import styles from '@/components/project/detailPage.module.css';
@@ -30,14 +28,6 @@ export default async function DetailPage({ params, searchParams }: PageProps) {
   const returnProjectId = Number.isFinite(sourceProjectId) && getProjectById(sourceProjectId)
     ? sourceProjectId
     : project.id;
-
-  if (project.template === 'bitcoin-story') {
-    return <BitcoinStoryPage returnProjectId={returnProjectId} />;
-  }
-
-  if (project.template === 'bitcoin-monolith') {
-    return <BitcoinMonolithPage returnProjectId={returnProjectId} />;
-  }
 
   if (project.template === 'swiss-case') {
     return <SwissProjectPage project={project} returnProjectId={returnProjectId} />;

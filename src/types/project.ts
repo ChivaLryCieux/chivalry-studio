@@ -10,7 +10,7 @@ export interface ProjectData {
   description?: string;
   content?: string;
   detailImages?: string[];
-  template?: 'gallery' | 'bitcoin-story' | 'bitcoin-monolith' | 'swiss-case';
+  template?: 'gallery' | 'swiss-case';
   caseStudy?: {
     eyebrow: string;
     headline: string;
