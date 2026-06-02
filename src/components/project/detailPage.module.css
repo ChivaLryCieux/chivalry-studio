@@ -120,8 +120,13 @@
         width: 96vw;
     }
 
+    .gallery {
+        order: 2;
+    }
+
     .sidebar {
         min-width: auto;
+        order: 1;
         width: 100%;
     }
 
