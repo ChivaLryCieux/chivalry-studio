@@ -13,7 +13,6 @@ interface DisplayPageProps {
   initialProjectId?: number;
 }
 
-const DISPLAY_HDR_ASSET = '/hdri/kiara_1_dawn_1k.hdr';
 const DISPLAY_CENTER_MODEL_ASSET = '/models/Poly-2.glb';
 
 function preloadImage(src: string) {
@@ -68,7 +67,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     }
 
     let cancelled = false;
-    const assetUrls = Array.from(new Set([currentProject.src, DISPLAY_HDR_ASSET, DISPLAY_CENTER_MODEL_ASSET]));
+    const assetUrls = Array.from(new Set([currentProject.src, DISPLAY_CENTER_MODEL_ASSET]));
     const totalAssets = assetUrls.length;
     let loadedAssets = 0;
 
@@ -91,7 +90,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
 
     assetUrls.forEach((url) => {
       const assetPath = url.split('?')[0];
-      const preloadTask = assetPath.endsWith('.hdr') || assetPath.endsWith('.glb') ? preloadBinary(url) : preloadImage(url);
+      const preloadTask = assetPath.endsWith('.glb') ? preloadBinary(url) : preloadImage(url);
       preloadTask.finally(updateProgress);
     });
 

@@ -440,7 +440,7 @@ export const projects: ProjectData[] = [
     },
     {
         id: 9,
-        title: "Signverse：联觉理论下的现象学探讨游戏",
+        title: "Signverse：联觉理论下的多模态叙事游戏",
         year: "2026春",
         category: "Game Design",
         color: "#1a1a2e",

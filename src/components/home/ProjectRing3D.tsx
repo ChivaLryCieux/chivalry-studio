@@ -1,7 +1,8 @@
 'use client';
 
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
-import { Environment, Image as DreiImage, useGLTF } from '@react-three/drei';
+import { Image as DreiImage } from '@react-three/drei/core/Image.js';
+import { useGLTF } from '@react-three/drei/core/Gltf.js';
 import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber';
 import * as easing from 'maath/easing';
 import * as THREE from 'three';
@@ -374,7 +375,6 @@ export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, proj
           projects={projects}
           radius={radius}
         />
-        <Environment files="/hdri/kiara_1_dawn_1k.hdr" background={false} blur={0.45} />
       </Suspense>
     </Canvas>
   );
