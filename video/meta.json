@@ -1,0 +1,10 @@
+{
+  "name": "luo-ruiyang-portfolio-intro",
+  "description": "A cinematic, one-take continuous video journey showcasing Luo Ruiyang's work across Game Design, AI & Agent Systems, and Quantitative Finance & Crypto.",
+  "duration": 60,
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fps": 30
+}

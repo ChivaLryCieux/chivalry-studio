@@ -1,0 +1,16 @@
+{
+  "name": "chivalry-portfolio-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HyperFrames one-take continuous intro video for Luo Ruiyang",
+  "scripts": {
+    "preview": "hyperframes preview",
+    "render": "hyperframes render -o dist/intro.mp4"
+  },
+  "dependencies": {
+    "gsap": "^3.14.2"
+  },
+  "devDependencies": {
+    "hyperframes": "^0.8.20"
+  }
+}

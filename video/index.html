@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luo Ruiyang — Portfolio Intro (HyperFrames 60s)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="viewport" data-composition-id="main" data-width="1920" data-height="1080" data-duration="60">
+    <!-- Background Animated Layer & Grid -->
+    <div class="bg-layer"></div>
+    <div id="ambient-glow-main" class="ambient-glow glow-red"></div>
+
+    <!-- Cinematic HUD Layer (Fixed Overlay) -->
+    <header class="hud-overlay">
+      <div class="hud-top">
+        <div class="hud-brand">
+          <div class="status-dot"></div>
+          <span>LUO RUIYANG // PORTFOLIO SHOWCASE</span>
+        </div>
+        <div class="hud-chapter-badge">
+          <span id="hud-chapter-text">PROLOGUE // PORTFOLIO INTRO</span>
+        </div>
+      </div>
+
+      <!-- Framer Corner Brackets -->
+      <div class="corner-bracket corner-tl"></div>
+      <div class="corner-bracket corner-tr"></div>
+      <div class="corner-bracket corner-bl"></div>
+      <div class="corner-bracket corner-br"></div>
+
+      <div class="hud-bottom">
+        <div>
+          <span>SHANGHAI, CN // 31.2304° N, 121.4737° E</span>
+        </div>
+        <div class="hud-progress-container">
+          <span id="hud-timer-val" class="hud-timer">00:00.00</span>
+          <div class="hud-progress-track">
+            <div id="hud-progress-fill" class="hud-progress-fill"></div>
+          </div>
+          <span>60.00S</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3D Infinite Canvas Rig (One-Take Engine) -->
+    <main id="camera-rig">
+      <div id="world-space">
+
+        <!-- ===================================================================
+             SCENE 0: PROLOGUE / HERO (0.0s - 6.0s)
+             =================================================================== -->
+        <section id="scene-0" class="scene-node clip" data-start="0" data-duration="6">
+          <div class="content-wrapper">
+            <div class="hero-container">
+              <div class="hero-eyebrow">CREATIVE TECHNOLOGIST & SYSTEMS ARCHITECT</div>
+              <h1 class="hero-name">LUO RUIYANG</h1>
+              <p class="hero-tagline">
+                Bridging poetic interactive narratives, autonomous multi-agent intelligence, and deterministic quantitative crypto systems.
+              </p>
+              <div class="hero-pillars">
+                <div class="pillar-badge">
+                  <span class="pillar-number">01</span>
+                  <span>GAME DESIGN</span>
+                </div>
+                <div class="pillar-badge">
+                  <span class="pillar-number">02</span>
+                  <span>AI & AGENT SYSTEMS</span>
+                </div>
+                <div class="pillar-badge">
+                  <span class="pillar-number">03</span>
+                  <span>QUANT & CRYPTO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SCENE 1: GAME DESIGN & EMBODIED POETICS (6.0s - 22.0s)
+             =================================================================== -->
+        <section id="scene-1" class="scene-node clip" data-start="6" data-duration="16">
+          <div class="content-wrapper">
+            <div>
+              <div class="section-kicker">CHAPTER 01 / INTERACTIVE EXPERIENCE</div>
+              <h2 class="section-title">GAME DESIGN & SPATIAL POETICS</h2>
+              <p class="section-subtitle">
+                Exploring embodied cognition, multimodal synesthesia, and atmospheric worldbuilding in Unity.
+              </p>
+            </div>
+
+            <div class="cards-grid-2">
+              <!-- Card 1: Aftermath -->
+              <article class="project-card">
+                <div class="card-media">
+                  <img src="assets/images/projects/aftermath/aftermath-cover.png" alt="Aftermath Game">
+                </div>
+                <div class="card-body">
+                  <div>
+                    <div class="card-header-row">
+                      <h3 class="card-title">Aftermath</h3>
+                      <span class="card-year">2025 WINTER</span>
+                    </div>
+                    <p class="card-desc">
+                      An atmospheric narrative game exploring embodied metaphors and spatial poetics, transforming architecture into emotional memory.
+                    </p>
+                  </div>
+                  <div class="tag-cloud">
+                    <span class="tag accent">Unity 3D</span>
+                    <span class="tag">Embodied Cognition</span>
+                    <span class="tag">Spatial Narrative</span>
+                    <span class="tag">Atmospheric Art</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Signverse -->
+              <article class="project-card">
+                <div class="card-media">
+                  <img src="assets/images/projects/signverse/1.png" alt="Signverse Game">
+                </div>
+                <div class="card-body">
+                  <div>
+                    <div class="card-header-row">
+                      <h3 class="card-title">Signverse (标示界)</h3>
+                      <span class="card-year">2026 SPRING</span>
+                    </div>
+                    <p class="card-desc">
+                      A multimodal narrative game rooted in synesthesia theory, fusing visual semiotics, tactile cues, and sonic environments.
+                    </p>
+                  </div>
+                  <div class="tag-cloud">
+                    <span class="tag accent">Unity</span>
+                    <span class="tag">Synesthesia Theory</span>
+                    <span class="tag">Semiotic Interaction</span>
+                    <span class="tag">Audio-Visual Flow</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SCENE 2: AI & MULTI-AGENT SYSTEMS (22.0s - 40.0s)
+             =================================================================== -->
+        <section id="scene-2" class="scene-node clip" data-start="22" data-duration="18">
+          <div class="content-wrapper">
+            <div>
+              <div class="section-kicker">CHAPTER 02 / AUTONOMOUS INTELLIGENCE</div>
+              <h2 class="section-title">AI SYSTEMS & AGENT ORCHESTRATION</h2>
+              <p class="section-subtitle">
+                Engineering DAG workflow engines, terminal harnesses for LangGraph & Agents SDK, and persistent memory.
+              </p>
+            </div>
+
+            <div class="cards-grid-3">
+              <!-- Card 1: Hyacinth -->
+              <article class="project-card">
+                <div class="card-media contain-media">
+                  <img src="assets/images/projects/hyacinth/hyacinth-cover.svg" alt="Hyacinth Multi-Agent">
+                </div>
+                <div class="card-body">
+                  <div>
+                    <div class="card-header-row">
+                      <h3 class="card-title">Hyacinth</h3>
+                      <span class="card-year">2025 WINTER</span>
+                    </div>
+                    <p class="card-desc">
+                      Cross-platform DAG multi-agent orchestrator treating models as directed workflow nodes.
+                    </p>
+                    <div class="architecture-callout">
+                      ▶ DAG Dependency Engine<br>
+                      ▶ Dynamic Agent Context Routing
+                    </div>
+                  </div>
+                  <div class="tag-cloud">
+                    <span class="tag emerald">Tauri 2</span>
+                    <span class="tag">DAG Graph</span>
+                    <span class="tag">Multi-Agent</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: Lilac-CLI -->
+              <article class="project-card">
+                <div class="card-media contain-media">
+                  <img src="assets/images/projects/lilac/lilac-cover.svg" alt="Lilac-CLI Agent">
+                </div>
+                <div class="card-body">
+                  <div>
+                    <div class="card-header-row">
+                      <h3 class="card-title">Lilac-CLI</h3>
+                      <span class="card-year">2026 SPRING</span>
+                    </div>
+                    <p class="card-desc">
+                      Bun & Ink terminal agent framework with test harnesses for LangGraph and OpenAI Agents SDK.
+                    </p>
+                    <div class="architecture-callout">
+                      ▶ Skill Markdown Profiles<br>
+                      ▶ Live Streaming & Token Estimator
+                    </div>
+                  </div>
+                  <div class="tag-cloud">
+                    <span class="tag purple">Bun + Ink</span>
+                    <span class="tag">LangGraph</span>
+                    <span class="tag">Agents SDK</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 3: Sermon -->
+              <article class="project-card">
+                <div class="card-media contain-media">
+                  <img src="assets/images/projects/sermon/sermon-cover.svg" alt="Sermon AI Memory">
+                </div>
+                <div class="card-body">
+                  <div>
+                    <div class="card-header-row">
+                      <h3 class="card-title">Sermon</h3>
+                      <span class="card-year">2025 AUTUMN</span>
+                    </div>
+                    <p class="card-desc">
+                      Avalonia-based document & AI memory workspace maintaining persistent context across sessions.
+                    </p>
+                    <div class="architecture-callout">
+                      ▶ Durable AI Context Base<br>
+                      ▶ Cross-Platform C# / Avalonia
+                    </div>
+                  </div>
+                  <div class="tag-cloud">
+                    <span class="tag accent">Avalonia</span>
+                    <span class="tag">AI Memory</span>
+                    <span class="tag">Knowledge Hub</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SCENE 3: QUANTITATIVE FINANCE & CRYPTO (40.0s - 54.0s)
+             =================================================================== -->
+        <section id="scene-3" class="scene-node clip" data-start="40" data-duration="14">
+          <div class="content-wrapper">
+            <div>
+              <div class="section-kicker">CHAPTER 03 / DETERMINISTIC SYSTEMS</div>
+              <h2 class="section-title">QUANTITATIVE FINANCE & CRYPTO</h2>
+              <p class="section-subtitle">
+                High-performance CTA execution engines, Solana economic hard-forks, and consortium blockchain game theory.
+              </p>
+            </div>
+
+            <div class="quant-crypto-layout">
+              <!-- Left Big Card: Quidem CTA System -->
+              <article class="project-card">
+                <div class="card-media contain-media" style="height: 240px;">
+                  <img src="assets/images/projects/quidem/quidem-cover.svg" alt="Quidem CTA System">
+                </div>
+                <div class="card-body">
+                  <div>
+                    <div class="card-header-row">
+                      <h3 class="card-title">Quidem CTA Quant Trading Framework</h3>
+                      <span class="card-year">2025 SUMMER</span>
+                    </div>
+                    <p class="card-desc">
+                      Personal Python quant trading engine combining Binance Futures REST/WS, terminal TUI, Redis reporting, HMM regime switches, and BOCPD change-point detection.
+                    </p>
+                  </div>
+                  <div class="metric-matrix">
+                    <div class="metric-box">
+                      <span>Exchange</span>
+                      <strong>Binance</strong>
+                    </div>
+                    <div class="metric-box">
+                      <span>Telemetry</span>
+                      <strong>Redis Pub/Sub</strong>
+                    </div>
+                    <div class="metric-box">
+                      <span>Research</span>
+                      <strong>HMM / BOCPD</strong>
+                    </div>
+                  </div>
+                  <div class="tag-cloud" style="margin-top: 16px;">
+                    <span class="tag accent">Python CTA</span>
+                    <span class="tag">ccxt</span>
+                    <span class="tag">Redis Channels</span>
+                    <span class="tag">Risk Control</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Right Cards: Colonnade DApp & Solana Fork / SOA Paper -->
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                <article class="project-card" style="flex: 1;">
+                  <div class="card-body" style="padding: 22px 28px;">
+                    <div class="card-header-row">
+                      <h4 class="card-title" style="font-size: 20px;">Colonnade DApp</h4>
+                      <span class="card-year">ETH D3.JS</span>
+                    </div>
+                    <p class="card-desc" style="font-size: 14px; margin-bottom: 12px;">
+                      Ethereum block & gas utilization visualizer built with Wagmi, Viem, and D3 SVG geometry with fallback RPC.
+                    </p>
+                    <div class="tag-cloud">
+                      <span class="tag cyan">Wagmi / Viem</span>
+                      <span class="tag">D3.js SVG</span>
+                      <span class="tag">RPC Fallback</span>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card" style="flex: 1;">
+                  <div class="card-body" style="padding: 22px 28px;">
+                    <div class="card-header-row">
+                      <h4 class="card-title" style="font-size: 20px;">Solana Private Fork & Paper</h4>
+                      <span class="card-year">RUST / GAME THEORY</span>
+                    </div>
+                    <p class="card-desc" style="font-size: 14px; margin-bottom: 12px;">
+                      Private fork inflation redesign, plus consortium blockchain paper published on evolutionary game theory with Mesa ABM.
+                    </p>
+                    <div class="tag-cloud">
+                      <span class="tag emerald">Rust Genesis</span>
+                      <span class="tag">Evolutionary Game</span>
+                      <span class="tag">Mesa ABM</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SCENE 4: EPILOGUE / CONNECT (54.0s - 60.0s)
+             =================================================================== -->
+        <section id="scene-4" class="scene-node clip" data-start="54" data-duration="6">
+          <div class="content-wrapper">
+            <div class="outro-container">
+              <div class="hero-eyebrow">THANK YOU FOR WATCHING</div>
+              <h2 class="outro-heading">
+                ENGINEERING <span>INTELLIGENT</span>, <span>DECENTRALIZED</span> & <span>EXPRESSIVE</span> WORLDS.
+              </h2>
+              <p class="hero-tagline" style="margin-bottom: 20px;">
+                Open to collaborations in AI agent systems, interactive design, and quantitative crypto engineering.
+              </p>
+              <div class="contact-pill-group">
+                <div class="contact-pill">
+                  <span style="color: var(--accent-crimson);">GITHUB</span>
+                  <span>github.com/ChivaLryCieux</span>
+                </div>
+                <div class="contact-pill">
+                  <span style="color: var(--accent-emerald);">EMAIL</span>
+                  <span>chivalrycieux@qq.com</span>
+                </div>
+                <div class="contact-pill">
+                  <span style="color: var(--accent-purple);">LOCATION</span>
+                  <span>Shanghai, China</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Standalone Manual Scrubber Bar (visible for easy browser playback inspection) -->
+  <footer id="standalone-controls">
+    <button id="btn-play">PAUSE</button>
+    <input type="range" id="scrubber" min="0" max="60" step="0.05" value="0">
+    <button data-speed="0.5">0.5x</button>
+    <button data-speed="1.0" style="opacity: 1.0;">1x</button>
+    <button data-speed="2.0">2x</button>
+  </footer>
+
+  <script src="assets/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines['main'] = gsap.timeline({ paused: false, defaults: { ease: "power2.inOut" } });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
