@@ -11,6 +11,7 @@ const optimaFont = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://chivalrycieux.github.io'),
   title: 'Lry | Projects',
   description: '个人项目集',
 };

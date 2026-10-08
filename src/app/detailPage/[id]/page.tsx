@@ -1,9 +1,10 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ProjectGallery } from '@/components/project/ProjectGallery';
 import { ProjectSidebar } from '@/components/project/ProjectSidebar';
 import { SwissProjectPage } from '@/components/project/swiss/SwissProjectPage';
-import { getProjectById } from '@/lib/projects';
+import { getProjectById, getProjects } from '@/lib/projects';
 import styles from '@/components/project/detailPage.module.css';
 
 interface PageProps {
@@ -13,6 +14,41 @@ interface PageProps {
   searchParams: Promise<{
     fromProject?: string;
   }>;
+}
+
+export function generateStaticParams() {
+  return getProjects().map((project) => ({
+    id: String(project.id),
+  }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const project = getProjectById(Number(resolvedParams.id));
+
+  if (!project) {
+    return {
+      title: 'Project Not Found | Lry',
+    };
+  }
+
+  const title = `${project.title} | Lry`;
+  const description = project.description || project.caseStudy?.deck || `${project.title} - ${project.category}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: project.src,
+          alt: project.title,
+        },
+      ],
+    },
+  };
 }
 
 export default async function DetailPage({ params, searchParams }: PageProps) {
