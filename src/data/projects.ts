@@ -3,13 +3,13 @@ import type { ProjectData } from "@/types/project";
 export const projects: ProjectData[] = [
     {
         id: 1,
-        title: "Quidem",
+        title: "Quest",
         year: "2025夏",
         category: "Quant Trading Framework",
         color: "#5a171d",
-        imagePlaceholder: "QD",
+        imagePlaceholder: "QT",
         src: "/images/projects/quidem/quidem-cover.svg",
-        cardTitleLines: ["Quidem", "量化交易CTA系统"],
+        cardTitleLines: ["Quest", "量化交易CTA系统"],
         description: "A personal Python quant trading framework that combines Binance Futures execution, TUI monitoring, Redis-based reporting, risk control, backtesting research, and operational logs.",
         detailImages: [
             "/images/projects/quidem/kmeans_20260106_000544.png",
@@ -20,7 +20,7 @@ export const projects: ProjectData[] = [
         caseStudy: {
             eyebrow: "Personal quant system / Binance futures",
             headline: "A local quant workbench where execution, risk, reporting, and research stay in one reproducible loop.",
-            deck: "Quidem is not a generic PyPI package. It is a personal trading framework that organizes live or paper execution, terminal interaction, Redis status channels, email reports, exchange access, position risk, backtest research, and logs in one repository.",
+            deck: "Quest is not a generic PyPI package. It is a personal trading framework that organizes live or paper execution, terminal interaction, Redis status channels, email reports, exchange access, position risk, backtest research, and logs in one repository.",
             accent: "#c3182d",
             repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
@@ -60,126 +60,13 @@ export const projects: ProjectData[] = [
     },
     {
         id: 2,
-        title: "Colonnade DApp",
-        year: "2025夏",
-        category: "Ethereum Data Visualization",
-        color: "#68141d",
-        imagePlaceholder: "CD",
-        src: "/images/projects/colonnade/colonnade-cover.svg",
-        cardTitleLines: ["Colonnade", "多链数据可视化DApp"],
-        description: "An Ethereum on-chain data visualization DApp built with Vite, React, TypeScript, Wagmi, Viem, and D3.",
-        detailImages: [
-            "/images/projects/colonnade/intro-1.png",
-            "/images/projects/colonnade/intro-2.png"
-        ],
-        template: "swiss-case",
-        caseStudy: {
-            eyebrow: "Ethereum DApp / Realtime block data",
-            headline: "A Swiss-style Ethereum dashboard for recent block activity, gas usage, wallet state, and RPC resilience.",
-            deck: "Colonnade uses Wagmi and Viem to connect browser wallets and query live Ethereum data, then uses D3 scales and path generation to render recent block transaction activity and gas utilization as readable SVG charts.",
-            accent: "#d21f2f",
-            repoPath: "https://github.com/ChivaLryCieux",
-            imageFit: "contain",
-            metrics: [
-                { label: "Recent blocks", value: "12" },
-                { label: "Networks", value: "Mainnet / Sepolia" },
-                { label: "Charts", value: "D3 SVG" },
-                { label: "RPC", value: "Fallback" }
-            ],
-            sections: [
-                {
-                    kicker: "01 / Wallet layer",
-                    title: "Wallet connection and account state are handled through Web3 React hooks.",
-                    body: "WagmiProvider initializes the network configuration, while useConnect, useDisconnect, useAccount, useBlockNumber, useGasPrice, useBalance, and usePublicClient coordinate wallet connection, latest block subscription, gas price, balance reads, and custom RPC queries."
-                },
-                {
-                    kicker: "02 / Data pipeline",
-                    title: "Viem reads the recent chain window directly from RPC and formats Ethereum units.",
-                    body: "The app calculates the latest twelve block numbers from the watched block height, calls publicClient.getBlock for each block, extracts transaction counts, gas used, and gas limits, then formats ETH and Gwei values through Viem utilities."
-                },
-                {
-                    kicker: "03 / Visualization system",
-                    title: "D3 calculates the graphics, React keeps ownership of the DOM.",
-                    body: "D3 scaleBand, scaleLinear, line, curveMonotoneX, and format convert block data into bar positions, gas utilization points, smooth line paths, and compact block labels. The interface keeps a black-white-gray Swiss grid with red status emphasis."
-                }
-            ],
-            highlights: [
-                "Connects browser-injected wallets such as MetaMask through Wagmi.",
-                "Reads current Ethereum block number, gas price, and connected wallet ETH balance.",
-                "Queries recent block transaction counts, gas used, and gas limits through Viem public client calls.",
-                "Uses multiple public mainnet RPC endpoints through fallback transport to reduce rate-limit stalls.",
-                "Builds chart geometry with D3 while rendering the final SVG through React."
-            ],
-            stack: ["Vite", "React", "TypeScript", "Wagmi", "Viem", "D3.js", "React Query", "Ethereum RPC", "SVG"],
-            keywords: ["以太坊", "链上数据", "钱包连接", "Gas 使用率", "D3 可视化", "RPC fallback"]
-        }
-    },
-    {
-        id: 3,
-        title: "Sermon",
-        year: "2025秋",
-        category: "Document & AI Memory",
-        color: "#4c1a1f",
-        imagePlaceholder: "SM",
-        src: "/images/projects/sermon/sermon-cover.svg",
-        cardTitleLines: ["Sermon", "文档与AI记忆管理应用", "基于Avalonia"],
-        description: "An Avalonia-based document and AI memory management application for organizing knowledge, preserving context, and turning writing materials into reusable memory.",
-        detailImages: [
-            "/images/projects/sermon/intro.png",
-            "/images/projects/sermon/sermon-cover.svg"
-        ],
-        template: "swiss-case",
-        caseStudy: {
-            eyebrow: "Document system / AI memory",
-            headline: "A document and AI memory management workspace for keeping knowledge structured, searchable, and reusable.",
-            deck: "Sermon is an Avalonia-based document and AI memory management application that treats writing, reference material, and long-term AI context as one connected workspace. It helps users collect documents, organize reusable knowledge, and preserve the memory needed for future AI-assisted work.",
-            accent: "#b61f2a",
-            repoPath: "https://github.com/ChivaLryCieux",
-            imageFit: "contain",
-            metrics: [
-                { label: "Framework", value: "Avalonia" },
-                { label: "Domain", value: "Documents" },
-                { label: "Focus", value: "AI memory" },
-                { label: "Structure", value: "Knowledge base" }
-            ],
-            sections: [
-                {
-                    kicker: "01 / Document memory",
-                    title: "Documents become durable memory rather than isolated files.",
-                    body: "Sermon positions documents as reusable knowledge units. Notes, drafts, references, and project materials can be organized so the content remains available as long-term context instead of disappearing after a single AI conversation."
-                },
-                {
-                    kicker: "02 / AI context",
-                    title: "AI memory management keeps context explicit and portable.",
-                    body: "The application focuses on maintaining structured memory for AI-assisted workflows, making it easier to curate background knowledge, preserve decisions, and reuse stable context across future writing, research, and planning sessions."
-                },
-                {
-                    kicker: "03 / Avalonia workspace",
-                    title: "The Avalonia interface links writing, retrieval, and memory curation.",
-                    body: "After moving from WPF to Avalonia, Sermon is positioned as a modern cross-platform desktop workspace around the practical loop of collecting documents, refining them into usable knowledge, and sending the right memory back into AI workflows when context quality matters."
-                }
-            ],
-            highlights: [
-                "Reframes documents as long-term AI memory assets rather than one-off writing files.",
-                "Supports knowledge organization for notes, references, drafts, and project materials.",
-                "Keeps reusable context explicit so AI workflows can start from maintained memory.",
-                "Connects document management with curation, retrieval, and future context reuse.",
-                "Uses Avalonia as the desktop UI framework after migrating away from WPF.",
-                "Targets writers, researchers, builders, and AI-heavy workflows that depend on persistent knowledge."
-            ],
-            stack: ["Avalonia", "Document management", "AI memory", "Knowledge base", "Context curation", "Retrieval workflow", "Persistent knowledge"],
-            keywords: ["Avalonia", "文档管理", "AI 记忆", "知识库", "上下文复用", "记忆管理"]
-        }
-    },
-    {
-        id: 4,
-        title: "Hyacinth",
+        title: "Atrium",
         year: "2025冬",
         category: "DAG Multi-agent Orchestration",
         color: "#123f38",
-        imagePlaceholder: "HY",
+        imagePlaceholder: "AT",
         src: "/images/projects/hyacinth/hyacinth-cover.svg",
-        cardTitleLines: ["Hyacinth", "跨平台智能体编排应用", "基于Tauri"],
+        cardTitleLines: ["Atrium", "跨平台智能体编排应用", "基于Tauri"],
         description: "A DAG-based cross-platform multi-agent orchestration application for designing, running, and coordinating agent workflows across devices.",
         detailImages: [
             "/images/projects/hyacinth/Hyacinth-intro.png",
@@ -189,7 +76,7 @@ export const projects: ProjectData[] = [
         caseStudy: {
             eyebrow: "DAG orchestration / Multi-agent",
             headline: "A cross-platform orchestration application that uses DAG workflows to coordinate multiple AI agents.",
-            deck: "Hyacinth is a DAG-based cross-platform multi-agent orchestration application. Instead of treating agents as parallel chat participants only, it models agent work as directed workflow nodes with explicit dependencies, execution order, and reusable orchestration patterns.",
+            deck: "Atrium is a DAG-based cross-platform multi-agent orchestration application. Instead of treating agents as parallel chat participants only, it models agent work as directed workflow nodes with explicit dependencies, execution order, and reusable orchestration patterns.",
             accent: "#146c5f",
             repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
@@ -203,7 +90,7 @@ export const projects: ProjectData[] = [
                 {
                     kicker: "01 / DAG workflow",
                     title: "Agent work is represented as a directed graph with clear dependencies.",
-                    body: "Hyacinth uses DAG structure to make multi-agent coordination explicit. Each node can represent an agent task, transformation, or decision step, while graph edges define how outputs move through the workflow."
+                    body: "Atrium uses DAG structure to make multi-agent coordination explicit. Each node can represent an agent task, transformation, or decision step, while graph edges define how outputs move through the workflow."
                 },
                 {
                     kicker: "02 / Multi-agent orchestration",
@@ -213,7 +100,7 @@ export const projects: ProjectData[] = [
                 {
                     kicker: "03 / Cross-platform runtime",
                     title: "The orchestration surface is designed to travel across desktop and mobile environments.",
-                    body: "Hyacinth is positioned as a cross-platform control layer for agent workflows, allowing orchestration logic to remain consistent while the interface adapts across supported device targets."
+                    body: "Atrium is positioned as a cross-platform control layer for agent workflows, allowing orchestration logic to remain consistent while the interface adapts across supported device targets."
                 }
             ],
             highlights: [
@@ -228,70 +115,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 5,
-        title: "Lilac-CLI",
-        year: "2026春",
-        category: "TUI Agent",
-        color: "#4a2b22",
-        imagePlaceholder: "LC",
-        src: "/images/projects/lilac/lilac-cover.svg",
-        cardTitleLines: ["Lilac", "终端智能体CLI工具", "基于Bun+Ink"],
-        description: "A Bun and Ink based terminal agent framework extended with a harness layer for LangGraph and OpenAI Agents SDK experiments, skill-driven behavior, streaming responses, and live token cost awareness.",
-        detailImages: [
-            "/images/projects/lilac/intro.png",
-            "/images/projects/lilac/lilac-system.svg"
-        ],
-        template: "swiss-case",
-        caseStudy: {
-            eyebrow: "Terminal intelligence / Agent harness",
-            headline: "A command-line agent workspace for designing, running, and comparing agent behavior.",
-            deck: "Lilac-CLI turns Markdown skill files into swappable agent identities, while the added harness project gives LangGraph and OpenAI Agents SDK workflows a local place to be exercised, inspected, and refined.",
-            accent: "#7f5cff",
-            repoPath: "https://github.com/ChivaLryCieux",
-            imageFit: "contain",
-            metrics: [
-                { label: "Runtime", value: "Bun" },
-                { label: "Interface", value: "Ink" },
-                { label: "Skill format", value: ".md" },
-                { label: "Agent layer", value: "LangGraph / Agents SDK" }
-            ],
-            sections: [
-                {
-                    kicker: "01 / Product premise",
-                    title: "Agent identity becomes a local, versionable design surface.",
-                    body: "Instead of baking behavior into code, Lilac loads persona, model, temperature, and constraints from Markdown frontmatter. A new assistant mode can be created by adding a skill file, while harness runs keep those behaviors testable outside a single chat session."
-                },
-                {
-                    kicker: "02 / Interface system",
-                    title: "React patterns brought into the terminal without losing terminal speed.",
-                    body: "The UI is composed with Ink components for header, message list, input, spinner states, and streaming text. The result feels closer to a professional developer tool than a plain prompt loop."
-                },
-                {
-                    kicker: "03 / Agent harness",
-                    title: "LangGraph and OpenAI Agents SDK workflows can be exercised as engineering artifacts.",
-                    body: "The harness project adds a separate layer for structured agent experiments, making graph-based flows, SDK-driven tool calls, and repeatable behavior checks easier to run without disturbing the terminal interface."
-                },
-                {
-                    kicker: "04 / Operating feedback",
-                    title: "Live token estimation makes model usage visible during the session.",
-                    body: "A lightweight token utility feeds the header cost monitor, so the interface keeps both conversation state and resource pressure visible while responses stream."
-                }
-            ],
-            highlights: [
-                "Markdown skills define agent persona, model, temperature, and instruction constraints.",
-                "A harness project separates agent workflow experiments from the core terminal interface.",
-                "LangGraph supports graph-shaped orchestration for multi-step and multi-agent behavior.",
-                "OpenAI Agents SDK integration gives the project a path toward typed tools, handoffs, and traceable agent runs.",
-                "Provider-agnostic API client works with OpenAI-style services including GPT, DeepSeek, and local Ollama-compatible endpoints.",
-                "Gradient terminal typography, side-line message layout, and loading motion give the CLI a designed, premium feel.",
-                "Bun keeps startup and TypeScript execution tight enough for daily command-line use."
-            ],
-            stack: ["Bun", "TypeScript", "React", "Ink", "LangGraph", "OpenAI Agents SDK", "gray-matter", "ink-text-input", "ink-spinner", "OpenAI-compatible APIs"],
-            keywords: ["终端智能体", "Harness 工程", "LangGraph", "Agents SDK", "技能驱动", "流式交互", "实时成本", "本地优先"]
-        }
-    },
-    {
-        id: 6,
+        id: 3,
         title: "Solana Private Fork Economics",
         year: "2026春",
         category: "Blockchain R&D",
@@ -346,7 +170,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 7,
+        id: 4,
         title: "Consortium Blockchain for SOA Governance",
         year: "2026春",
         category: "Paper / 论文研究",
@@ -424,7 +248,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 8,
+        id: 5,
         title: "Aftermath: 具身隐喻与空间诗学的叙事游戏",
         year: "2025冬",
         category: "Game Design",
@@ -444,7 +268,7 @@ export const projects: ProjectData[] = [
         ]
     },
     {
-        id: 9,
+        id: 6,
         title: "Signverse：联觉理论下的多模态叙事游戏",
         year: "2026春",
         category: "Game Design",

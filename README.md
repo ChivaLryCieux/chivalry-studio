@@ -99,7 +99,7 @@ npm run dev
 - 首页固定 UI、进度条、项目卡片拆成 `src/components/home` 下的独立组件。
 - 项目数据类型定义在 `src/types/project.ts`，并通过 `src/lib/projects.ts` 提供统一访问方法。
 - 通用详情页使用 `ProjectGallery` 和 `ProjectSidebar`，研究/叙事类项目可使用专门模板组件。
-- `public/images/projects/hyacinth/Hyacinth-intro.png` 用作 Hyacinth 详情介绍图。
+- `public/images/projects/hyacinth/Hyacinth-intro.png` 用作 Atrium 详情介绍图。
 - `public/images/projects/soa/SOA-display.png` 用作联盟链论文项目的陈列与详情主图。
 
 ## 可用命令
