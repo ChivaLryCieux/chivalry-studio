@@ -11,7 +11,7 @@ export function ProjectSidebar({ project }: ProjectSidebarProps) {
             <div className={styles.sidebarInner}>
                 <div className={styles.titleBlock}>
                     <div className={styles.projectMeta}>
-                        0{project.id} / {project.category}
+                        {String(project.id).padStart(2, '0')} / {project.category}
                     </div>
                     <h1 className={styles.projectTitle}>{project.title || "Untitled"}</h1>
                 </div>

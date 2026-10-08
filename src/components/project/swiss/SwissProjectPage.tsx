@@ -13,8 +13,8 @@ export function SwissProjectPage({ project, returnProjectId = project.id }: Swis
     const caseStudy = project.caseStudy;
     const images = Array.from(new Set((project.detailImages ?? []).filter((image) => image !== project.src)));
     const shouldContainImages = caseStudy?.imageFit === "contain";
-    const isBilingualCase = project.src.includes("/soa/");
-    const useLightFrame = project.src.includes("/soa/");
+    const isBilingualCase = caseStudy?.isBilingual ?? project.isBilingual ?? false;
+    const useLightFrame = caseStudy?.useLightFrame ?? project.useLightFrame ?? false;
 
     if (!caseStudy) {
         return null;
@@ -34,7 +34,7 @@ export function SwissProjectPage({ project, returnProjectId = project.id }: Swis
             <section className={styles.hero}>
                 <div className={styles.heroMeta}>
                     <span>{caseStudy.eyebrow}</span>
-                    <span>0{project.id}</span>
+                    <span>{String(project.id).padStart(2, "0")}</span>
                 </div>
                 <div className={styles.heroGrid}>
                 <div className={styles.heroCopy}>

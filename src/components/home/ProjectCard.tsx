@@ -40,7 +40,7 @@ export function ProjectCard({ activeIndex, index, project, totalProjects }: Proj
             alt={project.title}
             fill
             sizes="100vw"
-            className={`${styles.realImage} ${project.src.includes('/soa/') ? styles.realImageTop : ''}`}
+            className={`${styles.realImage} ${project.coverPosition === 'top' ? styles.realImageTop : ''}`}
             priority={index === 0}
           />
         </div>

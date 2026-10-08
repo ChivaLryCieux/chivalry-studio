@@ -360,6 +360,9 @@ export const projects: ProjectData[] = [
             "/images/projects/soa/SOA-display.png"
         ],
         template: "swiss-case",
+        coverPosition: "top",
+        isBilingual: true,
+        useLightFrame: true,
         caseStudy: {
             eyebrow: "Research Paper / 学术论文",
             headline: "Consortium Blockchain for State-Owned Asset Transaction Polycentric Governance\n国有资产交易复合治理的联盟链框架",
@@ -367,6 +370,8 @@ export const projects: ProjectData[] = [
             accent: "#b61f2a",
             repoPath: "DOI: 10.5281/zenodo.19202351",
             imageFit: "contain",
+            isBilingual: true,
+            useLightFrame: true,
             metrics: [
                 { label: "Compliance\n合规收敛", value: "85.2%" },
                 { label: "Convergence\n收敛迭代", value: "30 steps" },

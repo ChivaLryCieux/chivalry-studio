@@ -11,6 +11,9 @@ export interface ProjectData {
   content?: string;
   detailImages?: string[];
   template?: 'gallery' | 'swiss-case';
+  coverPosition?: 'center' | 'top';
+  isBilingual?: boolean;
+  useLightFrame?: boolean;
   caseStudy?: {
     eyebrow: string;
     headline: string;
@@ -30,5 +33,7 @@ export interface ProjectData {
     stack: string[];
     keywords?: string[];
     imageFit?: 'cover' | 'contain';
+    isBilingual?: boolean;
+    useLightFrame?: boolean;
   };
 }
