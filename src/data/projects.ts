@@ -286,5 +286,20 @@ export const projects: ProjectData[] = [
             "/images/projects/signverse/8.png",
             "/images/projects/signverse/9.png"
         ]
+    },
+    {
+        id: 7,
+        title: "Avoidant Syndrome",
+        year: "2026",
+        category: "Game Design",
+        color: "#141419",
+        imagePlaceholder: "AS",
+        src: "/images/projects/avoidant/cover.svg",
+        cardTitleLines: ["Avoidant", "Syndrome", "回避综合征"],
+        description: "A narrative exploration & atmospheric game built with Unity. In development.",
+        content: "Avoidant Syndrome is an upcoming narrative and spatial exploration game focusing on embodied metaphors and psychological architecture. Detailed design documents and visual teasers will be unveiled soon.",
+        detailImages: [
+            "/images/projects/avoidant/cover.svg"
+        ]
     }
 ];

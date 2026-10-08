@@ -72,7 +72,7 @@ export default async function DetailPage({ params, searchParams }: PageProps) {
   return (
     <main className={styles.page}>
       <nav className={styles.nav}>
-        <Link href={`/displayPage?project=${returnProjectId}`} className={styles.navLink}>
+        <Link href={`/?project=${returnProjectId}`} className={styles.navLink}>
           WORKS
         </Link>
       </nav>

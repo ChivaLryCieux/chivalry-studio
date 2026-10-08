@@ -1,0 +1,30 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#141419"/>
+  <rect x="90" y="90" width="1420" height="720" stroke="#E6E6EB" stroke-width="8"/>
+  <rect x="90" y="90" width="1420" height="150" fill="#1B1B22"/>
+  <line x1="90" y1="240" x2="1510" y2="240" stroke="#E6E6EB" stroke-width="4"/>
+  <rect x="130" y="130" width="70" height="70" fill="#7AA2F7"/>
+  <text x="230" y="185" fill="#E6E6EB" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="900" letter-spacing="2">AVOIDANT SYNDROME</text>
+  <text x="1150" y="178" fill="#7AA2F7" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">GAME DESIGN / UNITY</text>
+
+  <!-- Left Main Content -->
+  <text x="130" y="380" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="900">回避综合征</text>
+  <text x="130" y="460" fill="#A9B1D6" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">A Narrative Exploration &amp; Atmospheric Game</text>
+
+  <rect x="130" y="520" width="460" height="2" fill="#7AA2F7"/>
+  <text x="130" y="580" fill="#7AA2F7" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">PSYCHOLOGICAL ARCHITECTURE</text>
+  <text x="130" y="626" fill="#A9B1D6" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">EMBODIED METAPHOR / INTERACTIVE NARRATIVE</text>
+  <text x="130" y="720" fill="#565F89" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">IN DEVELOPMENT / 2026</text>
+
+  <!-- Right Geometric / Conceptual Art -->
+  <rect x="820" y="310" width="560" height="420" stroke="#2E3346" stroke-width="4" stroke-dasharray="12 12"/>
+  <circle cx="1100" cy="520" r="140" stroke="#7AA2F7" stroke-width="4" fill="none"/>
+  <circle cx="1100" cy="520" r="80" stroke="#BB9AF7" stroke-width="2" fill="none"/>
+  <circle cx="1100" cy="520" r="16" fill="#7AA2F7"/>
+  <line x1="820" y1="520" x2="1380" y2="520" stroke="#2E3346" stroke-width="2"/>
+  <line x1="1100" y1="310" x2="1100" y2="730" stroke="#2E3346" stroke-width="2"/>
+
+  <!-- Coordinates & Tech Labels -->
+  <text x="840" y="350" fill="#565F89" font-family="Courier New, monospace" font-size="18">SYS.LOC: [31.2304° N, 121.4737° E]</text>
+  <text x="840" y="700" fill="#565F89" font-family="Courier New, monospace" font-size="18">STATE: UNVEILING SOON</text>
+</svg>

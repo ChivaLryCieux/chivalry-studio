@@ -2,7 +2,7 @@
   <rect width="1600" height="900" fill="#F5F3ED"/>
   <rect x="90" y="90" width="1420" height="720" stroke="#111111" stroke-width="16"/>
   <path d="M90 256H1510" stroke="#111111" stroke-width="12"/>
-  <text x="126" y="188" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">HYACINTH</text>
+  <text x="126" y="188" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">ATRIUM</text>
   <text x="930" y="176" fill="#146C5F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">TAURI 2 / RUST</text>
   <text x="126" y="392" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">跨平台</text>
   <text x="126" y="498" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">智能体编排</text>

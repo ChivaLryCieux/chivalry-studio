@@ -122,7 +122,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
       return;
     }
 
-    const nextUrl = `/displayPage?project=${currentProject.id}`;
+    const nextUrl = `/?project=${currentProject.id}`;
     const requestedProjectId = Number(new URLSearchParams(window.location.search).get('project'));
 
     if (Number.isFinite(requestedProjectId) && requestedProjectId !== currentProject.id) {

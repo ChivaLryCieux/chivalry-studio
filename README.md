@@ -88,7 +88,7 @@ npm run dev
 
 ## 导航行为
 
-- 陈列页地址会携带当前项目：`/displayPage?project=<id>`。
+- 陈列页地址会携带当前项目：`/?project=<id>`（`/displayPage` 自动兼容重定向到根目录）。
 - 从陈列卡片进入详情页时，会携带来源项目：`/detailPage/<id>?fromProject=<id>`。
 - 详情页左上角 `WORKS` 会返回来源项目对应的陈列位置，而不是总是回到第一个项目。
 - `/project/[id]` 仍保留为兼容入口，会重定向到 `/detailPage/[id]`。

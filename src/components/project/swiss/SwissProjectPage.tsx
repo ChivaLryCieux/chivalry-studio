@@ -27,7 +27,7 @@ export function SwissProjectPage({ project, returnProjectId = project.id }: Swis
     return (
         <main className={styles.page} style={pageStyle}>
             <nav className={styles.nav}>
-                <Link href={`/displayPage?project=${returnProjectId}`} className={styles.navLink}>{isBilingualCase ? "WORKS / 项目" : "WORKS"}</Link>
+                <Link href={`/?project=${returnProjectId}`} className={styles.navLink}>{isBilingualCase ? "WORKS / 项目" : "WORKS"}</Link>
                 <span>{project.year}</span>
             </nav>
 

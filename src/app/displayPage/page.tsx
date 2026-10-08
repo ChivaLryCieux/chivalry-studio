@@ -1,4 +1,4 @@
-import { DisplayPage } from '@/components/home/DisplayPage';
+import { redirect } from 'next/navigation';
 
 interface DisplayPageRouteProps {
   searchParams: Promise<{
@@ -8,8 +8,6 @@ interface DisplayPageRouteProps {
 
 export default async function DisplayPageRoute({ searchParams }: DisplayPageRouteProps) {
   const resolvedSearchParams = await searchParams;
-  const initialProjectId = Number(resolvedSearchParams.project);
-  const displayProjectId = Number.isFinite(initialProjectId) ? initialProjectId : undefined;
-
-  return <DisplayPage key={displayProjectId ?? 'default'} initialProjectId={displayProjectId} />;
+  const projectParam = resolvedSearchParams.project ? `?project=${resolvedSearchParams.project}` : '';
+  redirect(`/${projectParam}`);
 }
