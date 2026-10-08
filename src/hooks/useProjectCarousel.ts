@@ -27,31 +27,31 @@ function getLoopedIndex(index: number, total: number) {
 
 export function useProjectCarousel(projects: ProjectData[], initialProjectId?: number) {
   const [activeIndex, setActiveIndex] = useState(() => getInitialIndex(projects, initialProjectId));
-  const [isAnimating, setIsAnimating] = useState(false);
+  const isAnimatingRef = useRef(false);
   const touchStartY = useRef(0);
   const animationTimeoutRef = useRef<number | null>(null);
   const safeIndex = getLoopedIndex(activeIndex, projects.length);
 
-  const lockAnimation = () => {
-    setIsAnimating(true);
+  const lockAnimation = useCallback(() => {
+    isAnimatingRef.current = true;
     if (animationTimeoutRef.current) {
       window.clearTimeout(animationTimeoutRef.current);
     }
 
     animationTimeoutRef.current = window.setTimeout(() => {
-      setIsAnimating(false);
+      isAnimatingRef.current = false;
       animationTimeoutRef.current = null;
     }, SLIDE_TRANSITION_MS);
-  };
+  }, []);
 
   const changeSlide = useCallback((direction: 'next' | 'prev') => {
-    if (isAnimating || projects.length === 0) {
+    if (isAnimatingRef.current || projects.length === 0) {
       return;
     }
 
     lockAnimation();
     setActiveIndex((prev) => getLoopedIndex(prev + (direction === 'next' ? 1 : -1), projects.length));
-  }, [isAnimating, projects.length]);
+  }, [lockAnimation, projects.length]);
 
   const goToProject = useCallback((projectId?: number) => {
     setActiveIndex(getInitialIndex(projects, projectId));

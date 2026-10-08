@@ -62,7 +62,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
   }, []);
 
   useEffect(() => {
-    if (!currentProject) {
+    if (sceneReady || !currentProject) {
       return;
     }
 
@@ -97,7 +97,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     return () => {
       cancelled = true;
     };
-  }, [currentProject]);
+  }, [currentProject, sceneReady]);
 
   useEffect(() => {
     const syncProjectFromUrl = () => {
