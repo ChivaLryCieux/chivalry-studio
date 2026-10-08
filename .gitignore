@@ -47,6 +47,8 @@ next-env.d.ts
 
 .idea/
 
-# video exports
+# video exports & campus
 /video/dist/
+/video/campus/
+dist/
 *.mp4
