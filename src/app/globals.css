@@ -2,6 +2,7 @@
     --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --transition-speed: 0.6s;
     --text-color: #ffffff;
+    --font-serif: var(--font-sans);
     /* 图片中文字是白色的 */
 }
 
