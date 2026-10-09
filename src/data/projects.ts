@@ -66,52 +66,52 @@ export const projects: ProjectData[] = [
         color: "#123f38",
         imagePlaceholder: "AT",
         src: "/images/projects/hyacinth/hyacinth-cover.svg",
-        cardTitleLines: ["Atrium", "跨平台智能体编排应用", "基于Tauri"],
-        description: "A DAG-based cross-platform multi-agent orchestration application for designing, running, and coordinating agent workflows across devices.",
+        cardTitleLines: ["Atrium", "AI Harness"],
+        description: "基于 DSH（DeepSeek Harness）内核的 Agent 项目，结合 DAG 工作流实现跨平台多智能体协同编排与运行调度。",
         detailImages: [
             "/images/projects/hyacinth/Hyacinth-intro.png",
             "/images/projects/hyacinth/hyacinth-cover.svg"
         ],
         template: "swiss-case",
         caseStudy: {
-            eyebrow: "DAG orchestration / Multi-agent",
-            headline: "A cross-platform orchestration application that uses DAG workflows to coordinate multiple AI agents.",
-            deck: "Atrium is a DAG-based cross-platform multi-agent orchestration application. Instead of treating agents as parallel chat participants only, it models agent work as directed workflow nodes with explicit dependencies, execution order, and reusable orchestration patterns.",
+            eyebrow: "DSH Agent / Multi-agent DAG",
+            headline: "An AI Agent project powered by the DSH (DeepSeek Harness) core, orchestrating multi-agent systems via DAG workflows.",
+            deck: "Atrium is an AI Agent project built on the DSH (DeepSeek Harness) core. Instead of treating agents as simple chat participants, it leverages DAG-based orchestration to model agent tasks as directed workflow nodes with explicit dependencies, execution order, and reusable patterns across platforms.",
             accent: "#146c5f",
             repoPath: "https://github.com/ChivaLryCieux",
             imageFit: "contain",
             metrics: [
-                { label: "Model", value: "DAG" },
-                { label: "Role", value: "Orchestrator" },
-                { label: "Agents", value: "Multi-agent" },
+                { label: "Core", value: "DSH (DeepSeek Harness)" },
+                { label: "Workflow", value: "DAG" },
+                { label: "Role", value: "Agent Orchestrator" },
                 { label: "Target", value: "Cross-platform" }
             ],
             sections: [
                 {
-                    kicker: "01 / DAG workflow",
-                    title: "Agent work is represented as a directed graph with clear dependencies.",
-                    body: "Atrium uses DAG structure to make multi-agent coordination explicit. Each node can represent an agent task, transformation, or decision step, while graph edges define how outputs move through the workflow."
+                    kicker: "01 / DSH Core",
+                    title: "Built on the DSH (DeepSeek Harness) core for reliable agent execution.",
+                    body: "Atrium adopts the DeepSeek Harness (DSH) kernel to power its underlying agent reasoning, lifecycle control, and runtime execution, ensuring a robust and extensible harness layer for autonomous task execution."
                 },
                 {
-                    kicker: "02 / Multi-agent orchestration",
-                    title: "Multiple agents can be composed into repeatable execution patterns.",
-                    body: "The application positions agents as coordinated workers rather than isolated chat windows. A workflow can route context between agents, sequence specialized responsibilities, and make collaboration between models easier to inspect and reuse."
+                    kicker: "02 / DAG orchestration",
+                    title: "Agent work is represented as a directed graph with clear dependencies.",
+                    body: "Atrium uses DAG structure to make multi-agent coordination explicit. Each node can represent an agent task, transformation, or decision step, while graph edges define how context and outputs flow through the workflow."
                 },
                 {
                     kicker: "03 / Cross-platform runtime",
                     title: "The orchestration surface is designed to travel across desktop and mobile environments.",
-                    body: "Atrium is positioned as a cross-platform control layer for agent workflows, allowing orchestration logic to remain consistent while the interface adapts across supported device targets."
+                    body: "Packaged as a lightweight cross-platform application, Atrium provides a unified control interface for agent workflows, keeping orchestration logic consistent across supported devices."
                 }
             ],
             highlights: [
+                "Built on the DSH (DeepSeek Harness) core for agent runtime execution and lifecycle management.",
                 "Uses DAG structure to model agent dependencies, execution order, and data flow.",
-                "Coordinates multiple AI agents as a workflow instead of a loose group chat.",
+                "Coordinates multiple AI agents as a structured workflow instead of a loose group chat.",
                 "Supports reusable orchestration patterns for complex AI-assisted tasks.",
-                "Keeps agent responsibilities and handoffs visible through graph-based composition.",
                 "Targets cross-platform use so the same orchestration logic can run across device contexts."
             ],
-            stack: ["Tauri 2", "DAG", "Multi-agent orchestration", "Cross-platform app", "Workflow graph", "Agent routing", "Task coordination"],
-            keywords: ["DAG", "多智能体编排", "跨平台应用", "工作流图", "智能体协作", "任务依赖"]
+            stack: ["DSH (DeepSeek Harness)", "Agent Harness", "Tauri 2", "DAG", "Multi-agent orchestration", "Cross-platform app", "Workflow graph", "Task coordination"],
+            keywords: ["DSH", "DeepSeek Harness", "Agent项目", "AI Harness", "DAG", "多智能体编排", "跨平台应用", "工作流图"]
         }
     },
     {
@@ -295,7 +295,7 @@ export const projects: ProjectData[] = [
         color: "#141419",
         imagePlaceholder: "AS",
         src: "/images/projects/avoidant/cover.svg",
-        cardTitleLines: ["Avoidant", "Syndrome", "回避综合征"],
+        cardTitleLines: ["Avoidant", "Syndrome", "回避症候"],
         description: "A narrative exploration & atmospheric game built with Unity. In development.",
         content: "Avoidant Syndrome is an upcoming narrative and spatial exploration game focusing on embodied metaphors and psychological architecture. Detailed design documents and visual teasers will be unveiled soon.",
         detailImages: [
