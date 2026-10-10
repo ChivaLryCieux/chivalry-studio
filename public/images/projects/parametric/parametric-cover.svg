@@ -1,0 +1,74 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#0C1017"/>
+  
+  <!-- Outer Swiss Framing Grid -->
+  <rect x="80" y="80" width="1440" height="740" stroke="#263142" stroke-width="2"/>
+  <rect x="80" y="80" width="1440" height="130" fill="#131B26"/>
+  <line x1="80" y1="210" x2="1520" y2="210" stroke="#263142" stroke-width="2"/>
+
+  <!-- Header Section -->
+  <rect x="120" y="118" width="54" height="54" fill="#38BDF8"/>
+  <text x="194" y="158" fill="#F1F5F9" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900" letter-spacing="2">PARAMETRIC DESIGN</text>
+  <text x="1100" y="156" fill="#38BDF8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="1">COMPUTATIONAL ARCHITECTURE / GH</text>
+
+  <!-- Left Content Area -->
+  <text x="120" y="310" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">参数化设计实践</text>
+  <text x="120" y="380" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">Algorithmic Form, Topology &amp; Rationalization</text>
+
+  <rect x="120" y="430" width="480" height="2" fill="#38BDF8"/>
+
+  <!-- Left Metadata -->
+  <text x="120" y="480" fill="#38BDF8" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" letter-spacing="1">GENERATIVE MORPHOGENESIS</text>
+  <text x="120" y="520" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500">拓扑优化 · 网格松弛 · 嵌板有理化</text>
+  <text x="120" y="555" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400">Rule-based form-finding and performance loop</text>
+
+  <!-- Spec Badges -->
+  <g transform="translate(120, 620)">
+    <rect x="0" y="0" width="160" height="56" fill="#16202E" stroke="#334155" stroke-width="1"/>
+    <text x="18" y="24" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">FRAMEWORK</text>
+    <text x="18" y="44" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800">GH / Python</text>
+
+    <rect x="176" y="0" width="160" height="56" fill="#16202E" stroke="#334155" stroke-width="1"/>
+    <text x="194" y="24" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">STATUS</text>
+    <text x="194" y="44" fill="#38BDF8" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800">In Practice</text>
+
+    <rect x="352" y="0" width="160" height="56" fill="#16202E" stroke="#334155" stroke-width="1"/>
+    <text x="370" y="24" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">GEOMETRY</text>
+    <text x="370" y="44" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800">NURBS / Mesh</text>
+  </g>
+
+  <text x="120" y="750" fill="#475569" font-family="Courier New, monospace" font-size="16">INDEX: #08 // REPRODUCIBLE GEOMETRIC COMPUTATION</text>
+
+  <!-- Right Geometric Generative Field / Parametric Wireframe -->
+  <g transform="translate(760, 260)">
+    <!-- Boundary Box -->
+    <rect x="0" y="0" width="680" height="490" fill="#0E141D" stroke="#1E293B" stroke-width="2"/>
+    
+    <!-- Parametric Contour Lines (Wavy algorithmic layers) -->
+    <path d="M40 380 Q 180 320, 340 370 T 640 340" stroke="#1E293B" stroke-width="1.5" fill="none"/>
+    <path d="M40 350 Q 180 280, 340 340 T 640 300" stroke="#253549" stroke-width="1.5" fill="none"/>
+    <path d="M40 320 Q 180 240, 340 310 T 640 260" stroke="#2E435D" stroke-width="1.5" fill="none"/>
+    <path d="M40 290 Q 180 200, 340 280 T 640 220" stroke="#355375" stroke-width="2" fill="none"/>
+    <path d="M40 260 Q 180 160, 340 250 T 640 180" stroke="#38BDF8" stroke-width="2.5" fill="none"/>
+    <path d="M40 230 Q 180 120, 340 220 T 640 140" stroke="#60A5FA" stroke-width="2" fill="none"/>
+    <path d="M40 200 Q 180 80, 340 190 T 640 100" stroke="#818CF8" stroke-width="1.5" fill="none"/>
+    <path d="M40 170 Q 180 40, 340 160 T 640 60" stroke="#253549" stroke-width="1.5" fill="none"/>
+
+    <!-- Mesh Transversal Ribs -->
+    <line x1="120" y1="410" x2="120" y2="70" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="220" y1="410" x2="220" y2="70" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="320" y1="410" x2="320" y2="70" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="420" y1="410" x2="420" y2="70" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="520" y1="410" x2="520" y2="70" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+
+    <!-- Nodes on main crest line -->
+    <circle cx="180" cy="160" r="5" fill="#38BDF8"/>
+    <circle cx="340" cy="250" r="5" fill="#38BDF8"/>
+    <circle cx="500" cy="200" r="5" fill="#38BDF8"/>
+
+    <!-- Coordinate Annotations -->
+    <text x="40" y="445" fill="#64748B" font-family="Courier New, monospace" font-size="13">UV.DOMAIN: [u ∈ (0, 1), v ∈ (0, 1)]</text>
+    <text x="440" y="445" fill="#38BDF8" font-family="Courier New, monospace" font-size="13">F(u,v) = MORPH_SOLVER</text>
+  </g>
+</svg>
