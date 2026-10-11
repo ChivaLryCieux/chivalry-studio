@@ -3,6 +3,152 @@ import type { ProjectData } from "@/types/project";
 export const projects: ProjectData[] = [
     {
         id: 1,
+        title: "GloryLink Studio Works",
+        year: "2015秋",
+        category: "UGC 游戏设计与用户生成内容模式",
+        color: "#241812",
+        imagePlaceholder: "GL",
+        src: "/images/projects/glorylink/glorylink-cover.svg",
+        cardTitleLines: ["GloryLink", "耀临工作室", "系列作品"],
+        description: "2015年秋耀临工作室（GloryLink）系列视觉与文创设计作品回顾。A retrospective of creative works, branding, and visual design by GloryLink Studio in Autumn 2015.",
+        detailImages: [
+            "/images/projects/glorylink/glorylink-cover.svg"
+        ],
+        template: "swiss-case",
+        isBilingual: true,
+        caseStudy: {
+            eyebrow: "Creative Studio / 视觉与文创设计",
+            headline: "GloryLink Studio Works: Creative Identity & Visual Artifacts\n耀临工作室系列作品：品牌视觉与文创设计实践",
+            deck: "A comprehensive design retrospective of GloryLink Studio from Autumn 2015, spanning identity design, editorial layouts, and creative physical artifacts.\n2015年秋耀临工作室（GloryLink）早期设计实践的系列作品集，涵盖品牌标识构建、版式编排及文创实体周边设计，见证早期创意探索与视觉系统构建。",
+            accent: "#d97706",
+            repoPath: "GloryLink Creative Archives / 2015",
+            imageFit: "contain",
+            isBilingual: true,
+            metrics: [
+                { label: "Era\n创作时期", value: "Autumn 2015\n2015年秋" },
+                { label: "Domain\n设计门类", value: "Visual Identity\n品牌与文创" },
+                { label: "Medium\n媒介形式", value: "Print & Artifacts\n平面与实体" },
+                { label: "Archive\n归档状态", value: "Archived\n经典回顾" }
+            ],
+            sections: [
+                {
+                    kicker: "01 / Visual Identity 品牌识别",
+                    title: "Establishing core identity and visual grammar.\n建立核心品牌标识与视觉语法。",
+                    body: "Developing a distinctive graphic language for GloryLink Studio, blending modern typographic hierarchy with symbolic brand iconography.\n探索耀临工作室的专属视觉识别系统，将严谨的现代版式层级与具象征意义的图形语言结合，建立统一的品牌形象基调与视觉表达。"
+                },
+                {
+                    kicker: "02 / Editorial & Print 版式与印刷",
+                    title: "Grid precision across editorial materials.\n基于网格系统的出版物与物料设计。",
+                    body: "Focusing on information density, layout rhythm, and paper-based tactile presentation across booklets, posters, and promotional items.\n在宣传册、海报与刊物设计中注重信息网格密度与视觉律动，探索纸张工艺与排版节奏结合的实体触感与传播效度。"
+                },
+                {
+                    kicker: "03 / Creative Merchandise 文创与衍生品",
+                    title: "Extending design philosophy into physical artifacts.\n将设计哲学延伸至文创实体载体。",
+                    body: "Translating graphic themes into customized physical merchandise and collectibles, completing the studio's early creative ecosystem.\n将平面设计主题衍生为定制文创产品与实体周边，打通从二维图形到三维工艺载体的完整创意落地流程。"
+                }
+            ],
+            highlights: [
+                "Defined the foundational visual identity system for GloryLink Studio. / 构建耀临工作室最初的视觉识别与品牌基调。",
+                "Crafted layout systems balancing typographic hierarchy and editorial rhythm. / 实践融合现代网格与视觉韵律的书籍物料版式设计。",
+                "Developed physical creative merchandise bridging digital concepts and craft. / 探索文创周边的实体工艺转化与材质表达。",
+                "Preserved a complete creative archive representing early design explorations. / 完整归档早期设计探索与创意实践脉络。"
+            ],
+            stack: [
+                "Visual Identity",
+                "Typography",
+                "Editorial Design",
+                "Graphic Design",
+                "Print Craft",
+                "Creative Direction"
+            ],
+            keywords: [
+                "耀临工作室",
+                "GloryLink",
+                "视觉传达",
+                "品牌设计",
+                "版式设计",
+                "文创周边",
+                "设计归档"
+            ]
+        }
+    },
+    {
+        id: 2,
+        title: "Text Classification: From TF-IDF to Pretrained Models",
+        year: "2024秋",
+        category: "NLP / 自然语言处理",
+        color: "#0f172a",
+        imagePlaceholder: "TC",
+        src: "/images/projects/text-classification/text-classification-cover.svg",
+        cardTitleLines: ["文本分类实验", "从词频统计到", "预训练模型"],
+        description: "系统评测从传统统计特征（TF-IDF / Naive Bayes）到深度网络（TextCNN / LSTM）与预训练模型（BERT）的文本分类全链路演进实验。A comparative NLP benchmark investigating text classification paradigms from statistical TF-IDF to pretrained transformers.",
+        detailImages: [
+            "/images/projects/text-classification/text-classification-cover.svg"
+        ],
+        template: "swiss-case",
+        isBilingual: true,
+        caseStudy: {
+            eyebrow: "NLP Benchmark / 自然语言处理实验",
+            headline: "Text Classification: From Word Frequency to Pretrained Models\n文本分类实验：从词频统计到预训练模型演进",
+            deck: "A comprehensive comparative study tracing the evolution of text classification, evaluating statistical bag-of-words, deep neural networks, and pretrained transformers under reproducible benchmarks.\n系统梳理与评测文本分类技术的演进脉络，在统一测试基准下对比词袋统计（TF-IDF / Naive Bayes）、深度语义编码（TextCNN / BiLSTM）与微调预训练模型（BERT / RoBERTa）的表征能力与工程效能。",
+            accent: "#2563eb",
+            repoPath: "Chivalry Studio / NLP Benchmark Labs",
+            imageFit: "contain",
+            isBilingual: true,
+            metrics: [
+                { label: "Baseline\n传统基线", value: "TF-IDF + NB / SVM" },
+                { label: "Neural Models\n深度神经网络", value: "TextCNN & BiLSTM" },
+                { label: "Pretrained\n预训练模型", value: "BERT / RoBERTa" },
+                { label: "Evaluation\n核心指标", value: "Accuracy / Macro-F1" }
+            ],
+            sections: [
+                {
+                    kicker: "01 / Statistical Baselines 统计基线",
+                    title: "Word frequency, sparse representations, and linear decision boundaries.\n词频统计、稀疏特征向量与线性分类边界。",
+                    body: "Evaluating bag-of-words and TF-IDF representations paired with Naive Bayes, Logistic Regression, and SVMs. Examining sparsity challenges, n-gram limitations, and computational efficiency on raw corpora.\n以词袋模型（BoW）与 TF-IDF 稀疏向量为起点，结合朴素贝叶斯、逻辑回归与 SVM 评估传统特征工程的表达瓶颈，分析高维稀疏特征与词序缺失对语义判别的局限。"
+                },
+                {
+                    kicker: "02 / Deep Sequence Modeling 深度序列建模",
+                    title: "Distributed representations and local vs sequential feature extraction.\n分布式词向量与局部/时序特征捕获。",
+                    body: "Transitioning to dense word embeddings (Word2Vec / GloVe) combined with TextCNN for local n-gram filters and BiLSTM with Attention for long-range temporal dependencies.\n引入稠密词嵌入表征，对比卷积神经网络（TextCNN）多尺度卷积核的局部特征提取，与双向长短期记忆网络（BiLSTM + Attention）对语序上下文依赖的建模表现。"
+                },
+                {
+                    kicker: "03 / Pretrained Transformers 预训练模型",
+                    title: "Bidirectional contextual embeddings and transfer learning.\n双向注意力上下文表征与迁移学习微调。",
+                    body: "Fine-tuning pretrained Transformers (BERT, RoBERTa), leveraging multi-head self-attention to capture nuanced syntactic and semantic shifts across classification domains.\n基于预训练语言模型（BERT / RoBERTa）进行下游微调，利用多头自注意力机制捕获深层上下文双向表征，在复杂语境与长距离依赖下取得显著的泛化性能飞跃。"
+                }
+            ],
+            highlights: [
+                "Implemented end-to-end benchmark pipelines comparing three generations of NLP models. / 搭建横跨三代文本分类范式的端到端评测流水线。",
+                "Analyzed trade-offs between computational overhead, latency, and classification accuracy. / 深入剖析算力开销、推理延迟与分类准确率之间的工程权衡。",
+                "Visualized embedding spaces and attention heatmaps across semantic categories. / 对稠密特征空间与自注意力权重进行可视化分析与可解释性探究。",
+                "Standardized preprocessing, tokenization, and cross-validation pipelines. / 建立标准化的文本预处理、分词与交叉验证对比基准。"
+            ],
+            stack: [
+                "PyTorch",
+                "Transformers",
+                "scikit-learn",
+                "HuggingFace",
+                "BERT",
+                "TextCNN",
+                "BiLSTM",
+                "TF-IDF",
+                "Python"
+            ],
+            keywords: [
+                "文本分类",
+                "NLP实验",
+                "TF-IDF",
+                "词频统计",
+                "预训练模型",
+                "BERT",
+                "TextCNN",
+                "深度学习"
+            ]
+        }
+    },
+    {
+        id: 3,
         title: "Quest",
         year: "2025夏",
         category: "Quant Trading Framework",
@@ -59,14 +205,14 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 2,
+        id: 4,
         title: "Atrium",
         year: "2025冬",
         category: "DAG Multi-agent Orchestration",
         color: "#123f38",
         imagePlaceholder: "AT",
         src: "/images/projects/hyacinth/hyacinth-cover.svg",
-        cardTitleLines: ["Atrium", "AI Harness"],
+        cardTitleLines: ["Atrium", "DSH 内核 Agent", "DeepSeek Harness"],
         description: "基于 DSH（DeepSeek Harness）内核的 Agent 项目，结合 DAG 工作流实现跨平台多智能体协同编排与运行调度。",
         detailImages: [
             "/images/projects/hyacinth/Hyacinth-intro.png",
@@ -115,7 +261,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 3,
+        id: 5,
         title: "Solana Private Fork Economics",
         year: "2026春",
         category: "Blockchain R&D",
@@ -170,7 +316,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 4,
+        id: 6,
         title: "Consortium Blockchain for SOA Governance",
         year: "2026春",
         category: "Paper / 论文研究",
@@ -248,7 +394,7 @@ export const projects: ProjectData[] = [
         }
     },
     {
-        id: 5,
+        id: 7,
         title: "Aftermath: 具身隐喻与空间诗学的叙事游戏",
         year: "2025冬",
         category: "Game Design",
@@ -268,7 +414,7 @@ export const projects: ProjectData[] = [
         ]
     },
     {
-        id: 6,
+        id: 8,
         title: "Signverse：联觉理论下的多模态叙事游戏",
         year: "2026春",
         category: "Game Design",
@@ -288,7 +434,7 @@ export const projects: ProjectData[] = [
         ]
     },
     {
-        id: 7,
+        id: 9,
         title: "Avoidant Syndrome",
         year: "2026",
         category: "Game Design",
@@ -303,7 +449,7 @@ export const projects: ProjectData[] = [
         ]
     },
     {
-        id: 8,
+        id: 10,
         title: "Parametric Design Practice",
         year: "2026",
         category: "Computational Design / 参数化设计",
