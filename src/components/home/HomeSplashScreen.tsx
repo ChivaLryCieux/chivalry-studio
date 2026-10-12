@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import styles from '@/app/page.module.css';
+import styles from './HomeSplashScreen.module.css';
 
 interface HomeSplashScreenProps {
   isReady: boolean;

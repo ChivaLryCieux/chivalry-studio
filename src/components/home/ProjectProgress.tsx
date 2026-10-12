@@ -1,4 +1,4 @@
-import styles from '@/app/page.module.css';
+import styles from './ProjectProgress.module.css';
 import { getProjectProgress } from '@/lib/projects';
 
 interface ProjectProgressProps {

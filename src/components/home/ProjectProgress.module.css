@@ -1,0 +1,37 @@
+.bottomBar {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50vw;
+    height: 40px;
+    z-index: 50;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ticks {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.3;
+    font-size: 0.6rem;
+    font-family: monospace;
+}
+
+.progressMarker {
+    position: absolute;
+    top: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .bottomBar {
+        display: none;
+    }
+}

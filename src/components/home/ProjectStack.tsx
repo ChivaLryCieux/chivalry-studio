@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import styles from '@/app/page.module.css';
+import styles from './ProjectStack.module.css';
 import { ProjectCard } from '@/components/home/ProjectCard';
 import { ProjectRing3D } from '@/components/home/ProjectRing3D';
 import type { ProjectData } from '@/types/project';

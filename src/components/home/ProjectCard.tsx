@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '@/app/page.module.css';
+import styles from './ProjectStack.module.css';
 import type { ProjectData } from '@/types/project';
 
 interface ProjectCardProps {

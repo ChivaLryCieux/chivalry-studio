@@ -1,0 +1,166 @@
+.topLeft {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 50;
+}
+
+.logo {
+    display: block;
+    font-weight: 900;
+    font-size: 1.2rem;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.logoButton {
+    display: block;
+    margin: 0 0 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logoButton:hover {
+    opacity: 0.74;
+    transform: translateY(-1px);
+}
+
+.logoButton:focus-visible {
+    outline: 1px solid rgba(237, 232, 222, 0.78);
+    outline-offset: 6px;
+}
+
+.yearDisplay {
+    display: flex;
+    flex-direction: column;
+}
+
+.yearDisplay .label {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.yearDisplay .value {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.topCenter {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    width: min(46vw, 760px);
+    pointer-events: none;
+}
+
+.topProjectHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.topProjectTitle {
+    width: 100%;
+    padding: 0.12em 0 0.08em;
+    color: #ede8de;
+    font-family: var(--font-serif), "Times New Roman", serif;
+    font-size: clamp(1.2rem, 2.3vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.28;
+    text-align: center;
+    text-shadow: none;
+    white-space: nowrap;
+}
+
+.topProjectAward {
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topRight {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    text-align: right;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.bottomLeft {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    z-index: 50;
+}
+
+.email {
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.3s;
+}
+
+.email:hover {
+    border-color: rgba(255,255,255,1);
+}
+
+.bottomRight {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.85rem;
+}
+
+.circleIndicator {
+    width: 10px;
+    height: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .topLeft { top: 20px; left: 20px; }
+    .topRight { top: 20px; right: 20px; }
+    .bottomLeft { bottom: 20px; left: 20px; }
+    .bottomRight { bottom: 20px; right: 20px; }
+
+    .topCenter {
+        top: max(128px, calc(50% - 25.3125vw - 58px));
+        width: min(90vw, 560px);
+    }
+
+    .topProjectTitle {
+        font-size: 1.1rem;
+        line-height: 1.22;
+        white-space: normal;
+    }
+}

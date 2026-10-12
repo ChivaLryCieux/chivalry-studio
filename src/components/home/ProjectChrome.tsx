@@ -1,4 +1,4 @@
-import styles from '@/app/page.module.css';
+import styles from './ProjectChrome.module.css';
 import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
 import type { ProjectData } from '@/types/project';
 
