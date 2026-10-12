@@ -7,6 +7,7 @@ export interface ProjectData {
   imagePlaceholder: string;
   src: string;
   cardTitleLines?: string[];
+  award?: string;
   description?: string;
   content?: string;
   detailImages?: string[];

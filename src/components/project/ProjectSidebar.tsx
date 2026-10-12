@@ -1,4 +1,5 @@
 import styles from "@/components/project/detailPage.module.css";
+import { ProjectAwardBadge } from "@/components/common/ProjectAwardBadge";
 import type { ProjectData } from "@/types/project";
 
 interface ProjectSidebarProps {
@@ -14,6 +15,11 @@ export function ProjectSidebar({ project }: ProjectSidebarProps) {
                         {String(project.id).padStart(2, '0')} / {project.category}
                     </div>
                     <h1 className={styles.projectTitle}>{project.title || "Untitled"}</h1>
+                    {project.award ? (
+                        <div className={styles.awardWrapper}>
+                            <ProjectAwardBadge text={project.award} />
+                        </div>
+                    ) : null}
                 </div>
 
                 <div className={styles.infoBlock}>

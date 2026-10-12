@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { ProjectAwardBadge } from "@/components/common/ProjectAwardBadge";
 import type { ProjectData } from "@/types/project";
 import styles from "./swiss-project.module.css";
 
@@ -40,6 +41,11 @@ export function SwissProjectPage({ project, returnProjectId = project.id }: Swis
                 <div className={styles.heroCopy}>
                     <p className={styles.category}>{project.category}</p>
                     <h1>{caseStudy.headline}</h1>
+                    {project.award ? (
+                        <div style={{ marginTop: '14px', marginBottom: '8px', display: 'flex', justifyContent: 'flex-start' }}>
+                            <ProjectAwardBadge text={project.award} />
+                        </div>
+                    ) : null}
                     {caseStudy.keywords ? (
                         <div className={styles.keywordRail} aria-label={`${project.title} Chinese keywords`}>
                             {caseStudy.keywords.map((keyword) => (

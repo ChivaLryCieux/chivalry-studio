@@ -10,6 +10,7 @@ export const projects: ProjectData[] = [
         imagePlaceholder: "GL",
         src: "/images/projects/glorylink/glorylink-cover.svg",
         cardTitleLines: ["GloryLink", "耀临工作室", "系列作品"],
+        award: "UGC 社区超1200万下载量",
         description: "耀临工作室（GloryLink）是一家基于《我的世界》（Minecraft）游戏生态的 UGC 游戏工作室，创立于2015年秋，系列原创游戏作品社区累计下载量超 1200 万。A Minecraft-based UGC game studio with over 12 million cumulative community downloads across its original series.",
         detailImages: [
             "/images/projects/glorylink/glorylink-cover.svg"
@@ -473,7 +474,7 @@ export const projects: ProjectData[] = [
     },
     {
         id: 8,
-        title: "Aftermath: 具身隐喻与空间诗学的叙事游戏",
+        title: "Aftermath: 残响",
         year: "2025冬",
         category: "Game Design",
         color: "#3e1c1c",
@@ -499,6 +500,8 @@ export const projects: ProjectData[] = [
         color: "#1a1a2e",
         imagePlaceholder: "SV",
         src: "/images/projects/signverse/1.png",
+        cardTitleLines: ["Signverse:", "标示界"],
+        award: "2026腾讯光子游戏大赛铜奖",
         description: "Signverse/标示界。使用 Uinty 制作",
         detailImages: [
             "/images/projects/signverse/2.png",
@@ -519,7 +522,8 @@ export const projects: ProjectData[] = [
         color: "#141419",
         imagePlaceholder: "AS",
         src: "/images/projects/avoidant/AS_Cover.jpg",
-        cardTitleLines: ["Avoidant", "Syndrome", "回避症候"],
+        cardTitleLines: ["Avoidant", "Syndrome:", "回避症候"],
+        award: "2026网易MG挑战赛最佳人气奖",
         description: "A narrative exploration & atmospheric game built with Unity. In development.",
         content: "Avoidant Syndrome is an upcoming narrative and spatial exploration game focusing on embodied metaphors and psychological architecture. Detailed design documents and visual teasers will be unveiled soon.",
         detailImages: [
@@ -529,12 +533,12 @@ export const projects: ProjectData[] = [
     {
         id: 11,
         title: "Parametric Design Practice",
-        year: "2026",
+        year: "2026春",
         category: "Computational Design / 参数化设计",
         color: "#0e1726",
         imagePlaceholder: "PD",
         src: "/images/projects/parametric/PD_Cover.jpg",
-        cardTitleLines: ["Parametric", "Design", "参数化设计实践"],
+        cardTitleLines: ["数据映射 &", "参数化设计实践"],
         description: "探索计算几何、规则生成与拓扑优化的参数化设计实践。An exploratory computational and parametric design practice focusing on generative forms and algorithmic architecture.",
         detailImages: [
             "/images/projects/parametric/PD_Cover.jpg"

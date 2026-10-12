@@ -1,4 +1,5 @@
 import styles from '@/app/page.module.css';
+import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
 import type { ProjectData } from '@/types/project';
 
 interface ProjectChromeProps {
@@ -34,7 +35,14 @@ export function ProjectChrome({ currentProject, displayMode, onDisplayModeToggle
       </div>
 
       <div className={styles.topCenter}>
-        <div className={styles.topProjectTitle}>{previewTitle}</div>
+        <div className={styles.topProjectHeader}>
+          <div className={styles.topProjectTitle}>{previewTitle}</div>
+          {currentProject.award ? (
+            <div className={styles.topProjectAward}>
+              <ProjectAwardBadge text={currentProject.award} />
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <div className={styles.topRight}>
