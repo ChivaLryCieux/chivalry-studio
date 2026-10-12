@@ -49,9 +49,6 @@ export default function CrosshairCursor() {
 
   return (
     <>
-      {/* 仅在支持鼠标且具备细粒度指针的设备上隐藏默认光标 */}
-      <style>{`@media (hover: hover) and (pointer: fine) { * { cursor: none !important; } }`}</style>
-
       {/* ====== 水平参考线 ====== */}
       <div ref={hLineRef} className="crosshair-line crosshair-h" style={{ top: -100 }} />
 

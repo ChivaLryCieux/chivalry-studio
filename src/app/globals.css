@@ -66,6 +66,19 @@ body::after {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    body::after {
+        animation: none;
+    }
+}
+
+/* 仅在支持鼠标且具备细粒度指针的设备上隐藏默认光标 */
+@media (hover: hover) and (pointer: fine) {
+    * {
+        cursor: none !important;
+    }
+}
+
 a {
     text-decoration: none;
     color: inherit;
