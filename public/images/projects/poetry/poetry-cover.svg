@@ -15,8 +15,7 @@
   <text x="124" y="356" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="900">长歌当哭</text>
   <text x="124" y="470" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="900">格律诗创作</text>
   <text x="124" y="556" fill="#C3182D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">METRICAL POETRY PRACTICE</text>
-  <text x="124" y="608" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">PING ZE / RHYME / PARALLELISM / LYRIC</text>
-  <text x="124" y="758" fill="#555555" font-family="Courier New, monospace" font-size="22" font-weight="700">INDEX: #02 // CLASSICAL POETICS ARCHIVE</text>
+  <text x="124" y="660" fill="#777777" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">REGULATED VERSE &amp; PHONOLOGY</text>
 
   <!-- Right Geometric Tonal Grid & Meter System (Swiss style) -->
   <path d="M760 326H1400" stroke="#111111" stroke-width="8"/>

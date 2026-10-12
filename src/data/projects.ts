@@ -15,6 +15,7 @@ export const projects: ProjectData[] = [
             "/images/projects/glorylink/glorylink-cover.svg"
         ],
         template: "swiss-case",
+        useLightFrame: true,
         isBilingual: true,
         caseStudy: {
             eyebrow: "Creative Studio / 视觉与文创设计",
@@ -159,6 +160,7 @@ export const projects: ProjectData[] = [
             "/images/projects/text-classification/text-classification-cover.svg"
         ],
         template: "swiss-case",
+        useLightFrame: true,
         isBilingual: true,
         caseStudy: {
             eyebrow: "NLP Benchmark / 自然语言处理实验",
@@ -535,6 +537,7 @@ export const projects: ProjectData[] = [
             "/images/projects/parametric/parametric-cover.svg"
         ],
         template: "swiss-case",
+        useLightFrame: true,
         isBilingual: true,
         caseStudy: {
             eyebrow: "Computational Design / 参数化实践",

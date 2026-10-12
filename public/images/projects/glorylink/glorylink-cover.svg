@@ -1,71 +1,45 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="1600" height="900" fill="#140E0A"/>
+  <!-- Cream / Rice-White Background -->
+  <rect width="1600" height="900" fill="#F5F3ED"/>
   
-  <!-- Outer Swiss Framing Grid -->
-  <rect x="80" y="80" width="1440" height="740" stroke="#3D2B1F" stroke-width="2"/>
-  <rect x="80" y="80" width="1440" height="130" fill="#201712"/>
-  <line x1="80" y1="210" x2="1520" y2="210" stroke="#3D2B1F" stroke-width="2"/>
+  <!-- Outer Solid Black Swiss Frame -->
+  <rect x="90" y="90" width="1420" height="720" stroke="#111111" stroke-width="16"/>
+  <path d="M90 256H1510" stroke="#111111" stroke-width="12"/>
 
-  <!-- Header Section -->
-  <rect x="120" y="118" width="54" height="54" fill="#D97706"/>
-  <text x="194" y="158" fill="#FDF4ED" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900" letter-spacing="2">GLORYLINK STUDIO</text>
-  <text x="1120" y="156" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="1">AUTUMN 2015 / ARCHIVES</text>
+  <!-- Top Header Section -->
+  <text x="126" y="188" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">GLORYLINK</text>
+  <text x="880" y="176" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">AUTUMN 2015 / CREATIVE STUDIO</text>
 
-  <!-- Left Content Area -->
-  <text x="120" y="310" fill="#FFFBEB" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">耀临工作室系列作品</text>
-  <text x="120" y="380" fill="#D4B499" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">Brand Identity, Editorial &amp; Creative Artifacts</text>
+  <!-- Left Main Content -->
+  <text x="126" y="392" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">耀临工作室</text>
+  <text x="126" y="498" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">系列作品</text>
+  <text x="126" y="590" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">BRAND IDENTITY &amp; ARTIFACTS</text>
+  <text x="126" y="642" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">VISUAL DESIGN / EDITORIAL / MERCHANDISE</text>
 
-  <rect x="120" y="430" width="480" height="2" fill="#D97706"/>
+  <!-- Right Geometric Studio Layout & Grid System (Swiss style) -->
+  <path d="M720 326H1400" stroke="#111111" stroke-width="8"/>
+  <path d="M720 690H1400" stroke="#111111" stroke-width="8"/>
+  <path d="M720 326V690" stroke="#111111" stroke-width="8"/>
+  <path d="M890 326V690M1060 326V690M1230 326V690M1400 326V690" stroke="#111111" stroke-width="4"/>
+  <path d="M720 508H1400" stroke="#111111" stroke-width="4"/>
 
-  <!-- Left Metadata -->
-  <text x="120" y="480" fill="#F59E0B" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" letter-spacing="1">VISUAL &amp; EDITORIAL DESIGN</text>
-  <text x="120" y="520" fill="#E2D4C8" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500">品牌标识 · 刊物排版 · 文创衍生品</text>
-  <text x="120" y="555" fill="#A88B77" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400">Retrospective of creative practice in Autumn 2015</text>
+  <!-- Editorial Blocks & Emblem (Amber & Black) -->
+  <rect x="740" y="346" width="130" height="142" fill="#111111"/>
+  <text x="758" y="426" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">IDENT</text>
 
-  <!-- Spec Badges -->
-  <g transform="translate(120, 620)">
-    <rect x="0" y="0" width="160" height="56" fill="#241913" stroke="#4A3425" stroke-width="1"/>
-    <text x="18" y="24" fill="#A88B77" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">CREATIVE</text>
-    <text x="18" y="44" fill="#FDF4ED" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800">GloryLink</text>
+  <rect x="910" y="346" width="300" height="142" fill="#D97706"/>
+  <text x="930" y="426" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900">STUDIO ARCHIVES</text>
 
-    <rect x="176" y="0" width="160" height="56" fill="#241913" stroke="#4A3425" stroke-width="1"/>
-    <text x="194" y="24" fill="#A88B77" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">PERIOD</text>
-    <text x="194" y="44" fill="#F59E0B" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800">2015 秋</text>
+  <rect x="1250" y="346" width="130" height="142" fill="#F5F3ED" stroke="#111111" stroke-width="6"/>
+  <circle cx="1315" cy="417" r="28" fill="#D97706"/>
+  <circle cx="1315" cy="417" r="10" fill="#F5F3ED"/>
 
-    <rect x="352" y="0" width="160" height="56" fill="#241913" stroke="#4A3425" stroke-width="1"/>
-    <text x="370" y="24" fill="#A88B77" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700">MEDIUM</text>
-    <text x="370" y="44" fill="#FDF4ED" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800">Print &amp; Artifacts</text>
-  </g>
+  <rect x="740" y="528" width="300" height="142" fill="#F5F3ED" stroke="#111111" stroke-width="6"/>
+  <text x="760" y="608" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">PRINT CRAFT</text>
 
-  <text x="120" y="750" fill="#6E533F" font-family="Courier New, monospace" font-size="16">INDEX: #01 // HISTORICAL CREATIVE STUDIO SERIES</text>
+  <rect x="1080" y="528" width="300" height="142" fill="#111111"/>
+  <text x="1100" y="608" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">MERCHANDISE</text>
 
-  <!-- Right Geometric Emblem & Design Grid -->
-  <g transform="translate(760, 260)">
-    <!-- Boundary Box -->
-    <rect x="0" y="0" width="680" height="490" fill="#1C130E" stroke="#3D2B1F" stroke-width="2"/>
-    
-    <!-- Design Studio Golden Grid & Crosshairs -->
-    <rect x="50" y="40" width="580" height="410" stroke="#4A3425" stroke-width="1" stroke-dasharray="8 8" fill="none"/>
-    <line x1="340" y1="40" x2="340" y2="450" stroke="#4A3425" stroke-width="1"/>
-    <line x1="50" y1="245" x2="630" y2="245" stroke="#4A3425" stroke-width="1"/>
-
-    <!-- Concentric Geometric Rings & Diamond (Emblem) -->
-    <circle cx="340" cy="245" r="160" stroke="#3D2B1F" stroke-width="2" fill="none"/>
-    <circle cx="340" cy="245" r="110" stroke="#D97706" stroke-width="3" fill="none"/>
-    <circle cx="340" cy="245" r="60" stroke="#F59E0B" stroke-width="2" fill="none"/>
-    
-    <!-- Rotated Diamond Prism -->
-    <polygon points="340,115 470,245 340,375 210,245" stroke="#F59E0B" stroke-width="2.5" fill="none"/>
-    <polygon points="340,155 430,245 340,335 250,245" stroke="#D97706" stroke-width="1.5" fill="#D97706" fill-opacity="0.1"/>
-
-    <!-- Focal Center -->
-    <circle cx="340" cy="245" r="12" fill="#D97706"/>
-    <circle cx="340" cy="245" r="5" fill="#FFFBEB"/>
-
-    <!-- Corner Typographic Annotations -->
-    <text x="70" y="80" fill="#A88B77" font-family="Courier New, monospace" font-size="14">STUDIO.ID: GLORYLINK</text>
-    <text x="70" y="425" fill="#6E533F" font-family="Courier New, monospace" font-size="13">ASPECT: RATIO 1:1.618</text>
-    <text x="440" y="425" fill="#D97706" font-family="Courier New, monospace" font-size="13">COLLECTION: 2015-FALL</text>
-  </g>
+  <!-- Right Caption -->
+  <text x="720" y="758" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">CREATIVE IDENTITY &amp; EDITORIAL</text>
 </svg>
