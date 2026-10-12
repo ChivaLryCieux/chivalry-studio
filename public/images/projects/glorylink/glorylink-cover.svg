@@ -8,13 +8,13 @@
 
   <!-- Top Header Section -->
   <text x="126" y="188" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">GLORYLINK</text>
-  <text x="880" y="176" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">AUTUMN 2015 / CREATIVE STUDIO</text>
+  <text x="800" y="176" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">AUTUMN 2015 / MINECRAFT UGC STUDIO</text>
 
   <!-- Left Main Content -->
   <text x="126" y="392" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">耀临工作室</text>
-  <text x="126" y="498" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">系列作品</text>
-  <text x="126" y="590" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">BRAND IDENTITY &amp; ARTIFACTS</text>
-  <text x="126" y="642" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">VISUAL DESIGN / EDITORIAL / MERCHANDISE</text>
+  <text x="126" y="498" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">我的世界UGC</text>
+  <text x="126" y="590" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">12,000,000+ DOWNLOADS</text>
+  <text x="126" y="642" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">GAME DESIGN / VOXEL WORLDS / ECOSYSTEM</text>
 
   <!-- Right Geometric Studio Layout & Grid System (Swiss style) -->
   <path d="M720 326H1400" stroke="#111111" stroke-width="8"/>
@@ -23,23 +23,32 @@
   <path d="M890 326V690M1060 326V690M1230 326V690M1400 326V690" stroke="#111111" stroke-width="4"/>
   <path d="M720 508H1400" stroke="#111111" stroke-width="4"/>
 
-  <!-- Editorial Blocks & Emblem (Amber & Black) -->
-  <rect x="740" y="346" width="130" height="142" fill="#111111"/>
-  <text x="758" y="426" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">IDENT</text>
+  <!-- Milestone Highlight (12M+ Downloads Badge & Blocks) -->
+  <rect x="740" y="346" width="300" height="142" fill="#D97706"/>
+  <text x="760" y="414" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900">12M+</text>
+  <text x="762" y="460" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800">COMMUNITY DOWNLOADS</text>
 
-  <rect x="910" y="346" width="300" height="142" fill="#D97706"/>
-  <text x="930" y="426" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900">STUDIO ARCHIVES</text>
+  <rect x="1080" y="346" width="300" height="142" fill="#111111"/>
+  <text x="1100" y="416" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">MINECRAFT</text>
+  <text x="1102" y="458" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800">SANDBOX UGC ECOSYSTEM</text>
 
-  <rect x="1250" y="346" width="130" height="142" fill="#F5F3ED" stroke="#111111" stroke-width="6"/>
-  <circle cx="1315" cy="417" r="28" fill="#D97706"/>
-  <circle cx="1315" cy="417" r="10" fill="#F5F3ED"/>
-
+  <!-- Voxel Grid Pattern Block (Minecraft-inspired geometry) -->
   <rect x="740" y="528" width="300" height="142" fill="#F5F3ED" stroke="#111111" stroke-width="6"/>
-  <text x="760" y="608" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">PRINT CRAFT</text>
+  <g transform="translate(760, 550)">
+    <rect x="0" y="0" width="28" height="28" fill="#111111"/>
+    <rect x="34" y="0" width="28" height="28" fill="#D97706"/>
+    <rect x="68" y="0" width="28" height="28" fill="#111111"/>
+    <rect x="0" y="34" width="28" height="28" fill="#D97706"/>
+    <rect x="34" y="34" width="28" height="28" fill="#111111"/>
+    <rect x="68" y="34" width="28" height="28" fill="#D97706"/>
+    <text x="114" y="36" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">VOXEL</text>
+    <text x="114" y="66" fill="#777777" font-family="Courier New, monospace" font-size="16" font-weight="700">GAME MATRIX</text>
+  </g>
 
   <rect x="1080" y="528" width="300" height="142" fill="#111111"/>
-  <text x="1100" y="608" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">MERCHANDISE</text>
+  <text x="1100" y="594" fill="#F5F3ED" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">ORIGINAL SERIES</text>
+  <text x="1102" y="632" fill="#D97706" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">MAPS &amp; MECHANICS</text>
 
   <!-- Right Caption -->
-  <text x="720" y="758" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">CREATIVE IDENTITY &amp; EDITORIAL</text>
+  <text x="720" y="758" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">MINECRAFT UGC GAME ECOSYSTEM</text>
 </svg>

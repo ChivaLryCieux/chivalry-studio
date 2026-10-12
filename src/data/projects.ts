@@ -3,14 +3,14 @@ import type { ProjectData } from "@/types/project";
 export const projects: ProjectData[] = [
     {
         id: 1,
-        title: "GloryLink Studio Works",
+        title: "GloryLink: Minecraft UGC Studio",
         year: "2015秋",
-        category: "Brand & Creative Works / 视觉与文创设计",
+        category: "Minecraft UGC / 游戏工作室",
         color: "#241812",
         imagePlaceholder: "GL",
         src: "/images/projects/glorylink/glorylink-cover.svg",
         cardTitleLines: ["GloryLink", "耀临工作室", "系列作品"],
-        description: "2015年秋耀临工作室（GloryLink）系列视觉与文创设计作品回顾。A retrospective of creative works, branding, and visual design by GloryLink Studio in Autumn 2015.",
+        description: "耀临工作室（GloryLink）是一家基于《我的世界》（Minecraft）游戏生态的 UGC 游戏工作室，创立于2015年秋，系列原创游戏作品社区累计下载量超 1200 万。A Minecraft-based UGC game studio with over 12 million cumulative community downloads across its original series.",
         detailImages: [
             "/images/projects/glorylink/glorylink-cover.svg"
         ],
@@ -18,58 +18,61 @@ export const projects: ProjectData[] = [
         useLightFrame: true,
         isBilingual: true,
         caseStudy: {
-            eyebrow: "Creative Studio / 视觉与文创设计",
-            headline: "GloryLink Studio Works: Creative Identity & Visual Artifacts\n耀临工作室系列作品：品牌视觉与文创设计实践",
-            deck: "A comprehensive design retrospective of GloryLink Studio from Autumn 2015, spanning identity design, editorial layouts, and creative physical artifacts.\n2015年秋耀临工作室（GloryLink）早期设计实践的系列作品集，涵盖品牌标识构建、版式编排及文创实体周边设计，见证早期创意探索与视觉系统构建。",
+            eyebrow: "Minecraft UGC / 12M+ Downloads",
+            headline: "GloryLink Studio: Minecraft UGC Game Works\n耀临工作室：基于《我的世界》生态的UGC游戏创作",
+            deck: "GloryLink is a Minecraft UGC game studio founded in Autumn 2015. Creating original narrative maps, custom gameplay mechanics, and voxel worlds, its series works have achieved over 12 million community downloads.\n耀临工作室（GloryLink）创立于2015年秋，是一家深耕《我的世界》（Minecraft）生态的 UGC 游戏工作室。团队专注于原创叙事地图、独立玩法机制与体素世界构建，系列作品在各大游戏社区累计下载量突破 1200 万次，深受海量玩家喜爱。",
             accent: "#d97706",
-            repoPath: "GloryLink Creative Archives / 2015",
+            repoPath: "GloryLink UGC Studio / Minecraft Ecosystem",
             imageFit: "contain",
             isBilingual: true,
+            useLightFrame: true,
             metrics: [
-                { label: "Era\n创作时期", value: "Autumn 2015\n2015年秋" },
-                { label: "Domain\n设计门类", value: "Visual Identity\n品牌与文创" },
-                { label: "Medium\n媒介形式", value: "Print & Artifacts\n平面与实体" },
-                { label: "Archive\n归档状态", value: "Archived\n经典回顾" }
+                { label: "Downloads\n社区下载量", value: "12,000,000+\n超1200万" },
+                { label: "Ecosystem\n依托生态", value: "Minecraft\n我的世界" },
+                { label: "Creation Mode\n创作范式", value: "UGC Studio\n创作者工坊" },
+                { label: "Founded\n创立时间", value: "Autumn 2015\n2015年秋" }
             ],
             sections: [
                 {
-                    kicker: "01 / Visual Identity 品牌识别",
-                    title: "Establishing core identity and visual grammar.\n建立核心品牌标识与视觉语法。",
-                    body: "Developing a distinctive graphic language for GloryLink Studio, blending modern typographic hierarchy with symbolic brand iconography.\n探索耀临工作室的专属视觉识别系统，将严谨的现代版式层级与具象征意义的图形语言结合，建立统一的品牌形象基调与视觉表达。"
+                    kicker: "01 / Studio Inception 工坊创立与生态深耕",
+                    title: "Pioneering UGC game creation inside Minecraft.\n深植沙盒生态，开启 UGC 游戏内容创作。",
+                    body: "Founded in 2015, GloryLink Studio leveraged the voxel sandbox architecture of Minecraft to design self-contained interactive games, transitioning from casual building to systematic game production.\n耀临工作室创立于2015年秋，以《我的世界》无限自由度的沙盒体素架构为土壤，将玩家自发探索转化为系统化的游戏体验研发，打通从创意概念、红石/指令开发到场景搭建的完整工坊流水线。"
                 },
                 {
-                    kicker: "02 / Editorial & Print 版式与印刷",
-                    title: "Grid precision across editorial materials.\n基于网格系统的出版物与物料设计。",
-                    body: "Focusing on information density, layout rhythm, and paper-based tactile presentation across booklets, posters, and promotional items.\n在宣传册、海报与刊物设计中注重信息网格密度与视觉律动，探索纸张工艺与排版节奏结合的实体触感与传播效度。"
+                    kicker: "02 / Gameplay & Narrative 玩法研发与叙事体验",
+                    title: "Balancing sandbox mechanics with authored storytelling.\n兼顾沙盒自由机制与沉浸式关卡叙事。",
+                    body: "Developing diverse gameplay archetypes ranging from narrative adventure, puzzle dungeons, to custom multiplayer mechanics, pushing the expressive limits of voxel game design.\n系列作品覆盖剧情冒险、解谜探险、多人对抗与合作生存等多元品类。在受限的体素网格中实现高度沉浸的环境叙事与细腻的机制设计，赋予沙盒世界独特的情感厚度与游玩乐趣。"
                 },
                 {
-                    kicker: "03 / Creative Merchandise 文创与衍生品",
-                    title: "Extending design philosophy into physical artifacts.\n将设计哲学延伸至文创实体载体。",
-                    body: "Translating graphic themes into customized physical merchandise and collectibles, completing the studio's early creative ecosystem.\n将平面设计主题衍生为定制文创产品与实体周边，打通从二维图形到三维工艺载体的完整创意落地流程。"
+                    kicker: "03 / Community Scale 社区影响与千万级传播",
+                    title: "12 million downloads building vibrant player resonance.\n1200万次社区下载汇聚庞大玩家社群。",
+                    body: "The studio's releases gained massive organic traction across gaming forums and creator platforms, accumulating over 12 million downloads and inspiring extensive secondary community creations.\n作品在各大主流游戏社区、论坛及创作者中心引发持续热潮，累计下载量突破 1200 万次。庞大的玩家基数与活跃的二次创作生态，使耀临系列作品成为沙盒 UGC 领域的代表性创作案例之一。"
                 }
             ],
             highlights: [
-                "Defined the foundational visual identity system for GloryLink Studio. / 构建耀临工作室最初的视觉识别与品牌基调。",
-                "Crafted layout systems balancing typographic hierarchy and editorial rhythm. / 实践融合现代网格与视觉韵律的书籍物料版式设计。",
-                "Developed physical creative merchandise bridging digital concepts and craft. / 探索文创周边的实体工艺转化与材质表达。",
-                "Preserved a complete creative archive representing early design explorations. / 完整归档早期设计探索与创意实践脉络。"
+                "Achieved over 12,000,000 cumulative community downloads across studio releases. / 系列作品在玩家社区累计下载量突破 1200 万次。",
+                "Built diverse original game portfolios inside the Minecraft sandbox ecosystem. / 基于《我的世界》沙盒生态打造涵盖冒险、解谜与玩法的原创作品矩阵。",
+                "Engineered cohesive voxel environments with custom mechanics and authored narratives. / 融合体素美术、机关逻辑与定制化剧本构建沉浸式游玩体验。",
+                "Fostered an active creator community with enduring engagement since 2015. / 自2015年创立以来沉淀出极具黏性与创作活力的玩家社区生态。"
             ],
             stack: [
-                "Visual Identity",
-                "Typography",
-                "Editorial Design",
-                "Graphic Design",
-                "Print Craft",
-                "Creative Direction"
+                "Minecraft UGC",
+                "Game Design",
+                "Level Design",
+                "Voxel Art",
+                "Command & Redstone",
+                "Narrative Design",
+                "Community Operations"
             ],
             keywords: [
                 "耀临工作室",
                 "GloryLink",
-                "视觉传达",
-                "品牌设计",
-                "版式设计",
-                "文创周边",
-                "设计归档"
+                "我的世界",
+                "Minecraft UGC",
+                "1200万下载",
+                "UGC游戏工作室",
+                "游戏设计",
+                "沙盒创作"
             ]
         }
     },
@@ -81,7 +84,7 @@ export const projects: ProjectData[] = [
         color: "#3e2622",
         imagePlaceholder: "CL",
         src: "/images/projects/poetry/poetry-cover.svg",
-        cardTitleLines: ["长歌当哭", "格律诗创作实践", "声律与言志"],
+        cardTitleLines: ["长歌当哭：", "格律诗创作实践"],
         description: "2018年夏近体格律诗创作实践。在严苛的平仄黏对、押韵声律与对仗工巧的格律框架下，探索抒情与言志的美学张力。A classical Chinese metrical poetry practice exploring regulated verse, tonal phonology, and lyric aesthetics in Summer 2018.",
         detailImages: [
             "/images/projects/poetry/poetry-cover.svg"
@@ -230,7 +233,7 @@ export const projects: ProjectData[] = [
         color: "#5a171d",
         imagePlaceholder: "QT",
         src: "/images/projects/quidem/quidem-cover.svg",
-        cardTitleLines: ["Quest", "量化交易CTA系统"],
+        cardTitleLines: ["Quest", "CTA系统", "量化分析与算法交易"],
         description: "A personal Python quant trading framework that combines Binance Futures execution, TUI monitoring, Redis-based reporting, risk control, backtesting research, and operational logs.",
         detailImages: [
             "/images/projects/quidem/kmeans_20260106_000544.png",
@@ -287,7 +290,7 @@ export const projects: ProjectData[] = [
         color: "#123f38",
         imagePlaceholder: "AT",
         src: "/images/projects/hyacinth/hyacinth-cover.svg",
-        cardTitleLines: ["Atrium", "DSH 内核 Agent", "DeepSeek Harness"],
+        cardTitleLines: ["Atrium", "智役中庭", "Agent Harness"],
         description: "基于 DSH（DeepSeek Harness）内核的 Agent 项目，结合 DAG 工作流实现跨平台多智能体协同编排与运行调度。",
         detailImages: [
             "/images/projects/hyacinth/Hyacinth-intro.png",
@@ -343,7 +346,7 @@ export const projects: ProjectData[] = [
         color: "#3e1c1c",
         imagePlaceholder: "SP",
         src: "/images/projects/solana/solana-cover.svg",
-        cardTitleLines: ["Solana", "私有硬分叉实验"],
+        cardTitleLines: ["Solana", "区块链私有硬分叉实验"],
         description: "A private hard-fork experiment that redesigns Solana inflation parameters, isolates mainnet assumptions, and validates a local block-producing network through RPC.",
         detailImages: [
             "/images/projects/solana/solana-economics.svg",
@@ -511,16 +514,16 @@ export const projects: ProjectData[] = [
     {
         id: 10,
         title: "Avoidant Syndrome",
-        year: "2026",
+        year: "2026夏",
         category: "Game Design",
         color: "#141419",
         imagePlaceholder: "AS",
-        src: "/images/projects/avoidant/cover.svg",
+        src: "/images/projects/avoidant/AS_Cover.jpg",
         cardTitleLines: ["Avoidant", "Syndrome", "回避症候"],
         description: "A narrative exploration & atmospheric game built with Unity. In development.",
         content: "Avoidant Syndrome is an upcoming narrative and spatial exploration game focusing on embodied metaphors and psychological architecture. Detailed design documents and visual teasers will be unveiled soon.",
         detailImages: [
-            "/images/projects/avoidant/cover.svg"
+            "/images/projects/avoidant/AS_Cover.jpg"
         ]
     },
     {
@@ -530,11 +533,11 @@ export const projects: ProjectData[] = [
         category: "Computational Design / 参数化设计",
         color: "#0e1726",
         imagePlaceholder: "PD",
-        src: "/images/projects/parametric/parametric-cover.svg",
+        src: "/images/projects/parametric/PD_Cover.jpg",
         cardTitleLines: ["Parametric", "Design", "参数化设计实践"],
         description: "探索计算几何、规则生成与拓扑优化的参数化设计实践。An exploratory computational and parametric design practice focusing on generative forms and algorithmic architecture.",
         detailImages: [
-            "/images/projects/parametric/parametric-cover.svg"
+            "/images/projects/parametric/PD_Cover.jpg"
         ],
         template: "swiss-case",
         useLightFrame: true,
