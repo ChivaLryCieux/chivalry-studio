@@ -13,12 +13,13 @@ interface ProjectCardProps {
 function getCardClassName(index: number, activeIndex: number, totalProjects: number) {
   const classNames = [styles.card];
   const nextIndex = totalProjects > 0 ? (activeIndex + 1) % totalProjects : activeIndex + 1;
+  const prevIndex = totalProjects > 0 ? (activeIndex - 1 + totalProjects) % totalProjects : -1;
 
   if (index === activeIndex) {
     classNames.push(styles.active);
   } else if (index === nextIndex) {
     classNames.push(styles.next);
-  } else if (index < activeIndex || (activeIndex === 0 && index === totalProjects - 1)) {
+  } else if (index === prevIndex) {
     classNames.push(styles.prev);
   } else {
     classNames.push(styles.hidden);
