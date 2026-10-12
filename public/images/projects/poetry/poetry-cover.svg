@@ -1,0 +1,51 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cream / Rice-White Background -->
+  <rect width="1600" height="900" fill="#F4F1EA"/>
+  
+  <!-- Outer Solid Black Swiss Frame -->
+  <rect x="88" y="88" width="1424" height="724" stroke="#111111" stroke-width="16"/>
+  <rect x="88" y="88" width="1424" height="150" fill="#111111"/>
+
+  <!-- Top Header Section -->
+  <rect x="124" y="124" width="68" height="68" fill="#C3182D"/>
+  <text x="224" y="181" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900">CHANT AS LAMENT</text>
+  <text x="960" y="176" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900">SUMMER 2018 / CLASSICAL POETRY</text>
+
+  <!-- Left Main Content -->
+  <text x="124" y="356" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="900">长歌当哭</text>
+  <text x="124" y="470" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="900">格律诗创作</text>
+  <text x="124" y="556" fill="#C3182D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">METRICAL POETRY PRACTICE</text>
+  <text x="124" y="608" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">PING ZE / RHYME / PARALLELISM / LYRIC</text>
+  <text x="124" y="758" fill="#555555" font-family="Courier New, monospace" font-size="22" font-weight="700">INDEX: #02 // CLASSICAL POETICS ARCHIVE</text>
+
+  <!-- Right Geometric Tonal Grid & Meter System (Swiss style) -->
+  <path d="M760 326H1400" stroke="#111111" stroke-width="8"/>
+  <path d="M760 690H1400" stroke="#111111" stroke-width="8"/>
+  <path d="M760 326V690" stroke="#111111" stroke-width="8"/>
+  <path d="M920 326V690M1080 326V690M1240 326V690M1400 326V690" stroke="#111111" stroke-width="4"/>
+  <path d="M760 508H1400" stroke="#111111" stroke-width="4"/>
+
+  <!-- Tonal Rhythm Curve (Ping Ze Tonal Flow in Cinnabar Red) -->
+  <polyline points="792,440 880,570 968,440 1056,440 1144,570 1232,570 1320,440 1384,570" stroke="#C3182D" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <!-- Tone Points (Ping = Ring, Ze = Solid) -->
+  <circle cx="792" cy="440" r="14" fill="#111111"/>
+  <circle cx="880" cy="570" r="14" fill="#C3182D"/>
+  <circle cx="968" cy="440" r="14" fill="#111111"/>
+  <circle cx="1056" cy="440" r="14" fill="#111111"/>
+  <circle cx="1144" cy="570" r="14" fill="#C3182D"/>
+  <circle cx="1232" cy="570" r="14" fill="#C3182D"/>
+  <circle cx="1320" cy="440" r="14" fill="#111111"/>
+  <circle cx="1384" cy="570" r="14" fill="#C3182D"/>
+
+  <!-- Seal / Red Chop Accent Block -->
+  <rect x="1340" y="346" width="40" height="40" fill="#C3182D"/>
+  <text x="1348" y="374" fill="#F4F1EA" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">诗</text>
+
+  <!-- Metric Subtitles inside grid -->
+  <text x="774" y="356" fill="#777777" font-family="Courier New, monospace" font-size="16" font-weight="700">01. 平 平 仄 仄 平 平 仄</text>
+  <text x="774" y="670" fill="#777777" font-family="Courier New, monospace" font-size="16" font-weight="700">02. 仄 仄 平 平 仄 仄 平</text>
+
+  <!-- Right Caption -->
+  <text x="760" y="758" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900">CLASSICAL VERSE &amp; TONAL METRICS</text>
+</svg>
