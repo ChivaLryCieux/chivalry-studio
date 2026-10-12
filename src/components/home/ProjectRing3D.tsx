@@ -12,12 +12,13 @@ const CAMERA_Z = 16.5;
 const STAR_MODEL_URL = '/models/Poly-2.glb';
 const CARD_WIDTH = 1.64;
 const CARD_HEIGHT = 0.92;
-const ACTIVE_CARD_SCALE: [number, number, number] = [1.14, 1.14, 1];
+const ACTIVE_CARD_SCALE: [number, number, number] = [1.16, 1.16, 1];
+const HOVERED_CARD_SCALE: [number, number, number] = [1.06, 1.06, 1];
 const RESTING_CARD_SCALE: [number, number, number] = [1, 1, 1];
 const CARD_GAP = 0.21;
 const RING_RADIUS_COMPRESSION = 0.84;
 const MIN_RING_RADIUS = 2.55;
-const CARD_TINT = '#d8d1c6';
+const CARD_TINT = '#f5f3ec';
 const STAR_GRADIENT_COLORS = {
   black: '#471a14',
   grey: '#a29477',
@@ -155,10 +156,11 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
       zoom?: number;
     };
 
-    easing.damp3(cardRef.current.scale, hovered || isActive ? ACTIVE_CARD_SCALE : RESTING_CARD_SCALE, 0.18, delta);
-    easing.damp(material, 'radius', hovered || isActive ? 0.22 : 0.1, 0.22, delta);
-    easing.damp(material, 'zoom', hovered || isActive ? 1 : 1.32, 0.28, delta);
-    easing.damp(material, 'grayscale', isActive ? 0 : 0.16, 0.25, delta);
+    const targetScale = isActive ? ACTIVE_CARD_SCALE : hovered ? HOVERED_CARD_SCALE : RESTING_CARD_SCALE;
+    easing.damp3(cardRef.current.scale, targetScale, 0.2, delta);
+    easing.damp(material, 'radius', isActive || hovered ? 0.12 : 0.08, 0.22, delta);
+    easing.damp(material, 'zoom', 1, 0.25, delta);
+    easing.damp(material, 'grayscale', isActive ? 0 : 0.12, 0.25, delta);
   });
 
   const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
