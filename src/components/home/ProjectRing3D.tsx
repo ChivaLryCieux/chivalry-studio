@@ -49,11 +49,22 @@ import {
   paintStarGradientTexture,
 } from '@/lib/threeUtils';
 
-function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, radius, total }: RingCardProps) {
+function RingCard({
+  activeIndex,
+  index,
+  onProjectFocus,
+  onProjectOpen,
+  project,
+  radius,
+  total,
+}: RingCardProps) {
   const cardRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const theta = (index / total) * Math.PI * 2;
-  const geometry = useMemo(() => createBentPlaneGeometry(0.1, CARD_WIDTH, CARD_HEIGHT), []);
+  const geometry = useMemo(
+    () => createBentPlaneGeometry(0.1, CARD_WIDTH, CARD_HEIGHT),
+    []
+  );
   const isActive = index === activeIndex;
 
   useFrame((_, delta) => {
@@ -68,9 +79,19 @@ function RingCard({ activeIndex, index, onProjectFocus, onProjectOpen, project, 
       zoom?: number;
     };
 
-    const targetScale = isActive ? ACTIVE_CARD_SCALE : hovered ? HOVERED_CARD_SCALE : RESTING_CARD_SCALE;
+    const targetScale = isActive
+      ? ACTIVE_CARD_SCALE
+      : hovered
+        ? HOVERED_CARD_SCALE
+        : RESTING_CARD_SCALE;
     easing.damp3(cardRef.current.scale, targetScale, 0.2, delta);
-    easing.damp(material, 'radius', isActive || hovered ? 0.12 : 0.08, 0.22, delta);
+    easing.damp(
+      material,
+      'radius',
+      isActive || hovered ? 0.12 : 0.08,
+      0.22,
+      delta
+    );
     easing.damp(material, 'zoom', 1, 0.25, delta);
     easing.damp(material, 'grayscale', isActive ? 0 : 0.12, 0.25, delta);
   });
@@ -159,7 +180,9 @@ function StarModel() {
       const sourceMesh = child as THREE.Mesh<THREE.BufferGeometry>;
       const geometry = sourceMesh.geometry.clone();
       const position = geometry.attributes.position;
-      const bounds = new THREE.Box3().setFromBufferAttribute(position as THREE.BufferAttribute);
+      const bounds = new THREE.Box3().setFromBufferAttribute(
+        position as THREE.BufferAttribute
+      );
       const center = bounds.getCenter(new THREE.Vector3());
       const size = bounds.getSize(new THREE.Vector3());
       const sizeX = Math.max(size.x, 0.0001);
@@ -196,7 +219,11 @@ function StarModel() {
   }, [starGeometries]);
 
   useEffect(() => {
-    paintStarGradientTexture(gradientTexture.canvas, gradientTexture.texture, 0);
+    paintStarGradientTexture(
+      gradientTexture.canvas,
+      gradientTexture.texture,
+      0
+    );
 
     return () => {
       gradientTexture.texture.dispose();
@@ -212,27 +239,57 @@ function StarModel() {
     const breath = Math.sin(time * 0.82 + motion.phase);
 
     if (time - texturePaintFrame.current > 1 / 12) {
-      paintStarGradientTexture(gradientTexture.canvas, gradientTexture.texture, time);
+      paintStarGradientTexture(
+        gradientTexture.canvas,
+        gradientTexture.texture,
+        time
+      );
       texturePaintFrame.current = time;
     }
 
     modelRef.current.position.y = 0.08 + breath * 0.11;
     modelRef.current.scale.setScalar(modelScale * (1 + breath * 0.025));
-    modelRef.current.rotation.x += delta * motion.spinX * (0.65 + Math.sin(time * 0.23 + motion.phase) * 0.35);
-    modelRef.current.rotation.y += delta * motion.spinY * (0.72 + Math.sin(time * 0.19 + motion.phase * 0.7) * 0.28);
-    modelRef.current.rotation.z += delta * motion.spinZ * (0.7 + Math.sin(time * 0.17 + motion.phase * 1.3) * 0.3);
+    modelRef.current.rotation.x +=
+      delta *
+      motion.spinX *
+      (0.65 + Math.sin(time * 0.23 + motion.phase) * 0.35);
+    modelRef.current.rotation.y +=
+      delta *
+      motion.spinY *
+      (0.72 + Math.sin(time * 0.19 + motion.phase * 0.7) * 0.28);
+    modelRef.current.rotation.z +=
+      delta *
+      motion.spinZ *
+      (0.7 + Math.sin(time * 0.17 + motion.phase * 1.3) * 0.3);
   });
 
   return (
-    <group ref={modelRef} position={[0, 0.08, 0]} rotation={[0.16, -0.4, -0.08]} scale={modelScale}>
+    <group
+      ref={modelRef}
+      position={[0, 0.08, 0]}
+      rotation={[0.16, -0.4, -0.08]}
+      scale={modelScale}
+    >
       {starGeometries.map(({ geometry }, index) => (
-        <mesh key={index} castShadow receiveShadow geometry={geometry} material={starMaterial} />
+        <mesh
+          key={index}
+          castShadow
+          receiveShadow
+          geometry={geometry}
+          material={starMaterial}
+        />
       ))}
     </group>
   );
 }
 
-function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, radius }: CarouselSceneProps) {
+function CarouselScene({
+  activeIndex,
+  onProjectFocus,
+  onProjectOpen,
+  projects,
+  radius,
+}: CarouselSceneProps) {
   const rigRef = useRef<THREE.Group>(null);
   const angle = projects.length > 0 ? (Math.PI * 2) / projects.length : 0;
 
@@ -241,8 +298,19 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
       return;
     }
 
-    easing.dampAngle(rigRef.current.rotation, 'y', -activeIndex * angle, 0.42, delta);
-    easing.damp3(state.camera.position, [-state.pointer.x * 2.25, 1.46 + state.pointer.y * 0.72, CAMERA_Z], 0.32, delta);
+    easing.dampAngle(
+      rigRef.current.rotation,
+      'y',
+      -activeIndex * angle,
+      0.42,
+      delta
+    );
+    easing.damp3(
+      state.camera.position,
+      [-state.pointer.x * 2.25, 1.46 + state.pointer.y * 0.72, CAMERA_Z],
+      0.32,
+      delta
+    );
     state.camera.lookAt(0, 0, 0);
     state.events.update?.();
   });
@@ -275,11 +343,21 @@ function CarouselScene({ activeIndex, onProjectFocus, onProjectOpen, projects, r
 
 useGLTF.preload(STAR_MODEL_URL);
 
-export function ProjectRing3D({ activeIndex, onProjectFocus, onProjectOpen, projects }: ProjectRing3DProps) {
+export function ProjectRing3D({
+  activeIndex,
+  onProjectFocus,
+  onProjectOpen,
+  projects,
+}: ProjectRing3DProps) {
   const radius = getRingRadius(projects.length);
 
   return (
-    <Canvas flat camera={{ position: [0, 1.46, CAMERA_Z], fov: 15 }} dpr={[1, 2]} gl={{ alpha: true, antialias: true }}>
+    <Canvas
+      flat
+      camera={{ position: [0, 1.46, CAMERA_Z], fov: 15 }}
+      dpr={[1, 2]}
+      gl={{ alpha: true, antialias: true }}
+    >
       <Suspense fallback={null}>
         <fog attach="fog" args={['#12080a', 14, 23]} />
         <CarouselScene

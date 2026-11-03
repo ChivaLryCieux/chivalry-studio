@@ -9,7 +9,14 @@ interface HomePageProps {
 export default async function Home({ searchParams }: HomePageProps) {
   const resolvedSearchParams = await searchParams;
   const initialProjectId = Number(resolvedSearchParams.project);
-  const displayProjectId = Number.isFinite(initialProjectId) ? initialProjectId : undefined;
+  const displayProjectId = Number.isFinite(initialProjectId)
+    ? initialProjectId
+    : undefined;
 
-  return <DisplayPage key={displayProjectId ?? 'default'} initialProjectId={displayProjectId} />;
+  return (
+    <DisplayPage
+      key={displayProjectId ?? 'default'}
+      initialProjectId={displayProjectId}
+    />
+  );
 }

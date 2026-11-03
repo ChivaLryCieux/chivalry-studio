@@ -10,10 +10,16 @@ interface ProjectCardProps {
   totalProjects: number;
 }
 
-function getCardClassName(index: number, activeIndex: number, totalProjects: number) {
+function getCardClassName(
+  index: number,
+  activeIndex: number,
+  totalProjects: number
+) {
   const classNames = [styles.card];
-  const nextIndex = totalProjects > 0 ? (activeIndex + 1) % totalProjects : activeIndex + 1;
-  const prevIndex = totalProjects > 0 ? (activeIndex - 1 + totalProjects) % totalProjects : -1;
+  const nextIndex =
+    totalProjects > 0 ? (activeIndex + 1) % totalProjects : activeIndex + 1;
+  const prevIndex =
+    totalProjects > 0 ? (activeIndex - 1 + totalProjects) % totalProjects : -1;
 
   if (index === activeIndex) {
     classNames.push(styles.active);
@@ -28,7 +34,12 @@ function getCardClassName(index: number, activeIndex: number, totalProjects: num
   return classNames.join(' ');
 }
 
-export function ProjectCard({ activeIndex, index, project, totalProjects }: ProjectCardProps) {
+export function ProjectCard({
+  activeIndex,
+  index,
+  project,
+  totalProjects,
+}: ProjectCardProps) {
   return (
     <Link
       href={`/detailPage/${project.id}?fromProject=${project.id}`}

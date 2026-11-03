@@ -42,12 +42,24 @@ export function ProjectAwardBadge({
           fill="none"
         />
         {/* Leaves along curve */}
-        <path d="M 24 40 C 18 42, 12 40, 10 36 C 14 33, 20 34, 24 40 Z" fill={color} />
-        <path d="M 18 35 C 10 38, 5 34, 4 28 C 9 27, 15 30, 18 35 Z" fill={color} />
-        <path d="M 11 28 C 4 29, 0 24, 0 18 C 5 18, 10 22, 11 28 Z" fill={color} />
+        <path
+          d="M 24 40 C 18 42, 12 40, 10 36 C 14 33, 20 34, 24 40 Z"
+          fill={color}
+        />
+        <path
+          d="M 18 35 C 10 38, 5 34, 4 28 C 9 27, 15 30, 18 35 Z"
+          fill={color}
+        />
+        <path
+          d="M 11 28 C 4 29, 0 24, 0 18 C 5 18, 10 22, 11 28 Z"
+          fill={color}
+        />
         <path d="M 8 20 C 2 18, 0 12, 2 7 C 6 9, 8 15, 8 20 Z" fill={color} />
         <path d="M 8 13 C 4 9, 5 4, 10 1 C 12 5, 11 10, 8 13 Z" fill={color} />
-        <path d="M 14 4 C 13 1, 15 -1, 18 -1 C 18 2, 16 4, 14 4 Z" fill={color} />
+        <path
+          d="M 14 4 C 13 1, 15 -1, 18 -1 C 18 2, 16 4, 14 4 Z"
+          fill={color}
+        />
       </svg>
 
       {/* Award Text */}
@@ -82,12 +94,24 @@ export function ProjectAwardBadge({
           strokeLinecap="round"
           fill="none"
         />
-        <path d="M 24 40 C 18 42, 12 40, 10 36 C 14 33, 20 34, 24 40 Z" fill={color} />
-        <path d="M 18 35 C 10 38, 5 34, 4 28 C 9 27, 15 30, 18 35 Z" fill={color} />
-        <path d="M 11 28 C 4 29, 0 24, 0 18 C 5 18, 10 22, 11 28 Z" fill={color} />
+        <path
+          d="M 24 40 C 18 42, 12 40, 10 36 C 14 33, 20 34, 24 40 Z"
+          fill={color}
+        />
+        <path
+          d="M 18 35 C 10 38, 5 34, 4 28 C 9 27, 15 30, 18 35 Z"
+          fill={color}
+        />
+        <path
+          d="M 11 28 C 4 29, 0 24, 0 18 C 5 18, 10 22, 11 28 Z"
+          fill={color}
+        />
         <path d="M 8 20 C 2 18, 0 12, 2 7 C 6 9, 8 15, 8 20 Z" fill={color} />
         <path d="M 8 13 C 4 9, 5 4, 10 1 C 12 5, 11 10, 8 13 Z" fill={color} />
-        <path d="M 14 4 C 13 1, 15 -1, 18 -1 C 18 2, 16 4, 14 4 Z" fill={color} />
+        <path
+          d="M 14 4 C 13 1, 15 -1, 18 -1 C 18 2, 16 4, 14 4 Z"
+          fill={color}
+        />
       </svg>
     </div>
   );

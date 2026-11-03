@@ -11,7 +11,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src",
-    "format": "prettier --write src"
+    "lint:fix": "eslint src --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

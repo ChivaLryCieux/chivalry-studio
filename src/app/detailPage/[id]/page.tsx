@@ -22,7 +22,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const project = getProjectById(Number(resolvedParams.id));
 
@@ -33,7 +35,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${project.title} | Lry`;
-  const description = project.description || project.caseStudy?.deck || `${project.title} - ${project.category}`;
+  const description =
+    project.description ||
+    project.caseStudy?.deck ||
+    `${project.title} - ${project.category}`;
 
   return {
     title,
@@ -61,12 +66,15 @@ export default async function DetailPage({ params, searchParams }: PageProps) {
   }
 
   const sourceProjectId = Number(resolvedSearchParams.fromProject);
-  const returnProjectId = Number.isFinite(sourceProjectId) && getProjectById(sourceProjectId)
-    ? sourceProjectId
-    : project.id;
+  const returnProjectId =
+    Number.isFinite(sourceProjectId) && getProjectById(sourceProjectId)
+      ? sourceProjectId
+      : project.id;
 
   if (project.template === 'swiss-case') {
-    return <SwissProjectPage project={project} returnProjectId={returnProjectId} />;
+    return (
+      <SwissProjectPage project={project} returnProjectId={returnProjectId} />
+    );
   }
 
   return (

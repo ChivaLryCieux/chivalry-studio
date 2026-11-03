@@ -6,8 +6,12 @@ interface DisplayPageRouteProps {
   }>;
 }
 
-export default async function DisplayPageRoute({ searchParams }: DisplayPageRouteProps) {
+export default async function DisplayPageRoute({
+  searchParams,
+}: DisplayPageRouteProps) {
   const resolvedSearchParams = await searchParams;
-  const projectParam = resolvedSearchParams.project ? `?project=${resolvedSearchParams.project}` : '';
+  const projectParam = resolvedSearchParams.project
+    ? `?project=${resolvedSearchParams.project}`
+    : '';
   redirect(`/${projectParam}`);
 }

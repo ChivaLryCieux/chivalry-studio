@@ -13,7 +13,9 @@ function getInitialIndex(projects: ProjectData[], initialProjectId?: number) {
     return 0;
   }
 
-  const projectIndex = projects.findIndex((project) => project.id === initialProjectId);
+  const projectIndex = projects.findIndex(
+    (project) => project.id === initialProjectId
+  );
   return projectIndex >= 0 ? projectIndex : 0;
 }
 
@@ -25,8 +27,13 @@ function getLoopedIndex(index: number, total: number) {
   return ((index % total) + total) % total;
 }
 
-export function useProjectCarousel(projects: ProjectData[], initialProjectId?: number) {
-  const [activeIndex, setActiveIndex] = useState(() => getInitialIndex(projects, initialProjectId));
+export function useProjectCarousel(
+  projects: ProjectData[],
+  initialProjectId?: number
+) {
+  const [activeIndex, setActiveIndex] = useState(() =>
+    getInitialIndex(projects, initialProjectId)
+  );
   const isAnimatingRef = useRef(false);
   const touchStartY = useRef(0);
   const animationTimeoutRef = useRef<number | null>(null);
@@ -44,18 +51,26 @@ export function useProjectCarousel(projects: ProjectData[], initialProjectId?: n
     }, SLIDE_TRANSITION_MS);
   }, []);
 
-  const changeSlide = useCallback((direction: 'next' | 'prev') => {
-    if (isAnimatingRef.current || projects.length === 0) {
-      return;
-    }
+  const changeSlide = useCallback(
+    (direction: 'next' | 'prev') => {
+      if (isAnimatingRef.current || projects.length === 0) {
+        return;
+      }
 
-    lockAnimation();
-    setActiveIndex((prev) => getLoopedIndex(prev + (direction === 'next' ? 1 : -1), projects.length));
-  }, [lockAnimation, projects.length]);
+      lockAnimation();
+      setActiveIndex((prev) =>
+        getLoopedIndex(prev + (direction === 'next' ? 1 : -1), projects.length)
+      );
+    },
+    [lockAnimation, projects.length]
+  );
 
-  const goToProject = useCallback((projectId?: number) => {
-    setActiveIndex(getInitialIndex(projects, projectId));
-  }, [projects]);
+  const goToProject = useCallback(
+    (projectId?: number) => {
+      setActiveIndex(getInitialIndex(projects, projectId));
+    },
+    [projects]
+  );
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {

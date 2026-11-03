@@ -8,9 +8,16 @@ interface ProjectChromeProps {
   onDisplayModeToggle: () => void;
 }
 
-export function ProjectChrome({ currentProject, displayMode, onDisplayModeToggle }: ProjectChromeProps) {
-  const previewTitle = (currentProject.cardTitleLines ?? [currentProject.title]).join(' ');
-  const nextModeLabel = displayMode === 'ring' ? 'Switch to 2D stack' : 'Switch to 3D ring';
+export function ProjectChrome({
+  currentProject,
+  displayMode,
+  onDisplayModeToggle,
+}: ProjectChromeProps) {
+  const previewTitle = (
+    currentProject.cardTitleLines ?? [currentProject.title]
+  ).join(' ');
+  const nextModeLabel =
+    displayMode === 'ring' ? 'Switch to 2D stack' : 'Switch to 3D ring';
 
   return (
     <>

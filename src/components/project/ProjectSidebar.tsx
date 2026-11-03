@@ -1,33 +1,41 @@
-import styles from "@/components/project/detailPage.module.css";
-import { ProjectAwardBadge } from "@/components/common/ProjectAwardBadge";
-import type { ProjectData } from "@/types/project";
+import styles from '@/components/project/detailPage.module.css';
+import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
+import type { ProjectData } from '@/types/project';
 
 interface ProjectSidebarProps {
-    project: ProjectData;
+  project: ProjectData;
 }
 
 export function ProjectSidebar({ project }: ProjectSidebarProps) {
-    return (
-        <aside className={styles.sidebar}>
-            <div className={styles.sidebarInner}>
-                <div className={styles.titleBlock}>
-                    <div className={styles.projectMeta}>
-                        {String(project.id).padStart(2, '0')} / {project.category}
-                    </div>
-                    <h1 className={styles.projectTitle}>{project.title || "Untitled"}</h1>
-                    {project.award ? (
-                        <div className={styles.awardWrapper}>
-                            <ProjectAwardBadge text={project.award} />
-                        </div>
-                    ) : null}
-                </div>
-
-                <div className={styles.infoBlock}>
-                    <p><strong>YEAR:</strong> {project.year}</p>
-                    <p><strong>DESC:</strong> {project.description || "Coming soon."}</p>
-                    {project.content ? <p><strong>DETAILS:</strong> {project.content}</p> : null}
-                </div>
+  return (
+    <aside className={styles.sidebar}>
+      <div className={styles.sidebarInner}>
+        <div className={styles.titleBlock}>
+          <div className={styles.projectMeta}>
+            {String(project.id).padStart(2, '0')} / {project.category}
+          </div>
+          <h1 className={styles.projectTitle}>{project.title || 'Untitled'}</h1>
+          {project.award ? (
+            <div className={styles.awardWrapper}>
+              <ProjectAwardBadge text={project.award} />
             </div>
-        </aside>
-    );
+          ) : null}
+        </div>
+
+        <div className={styles.infoBlock}>
+          <p>
+            <strong>YEAR:</strong> {project.year}
+          </p>
+          <p>
+            <strong>DESC:</strong> {project.description || 'Coming soon.'}
+          </p>
+          {project.content ? (
+            <p>
+              <strong>DETAILS:</strong> {project.content}
+            </p>
+          ) : null}
+        </div>
+      </div>
+    </aside>
+  );
 }

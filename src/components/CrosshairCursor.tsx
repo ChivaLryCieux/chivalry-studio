@@ -50,13 +50,25 @@ export default function CrosshairCursor() {
   return (
     <>
       {/* ====== 水平参考线 ====== */}
-      <div ref={hLineRef} className="crosshair-line crosshair-h" style={{ top: -100 }} />
+      <div
+        ref={hLineRef}
+        className="crosshair-line crosshair-h"
+        style={{ top: -100 }}
+      />
 
       {/* ====== 垂直参考线 ====== */}
-      <div ref={vLineRef} className="crosshair-line crosshair-v" style={{ left: -100 }} />
+      <div
+        ref={vLineRef}
+        className="crosshair-line crosshair-v"
+        style={{ left: -100 }}
+      />
 
       {/* ====== 十字准星中心 ====== */}
-      <div ref={centerRef} className="crosshair-center" style={{ left: -100, top: -100 }}>
+      <div
+        ref={centerRef}
+        className="crosshair-center"
+        style={{ left: -100, top: -100 }}
+      >
         {/* 纯十字：水平线 + 垂直线 */}
         <span className="crosshair-arm crosshair-arm-h" />
         <span className="crosshair-arm crosshair-arm-v" />

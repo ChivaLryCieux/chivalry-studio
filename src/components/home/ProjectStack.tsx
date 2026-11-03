@@ -7,7 +7,8 @@ import { ProjectCard } from '@/components/home/ProjectCard';
 import type { ProjectData } from '@/types/project';
 
 const ProjectRing3D = dynamic(
-  () => import('@/components/home/ProjectRing3D').then((mod) => mod.ProjectRing3D),
+  () =>
+    import('@/components/home/ProjectRing3D').then((mod) => mod.ProjectRing3D),
   { ssr: false }
 );
 
@@ -18,7 +19,12 @@ interface ProjectStackProps {
   projects: ProjectData[];
 }
 
-export function ProjectStack({ activeIndex, displayMode, onProjectFocus, projects }: ProjectStackProps) {
+export function ProjectStack({
+  activeIndex,
+  displayMode,
+  onProjectFocus,
+  projects,
+}: ProjectStackProps) {
   const router = useRouter();
   const stackClassName = `${styles.stackContainer} ${displayMode === 'stack' ? styles.stackMode : ''}`;
 
@@ -28,7 +34,9 @@ export function ProjectStack({ activeIndex, displayMode, onProjectFocus, project
         <ProjectRing3D
           activeIndex={activeIndex}
           onProjectFocus={onProjectFocus}
-          onProjectOpen={(projectId) => router.push(`/detailPage/${projectId}?fromProject=${projectId}`)}
+          onProjectOpen={(projectId) =>
+            router.push(`/detailPage/${projectId}?fromProject=${projectId}`)
+          }
           projects={projects}
         />
       </div>

@@ -33,10 +33,13 @@ function preloadBinary(url: string) {
 
 export function DisplayPage({ initialProjectId }: DisplayPageProps) {
   const projects = useMemo(() => getProjects(), []);
-  const { activeIndex, currentProject, goToProject, handleTouchEnd, handleTouchStart } = useProjectCarousel(
-    projects,
-    initialProjectId
-  );
+  const {
+    activeIndex,
+    currentProject,
+    goToProject,
+    handleTouchEnd,
+    handleTouchStart,
+  } = useProjectCarousel(projects, initialProjectId);
   const [displayMode, setDisplayMode] = useState<'ring' | 'stack'>('ring');
   const [sceneProgress, setSceneProgress] = useState(0);
   const [sceneReady, setSceneReady] = useState(false);
@@ -46,7 +49,8 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
     const previousBodyOverscroll = document.body.style.overscrollBehavior;
-    const previousHtmlOverscroll = document.documentElement.style.overscrollBehavior;
+    const previousHtmlOverscroll =
+      document.documentElement.style.overscrollBehavior;
 
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
@@ -57,7 +61,8 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
       document.body.style.overscrollBehavior = previousBodyOverscroll;
-      document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
+      document.documentElement.style.overscrollBehavior =
+        previousHtmlOverscroll;
     };
   }, []);
 
@@ -67,7 +72,9 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     }
 
     let cancelled = false;
-    const assetUrls = Array.from(new Set([currentProject.src, DISPLAY_CENTER_MODEL_ASSET]));
+    const assetUrls = Array.from(
+      new Set([currentProject.src, DISPLAY_CENTER_MODEL_ASSET])
+    );
     const totalAssets = assetUrls.length;
     let loadedAssets = 0;
 
@@ -90,7 +97,9 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
 
     assetUrls.forEach((url) => {
       const assetPath = url.split('?')[0];
-      const preloadTask = assetPath.endsWith('.glb') ? preloadBinary(url) : preloadImage(url);
+      const preloadTask = assetPath.endsWith('.glb')
+        ? preloadBinary(url)
+        : preloadImage(url);
       preloadTask.finally(updateProgress);
     });
 
@@ -101,7 +110,9 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
 
   useEffect(() => {
     const syncProjectFromUrl = () => {
-      const projectId = Number(new URLSearchParams(window.location.search).get('project'));
+      const projectId = Number(
+        new URLSearchParams(window.location.search).get('project')
+      );
 
       if (Number.isFinite(projectId)) {
         goToProject(projectId);
@@ -123,9 +134,14 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     }
 
     const nextUrl = `/?project=${currentProject.id}`;
-    const requestedProjectId = Number(new URLSearchParams(window.location.search).get('project'));
+    const requestedProjectId = Number(
+      new URLSearchParams(window.location.search).get('project')
+    );
 
-    if (Number.isFinite(requestedProjectId) && requestedProjectId !== currentProject.id) {
+    if (
+      Number.isFinite(requestedProjectId) &&
+      requestedProjectId !== currentProject.id
+    ) {
       return;
     }
 
@@ -143,16 +159,29 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
   }
 
   return (
-    <main className={styles.main} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <main
+      className={styles.main}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {!splashComplete ? (
-        <HomeSplashScreen isReady={sceneReady} onComplete={() => setSplashComplete(true)} progress={sceneProgress} />
+        <HomeSplashScreen
+          isReady={sceneReady}
+          onComplete={() => setSplashComplete(true)}
+          progress={sceneProgress}
+        />
       ) : null}
       <ProjectChrome
         currentProject={currentProject}
         displayMode={displayMode}
-        onDisplayModeToggle={() => setDisplayMode((mode) => (mode === 'ring' ? 'stack' : 'ring'))}
+        onDisplayModeToggle={() =>
+          setDisplayMode((mode) => (mode === 'ring' ? 'stack' : 'ring'))
+        }
       />
-      <ProjectProgress activeIndex={activeIndex} totalProjects={projects.length} />
+      <ProjectProgress
+        activeIndex={activeIndex}
+        totalProjects={projects.length}
+      />
       <ProjectStack
         activeIndex={activeIndex}
         displayMode={displayMode}

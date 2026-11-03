@@ -22,7 +22,9 @@ export function createBentPlaneGeometry(radius: number, width = 1, height = 1) {
   const leftToApex = new THREE.Vector2().subVectors(left, apex);
   const apexToRight = new THREE.Vector2().subVectors(apex, right);
   const leftToRight = new THREE.Vector2().subVectors(left, right);
-  const circleRadius = (leftToApex.length() * apexToRight.length() * leftToRight.length()) / (2 * Math.abs(leftToApex.cross(leftToRight)));
+  const circleRadius =
+    (leftToApex.length() * apexToRight.length() * leftToRight.length()) /
+    (2 * Math.abs(leftToApex.cross(leftToRight)));
   const center = new THREE.Vector2(0, radius - circleRadius);
   const baseVector = new THREE.Vector2().subVectors(left, center);
   const baseAngle = baseVector.angle() - Math.PI * 0.5;
@@ -50,7 +52,8 @@ export function getRingRadius(cardCount: number) {
   }
 
   const activeCardWidth = CARD_WIDTH * ACTIVE_CARD_SCALE_X;
-  const minimumRadius = (activeCardWidth + CARD_GAP) / (2 * Math.sin(Math.PI / cardCount));
+  const minimumRadius =
+    (activeCardWidth + CARD_GAP) / (2 * Math.sin(Math.PI / cardCount));
 
   return Math.max(MIN_RING_RADIUS, minimumRadius * RING_RADIUS_COMPRESSION);
 }
@@ -70,7 +73,11 @@ export function createStarGradientTexture() {
   return { canvas, texture };
 }
 
-export function paintStarGradientTexture(canvas: HTMLCanvasElement, texture: THREE.CanvasTexture, time: number) {
+export function paintStarGradientTexture(
+  canvas: HTMLCanvasElement,
+  texture: THREE.CanvasTexture,
+  time: number
+) {
   const context = canvas.getContext('2d');
 
   if (!context) {
@@ -79,7 +86,12 @@ export function paintStarGradientTexture(canvas: HTMLCanvasElement, texture: THR
 
   const { height, width } = canvas;
   const drift = (time * 0.045) % 1;
-  const gradient = context.createLinearGradient(-width * drift, 0, width * (1.25 - drift), height);
+  const gradient = context.createLinearGradient(
+    -width * drift,
+    0,
+    width * (1.25 - drift),
+    height
+  );
 
   gradient.addColorStop(0, STAR_GRADIENT_COLORS.black);
   gradient.addColorStop(0.24, STAR_GRADIENT_COLORS.grey);
@@ -90,7 +102,14 @@ export function paintStarGradientTexture(canvas: HTMLCanvasElement, texture: THR
   context.fillStyle = gradient;
   context.fillRect(0, 0, width, height);
 
-  const glow = context.createRadialGradient(width * 0.66, height * 0.36, 12, width * 0.5, height * 0.5, width * 0.62);
+  const glow = context.createRadialGradient(
+    width * 0.66,
+    height * 0.36,
+    12,
+    width * 0.5,
+    height * 0.5,
+    width * 0.62
+  );
   glow.addColorStop(0, 'rgba(254, 255, 101, 0.58)');
   glow.addColorStop(0.32, 'rgba(168, 88, 53, 0.28)');
   glow.addColorStop(1, 'rgba(71, 26, 20, 0)');

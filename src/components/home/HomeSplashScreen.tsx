@@ -12,7 +12,12 @@ interface HomeSplashScreenProps {
 
 type SplashPhase = 'loading' | 'exiting';
 
-export function HomeSplashScreen({ isReady, onComplete, progress, title = 'LUO RUIYANG' }: HomeSplashScreenProps) {
+export function HomeSplashScreen({
+  isReady,
+  onComplete,
+  progress,
+  title = 'LUO RUIYANG',
+}: HomeSplashScreenProps) {
   const [displayProgress, setDisplayProgress] = useState(0);
   const [phase, setPhase] = useState<SplashPhase>('loading');
   const holdTimerRef = useRef<number | null>(null);
@@ -85,15 +90,25 @@ export function HomeSplashScreen({ isReady, onComplete, progress, title = 'LUO R
     };
   }, []);
 
-  const progressValue = isReady ? Math.min(100, Math.round(displayProgress)) : Math.min(90, Math.floor(displayProgress));
+  const progressValue = isReady
+    ? Math.min(100, Math.round(displayProgress))
+    : Math.min(90, Math.floor(displayProgress));
   const isExiting = phase === 'exiting';
 
   return (
-    <div className={`${styles.splashOverlay} ${isExiting ? styles.splashOverlayExiting : ''}`}>
+    <div
+      className={`${styles.splashOverlay} ${isExiting ? styles.splashOverlayExiting : ''}`}
+    >
       <div className={styles.splashContent}>
-        <div className={`${styles.splashBrand} ${isExiting ? styles.splashBrandExiting : ''}`}>{title}</div>
+        <div
+          className={`${styles.splashBrand} ${isExiting ? styles.splashBrandExiting : ''}`}
+        >
+          {title}
+        </div>
 
-        <div className={`${styles.splashProgress} ${isExiting ? styles.splashProgressExiting : ''}`}>
+        <div
+          className={`${styles.splashProgress} ${isExiting ? styles.splashProgressExiting : ''}`}
+        >
           <span className={styles.splashProgressValue}>{progressValue}</span>
           <div className={styles.splashProgressTrack} aria-hidden="true">
             <span

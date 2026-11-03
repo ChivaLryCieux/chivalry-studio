@@ -1,12 +1,12 @@
 {
   "semi": true,
-  "singleQuote": false,
+  "singleQuote": true,
   "quoteProps": "as-needed",
   "trailingComma": "es5",
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "always",
-  "parser": "typescript",
+  "endOfLine": "auto",
   "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false

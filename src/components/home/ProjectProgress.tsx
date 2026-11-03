@@ -6,17 +6,25 @@ interface ProjectProgressProps {
   totalProjects: number;
 }
 
-export function ProjectProgress({ activeIndex, totalProjects }: ProjectProgressProps) {
+export function ProjectProgress({
+  activeIndex,
+  totalProjects,
+}: ProjectProgressProps) {
   const projectLabel = String(activeIndex + 1).padStart(2, '0');
 
   return (
     <div className={styles.bottomBar}>
       <div className={styles.ticks}>
         {Array.from({ length: 40 }).map((_, index) => (
-          <span key={index} className={styles.tick}>|</span>
+          <span key={index} className={styles.tick}>
+            |
+          </span>
         ))}
       </div>
-      <div className={styles.progressMarker} style={{ left: `${getProjectProgress(activeIndex, totalProjects)}%` }}>
+      <div
+        className={styles.progressMarker}
+        style={{ left: `${getProjectProgress(activeIndex, totalProjects)}%` }}
+      >
         [ {projectLabel} ]
       </div>
     </div>
