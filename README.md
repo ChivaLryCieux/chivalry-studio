@@ -3,7 +3,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16.4.4-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.3.1-blue?style=flat-square&logo=react)](https://react.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-0.187-black?style=flat-square&logo=three.js)](https://threejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7.x%20tsgo-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-11.7.0-F69220?style=flat-square&logo=pnpm)](https://pnpm.io/)
 
 一个基于 **Next.js 16 (App Router)**、**React 19** 与 **React Three Fiber (Three.js)** 构建的高性能个人跨学科设计与研发作品集系统。
@@ -136,10 +136,17 @@ pnpm start
 ### 4. 代码检查与格式化
 ```bash
 pnpm lint          # ESLint（eslint-config-next）
-pnpm typecheck     # tsc --noEmit
+pnpm typecheck     # tsgo 原生类型检查（TypeScript 7，约 3x 提速）
+pnpm typecheck:ts6 # 经典 TypeScript 6 检查（与 ESLint 共用同一套类型 API）
 pnpm format        # Prettier 写入格式化
 pnpm format:check  # 仅检查是否合规
 ```
+
+> **TypeScript 7 (tsgo) 并行方案**：TS 7 暂未提供 JS 编译器 API，而 `typescript-eslint` 仍依赖该 API。
+> 按 TypeScript 官方指引，本项目通过 npm alias 并行安装两个编译器：
+> `typescript` → `@typescript/typescript6`（提供 TS 6 API，供 ESLint 与 IDE 使用），
+> `@typescript/native` → `typescript@7`（提供原生 `tsc`，即 tsgo）。
+> 因此 `tsc` 是 TS 7，`tsc6` 是 TS 6，两者互不冲突。
 
 ---
 
