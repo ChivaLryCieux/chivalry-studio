@@ -1,9 +1,10 @@
 # Chivalry Studio Portfolio (v3.0.0)
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.2.4-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2.1-blue?style=flat-square&logo=react)](https://react.dev/)
-[![Three.js](https://img.shields.io/badge/Three.js-0.182-black?style=flat-square&logo=three.js)](https://threejs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.4-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.3.1-blue?style=flat-square&logo=react)](https://react.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-0.187-black?style=flat-square&logo=three.js)](https://threejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-11.7.0-F69220?style=flat-square&logo=pnpm)](https://pnpm.io/)
 
 一个基于 **Next.js 16 (App Router)**、**React 19** 与 **React Three Fiber (Three.js)** 构建的高性能个人跨学科设计与研发作品集系统。
 
@@ -103,6 +104,8 @@ chivalry-studio
 │  └─ types
 │     └─ project.ts                  # ProjectData 类型系统
 ├─ package.json
+├─ pnpm-lock.yaml              # 依赖锁定（唯一锁文件）
+├─ pnpm-workspace.yaml         # pnpm 设置（allowBuilds 等）
 └─ tsconfig.json
 ```
 
@@ -110,27 +113,32 @@ chivalry-studio
 
 ## 💻 本地开发与运行
 
+> 环境要求：Node.js >= 20.9，pnpm 11（仓库已通过 `packageManager` 字段锁定版本，corepack 会自动安装）。
+> 依赖统一由 pnpm 管理，请勿再使用 `npm install`。
+
 ### 1. 安装依赖
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. 启动本地开发服务
 ```bash
-npm run dev
+pnpm dev
 ```
 启动后在浏览器访问 [http://localhost:3003](http://localhost:3003)。
 
 ### 3. 构建生产版本
 ```bash
-npm run build
-npm run start
+pnpm build
+pnpm start
 ```
 
 ### 4. 代码检查与格式化
 ```bash
-npm run lint
-npm run format
+pnpm lint          # ESLint（eslint-config-next）
+pnpm typecheck     # tsc --noEmit
+pnpm format        # Prettier 写入格式化
+pnpm format:check  # 仅检查是否合规
 ```
 
 ---
@@ -196,6 +204,15 @@ npm run format
 
 - **来源记忆**：进入详情页时 URL 携带来源参数 `/detailPage/<id>?fromProject=<id>`，点击左上角 `WORKS` 返回时平滑定位至原项目卡片，保持浏览上下文不丢失。
 - **SEO 与 Metadata**：各动态详情页基于项目数据动态生成 OpenGraph 标签与页面元数据。
+
+---
+
+## ☁️ 部署 (Vercel)
+
+- **包管理器自动识别**：仓库根目录存在 `pnpm-lock.yaml` 且 `package.json` 声明了 `packageManager`，Vercel 会自动改用 pnpm 安装依赖并遵循 `pnpm-lock.yaml` 的锁定版本，无需在项目设置里手动指定。
+- **Node 版本**：`engines.node` 要求 `>=20.9.0`（Next.js 16 的最低要求），Vercel 会据此选择满足条件的运行时版本。
+- **构建命令**：保持默认 `pnpm build` 即可；`postinstall` 等钩子命令若存在，Vercel 同样以 pnpm 执行。
+- **产物**：`next build` 产出静态与动态混合路由，`next start` 用于本地预览生产构建。
 
 ---
 
