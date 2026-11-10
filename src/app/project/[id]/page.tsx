@@ -5,7 +5,7 @@ import { ProjectSidebar } from '@/components/project/ProjectSidebar';
 import { SwissProjectPage } from '@/components/project/swiss/SwissProjectPage';
 import { WorksBackLink } from '@/components/project/WorksBackLink';
 import { PROJECTS, getProjectById } from '@/data';
-import styles from '@/components/project/detailPage.module.css';
+import styles from '@/components/project/projectPage.module.css';
 
 interface PageProps {
   params: Promise<{

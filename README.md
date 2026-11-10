@@ -81,9 +81,7 @@ chivalry-studio
 │  │  ├─ layout.tsx                  # 全局骨架、字体与元数据模板
 │  │  ├─ page.tsx                    # 首页(force-static + Suspense)
 │  │  ├─ page.module.css             # 首页合成层背景动画
-│  │  ├─ project/[id]/page.tsx       # 详情页 canonical(SSG,dynamicParams=false)
-│  │  ├─ detailPage/[id]/page.tsx    # 旧路由 → 308 至 /project/[id]
-│  │  └─ displayPage/page.tsx        # 旧路由 → 308 至 /
+│  │  │  └─ project/[id]/page.tsx       # 详情页 canonical(SSG,dynamicParams=false)
 │  ├─ components
 │  │  ├─ common
 │  │  │  └─ ProjectAwardBadge.tsx    # 标题挂载月桂获奖条组件
@@ -222,7 +220,6 @@ node scripts/check-assets.mjs   # 校验引用完整、无孤儿文件
 ## 📜 导航路由与状态保持
 
 - **来源记忆**：进入详情页时 URL 携带来源参数 `/project/<id>?fromProject=<id>`，点击左上角 `WORKS` 返回时平滑定位至原项目卡片，保持浏览上下文不丢失。
-- **旧链接兼容**：`/detailPage/<id>` 与 `/displayPage` 均以 308 永久重定向至 canonical 路由。
 - **全静态生成**：首页 `force-static`，详情页 `generateStaticParams` + `dynamicParams = false` 全量 SSG，`fromProject` 由客户端 `useSearchParams` 读取。
 - **SEO 与 Metadata**：各动态详情页基于项目数据动态生成 OpenGraph 标签与页面元数据。
 

@@ -1,4 +1,4 @@
-import styles from '@/components/project/detailPage.module.css';
+import styles from '@/components/project/projectPage.module.css';
 import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
 import { formatOrdinal } from '@/lib/format';
 import type { Project } from '@/types/project';

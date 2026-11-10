@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from '@/components/project/detailPage.module.css';
+import styles from '@/components/project/projectPage.module.css';
 import type { Project } from '@/types/project';
 
 interface ProjectGalleryProps {
