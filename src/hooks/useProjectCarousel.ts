@@ -2,37 +2,28 @@
 
 import type { TouchEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { ProjectData } from '@/types/project';
+import { PROJECT_CARD_INDEX } from '@/data/cards';
+import { getLoopedIndex } from '@/lib/carousel';
+import type { ProjectCardData, ProjectId } from '@/types/project';
 
 const SLIDE_TRANSITION_MS = 800;
 const WHEEL_THRESHOLD = 20;
 const SWIPE_THRESHOLD = 50;
 
-function getInitialIndex(projects: ProjectData[], initialProjectId?: number) {
-  if (!initialProjectId) {
+function getInitialIndex(initialProjectId?: ProjectId) {
+  if (initialProjectId === undefined) {
     return 0;
   }
 
-  const projectIndex = projects.findIndex(
-    (project) => project.id === initialProjectId
-  );
-  return projectIndex >= 0 ? projectIndex : 0;
-}
-
-function getLoopedIndex(index: number, total: number) {
-  if (total <= 0) {
-    return 0;
-  }
-
-  return ((index % total) + total) % total;
+  return PROJECT_CARD_INDEX.get(initialProjectId) ?? 0;
 }
 
 export function useProjectCarousel(
-  projects: ProjectData[],
-  initialProjectId?: number
+  projects: readonly ProjectCardData[],
+  initialProjectId?: ProjectId
 ) {
   const [activeIndex, setActiveIndex] = useState(() =>
-    getInitialIndex(projects, initialProjectId)
+    getInitialIndex(initialProjectId)
   );
   const isAnimatingRef = useRef(false);
   const touchStartY = useRef(0);
@@ -65,12 +56,9 @@ export function useProjectCarousel(
     [lockAnimation, projects.length]
   );
 
-  const goToProject = useCallback(
-    (projectId?: number) => {
-      setActiveIndex(getInitialIndex(projects, projectId));
-    },
-    [projects]
-  );
+  const goToProject = useCallback((projectId?: ProjectId) => {
+    setActiveIndex(getInitialIndex(projectId));
+  }, []);
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {

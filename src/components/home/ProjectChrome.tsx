@@ -1,9 +1,9 @@
 import styles from './ProjectChrome.module.css';
 import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
-import type { ProjectData } from '@/types/project';
+import type { ProjectCardData } from '@/types/project';
 
 interface ProjectChromeProps {
-  currentProject: ProjectData;
+  currentProject: ProjectCardData;
   displayMode: 'ring' | 'stack';
   onDisplayModeToggle: () => void;
 }

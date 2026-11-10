@@ -73,36 +73,46 @@ chivalry-studio
 │  │     └─ text-classification      # NLP 文本分类演进封面
 │  └─ models
 │     └─ Poly-2.glb                  # 展厅中央 3D 浮空多面体模型
+├─ scripts
+│  ├─ optimize-images.mjs            # 图片管线:源位图 → 双档 WebP(card≤1024w/detail≤2048w)
+│  └─ check-assets.mjs               # 资产引用校验(孤儿/缺失检测)
 ├─ src
 │  ├─ app
-│  │  ├─ layout.tsx                  # 全局骨架与字体注入
-│  │  ├─ page.tsx                    # 首页根入口
-│  │  ├─ page.module.css             # 首页与展厅 UI 定位样式
-│  │  └─ detailPage/[id]/page.tsx    # 动态静态路由生成与模板分发
+│  │  ├─ layout.tsx                  # 全局骨架、字体与元数据模板
+│  │  ├─ page.tsx                    # 首页(force-static + Suspense)
+│  │  ├─ page.module.css             # 首页合成层背景动画
+│  │  ├─ project/[id]/page.tsx       # 详情页 canonical(SSG,dynamicParams=false)
+│  │  ├─ detailPage/[id]/page.tsx    # 旧路由 → 308 至 /project/[id]
+│  │  └─ displayPage/page.tsx        # 旧路由 → 308 至 /
 │  ├─ components
 │  │  ├─ common
-│  │  │  ├─ AwardLaurel.tsx          # 可定制月桂勋章组件
 │  │  │  └─ ProjectAwardBadge.tsx    # 标题挂载月桂获奖条组件
 │  │  ├─ home
-│  │  │  ├─ DisplayPage.tsx          # 展厅主逻辑与预加载
+│  │  │  ├─ DisplayPage.tsx          # 展厅主逻辑、URL 同步与资产预载清单
 │  │  │  ├─ ProjectChrome.tsx        # 四角 UI、标题与获奖徽章
-│  │  │  ├─ ProjectProgress.tsx      # 进度指示器
+│  │  │  ├─ ProjectProgress.tsx      # 进度指示器(渐变刻度)
 │  │  │  ├─ ProjectRing3D.tsx        # 3D 环形曲面悬浮展厅核心实现
-│  │  │  └─ ProjectStack.tsx         # 2D/3D 双模适配容器
+│  │  │  └─ ProjectStack.tsx         # 2D/3D 按设备条件挂载容器
 │  │  └─ project
+│  │     ├─ WorksBackLink.tsx        # 客户端 fromProject 回退链接
 │  │     ├─ ProjectGallery.tsx       # 默认详情画廊
 │  │     ├─ ProjectSidebar.tsx       # 默认侧边栏（集成奖项）
 │  │     └─ swiss
 │  │        ├─ SwissProjectPage.tsx  # 瑞士案例研读模板组件
 │  │        └─ swiss-project.module.css
 │  ├─ data
-│  │  └─ projects.ts                 # 全局项目数据唯一真理源 (Single Source of Truth)
+│  │  ├─ cards.ts                    # 卡片视图模型(客户端唯一安全入口)
+│  │  ├─ index.ts                    # PROJECTS 全集 + ReadonlyMap 查询(仅服务端)
+│  │  └─ projects/                   # 每项目一个详情文件(卡片字段复用 cards.ts)
 │  ├─ hooks
-│  │  └─ useProjectCarousel.ts       # 轮播索引控制、快捷键与手势
+│  │  ├─ useProjectCarousel.ts       # 轮播索引控制、快捷键与手势
+│  │  └─ useMediaQuery.ts            # SSR 安全媒体查询(useSyncExternalStore)
 │  ├─ lib
-│  │  └─ projects.ts                 # 数据查询与辅助函数
+│  │  ├─ carousel.ts                 # 轮播纯函数(循环索引/进度映射)
+│  │  ├─ format.ts                   # 序号格式化
+│  │  └─ threeUtils.ts               # 几何共享/GLB 预处理缓存/渐变纹理
 │  └─ types
-│     └─ project.ts                  # ProjectData 类型系统
+│     └─ project.ts                  # 判别联合类型系统(card/detail 分层)
 ├─ package.json
 ├─ pnpm-lock.yaml              # 依赖锁定（唯一锁文件）
 ├─ pnpm-workspace.yaml         # pnpm 设置（allowBuilds 等）
@@ -152,64 +162,68 @@ pnpm format:check  # 仅检查是否合规
 
 ## 📝 如何维护与新增项目
 
-所有项目数据统一由 `src/data/projects.ts` 集中管理。
+数据按 **卡片/详情两层** 组织:卡片字段进 `src/data/cards.ts`(下发客户端),详情字段进 `src/data/projects/<name>.ts`(仅服务端)。新增项目需三步:
 
-### 1. 标准项目配置模版
+### 1. 在 `src/data/cards.ts` 追加卡片
 ```ts
-{
+export const newProjectCard = {
   id: 12,
   title: "New Project Title",
   year: "2026",
   category: "Game Design / 独立研发",
-  color: "#1a1a2e",
-  imagePlaceholder: "NP",
-  src: "/images/projects/new-project/cover.jpg",
+  src: "/images/projects/new-project/cover.webp",       // ≤2048w
+  cardSrc: "/images/projects/new-project/cover-card.webp", // ≤1024w;SVG 封面则与 src 相同
   cardTitleLines: ["New", "Project", "新项目中文名"],
-  award: "2026某某大赛金奖",               // 可选：自动激活月桂获奖徽章
-  description: "项目核心简述...",
-  detailImages: [
-    "/images/projects/new-project/cover.jpg"
-  ]
-}
+  award: "2026某某大赛金奖",               // 可选:自动激活月桂获奖徽章
+  coverPosition: "top",                    // 可选:卡片封面取顶部
+} satisfies ProjectCardData;
+// 并加入 PROJECT_CARDS 数组(顺序即轮播顺序)
 ```
 
-### 2. 瑞士案例研读模版 (`template: "swiss-case"`)
-若需要展示深入的技术报告、学术论文或系统架构分析，可开启瑞士模版：
+### 2. 新建 `src/data/projects/new-project.ts`
 ```ts
-{
+import { newProjectCard } from '@/data/cards';
+import type { Project } from '@/types/project';
+
+export const project = {
+  ...newProjectCard,
+  description: "项目核心简述...",
+  detailImages: ["/images/projects/new-project/shot-1.webp"],
+  // 画廊模板:省略 template 即可;瑞士模板则必须提供 caseStudy(判别联合约束)
   template: "swiss-case",
-  useLightFrame: true,       // 适用于米白或浅色底色封面
-  isBilingual: true,         // 开启中英双语对照
+  useLightFrame: true,
+  isBilingual: true,
   caseStudy: {
     eyebrow: "Field / Subtitle",
     headline: "Main Title\n中文主标题",
     deck: "Overview in English.\n中文概述段落。",
-    accent: "#c3182d",       // 瑞士主题色高亮
+    accent: "#c3182d",
     repoPath: "DOI / GitHub / Lab Path",
     imageFit: "contain",
-    metrics: [
-      { label: "Metric 1\n指标名", value: "85.2%" },
-      { label: "Metric 2\n指标名", value: "30 steps" }
-    ],
-    sections: [
-      {
-        kicker: "01 / Architecture 架构",
-        title: "Section Title.\n章节标题。",
-        body: "Detailed section content.\n深入剖析正文。"
-      }
-    ],
-    highlights: ["核心亮点 1", "核心亮点 2"],
-    stack: ["Tech 1", "Tech 2"],
-    keywords: ["关键词 1", "关键词 2"]
-  }
-}
+    metrics: [{ label: "Metric\n指标", value: "85.2%" }],
+    sections: [{ kicker: "01 / Architecture 架构", title: "Section.\n标题。", body: "Detail.\n正文。" }],
+    highlights: ["核心亮点 1"],
+    stack: ["Tech 1"],
+    keywords: ["关键词"],
+  },
+} satisfies Project;
+// 并在 src/data/index.ts 的 PROJECTS 中登记(与 cards 同序,否则启动即抛错)
+```
+
+### 3. 生成图片资产
+把原始 png/jpg 放入 `public/images/projects/<name>/`,在 data 中按 `.webp` / `-card.webp` 引用,然后:
+```bash
+pnpm images          # 生成双档 WebP 并删除源位图
+node scripts/check-assets.mjs   # 校验引用完整、无孤儿文件
 ```
 
 ---
 
 ## 📜 导航路由与状态保持
 
-- **来源记忆**：进入详情页时 URL 携带来源参数 `/detailPage/<id>?fromProject=<id>`，点击左上角 `WORKS` 返回时平滑定位至原项目卡片，保持浏览上下文不丢失。
+- **来源记忆**：进入详情页时 URL 携带来源参数 `/project/<id>?fromProject=<id>`，点击左上角 `WORKS` 返回时平滑定位至原项目卡片，保持浏览上下文不丢失。
+- **旧链接兼容**：`/detailPage/<id>` 与 `/displayPage` 均以 308 永久重定向至 canonical 路由。
+- **全静态生成**：首页 `force-static`，详情页 `generateStaticParams` + `dynamicParams = false` 全量 SSG，`fromProject` 由客户端 `useSearchParams` 读取。
 - **SEO 与 Metadata**：各动态详情页基于项目数据动态生成 OpenGraph 标签与页面元数据。
 
 ---

@@ -1,26 +1,31 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import styles from '@/app/page.module.css';
 import { HomeSplashScreen } from '@/components/home/HomeSplashScreen';
 import { ProjectChrome } from '@/components/home/ProjectChrome';
 import { ProjectProgress } from '@/components/home/ProjectProgress';
 import { ProjectStack } from '@/components/home/ProjectStack';
+import { PROJECT_CARDS } from '@/data/cards';
 import { useProjectCarousel } from '@/hooks/useProjectCarousel';
-import { getProjects } from '@/lib/projects';
 
-interface DisplayPageProps {
-  initialProjectId?: number;
-}
+const CENTER_MODEL_ASSET = '/models/Poly-2.glb';
 
-const DISPLAY_CENTER_MODEL_ASSET = '/models/Poly-2.glb';
+/** 展厅预载清单:全部卡片缩略图 + 中央 GLB,splash 进度即真实进度 */
+const PRELOAD_MANIFEST = [
+  ...new Set([
+    ...PROJECT_CARDS.map((card) => card.cardSrc),
+    CENTER_MODEL_ASSET,
+  ]),
+];
 
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
     const image = new window.Image();
     image.decoding = 'async';
     image.onload = () => resolve();
-    image.onerror = () => resolve(); // 降级处理，即使预加载失败也继续
+    image.onerror = () => resolve(); // 降级处理,即使预加载失败也继续
     image.src = src;
   });
 }
@@ -31,15 +36,20 @@ function preloadBinary(url: string) {
     .catch(() => undefined); // 降级处理
 }
 
-export function DisplayPage({ initialProjectId }: DisplayPageProps) {
-  const projects = useMemo(() => getProjects(), []);
+export function DisplayPage() {
+  const searchParams = useSearchParams();
+  const requestedProjectId = Number(searchParams.get('project'));
+  const initialProjectId =
+    Number.isFinite(requestedProjectId) && requestedProjectId > 0
+      ? requestedProjectId
+      : undefined;
   const {
     activeIndex,
     currentProject,
     goToProject,
     handleTouchEnd,
     handleTouchStart,
-  } = useProjectCarousel(projects, initialProjectId);
+  } = useProjectCarousel(PROJECT_CARDS, initialProjectId);
   const [displayMode, setDisplayMode] = useState<'ring' | 'stack'>('ring');
   const [sceneProgress, setSceneProgress] = useState(0);
   const [sceneReady, setSceneReady] = useState(false);
@@ -67,16 +77,9 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
   }, []);
 
   useEffect(() => {
-    if (sceneReady || !currentProject) {
-      return;
-    }
-
     let cancelled = false;
-    const assetUrls = Array.from(
-      new Set([currentProject.src, DISPLAY_CENTER_MODEL_ASSET])
-    );
-    const totalAssets = assetUrls.length;
     let loadedAssets = 0;
+    const totalAssets = PRELOAD_MANIFEST.length;
 
     const updateProgress = () => {
       if (cancelled) {
@@ -95,9 +98,8 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
       }
     };
 
-    assetUrls.forEach((url) => {
-      const assetPath = url.split('?')[0];
-      const preloadTask = assetPath.endsWith('.glb')
+    PRELOAD_MANIFEST.forEach((url) => {
+      const preloadTask = url.endsWith('.glb')
         ? preloadBinary(url)
         : preloadImage(url);
       preloadTask.finally(updateProgress);
@@ -106,37 +108,22 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     return () => {
       cancelled = true;
     };
-  }, [currentProject, sceneReady]);
+  }, []);
 
+  // URL ?project= 参数 → 轮播定位(前进/后退导航)
   useEffect(() => {
-    const syncProjectFromUrl = () => {
-      const projectId = Number(
-        new URLSearchParams(window.location.search).get('project')
-      );
+    if (initialProjectId !== undefined) {
+      goToProject(initialProjectId);
+    }
+  }, [initialProjectId, goToProject]);
 
-      if (Number.isFinite(projectId)) {
-        goToProject(projectId);
-      }
-    };
-
-    const syncFrame = window.requestAnimationFrame(syncProjectFromUrl);
-    window.addEventListener('popstate', syncProjectFromUrl);
-
-    return () => {
-      window.cancelAnimationFrame(syncFrame);
-      window.removeEventListener('popstate', syncProjectFromUrl);
-    };
-  }, [goToProject]);
-
+  // 当前项目 → 回写 URL(replaceState 不触发路由,不会与上一条 effect 互踢)
   useEffect(() => {
     if (!currentProject) {
       return;
     }
 
     const nextUrl = `/?project=${currentProject.id}`;
-    const requestedProjectId = Number(
-      new URLSearchParams(window.location.search).get('project')
-    );
 
     if (
       Number.isFinite(requestedProjectId) &&
@@ -148,7 +135,7 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
     if (`${window.location.pathname}${window.location.search}` !== nextUrl) {
       window.history.replaceState(null, '', nextUrl);
     }
-  }, [currentProject]);
+  }, [currentProject, requestedProjectId]);
 
   if (!currentProject) {
     return (
@@ -180,13 +167,13 @@ export function DisplayPage({ initialProjectId }: DisplayPageProps) {
       />
       <ProjectProgress
         activeIndex={activeIndex}
-        totalProjects={projects.length}
+        totalProjects={PROJECT_CARDS.length}
       />
       <ProjectStack
         activeIndex={activeIndex}
         displayMode={displayMode}
         onProjectFocus={goToProject}
-        projects={projects}
+        projects={PROJECT_CARDS}
       />
     </main>
   );

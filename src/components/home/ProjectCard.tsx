@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ProjectStack.module.css';
-import type { ProjectData } from '@/types/project';
+import type { ProjectCardData } from '@/types/project';
 
 interface ProjectCardProps {
   activeIndex: number;
   index: number;
-  project: ProjectData;
+  project: ProjectCardData;
   totalProjects: number;
 }
 
@@ -42,13 +42,13 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Link
-      href={`/detailPage/${project.id}?fromProject=${project.id}`}
+      href={`/project/${project.id}?fromProject=${project.id}`}
       className={getCardClassName(index, activeIndex, totalProjects)}
     >
       <div className={styles.cardInner}>
         <div className={styles.imageWrapper}>
           <Image
-            src={project.src}
+            src={project.cardSrc}
             alt={project.title}
             fill
             sizes="100vw"

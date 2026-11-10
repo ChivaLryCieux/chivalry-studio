@@ -1,34 +1,26 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
-import type { ProjectData } from '@/types/project';
+import { WorksBackLink } from '@/components/project/WorksBackLink';
+import { formatOrdinal } from '@/lib/format';
+import type { SwissProject } from '@/types/project';
 import styles from './swiss-project.module.css';
 
 interface SwissProjectPageProps {
-  project: ProjectData;
-  returnProjectId?: number;
+  project: SwissProject;
 }
 
-export function SwissProjectPage({
-  project,
-  returnProjectId = project.id,
-}: SwissProjectPageProps) {
-  const caseStudy = project.caseStudy;
+export function SwissProjectPage({ project }: SwissProjectPageProps) {
+  const { caseStudy } = project;
   const images = Array.from(
     new Set(
       (project.detailImages ?? []).filter((image) => image !== project.src)
     )
   );
-  const shouldContainImages = caseStudy?.imageFit === 'contain';
-  const isBilingualCase =
-    caseStudy?.isBilingual ?? project.isBilingual ?? false;
+  const shouldContainImages = caseStudy.imageFit === 'contain';
+  const isBilingualCase = caseStudy.isBilingual ?? project.isBilingual ?? false;
   const useLightFrame =
-    caseStudy?.useLightFrame ?? project.useLightFrame ?? false;
-
-  if (!caseStudy) {
-    return null;
-  }
+    caseStudy.useLightFrame ?? project.useLightFrame ?? false;
 
   const pageStyle: CSSProperties & Record<'--accent', string> = {
     '--accent': caseStudy.accent,
@@ -37,16 +29,18 @@ export function SwissProjectPage({
   return (
     <main className={styles.page} style={pageStyle}>
       <nav className={styles.nav}>
-        <Link href={`/?project=${returnProjectId}`} className={styles.navLink}>
-          {isBilingualCase ? 'WORKS / 项目' : 'WORKS'}
-        </Link>
+        <WorksBackLink
+          className={styles.navLink}
+          fallbackProjectId={project.id}
+          label={isBilingualCase ? 'WORKS / 项目' : 'WORKS'}
+        />
         <span>{project.year}</span>
       </nav>
 
       <section className={styles.hero}>
         <div className={styles.heroMeta}>
           <span>{caseStudy.eyebrow}</span>
-          <span>{String(project.id).padStart(2, '0')}</span>
+          <span>{formatOrdinal(project.id)}</span>
         </div>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
@@ -148,7 +142,7 @@ export function SwissProjectPage({
                 />
               </div>
               <figcaption>
-                {String(index + 1).padStart(2, '0')} / {project.title}
+                {formatOrdinal(index + 1)} / {project.title}
               </figcaption>
             </figure>
           ))}
@@ -162,7 +156,7 @@ export function SwissProjectPage({
         <div className={styles.highlightGrid}>
           {caseStudy.highlights.map((highlight, index) => (
             <div key={highlight} className={styles.highlight}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{formatOrdinal(index + 1)}</span>
               <p>{highlight}</p>
             </div>
           ))}

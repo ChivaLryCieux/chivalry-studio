@@ -13,6 +13,14 @@ export const STAR_GRADIENT_COLORS = {
   yellow: '#feff65',
 };
 
+let sharedCardGeometry: THREE.PlaneGeometry | null = null;
+
+/** 所有环形卡片共享同一弯曲几何实例(参数一致),避免逐卡创建 */
+export function getSharedCardGeometry(width: number, height: number) {
+  sharedCardGeometry ??= createBentPlaneGeometry(0.1, width, height);
+  return sharedCardGeometry;
+}
+
 export function createBentPlaneGeometry(radius: number, width = 1, height = 1) {
   const geometry = new THREE.PlaneGeometry(width, height, 32, 16);
   const halfWidth = width * 0.5;
@@ -56,6 +64,66 @@ export function getRingRadius(cardCount: number) {
     (activeCardWidth + CARD_GAP) / (2 * Math.sin(Math.PI / cardCount));
 
   return Math.max(MIN_RING_RADIUS, minimumRadius * RING_RADIUS_COMPRESSION);
+}
+
+const starGeometryCache = new WeakMap<
+  THREE.Object3D,
+  { geometries: THREE.BufferGeometry[]; scale: number }
+>();
+
+/**
+ * GLB 星形模型预处理:克隆几何、按 XZ 平面重算 UV、统一法线,
+ * 并求归一化缩放。结果按 scene 实例缓存 —— 同一 GLB 只处理一次。
+ */
+export function prepareStarModel(scene: THREE.Object3D) {
+  const cached = starGeometryCache.get(scene);
+  if (cached) {
+    return cached;
+  }
+
+  const geometries: THREE.BufferGeometry[] = [];
+
+  scene.traverse((child) => {
+    if (!('isMesh' in child) || !child.isMesh) {
+      return;
+    }
+
+    const sourceMesh = child as THREE.Mesh<THREE.BufferGeometry>;
+    const geometry = sourceMesh.geometry.clone();
+    const position = geometry.attributes.position;
+    const bounds = new THREE.Box3().setFromBufferAttribute(
+      position as THREE.BufferAttribute
+    );
+    const center = bounds.getCenter(new THREE.Vector3());
+    const size = bounds.getSize(new THREE.Vector3());
+    const sizeX = Math.max(size.x, 0.0001);
+    const sizeZ = Math.max(size.z, 0.0001);
+    const uv = new Float32Array(position.count * 2);
+
+    for (let i = 0; i < position.count; i += 1) {
+      uv[i * 2] = (position.getX(i) - center.x) / sizeX + 0.5;
+      uv[i * 2 + 1] = (position.getZ(i) - center.z) / sizeZ + 0.5;
+    }
+
+    geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    geometry.computeVertexNormals();
+    geometries.push(geometry);
+  });
+
+  const bounds = new THREE.Box3();
+  geometries.forEach((geometry) => {
+    geometry.computeBoundingBox();
+    if (geometry.boundingBox) {
+      bounds.union(geometry.boundingBox);
+    }
+  });
+  const size = bounds.getSize(new THREE.Vector3());
+  const maxDimension = Math.max(size.x, size.y, size.z);
+  const scale = maxDimension > 0 ? 2 / maxDimension : 1;
+
+  const prepared = { geometries, scale };
+  starGeometryCache.set(scene, prepared);
+  return prepared;
 }
 
 export function createStarGradientTexture() {

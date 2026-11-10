@@ -1,5 +1,6 @@
 import styles from './ProjectProgress.module.css';
-import { getProjectProgress } from '@/lib/projects';
+import { getCarouselProgress } from '@/lib/carousel';
+import { formatOrdinal } from '@/lib/format';
 
 interface ProjectProgressProps {
   activeIndex: number;
@@ -10,20 +11,16 @@ export function ProjectProgress({
   activeIndex,
   totalProjects,
 }: ProjectProgressProps) {
-  const projectLabel = String(activeIndex + 1).padStart(2, '0');
+  const projectLabel = formatOrdinal(activeIndex + 1);
 
   return (
     <div className={styles.bottomBar}>
-      <div className={styles.ticks}>
-        {Array.from({ length: 40 }).map((_, index) => (
-          <span key={index} className={styles.tick}>
-            |
-          </span>
-        ))}
-      </div>
+      <div className={styles.ticks} aria-hidden="true" />
       <div
         className={styles.progressMarker}
-        style={{ left: `${getProjectProgress(activeIndex, totalProjects)}%` }}
+        style={{
+          left: `${getCarouselProgress(activeIndex, totalProjects)}%`,
+        }}
       >
         [ {projectLabel} ]
       </div>

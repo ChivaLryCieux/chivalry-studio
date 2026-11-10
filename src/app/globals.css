@@ -36,9 +36,8 @@ body::before {
 body::after {
     content: '';
     position: fixed;
-    inset: -50%;
-    width: 200%;
-    height: 200%;
+    /* 位移范围仅需覆盖 ±3% 抖动,面积从 200% 降至 120% */
+    inset: -10%;
     z-index: 9998;
     pointer-events: none;
     opacity: 0.4;
@@ -46,6 +45,7 @@ body::after {
     background-repeat: repeat;
     animation: film-grain 0.5s steps(3) infinite;
     mix-blend-mode: soft-light;
+    will-change: transform;
 }
 
 @keyframes film-grain {
@@ -69,6 +69,13 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
     body::after {
         animation: none;
+    }
+}
+
+/* 移动端关闭动态颗粒层,降低全屏混合合成开销(静态噪点层保留) */
+@media (hover: none) and (pointer: coarse) {
+    body::after {
+        display: none;
     }
 }
 
@@ -97,6 +104,7 @@ a {
 }
 
 .crosshair-h {
+    top: 0;
     left: 0;
     width: 100vw;
     height: 1px;
@@ -104,6 +112,7 @@ a {
 
 .crosshair-v {
     top: 0;
+    left: 0;
     width: 1px;
     height: 100vh;
 }
@@ -111,6 +120,8 @@ a {
 /* 准星中心容器 */
 .crosshair-center {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 10001;
     pointer-events: none;
     transform: translate(-50%, -50%);

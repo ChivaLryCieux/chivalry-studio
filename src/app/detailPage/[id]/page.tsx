@@ -1,94 +1,13 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { ProjectGallery } from '@/components/project/ProjectGallery';
-import { ProjectSidebar } from '@/components/project/ProjectSidebar';
-import { SwissProjectPage } from '@/components/project/swiss/SwissProjectPage';
-import { getProjectById, getProjects } from '@/lib/projects';
-import styles from '@/components/project/detailPage.module.css';
+import { permanentRedirect } from 'next/navigation';
 
 interface PageProps {
   params: Promise<{
     id: string;
   }>;
-  searchParams: Promise<{
-    fromProject?: string;
-  }>;
 }
 
-export function generateStaticParams() {
-  return getProjects().map((project) => ({
-    id: String(project.id),
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+/** 兼容旧链接:canonical 已迁移至 /project/[id] */
+export default async function DetailPageRedirect({ params }: PageProps) {
   const resolvedParams = await params;
-  const project = getProjectById(Number(resolvedParams.id));
-
-  if (!project) {
-    return {
-      title: 'Project Not Found | Lry',
-    };
-  }
-
-  const title = `${project.title} | Lry`;
-  const description =
-    project.description ||
-    project.caseStudy?.deck ||
-    `${project.title} - ${project.category}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: [
-        {
-          url: project.src,
-          alt: project.title,
-        },
-      ],
-    },
-  };
-}
-
-export default async function DetailPage({ params, searchParams }: PageProps) {
-  const resolvedParams = await params;
-  const resolvedSearchParams = await searchParams;
-  const project = getProjectById(Number(resolvedParams.id));
-
-  if (!project) {
-    notFound();
-  }
-
-  const sourceProjectId = Number(resolvedSearchParams.fromProject);
-  const returnProjectId =
-    Number.isFinite(sourceProjectId) && getProjectById(sourceProjectId)
-      ? sourceProjectId
-      : project.id;
-
-  if (project.template === 'swiss-case') {
-    return (
-      <SwissProjectPage project={project} returnProjectId={returnProjectId} />
-    );
-  }
-
-  return (
-    <main className={styles.page}>
-      <nav className={styles.nav}>
-        <Link href={`/?project=${returnProjectId}`} className={styles.navLink}>
-          WORKS
-        </Link>
-      </nav>
-
-      <div className={styles.content}>
-        <ProjectGallery project={project} />
-        <ProjectSidebar project={project} />
-      </div>
-    </main>
-  );
+  permanentRedirect(`/project/${resolvedParams.id}`);
 }

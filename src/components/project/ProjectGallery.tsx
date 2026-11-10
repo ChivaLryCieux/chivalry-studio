@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import styles from '@/components/project/detailPage.module.css';
-import type { ProjectData } from '@/types/project';
+import type { Project } from '@/types/project';
 
 interface ProjectGalleryProps {
-  project: ProjectData;
+  project: Project;
 }
 
 export function ProjectGallery({ project }: ProjectGalleryProps) {

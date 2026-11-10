@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 
 interface DisplayPageRouteProps {
   searchParams: Promise<{
@@ -6,6 +6,7 @@ interface DisplayPageRouteProps {
   }>;
 }
 
+/** 兼容旧链接:展厅已合并至 / */
 export default async function DisplayPageRoute({
   searchParams,
 }: DisplayPageRouteProps) {
@@ -13,5 +14,5 @@ export default async function DisplayPageRoute({
   const projectParam = resolvedSearchParams.project
     ? `?project=${resolvedSearchParams.project}`
     : '';
-  redirect(`/${projectParam}`);
+  permanentRedirect(`/${projectParam}`);
 }

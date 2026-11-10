@@ -6,7 +6,14 @@ import { useGLTF } from '@react-three/drei/core/Gltf.js';
 import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber';
 import * as easing from 'maath/easing';
 import * as THREE from 'three';
-import type { ProjectData } from '@/types/project';
+import type { ProjectCardData } from '@/types/project';
+import {
+  createStarGradientTexture,
+  getRingRadius,
+  getSharedCardGeometry,
+  paintStarGradientTexture,
+  prepareStarModel,
+} from '@/lib/threeUtils';
 
 const CAMERA_Z = 16.5;
 const STAR_MODEL_URL = '/models/Poly-2.glb';
@@ -21,7 +28,7 @@ interface ProjectRing3DProps {
   activeIndex: number;
   onProjectFocus: (projectId: number) => void;
   onProjectOpen: (projectId: number) => void;
-  projects: ProjectData[];
+  projects: readonly ProjectCardData[];
 }
 
 interface CarouselSceneProps extends ProjectRing3DProps {
@@ -33,21 +40,10 @@ interface RingCardProps {
   index: number;
   onProjectFocus: (projectId: number) => void;
   onProjectOpen: (projectId: number) => void;
-  project: ProjectData;
+  project: ProjectCardData;
   radius: number;
   total: number;
 }
-
-interface StarMeshGeometry {
-  geometry: THREE.BufferGeometry;
-}
-
-import {
-  createBentPlaneGeometry,
-  getRingRadius,
-  createStarGradientTexture,
-  paintStarGradientTexture,
-} from '@/lib/threeUtils';
 
 function RingCard({
   activeIndex,
@@ -61,10 +57,7 @@ function RingCard({
   const cardRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const theta = (index / total) * Math.PI * 2;
-  const geometry = useMemo(
-    () => createBentPlaneGeometry(0.1, CARD_WIDTH, CARD_HEIGHT),
-    []
-  );
+  const geometry = getSharedCardGeometry(CARD_WIDTH, CARD_HEIGHT);
   const isActive = index === activeIndex;
 
   useFrame((_, delta) => {
@@ -99,12 +92,10 @@ function RingCard({
   const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation();
     setHovered(true);
-    document.body.style.cursor = 'pointer';
   };
 
   const handlePointerOut = () => {
     setHovered(false);
-    document.body.style.cursor = '';
   };
 
   const handleClick = (event: ThreeEvent<MouseEvent>) => {
@@ -125,7 +116,7 @@ function RingCard({
       transparent
       toneMapped={false}
       side={THREE.DoubleSide}
-      url={project.src}
+      url={project.cardSrc}
       position={[Math.sin(theta) * radius, 0, Math.cos(theta) * radius]}
       rotation={[0, theta, 0]}
       onClick={handleClick}
@@ -169,54 +160,7 @@ function StarModel() {
       toneMapped: false,
     });
   }, [gradientTexture.texture]);
-  const starGeometries = useMemo(() => {
-    const geometries: StarMeshGeometry[] = [];
-
-    scene.traverse((child) => {
-      if (!('isMesh' in child) || !child.isMesh) {
-        return;
-      }
-
-      const sourceMesh = child as THREE.Mesh<THREE.BufferGeometry>;
-      const geometry = sourceMesh.geometry.clone();
-      const position = geometry.attributes.position;
-      const bounds = new THREE.Box3().setFromBufferAttribute(
-        position as THREE.BufferAttribute
-      );
-      const center = bounds.getCenter(new THREE.Vector3());
-      const size = bounds.getSize(new THREE.Vector3());
-      const sizeX = Math.max(size.x, 0.0001);
-      const sizeZ = Math.max(size.z, 0.0001);
-      const uv = new Float32Array(position.count * 2);
-
-      for (let i = 0; i < position.count; i += 1) {
-        uv[i * 2] = (position.getX(i) - center.x) / sizeX + 0.5;
-        uv[i * 2 + 1] = (position.getZ(i) - center.z) / sizeZ + 0.5;
-      }
-
-      geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
-      geometry.computeVertexNormals();
-      geometries.push({ geometry });
-    });
-
-    return geometries;
-  }, [scene]);
-  const modelScale = useMemo(() => {
-    const bounds = new THREE.Box3();
-
-    starGeometries.forEach(({ geometry }) => {
-      geometry.computeBoundingBox();
-
-      if (geometry.boundingBox) {
-        bounds.union(geometry.boundingBox);
-      }
-    });
-
-    const size = bounds.getSize(new THREE.Vector3());
-    const maxDimension = Math.max(size.x, size.y, size.z);
-
-    return maxDimension > 0 ? 2 / maxDimension : 1;
-  }, [starGeometries]);
+  const starModel = useMemo(() => prepareStarModel(scene), [scene]);
 
   useEffect(() => {
     paintStarGradientTexture(
@@ -248,7 +192,7 @@ function StarModel() {
     }
 
     modelRef.current.position.y = 0.08 + breath * 0.11;
-    modelRef.current.scale.setScalar(modelScale * (1 + breath * 0.025));
+    modelRef.current.scale.setScalar(starModel.scale * (1 + breath * 0.025));
     modelRef.current.rotation.x +=
       delta *
       motion.spinX *
@@ -268,9 +212,9 @@ function StarModel() {
       ref={modelRef}
       position={[0, 0.08, 0]}
       rotation={[0.16, -0.4, -0.08]}
-      scale={modelScale}
+      scale={starModel.scale}
     >
-      {starGeometries.map(({ geometry }, index) => (
+      {starModel.geometries.map((geometry, index) => (
         <mesh
           key={index}
           castShadow
@@ -312,7 +256,6 @@ function CarouselScene({
       delta
     );
     state.camera.lookAt(0, 0, 0);
-    state.events.update?.();
   });
 
   return (

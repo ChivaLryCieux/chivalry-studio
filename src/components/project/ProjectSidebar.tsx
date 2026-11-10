@@ -1,9 +1,10 @@
 import styles from '@/components/project/detailPage.module.css';
 import { ProjectAwardBadge } from '@/components/common/ProjectAwardBadge';
-import type { ProjectData } from '@/types/project';
+import { formatOrdinal } from '@/lib/format';
+import type { Project } from '@/types/project';
 
 interface ProjectSidebarProps {
-  project: ProjectData;
+  project: Project;
 }
 
 export function ProjectSidebar({ project }: ProjectSidebarProps) {
@@ -12,7 +13,7 @@ export function ProjectSidebar({ project }: ProjectSidebarProps) {
       <div className={styles.sidebarInner}>
         <div className={styles.titleBlock}>
           <div className={styles.projectMeta}>
-            {String(project.id).padStart(2, '0')} / {project.category}
+            {formatOrdinal(project.id)} / {project.category}
           </div>
           <h1 className={styles.projectTitle}>{project.title || 'Untitled'}</h1>
           {project.award ? (

@@ -4,7 +4,7 @@
     height: 100vh;
     inset: 0;
     position: fixed;
-    overflow: hidden; /* 禁止页面滚动，只允许内部逻辑切换 */
+    overflow: hidden; /* 禁止页面滚动,只允许内部逻辑切换 */
     overscroll-behavior: none;
     touch-action: none;
     user-select: none;
@@ -12,27 +12,38 @@
     align-items: center;
     justify-content: center;
     color: #ede8de; /* 全局文本颜色 */
+    background: linear-gradient(130deg, #2b1329 0%, #80372b 100%);
+}
+
+/* 漂移渐变层:transform 动画走合成层,避免每帧全屏重绘 */
+.main::before {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
     background:
         radial-gradient(circle at 16% 22%, rgba(118, 42, 50, 0.36), transparent 44%),
-        radial-gradient(circle at 82% 76%, rgba(128, 55, 43, 0.34), transparent 42%),
-        linear-gradient(130deg, #2b1329 0%, #80372b 100%);
-    background-size: 180% 180%, 170% 170%, 180% 180%;
+        radial-gradient(circle at 82% 76%, rgba(128, 55, 43, 0.34), transparent 42%);
     animation: display-bg-shift 16s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 @keyframes display-bg-shift {
     0% {
-        background-position: 0% 10%, 90% 90%, 0% 50%;
-        filter: saturate(0.96);
+        transform: translate(-2.5%, -1%) rotate(-1.5deg) scale(1);
     }
 
     50% {
-        background-position: 35% 28%, 62% 76%, 50% 50%;
-        filter: saturate(1);
+        transform: translate(1.5%, 1%) rotate(0.5deg) scale(1.04);
     }
 
     100% {
-        background-position: 100% 44%, 8% 60%, 100% 50%;
-        filter: saturate(1.04);
+        transform: translate(2.5%, 2%) rotate(1.5deg) scale(1.01);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .main::before {
+        animation: none;
     }
 }

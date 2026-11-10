@@ -14,6 +14,7 @@
     "lint:fix": "eslint src --fix",
     "typecheck": "tsc --noEmit",
     "typecheck:ts6": "tsc6 --noEmit",
+    "images": "node scripts/optimize-images.mjs",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\""
   },
@@ -35,6 +36,7 @@
     "eslint": "^10.14.0",
     "eslint-config-next": "16.4.4",
     "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
     "typescript": "npm:@typescript/typescript6@^6.0.2"
   }
 }

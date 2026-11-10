@@ -1,22 +1,12 @@
+import { Suspense } from 'react';
 import { DisplayPage } from '@/components/home/DisplayPage';
 
-interface HomePageProps {
-  searchParams: Promise<{
-    project?: string;
-  }>;
-}
+export const dynamic = 'force-static';
 
-export default async function Home({ searchParams }: HomePageProps) {
-  const resolvedSearchParams = await searchParams;
-  const initialProjectId = Number(resolvedSearchParams.project);
-  const displayProjectId = Number.isFinite(initialProjectId)
-    ? initialProjectId
-    : undefined;
-
+export default function Home() {
   return (
-    <DisplayPage
-      key={displayProjectId ?? 'default'}
-      initialProjectId={displayProjectId}
-    />
+    <Suspense fallback={null}>
+      <DisplayPage />
+    </Suspense>
   );
 }
